@@ -17,4 +17,5 @@ settings:
   react:
     version: '16'
 
-globals: __dirname: true
+globals:
+  __dirname: true
