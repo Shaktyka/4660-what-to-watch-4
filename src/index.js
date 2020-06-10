@@ -9,8 +9,6 @@ const promoCardData = {
 };
 
 ReactDOM.render(
-    <App
-      promoCardData={promoCardData}
-    />,
+    <App promoCardData={promoCardData} />,
     document.querySelector(`#root`)
 );
