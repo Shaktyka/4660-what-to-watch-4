@@ -8,7 +8,12 @@ const promoCardData = {
   releaseYear: `2014`
 };
 
+const filmsList = [`Moonrise Kingdom`, `Mindhunter`, `War of the Worlds`];
+
 ReactDOM.render(
-    <App promoCardData={promoCardData} />,
+    <App
+      promoCardData={promoCardData}
+      films={filmsList}
+    />,
     document.querySelector(`#root`)
 );
