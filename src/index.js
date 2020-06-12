@@ -12,7 +12,7 @@ const filmsList = [`Moonrise Kingdom`, `Mindhunter`, `War of the Worlds`];
 
 ReactDOM.render(
     <App
-      promoCardData={promoCardData}
+      promoCard={promoCardData}
       films={filmsList}
     />,
     document.querySelector(`#root`)
