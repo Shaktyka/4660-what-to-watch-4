@@ -129,7 +129,7 @@ Main.propTypes = {
   promoCard: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseYear: PropTypes.string.isRequired
+    releaseYear: PropTypes.number.isRequired
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.string.isRequired

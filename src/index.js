@@ -5,7 +5,7 @@ import App from './components/app/app.jsx';
 const promoCardData = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
-  releaseYear: `2014`
+  releaseYear: 2014
 };
 
 const filmsList = [`Moonrise Kingdom`, `Mindhunter`, `War of the Worlds`];
