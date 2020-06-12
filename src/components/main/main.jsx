@@ -7,7 +7,7 @@ const Main = ({films, promoCard}) => {
   const {title, genre, releaseYear} = promoCard;
 
   const cardsList = films.map((filmTitle) => (
-    <Card title={filmTitle} key={Math.ceil(Math.random() * 100)} />
+    <Card title={filmTitle} key={Math.ceil(Math.random() * 1000)} />
   ));
 
   return (
