@@ -1,11 +1,20 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import Card from '../card/card.jsx';
 
-const Main = (props) => {
-  const {title, genre, releaseYear} = props.promoCard;
-  const films = props.films;
+const Main = ({
+  films: films,
+  promoCard: {
+    title: title,
+    genre: genre,
+    releaseYear: year
+  }
+}) => {
+
+  const cardsList = films.map((filmTitle) => (
+    <Card title={filmTitle} key={Math.ceil(Math.random() * 100)} />
+  ));
 
   return (
     <>
@@ -37,7 +46,7 @@ const Main = (props) => {
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{releaseYear}</span>
+                <span className="movie-card__year">{year}</span>
               </p>
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
@@ -93,9 +102,7 @@ const Main = (props) => {
             </li>
           </ul>
           <div className="catalog__movies-list">
-            {
-              films.map((filmTitle) => <Card title={filmTitle} key={Math.ceil(Math.random() * 100)} /> )
-            }
+            {cardsList}
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -116,6 +123,14 @@ const Main = (props) => {
       </div>
     </>
   );
+};
+
+Main.propTypes = {
+  promoCard: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseYear: PropTypes.string.isRequired
+  })
 };
 
 export default Main;
