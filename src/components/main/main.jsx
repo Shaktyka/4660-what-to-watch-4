@@ -3,14 +3,8 @@ import PropTypes from 'prop-types';
 
 import Card from '../card/card.jsx';
 
-const Main = ({
-  films: films,
-  promoCard: {
-    title: title,
-    genre: genre,
-    releaseYear: year
-  }
-}) => {
+const Main = ({films, promoCard}) => {
+  const {title, genre, releaseYear} = promoCard;
 
   const cardsList = films.map((filmTitle) => (
     <Card title={filmTitle} key={Math.ceil(Math.random() * 100)} />
@@ -46,7 +40,7 @@ const Main = ({
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__year">{releaseYear}</span>
               </p>
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
