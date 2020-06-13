@@ -10,6 +10,8 @@ const promoCardData = {
   releaseYear: 1962
 };
 
+const mainTitleClickHandler = () => {};
+
 describe(`Main rendering`, () => {
 
   it(`Main renders correctly`, () => {
@@ -18,6 +20,7 @@ describe(`Main rendering`, () => {
           <Main
             promoCard={promoCardData}
             films={MOCK_FILMS}
+            mainTitleClickHandler={mainTitleClickHandler}
           />
       )
       .toJSON();

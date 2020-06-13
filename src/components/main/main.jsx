@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 
 import Card from '../card/card.jsx';
 
-const Main = ({films, promoCard}) => {
+const Main = ({films, promoCard, mainTitleClickHandler}) => {
   const {title, genre, releaseYear} = promoCard;
 
   const cardsList = films.map((filmTitle) => (
-    <Card title={filmTitle} key={Math.ceil(Math.random() * 1000)} />
+    <Card
+      title={filmTitle}
+      key={Math.ceil(Math.random() * 1000)}
+      mainTitleClickHandler={mainTitleClickHandler}
+    />
   ));
 
   return (
@@ -127,7 +131,8 @@ Main.propTypes = {
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.string.isRequired
-  ).isRequired
+  ).isRequired,
+  mainTitleClickHandler: PropTypes.func.isRequired
 };
 
 export default Main;
