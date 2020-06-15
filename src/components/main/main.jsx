@@ -6,10 +6,11 @@ import Card from '../card/card.jsx';
 const Main = ({films, promoCard, mainTitleClickHandler}) => {
   const {title, genre, releaseYear} = promoCard;
 
-  const cardsList = films.map((filmTitle) => (
+  const cardsList = films.map((film) => (
     <Card
-      title={filmTitle}
+      title={film.title}
       key={Math.ceil(Math.random() * 1000)}
+      poster={film.preview}
       mainTitleClickHandler={mainTitleClickHandler}
     />
   ));
@@ -130,7 +131,10 @@ Main.propTypes = {
     releaseYear: PropTypes.number.isRequired
   }).isRequired,
   films: PropTypes.arrayOf(
-      PropTypes.string.isRequired
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired
+      }).isRequired
   ).isRequired,
   mainTitleClickHandler: PropTypes.func.isRequired
 };
