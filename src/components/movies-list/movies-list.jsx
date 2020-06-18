@@ -6,6 +6,10 @@ import Card from '../card/card.jsx';
 class MoviesList extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      activeCard: {}
+    };
   }
 
   render() {
