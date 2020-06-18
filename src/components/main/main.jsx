@@ -8,7 +8,7 @@ const Main = ({films, promoCard, mainTitleClickHandler}) => {
 
   // Обработчик наведения на карточку
   const onHoverCard = () => {
-    console.log(1);
+    // console.log(1);
   };
 
   return (
