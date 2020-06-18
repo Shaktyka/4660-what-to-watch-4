@@ -4,7 +4,20 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import Main from './main.jsx';
 
-const MOCK_FILMS = [`Eternal Sunshine`, `Arizona Dream`, `Fargo`];
+const FILMS_DATA = [
+  {
+    title: `Bohemian Rhapsody`,
+    preview: `bohemian-rhapsody.jpg`
+  },
+  {
+    title: `Dardjeeling Limited`,
+    preview: `dardjeeling-limited.jpg`
+  },
+  {
+    title: `Fantastic beasts: the crimes of Grindelwald`,
+    preview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`
+  }
+];
 
 const promoCardData = {
   title: `Dr.No`,
@@ -24,7 +37,7 @@ describe(`Main component`, () => {
     const main = mount(
         <Main
           promoCard={promoCardData}
-          films={MOCK_FILMS}
+          films={FILMS_DATA}
           mainTitleClickHandler={mainTitleClickHandler}
         />
     );
