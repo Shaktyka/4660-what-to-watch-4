@@ -1,27 +1,33 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../card/card.jsx';
 
-const MoviesList = ({films, mainTitleClickHandler, onHoverCard}) => {
+class MoviesList extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div className="catalog__movies-list">
-      {
-        films.map((film) => (
-          <Card
-            title={film.title}
-            key={Math.ceil(Math.random() * 1000)}
-            poster={film.preview}
-            mainTitleClickHandler={mainTitleClickHandler}
-            onHoverCard={onHoverCard}
-          />
-        ))
-      }
-    </div>
-  );
+  render() {
+    const {films, mainTitleClickHandler, onHoverCard} = this.props;
 
-};
+    return (
+      <div className="catalog__movies-list">
+        {
+          films.map((film) => (
+            <Card
+              title={film.title}
+              key={Math.ceil(Math.random() * 1000)}
+              poster={film.preview}
+              mainTitleClickHandler={mainTitleClickHandler}
+              onHoverCard={onHoverCard}
+            />
+          ))
+        }
+      </div>
+    );
+  }
+}
 
 MoviesList.propTypes = {
   films: PropTypes.arrayOf(
