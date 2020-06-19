@@ -8,17 +8,16 @@ class MoviesList extends PureComponent {
     super(props);
 
     this.state = {
-      activeCard: {
-        title: ``,
-        preview: ``
-      }
+      activeCard: null
     };
+
+    this._handleCardHover = this._handleCardHover.bind(this);
   }
 
-  _handleCardHover(cardElement) {
-    const cardTitle = cardElement.querySelector(`.small-movie-card__link`).textContent;
-    const cardPoster = cardElement.querySelector(`.small-movie-card__image img`).src;
-    return {title: cardTitle, preview: cardPoster};
+  _handleCardHover(cardId) {
+    this.setState({
+      activeCard: cardId
+    });
   }
 
   render() {

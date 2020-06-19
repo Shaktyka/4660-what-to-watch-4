@@ -13,6 +13,25 @@ const Film = {
 
 describe(`Card component test`, () => {
 
+  it(`MovieCard is hovered`, () => {
+    const onMouseEnterCard = jest.fn();
+
+    const card = shallow(
+        <Card
+          id={Film.ID}
+          title={Film.TITLE}
+          poster={Film.PREVIEW}
+          mainTitleClickHandler={() => {}}
+          onHoverCard={onMouseEnterCard}
+        />
+    );
+
+    const movieCard = card.find(`.catalog__movies-card`);
+
+    movieCard.props().onMouseEnter();
+    expect(onMouseEnterCard).toHaveBeenCalledTimes(1);
+  });
+
   it(`Card passes a data object when hovered`, () => {
     const onMouseEnterCard = jest.fn();
 
