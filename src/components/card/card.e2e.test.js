@@ -24,7 +24,7 @@ describe(`Card component test`, () => {
         />
     );
 
-    card.simulate(`mouseover`, {key: true});
+    card.simulate(`mouseenter`, {key: true});
 
     expect(onHoverCard).toHaveBeenCalledTimes(1);
   });

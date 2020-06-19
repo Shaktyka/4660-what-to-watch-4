@@ -15,9 +15,12 @@ class MoviesList extends PureComponent {
     };
   }
 
+  _handleCardHover() {
+    // console.log(1);
+  }
+
   render() {
-    const {films, mainTitleClickHandler, onHoverCard} = this.props;
-    // const {activeCard} = this.state;
+    const {films, mainTitleClickHandler} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -28,7 +31,7 @@ class MoviesList extends PureComponent {
               key={Math.ceil(Math.random() * 1000)}
               poster={film.preview}
               mainTitleClickHandler={mainTitleClickHandler}
-              onHoverCard={onHoverCard}
+              onHoverCard={this._handleCardHover}
             />
           ))
         }
@@ -44,8 +47,7 @@ MoviesList.propTypes = {
         preview: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  mainTitleClickHandler: PropTypes.func.isRequired,
-  onHoverCard: PropTypes.func.isRequired
+  mainTitleClickHandler: PropTypes.func.isRequired
 };
 
 export default MoviesList;

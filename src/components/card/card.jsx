@@ -6,7 +6,7 @@ const Card = ({title, poster, mainTitleClickHandler, onHoverCard}) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseOver={onHoverCard}
+      onMouseEnter={onHoverCard}
     >
       <div className="small-movie-card__image">
         <img src={`img/${poster}`} alt={title} width="280" height="175" />

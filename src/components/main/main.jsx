@@ -6,11 +6,6 @@ import MoviesList from '../movies-list/movies-list.jsx';
 const Main = ({films, promoCard, mainTitleClickHandler}) => {
   const {title, genre, releaseYear} = promoCard;
 
-  // Обработчик наведения на карточку
-  const onHoverCard = () => {
-    // console.log(1);
-  };
-
   return (
     <>
       <section className="movie-card">
@@ -100,7 +95,6 @@ const Main = ({films, promoCard, mainTitleClickHandler}) => {
           <MoviesList
             films={films}
             mainTitleClickHandler={mainTitleClickHandler}
-            onHoverCard={onHoverCard}
           />
 
           <div className="catalog__more">
