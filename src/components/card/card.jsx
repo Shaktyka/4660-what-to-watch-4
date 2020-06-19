@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 const Card = ({id, title, poster, mainTitleClickHandler, onHoverCard}) => {
 
-  const handleCardEnter = (evt) => {
-    onHoverCard(evt.currentTarget.id);
-  };
+  const handleCardEnter = () => onHoverCard(id);
 
   return (
     <article
