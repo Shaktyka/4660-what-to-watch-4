@@ -3,14 +3,15 @@
 exports[`Card rendering Card renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
     <img
-      alt="Matrix"
+      alt="Mindhunter"
       height="175"
-      src="img/undefined"
+      src="img/mindhunter.jpg"
       width="280"
     />
   </div>
@@ -22,7 +23,7 @@ exports[`Card rendering Card renders correctly 1`] = `
       className="small-movie-card__link"
       href="movie-page.html"
     >
-      Matrix
+      Mindhunter
     </a>
   </h3>
 </article>

@@ -265,8 +265,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="Bohemian Rhapsody"
               height="175"
-              src="img/undefined"
+              src="img/bohemian-rhapsody.jpg"
               width="280"
             />
           </div>
@@ -277,7 +278,9 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-            />
+            >
+              Bohemian Rhapsody
+            </a>
           </h3>
         </article>
         <article
@@ -288,8 +291,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="Dardjeeling Limited"
               height="175"
-              src="img/undefined"
+              src="img/dardjeeling-limited.jpg"
               width="280"
             />
           </div>
@@ -300,7 +304,9 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-            />
+            >
+              Dardjeeling Limited
+            </a>
           </h3>
         </article>
         <article
@@ -311,8 +317,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="Fantastic beasts: the crimes of Grindelwald"
               height="175"
-              src="img/undefined"
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -323,7 +330,9 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-            />
+            >
+              Fantastic beasts: the crimes of Grindelwald
+            </a>
           </h3>
         </article>
       </div>

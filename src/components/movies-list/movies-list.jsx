@@ -17,7 +17,7 @@ class MoviesList extends PureComponent {
 
   render() {
     const {films, mainTitleClickHandler, onHoverCard} = this.props;
-    const {activeCard} = this.state;
+    // const {activeCard} = this.state;
 
     return (
       <div className="catalog__movies-list">

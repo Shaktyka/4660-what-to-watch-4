@@ -14,7 +14,7 @@ describe(`Card rendering`, () => {
       .create(
           <Card
             title={Film.TITLE}
-            preview={Film.PREVIEW}
+            poster={Film.PREVIEW}
             mainTitleClickHandler={() => {}}
             onHoverCard={() => {}}
           />)
