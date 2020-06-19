@@ -6,6 +6,7 @@ exports[`MoviesList rendering MoviesList renders correctly 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
+    id={1}
     onMouseEnter={[Function]}
   >
     <div
@@ -32,6 +33,7 @@ exports[`MoviesList rendering MoviesList renders correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    id={2}
     onMouseEnter={[Function]}
   >
     <div

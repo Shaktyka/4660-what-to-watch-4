@@ -259,6 +259,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          id={1}
           onMouseEnter={[Function]}
         >
           <div
@@ -285,6 +286,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          id={2}
           onMouseEnter={[Function]}
         >
           <div
@@ -311,6 +313,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          id={3}
           onMouseEnter={[Function]}
         >
           <div

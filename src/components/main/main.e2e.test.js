@@ -6,14 +6,17 @@ import Main from './main.jsx';
 
 const FILMS_DATA = [
   {
+    id: 1,
     title: `Bohemian Rhapsody`,
     preview: `bohemian-rhapsody.jpg`
   },
   {
+    id: 2,
     title: `Dardjeeling Limited`,
     preview: `dardjeeling-limited.jpg`
   },
   {
+    id: 3,
     title: `Fantastic beasts: the crimes of Grindelwald`,
     preview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`
   }
