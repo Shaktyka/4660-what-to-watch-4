@@ -6,6 +6,7 @@ import Card from './card.jsx';
 configure({adapter: new Adapter()});
 
 const Film = {
+  ID: 1,
   TITLE: `Mindhunter`,
   PREVIEW: `mindhunter.jpg`
 };
@@ -13,20 +14,21 @@ const Film = {
 describe(`Card component test`, () => {
 
   it(`Card passes a data object when hovered`, () => {
-    const onHoverCard = jest.fn();
+    const onMouseEnterCard = jest.fn();
 
     const card = shallow(
         <Card
+          id={Film.ID}
           title={Film.TITLE}
           poster={Film.PREVIEW}
           mainTitleClickHandler={() => {}}
-          onHoverCard={onHoverCard}
+          onHoverCard={onMouseEnterCard}
         />
     );
 
     card.simulate(`mouseenter`, {key: true});
 
-    expect(onHoverCard).toHaveBeenCalledTimes(1);
+    expect(onMouseEnterCard).toHaveBeenCalledTimes(1);
   });
 
 });

@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = ({title, poster, mainTitleClickHandler, onHoverCard}) => {
+const Card = ({id, title, poster, mainTitleClickHandler, onHoverCard}) => {
+
+  const handleCardEnter = (evt) => {
+    onHoverCard(evt.currentTarget);
+  };
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={onHoverCard}
+      onMouseEnter={handleCardEnter}
+      id={id}
     >
       <div className="small-movie-card__image">
         <img src={`img/${poster}`} alt={title} width="280" height="175" />
@@ -22,6 +27,7 @@ const Card = ({title, poster, mainTitleClickHandler, onHoverCard}) => {
 };
 
 Card.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   mainTitleClickHandler: PropTypes.func.isRequired,

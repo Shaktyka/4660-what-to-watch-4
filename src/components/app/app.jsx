@@ -20,6 +20,7 @@ App.propTypes = {
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired
       }).isRequired

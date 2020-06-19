@@ -4,10 +4,12 @@ import MoviesList from './movies-list.jsx';
 
 const MOCK_FILMS = [
   {
+    id: 1,
     title: `Mindhunter`,
     preview: `mindhunter.jpg`
   },
   {
+    id: 2,
     title: `Moonrise Kingdom`,
     preview: `moonrise-kingdom.jpg`
   }
