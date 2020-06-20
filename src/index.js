@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
+import filmsList from './mocks/films.js';
 
 const promoCardData = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
   releaseYear: 2014
 };
-
-const filmsList = [`Moonrise Kingdom`, `Mindhunter`, `War of the Worlds`];
 
 ReactDOM.render(
     <App

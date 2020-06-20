@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main.jsx';
+import MoviesList from './movies-list.jsx';
 
 const MOCK_FILMS = [
   {
@@ -15,21 +15,16 @@ const MOCK_FILMS = [
   }
 ];
 
-const promoCardData = {
-  title: `Dr.No`,
-  genre: `Thriller`,
-  releaseYear: 1962
-};
+describe(`MoviesList rendering`, () => {
 
-describe(`Main rendering`, () => {
+  it(`MoviesList renders correctly`, () => {
 
-  it(`Main renders correctly`, () => {
     const tree = renderer
       .create(
-          <Main
-            promoCard={promoCardData}
+          <MoviesList
             films={MOCK_FILMS}
             mainTitleClickHandler={() => {}}
+            onHoverCard={() => {}}
           />
       )
       .toJSON();

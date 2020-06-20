@@ -1,18 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../card/card.jsx';
+import MoviesList from '../movies-list/movies-list.jsx';
 
 const Main = ({films, promoCard, mainTitleClickHandler}) => {
   const {title, genre, releaseYear} = promoCard;
-
-  const cardsList = films.map((filmTitle) => (
-    <Card
-      title={filmTitle}
-      key={Math.ceil(Math.random() * 1000)}
-      mainTitleClickHandler={mainTitleClickHandler}
-    />
-  ));
 
   return (
     <>
@@ -99,9 +91,12 @@ const Main = ({films, promoCard, mainTitleClickHandler}) => {
               <a href="#" className="catalog__genres-link">Thrillers</a>
             </li>
           </ul>
-          <div className="catalog__movies-list">
-            {cardsList}
-          </div>
+
+          <MoviesList
+            films={films}
+            mainTitleClickHandler={mainTitleClickHandler}
+          />
+
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
@@ -130,7 +125,11 @@ Main.propTypes = {
     releaseYear: PropTypes.number.isRequired
   }).isRequired,
   films: PropTypes.arrayOf(
-      PropTypes.string.isRequired
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired
+      }).isRequired
   ).isRequired,
   mainTitleClickHandler: PropTypes.func.isRequired
 };

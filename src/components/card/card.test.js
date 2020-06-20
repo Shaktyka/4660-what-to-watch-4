@@ -2,9 +2,11 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Card from './card.jsx';
 
-const FILM_TITLE = `Matrix`;
-
-const mainTitleClickHandler = () => {};
+const filmData = {
+  id: 1,
+  title: `Mindhunter`,
+  preview: `mindhunter.jpg`
+};
 
 describe(`Card rendering`, () => {
 
@@ -12,8 +14,10 @@ describe(`Card rendering`, () => {
     const tree = renderer
       .create(
           <Card
-            title={FILM_TITLE}
-            mainTitleClickHandler={mainTitleClickHandler}
+            film={filmData}
+            mainTitleClickHandler={() => {}}
+            onMouseEnterCard={() => {}}
+            onMouseLeaveCard={() => {}}
           />)
       .toJSON();
 

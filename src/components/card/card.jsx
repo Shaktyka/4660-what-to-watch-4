@@ -1,12 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = ({title, mainTitleClickHandler}) => {
+const Card = ({film, mainTitleClickHandler, onMouseEnterCard, onMouseLeaveCard}) => {
+  const {id, title, preview} = film;
+
+  const handleCardEnter = () => onMouseEnterCard(id);
+
+  const handleCardLeave = () => onMouseLeaveCard();
 
   return (
-    <article className="small-movie-card catalog__movies-card">
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={handleCardEnter}
+      onMouseLeave={handleCardLeave}
+      id={id}
+    >
       <div className="small-movie-card__image">
-        <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+        <img src={`img/${preview}`} alt={title} width="280" height="175" />
       </div>
       <h3
         className="small-movie-card__title"
@@ -19,8 +29,14 @@ const Card = ({title, mainTitleClickHandler}) => {
 };
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  mainTitleClickHandler: PropTypes.func.isRequired
+  film: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired
+  }).isRequired,
+  mainTitleClickHandler: PropTypes.func.isRequired,
+  onMouseEnterCard: PropTypes.func.isRequired,
+  onMouseLeaveCard: PropTypes.func.isRequired
 };
 
 export default Card;

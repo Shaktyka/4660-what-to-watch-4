@@ -2,7 +2,23 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './app.jsx';
 
-const MOCK_FILMS = [`Eternal Sunshine`, `Arizona Dream`, `Fargo`];
+const MOCK_FILMS = [
+  {
+    id: 1,
+    title: `Bohemian Rhapsody`,
+    preview: `bohemian-rhapsody.jpg`
+  },
+  {
+    id: 2,
+    title: `Dardjeeling Limited`,
+    preview: `dardjeeling-limited.jpg`
+  },
+  {
+    id: 3,
+    title: `Fantastic beasts: the crimes of Grindelwald`,
+    preview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`
+  }
+];
 
 const promoCardData = {
   title: `Dr.No`,

@@ -2,14 +2,12 @@ import React from 'react';
 import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
-const mainTitleClickHandler = () => {};
-
 const App = ({films, promoCard}) => {
   return (
     <Main
       promoCard={promoCard}
       films={films}
-      mainTitleClickHandler={mainTitleClickHandler}
+      mainTitleClickHandler={() => {}}
     />
   );
 };
@@ -21,8 +19,12 @@ App.propTypes = {
     releaseYear: PropTypes.number.isRequired
   }).isRequired,
   films: PropTypes.arrayOf(
-      PropTypes.string.isRequired
-  ).isRequired
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired
+      }).isRequired
+  ).isRequired,
 };
 
 export default App;
