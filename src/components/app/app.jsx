@@ -1,6 +1,9 @@
 import React, {PureComponent} from 'react';
-import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
+import Main from '../main/main.jsx';
+import FilmDetails from '../film-details/film-details.jsx';
 
 class App extends PureComponent {
   constructor(props) {
@@ -10,10 +13,6 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    // Рендерит приложение
-  }
-
-  render() {
     const {films, promoCard} = this.props;
 
     return (
@@ -22,6 +21,21 @@ class App extends PureComponent {
         films={films}
         mainTitleClickHandler={() => {}}
       />
+    );
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-component">
+            <FilmDetails />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
