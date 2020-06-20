@@ -15,6 +15,7 @@ describe(`Card component test`, () => {
 
   it(`MovieCard is hovered`, () => {
     const onMouseEnterCard = jest.fn();
+    const onMouseLeaveCard = jest.fn();
 
     const card = shallow(
         <Card
@@ -22,7 +23,8 @@ describe(`Card component test`, () => {
           title={Film.TITLE}
           poster={Film.PREVIEW}
           mainTitleClickHandler={() => {}}
-          onHoverCard={onMouseEnterCard}
+          onMouseEnterCard={onMouseEnterCard}
+          onMouseLeaveCard={onMouseLeaveCard}
         />
     );
 
@@ -32,8 +34,9 @@ describe(`Card component test`, () => {
     expect(onMouseEnterCard).toHaveBeenCalledTimes(1);
   });
 
-  it(`Card passes a data object when hovered`, () => {
+  it(`MovieCard is unhovered`, () => {
     const onMouseEnterCard = jest.fn();
+    const onMouseLeaveCard = jest.fn();
 
     const card = shallow(
         <Card
@@ -41,7 +44,29 @@ describe(`Card component test`, () => {
           title={Film.TITLE}
           poster={Film.PREVIEW}
           mainTitleClickHandler={() => {}}
-          onHoverCard={onMouseEnterCard}
+          onMouseEnterCard={onMouseEnterCard}
+          onMouseLeaveCard={onMouseLeaveCard}
+        />
+    );
+
+    const movieCard = card.find(`.catalog__movies-card`);
+
+    movieCard.props().onMouseLeave();
+    expect(onMouseLeaveCard).toHaveBeenCalledTimes(1);
+  });
+
+  it(`Card passes a data object when hovered`, () => {
+    const onMouseEnterCard = jest.fn();
+    const onMouseLeaveCard = jest.fn();
+
+    const card = shallow(
+        <Card
+          id={Film.ID}
+          title={Film.TITLE}
+          poster={Film.PREVIEW}
+          mainTitleClickHandler={() => {}}
+          onMouseEnterCard={onMouseEnterCard}
+          onMouseLeaveCard={onMouseLeaveCard}
         />
     );
 

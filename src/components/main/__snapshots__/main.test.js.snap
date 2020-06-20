@@ -261,6 +261,7 @@ Array [
           className="small-movie-card catalog__movies-card"
           id={1}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -288,6 +289,7 @@ Array [
           className="small-movie-card catalog__movies-card"
           id={2}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"

@@ -18,7 +18,8 @@ describe(`Card rendering`, () => {
             title={Film.TITLE}
             poster={Film.PREVIEW}
             mainTitleClickHandler={() => {}}
-            onHoverCard={() => {}}
+            onMouseEnterCard={() => {}}
+            onMouseLeaveCard={() => {}}
           />)
       .toJSON();
 
