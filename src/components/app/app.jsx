@@ -10,6 +10,7 @@ class App extends PureComponent {
     super(props);
 
     this._renderApp = this._renderApp.bind(this);
+    this._renderFilmDetails = this._renderFilmDetails.bind(this);
   }
 
   _renderApp() {
@@ -24,6 +25,12 @@ class App extends PureComponent {
     );
   }
 
+  _renderFilmDetails() {
+    return (
+      <FilmDetails />
+    );
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -31,8 +38,8 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderApp()}
           </Route>
-          <Route exact path="/dev-component">
-            <FilmDetails />
+          <Route exact path="/dev-film">
+            {this._renderFilmDetails()}
           </Route>
         </Switch>
       </BrowserRouter>
