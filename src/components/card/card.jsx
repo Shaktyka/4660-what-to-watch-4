@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = ({id, title, poster, mainTitleClickHandler, onMouseEnterCard, onMouseLeaveCard}) => {
+const Card = ({film, mainTitleClickHandler, onMouseEnterCard, onMouseLeaveCard}) => {
+  const {id, title, preview} = film;
 
   const handleCardEnter = () => onMouseEnterCard(id);
 
@@ -15,7 +16,7 @@ const Card = ({id, title, poster, mainTitleClickHandler, onMouseEnterCard, onMou
       id={id}
     >
       <div className="small-movie-card__image">
-        <img src={`img/${poster}`} alt={title} width="280" height="175" />
+        <img src={`img/${preview}`} alt={title} width="280" height="175" />
       </div>
       <h3
         className="small-movie-card__title"
@@ -28,9 +29,11 @@ const Card = ({id, title, poster, mainTitleClickHandler, onMouseEnterCard, onMou
 };
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+  film: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired
+  }).isRequired,
   mainTitleClickHandler: PropTypes.func.isRequired,
   onMouseEnterCard: PropTypes.func.isRequired,
   onMouseLeaveCard: PropTypes.func.isRequired

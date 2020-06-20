@@ -5,10 +5,10 @@ import Card from './card.jsx';
 
 configure({adapter: new Adapter()});
 
-const Film = {
-  ID: 1,
-  TITLE: `Mindhunter`,
-  PREVIEW: `mindhunter.jpg`
+const filmData = {
+  id: 1,
+  title: `Mindhunter`,
+  preview: `mindhunter.jpg`
 };
 
 describe(`Card component test`, () => {
@@ -19,9 +19,7 @@ describe(`Card component test`, () => {
 
     const card = shallow(
         <Card
-          id={Film.ID}
-          title={Film.TITLE}
-          poster={Film.PREVIEW}
+          film={filmData}
           mainTitleClickHandler={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
@@ -40,9 +38,7 @@ describe(`Card component test`, () => {
 
     const card = shallow(
         <Card
-          id={Film.ID}
-          title={Film.TITLE}
-          poster={Film.PREVIEW}
+          film={filmData}
           mainTitleClickHandler={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
@@ -61,9 +57,7 @@ describe(`Card component test`, () => {
 
     const card = shallow(
         <Card
-          id={Film.ID}
-          title={Film.TITLE}
-          poster={Film.PREVIEW}
+          film={filmData}
           mainTitleClickHandler={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}

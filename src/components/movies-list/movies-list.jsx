@@ -30,10 +30,8 @@ class MoviesList extends PureComponent {
   _getFilm(filmData, titleClickHandler) {
     return (
       <Card
-        title={filmData.title}
+        film={filmData}
         key={`movie-${filmData.id}`}
-        id={filmData.id}
-        poster={filmData.preview}
         mainTitleClickHandler={titleClickHandler}
         onMouseEnterCard={this._handleCardMouseEnter}
         onMouseLeaveCard={this._handleCardMouseLeave}
