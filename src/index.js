@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
-import filmsList from './mocks/films.js';
+import filmsData from './mocks/films.js';
 
 const promoCardData = {
   title: `The Grand Budapest Hotel`,
@@ -12,7 +12,7 @@ const promoCardData = {
 ReactDOM.render(
     <App
       promoCard={promoCardData}
-      films={filmsList}
+      films={filmsData}
     />,
     document.querySelector(`#root`)
 );

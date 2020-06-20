@@ -26,8 +26,9 @@ class App extends PureComponent {
   }
 
   _renderFilmDetails() {
+    const {films} = this.props;
     return (
-      <FilmDetails />
+      <FilmDetails filmData={films[2]} />
     );
   }
 

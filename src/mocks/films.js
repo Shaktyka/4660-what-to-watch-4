@@ -21,7 +21,7 @@ const FILMS_DATA = [
     id: 2,
     title: `Dardjeeling Limited`,
     preview: `dardjeeling-limited.jpg`,
-    genre: `Drama`,
+    genre: `Comedy`,
     year: 2019,
     poster: `the-grand-budapest-hotel-poster.jpg`,
     cover: `bg-the-grand-budapest-hotel.jpg`,
@@ -43,7 +43,7 @@ const FILMS_DATA = [
     year: 2019,
     poster: `the-grand-budapest-hotel-poster.jpg`,
     cover: `bg-the-grand-budapest-hotel.jpg`,
-    ratingScore: 8.9,
+    ratingScore: 9.7,
     ratingCount: 300,
     description: [
       `Fantastic beasts is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
