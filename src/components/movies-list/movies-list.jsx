@@ -59,7 +59,7 @@ MoviesList.propTypes = {
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired
-      }).isRequired
+      })
   ).isRequired,
   mainTitleClickHandler: PropTypes.func.isRequired
 };

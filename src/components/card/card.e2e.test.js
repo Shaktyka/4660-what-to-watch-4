@@ -52,7 +52,7 @@ describe(`Card component test`, () => {
   });
 
   it(`Card passes a data object when hovered`, () => {
-    const onMouseEnterCard = jest.fn();
+    const onMouseEnterCard = jest.fn((id) => id);
     const onMouseLeaveCard = jest.fn();
 
     const card = shallow(
@@ -64,9 +64,8 @@ describe(`Card component test`, () => {
         />
     );
 
-    card.simulate(`mouseenter`, {key: true});
-
-    expect(onMouseEnterCard).toHaveBeenCalledTimes(1);
+    card.simulate(`mouseenter`);
+    expect(onMouseEnterCard.mock.results[0].value).toBe(filmData.id);
   });
 
 });
