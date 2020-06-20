@@ -28,7 +28,7 @@ const FILMS_DATA = [
     ratingScore: 7.6,
     ratingCount: 140,
     description: [
-      `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+      `Dardjeeling Limited is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
       `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
@@ -46,7 +46,7 @@ const FILMS_DATA = [
     ratingScore: 8.9,
     ratingCount: 300,
     description: [
-      `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+      `Fantastic beasts is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
       `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
@@ -64,7 +64,7 @@ const FILMS_DATA = [
     ratingScore: 8.2,
     ratingCount: 150,
     description: [
-      `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+      `Johnny English is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
       `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
@@ -82,7 +82,7 @@ const FILMS_DATA = [
     ratingScore: 4.5,
     ratingCount: 192,
     description: [
-      `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+      `Macbeth is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
       `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
@@ -100,7 +100,7 @@ const FILMS_DATA = [
     ratingScore: 5.9,
     ratingCount: 210,
     description: [
-      `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+      `Midnight Special is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
       `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
@@ -118,7 +118,7 @@ const FILMS_DATA = [
     ratingScore: 6.7,
     ratingCount: 410,
     description: [
-      `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+      `Mindhunter is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
       `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
@@ -136,7 +136,7 @@ const FILMS_DATA = [
     ratingScore: 7.5,
     ratingCount: 80,
     description: [
-      `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+      `Moonrise Kingdom is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
       `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
