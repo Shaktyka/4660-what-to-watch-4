@@ -16,7 +16,22 @@ const FilmDetails = (props) => {
     starring
   } = props.filmData;
 
-  // console.log(year);
+  const getRatingLevel = (ratingValue) => {
+    let ratingLevel = ``;
+
+    if (ratingValue <= 3) {
+      ratingLevel = `Bad`;
+    } else if (ratingValue > 3 && ratingValue <= 5) {
+      ratingLevel = `Normal`;
+    } else if (ratingValue > 5 && ratingValue <= 8) {
+      ratingLevel = `Good`;
+    } else if (ratingValue > 8 && ratingValue < 10) {
+      ratingLevel = `Very good`;
+    } else {
+      ratingLevel = `Awesome`;
+    }
+    return ratingLevel;
+  };
 
   const getFilmDescription = () => {
     return description.map((string, i) => (
@@ -101,7 +116,7 @@ const FilmDetails = (props) => {
               <div className="movie-rating">
                 <div className="movie-rating__score">{ratingScore}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
+                  <span className="movie-rating__level">{getRatingLevel(ratingScore)}</span>
                   <span className="movie-rating__count">{ratingCount} ratings</span>
                 </p>
               </div>
