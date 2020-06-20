@@ -33,7 +33,7 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`]
   },
   {
     id: 3,
@@ -69,7 +69,7 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`]
   },
   {
     id: 5,
@@ -105,7 +105,7 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`]
   },
   {
     id: 7,
@@ -141,7 +141,7 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`]
   }
 ];
 
