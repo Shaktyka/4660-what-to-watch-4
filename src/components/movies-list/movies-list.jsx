@@ -11,32 +11,45 @@ class MoviesList extends PureComponent {
       activeCard: null
     };
 
-    this._handleCardHover = this._handleCardHover.bind(this);
+    this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
+    this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
   }
 
-  _handleCardHover(cardId) {
+  _handleCardMouseEnter(cardId) {
     this.setState({
-      activeCard: cardId
+      activeCard: cardId,
     });
   }
 
-  render() {
-    const {films, mainTitleClickHandler} = this.props;
+  _handleCardMouseLeave() {
+    this.setState({
+      activeCard: null,
+    });
+  }
 
+  _getFilm(filmData, titleClickHandler) {
+    return (
+      <Card
+        title={filmData.title}
+        key={`movie-${filmData.id}`}
+        id={filmData.id}
+        poster={filmData.preview}
+        mainTitleClickHandler={titleClickHandler}
+        onMouseEnterCard={this._handleCardMouseEnter}
+        onMouseLeaveCard={this._handleCardMouseLeave}
+      />
+    );
+  }
+
+  _getFilms() {
+    const {films, mainTitleClickHandler} = this.props;
+    return films.map((film) => this._getFilm(film, mainTitleClickHandler));
+  }
+
+  render() {
     return (
       <div className="catalog__movies-list">
-        {
-          films.map((film) => (
-            <Card
-              title={film.title}
-              key={`movie-${film.id}`}
-              id={film.id}
-              poster={film.preview}
-              mainTitleClickHandler={mainTitleClickHandler}
-              onHoverCard={this._handleCardHover}
-            />
-          ))
-        }
+        {this._getFilms()}
       </div>
     );
   }

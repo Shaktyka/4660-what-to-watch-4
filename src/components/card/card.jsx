@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = ({id, title, poster, mainTitleClickHandler, onHoverCard}) => {
+const Card = ({id, title, poster, mainTitleClickHandler, onMouseEnterCard, onMouseLeaveCard}) => {
 
-  const handleCardEnter = () => onHoverCard(id);
+  const handleCardEnter = () => onMouseEnterCard(id);
+
+  const handleCardLeave = () => onMouseLeaveCard();
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={handleCardEnter}
+      onMouseLeave={handleCardLeave}
       id={id}
     >
       <div className="small-movie-card__image">
@@ -29,7 +32,8 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   mainTitleClickHandler: PropTypes.func.isRequired,
-  onHoverCard: PropTypes.func.isRequired
+  onMouseEnterCard: PropTypes.func.isRequired,
+  onMouseLeaveCard: PropTypes.func.isRequired
 };
 
 export default Card;
