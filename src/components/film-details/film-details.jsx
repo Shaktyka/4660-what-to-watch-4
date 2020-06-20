@@ -18,6 +18,12 @@ const FilmDetails = (props) => {
 
   // console.log(year);
 
+  const getFilmDescription = () => {
+    return description.map((string, i) => (
+      <p key={i}>{string} </p>
+    ));
+  };
+
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -102,11 +108,7 @@ const FilmDetails = (props) => {
 
               <div className="movie-card__text">
 
-                {
-                  description.map((string, i) => (
-                    <p key={i}>{string} </p>
-                  ))
-                }
+                {getFilmDescription()}
 
                 <p className="movie-card__director">
                   <strong>Director: {director}</strong>
