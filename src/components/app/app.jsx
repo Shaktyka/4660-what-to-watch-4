@@ -9,6 +9,10 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = {
+      selectedFilmId: null
+    };
+
     this._renderApp = this._renderApp.bind(this);
     this._renderFilmDetails = this._renderFilmDetails.bind(this);
   }
@@ -28,7 +32,7 @@ class App extends PureComponent {
   _renderFilmDetails() {
     const {films} = this.props;
     return (
-      <FilmDetails filmData={films[2]} />
+      <FilmDetails filmData={films[0]} />
     );
   }
 
