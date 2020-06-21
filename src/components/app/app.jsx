@@ -19,14 +19,27 @@ class App extends PureComponent {
 
   _renderApp() {
     const {films, promoCard} = this.props;
+    const {selectedFilmId} = this.state;
 
-    return (
-      <Main
-        promoCard={promoCard}
-        films={films}
-        mainTitleClickHandler={() => {}}
-      />
-    );
+    if (selectedFilmId === null) {
+      return (
+        <Main
+          promoCard={promoCard}
+          films={films}
+          mainTitleClickHandler={() => {}}
+        />
+      );
+    }
+
+    if (selectedFilmId) {
+      return (
+        <FilmDetails
+          filmData={films.find((film) => film.id === selectedFilmId)}
+        />
+      );
+    }
+
+    return null;
   }
 
   _renderFilmDetails() {
