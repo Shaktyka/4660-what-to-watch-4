@@ -27,12 +27,12 @@ class MoviesList extends PureComponent {
     });
   }
 
-  _getFilm(filmData, titleClickHandler) {
+  _getFilm(filmData, cardClickHandler) {
     return (
       <Card
         film={filmData}
         key={`movie-${filmData.id}`}
-        mainTitleClickHandler={titleClickHandler}
+        onFilmCardClick={cardClickHandler}
         onMouseEnterCard={this._handleCardMouseEnter}
         onMouseLeaveCard={this._handleCardMouseLeave}
       />
@@ -40,8 +40,8 @@ class MoviesList extends PureComponent {
   }
 
   _getFilms() {
-    const {films, mainTitleClickHandler} = this.props;
-    return films.map((film) => this._getFilm(film, mainTitleClickHandler));
+    const {films, onFilmCardClick} = this.props;
+    return films.map((film) => this._getFilm(film, onFilmCardClick));
   }
 
   render() {
@@ -61,7 +61,7 @@ MoviesList.propTypes = {
         preview: PropTypes.string.isRequired
       })
   ).isRequired,
-  mainTitleClickHandler: PropTypes.func.isRequired
+  onFilmCardClick: PropTypes.func.isRequired
 };
 
 export default MoviesList;

@@ -26,7 +26,11 @@ class App extends PureComponent {
         <Main
           promoCard={promoCard}
           films={films}
-          mainTitleClickHandler={() => {}}
+          onFilmCardClick={(filmId) => (
+            this.setState({
+              selectedFilmId: filmId,
+            })
+          )}
         />
       );
     }
