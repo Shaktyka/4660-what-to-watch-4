@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const FilmDetails = (props) => {
+const FilmDetails = ({filmData}) => {
   const {
     id,
     title,
@@ -14,7 +15,7 @@ const FilmDetails = (props) => {
     description,
     director,
     starring
-  } = props.filmData;
+  } = filmData;
 
   const getRatingLevel = (ratingValue) => {
     let ratingLevel = ``;
@@ -197,5 +198,20 @@ const FilmDetails = (props) => {
     </>
   );
 };
+
+FilmDetails.propTypes = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  preview: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
+  poster: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
+  ratingScore: PropTypes.number.isRequired,
+  ratingCount: PropTypes.number.isRequired,
+  description: PropTypes.arrayOf(PropTypes.string).isRequired,
+  director: PropTypes.string.isRequired,
+  starring: PropTypes.arrayOf(PropTypes.string)
+}).isRequired;
 
 export default FilmDetails;
