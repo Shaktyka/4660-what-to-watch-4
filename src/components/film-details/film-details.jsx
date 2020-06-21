@@ -5,7 +5,6 @@ const FilmDetails = ({filmData}) => {
   const {
     id,
     title,
-    preview,
     genre,
     year,
     poster,
@@ -42,7 +41,7 @@ const FilmDetails = ({filmData}) => {
 
   return (
     <>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" id={id}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img src={`./img/${cover}`} alt={title} />
@@ -202,7 +201,7 @@ const FilmDetails = ({filmData}) => {
 FilmDetails.propTypes = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
+  preview: PropTypes.string,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   poster: PropTypes.string.isRequired,
