@@ -20,7 +20,7 @@ describe(`Card component test`, () => {
     const card = shallow(
         <Card
           film={filmData}
-          mainTitleClickHandler={() => {}}
+          onFilmCardClick={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
         />
@@ -39,7 +39,7 @@ describe(`Card component test`, () => {
     const card = shallow(
         <Card
           film={filmData}
-          mainTitleClickHandler={() => {}}
+          onFilmCardClick={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
         />
@@ -58,7 +58,7 @@ describe(`Card component test`, () => {
     const card = shallow(
         <Card
           film={filmData}
-          mainTitleClickHandler={() => {}}
+          onFilmCardClick={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
         />
