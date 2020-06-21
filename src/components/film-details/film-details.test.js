@@ -28,7 +28,7 @@ describe(`FilmDetails rendering`, () => {
     const tree = renderer
       .create(
           <FilmDetails
-            films={MOCK_FILM_DATA}
+            filmData={MOCK_FILM_DATA}
           />
       )
       .toJSON();
