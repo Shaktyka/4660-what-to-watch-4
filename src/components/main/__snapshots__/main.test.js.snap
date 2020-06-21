@@ -265,11 +265,12 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
-              alt="Mindhunter"
+              alt="Bohemian Rhapsody"
               height="175"
-              src="img/mindhunter.jpg"
+              src="img/bohemian-rhapsody.jpg"
               width="280"
             />
           </div>
@@ -281,7 +282,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Mindhunter
+              Bohemian Rhapsody
             </a>
           </h3>
         </article>
@@ -293,11 +294,12 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
-              alt="Moonrise Kingdom"
+              alt="Dardjeeling Limited"
               height="175"
-              src="img/moonrise-kingdom.jpg"
+              src="img/dardjeeling-limited.jpg"
               width="280"
             />
           </div>
@@ -309,7 +311,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Moonrise Kingdom
+              Dardjeeling Limited
             </a>
           </h3>
         </article>

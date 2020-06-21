@@ -15,7 +15,7 @@ describe(`Card rendering`, () => {
       .create(
           <Card
             film={filmData}
-            mainTitleClickHandler={() => {}}
+            onFilmCardClick={() => {}}
             onMouseEnterCard={() => {}}
             onMouseLeaveCard={() => {}}
           />)
