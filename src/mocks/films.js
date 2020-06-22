@@ -15,7 +15,8 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
   {
     id: 2,
@@ -33,7 +34,8 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`]
+    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 3,
@@ -51,7 +53,8 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
   {
     id: 4,
@@ -69,7 +72,8 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`]
+    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 5,
@@ -87,7 +91,8 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
   {
     id: 6,
@@ -105,7 +110,8 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`]
+    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 7,
@@ -123,7 +129,8 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
   {
     id: 8,
@@ -141,7 +148,8 @@ const FILMS_DATA = [
       `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
     ],
     director: `Bryan Singer`,
-    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`]
+    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   }
 ];
 
