@@ -8,7 +8,9 @@ class VideoPlayer extends PureComponent {
     this._videoRef = createRef();
 
     this.state = {
-      progress: 0
+      progress: 0,
+      isPlaying: props.isPlaying,
+      isPaused: props.isPaused
     };
   }
 
@@ -30,6 +32,7 @@ class VideoPlayer extends PureComponent {
         src={video}
         poster={poster}
         ref={this._videoRef}
+        muted
       >
         Sorry, your browser doesn&apos;t support embedded videos,
         but don&apos;t worry, you can <a href={video}>download it</a>
@@ -45,7 +48,9 @@ class VideoPlayer extends PureComponent {
 
 VideoPlayer.propTypes = {
   video: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired
+  poster: PropTypes.string.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  isPaused: PropTypes.bool.isRequired
 };
 
 export default VideoPlayer;
