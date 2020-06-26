@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player.jsx';
 
 const Card = ({film, onFilmCardClick, onMouseEnterCard, onMouseLeaveCard}) => {
-  const {id, title, preview, video} = film;
+  const {id, title, preview, source} = film;
 
   const handleCardEnter = () => onMouseEnterCard(id);
 
@@ -21,7 +21,7 @@ const Card = ({film, onFilmCardClick, onMouseEnterCard, onMouseLeaveCard}) => {
         onClick={() => onFilmCardClick(id)}
       >
         <img src={`img/${preview}`} alt={title} width="280" height="175" />
-        <VideoPlayer video={video} poster={preview} />
+        <VideoPlayer video={source} poster={preview} />
       </div>
       <h3
         className="small-movie-card__title"
@@ -41,7 +41,7 @@ Card.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     preview: PropTypes.string.isRequired,
-    video: PropTypes.string.isRequired
+    source: PropTypes.string.isRequired
   }).isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
   onMouseEnterCard: PropTypes.func.isRequired,
