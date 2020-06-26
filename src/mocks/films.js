@@ -4,7 +4,7 @@ const FILMS_DATA = [
     title: `Bohemian Rhapsody`,
     genre: `Drama`,
     year: 2018,
-    preview: `bohemian-rhapsody.jpg`,
+    preview: `/img/bohemian-rhapsody.jpg`,
     poster: `the-grand-budapest-hotel-poster.jpg`,
     cover: `bg-the-grand-budapest-hotel.jpg`,
     ratingScore: 8.6,
@@ -21,7 +21,7 @@ const FILMS_DATA = [
   {
     id: 2,
     title: `Dardjeeling Limited`,
-    preview: `dardjeeling-limited.jpg`,
+    preview: `/img/dardjeeling-limited.jpg`,
     genre: `Comedy`,
     year: 2019,
     poster: `the-grand-budapest-hotel-poster.jpg`,
@@ -40,7 +40,7 @@ const FILMS_DATA = [
   {
     id: 3,
     title: `Fantastic beasts: the crimes of Grindelwald`,
-    preview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Fantasy`,
     year: 2019,
     poster: `the-grand-budapest-hotel-poster.jpg`,
@@ -59,7 +59,7 @@ const FILMS_DATA = [
   {
     id: 4,
     title: `Johnny English`,
-    preview: `johnny-english.jpg`,
+    preview: `/img/johnny-english.jpg`,
     genre: `Biography`,
     year: 2016,
     poster: `the-grand-budapest-hotel-poster.jpg`,
@@ -78,7 +78,7 @@ const FILMS_DATA = [
   {
     id: 5,
     title: `Macbeth`,
-    preview: `macbeth.jpg`,
+    preview: `/img/macbeth.jpg`,
     genre: `Crime`,
     year: 2017,
     poster: `the-grand-budapest-hotel-poster.jpg`,
@@ -97,7 +97,7 @@ const FILMS_DATA = [
   {
     id: 6,
     title: `Midnight Special`,
-    preview: `midnight-special.jpg`,
+    preview: `/img/midnight-special.jpg`,
     genre: `Fighter`,
     year: 2015,
     poster: `the-grand-budapest-hotel-poster.jpg`,
@@ -116,7 +116,7 @@ const FILMS_DATA = [
   {
     id: 7,
     title: `Mindhunter`,
-    preview: `mindhunter.jpg`,
+    preview: `/img/mindhunter.jpg`,
     genre: `Drama`,
     year: 2018,
     poster: `the-grand-budapest-hotel-poster.jpg`,
@@ -135,7 +135,7 @@ const FILMS_DATA = [
   {
     id: 8,
     title: `Moonrise Kingdom`,
-    preview: `moonrise-kingdom.jpg`,
+    preview: `/img/moonrise-kingdom.jpg`,
     genre: `Fantasy`,
     year: 2014,
     poster: `the-grand-budapest-hotel-poster.jpg`,

@@ -11,11 +11,11 @@ class VideoPlayer extends PureComponent {
   }
 
   componentDidMount() {
-    const {source, isMuted} = this.props;
+    const {src, muted} = this.props;
     const video = this._videoRef.current;
 
-    video.src = source;
-    video.muted = isMuted;
+    video.src = src;
+    video.muted = muted;
   }
 
   componentWillUnmount() {
@@ -33,7 +33,7 @@ class VideoPlayer extends PureComponent {
   }
 
   render() {
-    const {source, poster} = this.props;
+    const {src, poster} = this.props;
 
     return (
       <video
@@ -44,7 +44,7 @@ class VideoPlayer extends PureComponent {
         ref={this._videoRef}
       >
         Sorry, your browser doesn&apos;t support embedded video,
-        but don&apos;t worry, you can <a href={source}>download it</a>
+        but don&apos;t worry, you can <a href={src}>download it</a>
         and watch it with your favorite video player!
       </video>
     );
@@ -52,9 +52,9 @@ class VideoPlayer extends PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  source: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
-  isMuted: PropTypes.bool.isRequired,
+  muted: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired
 };
 
