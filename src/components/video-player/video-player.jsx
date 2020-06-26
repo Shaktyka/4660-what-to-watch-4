@@ -29,7 +29,12 @@ class VideoPlayer extends PureComponent {
   componentDidUpdate() {
     const video = this._videoRef.current;
 
-    // Дописать
+    if (this.props.isPlaying) {
+      this._timeout = setTimeout(() => video.play(), 1000);
+    } else {
+      clearTimeout(this._timeout);
+      video.load();
+    }
   }
 
   render() {
