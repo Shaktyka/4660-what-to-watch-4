@@ -3,22 +3,25 @@ import renderer from 'react-test-renderer';
 
 import VideoPlayer from './video-player.jsx';
 
-const MOCK_VIDEO = {
-  preview: `/img/johnny-english.jpg`,
-  source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
-};
+import {onefilmData} from '../test-data.js';
 
 describe(`VideoPlayer rendering`, () => {
 
   it(`VideoPlayer renders correctly`, () => {
+    const {source, preview} = onefilmData;
+
     const tree = renderer
       .create(
           <VideoPlayer
-            src={MOCK_VIDEO.source}
-            poster={MOCK_VIDEO.preview}
+            src={source}
+            poster={preview}
             isPlaying={false}
             muted
-          />
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          }
       )
       .toJSON();
 

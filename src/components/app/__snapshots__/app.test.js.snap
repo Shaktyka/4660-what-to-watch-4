@@ -260,19 +260,27 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           id={1}
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
           >
-            <img
-              alt="Bohemian Rhapsody"
+            <video
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              poster="/img/bohemian-rhapsody.jpg"
+              type="video/webm"
               width="280"
-            />
+            >
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
@@ -289,19 +297,27 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           id={2}
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
           >
-            <img
-              alt="Dardjeeling Limited"
+            <video
               height="175"
-              src="img/dardjeeling-limited.jpg"
+              poster="/img/dardjeeling-limited.jpg"
+              type="video/webm"
               width="280"
-            />
+            >
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
@@ -318,19 +334,27 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           id={3}
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
           >
-            <img
-              alt="Fantastic beasts: the crimes of Grindelwald"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              poster="/img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              type="video/webm"
               width="280"
-            />
+            >
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
@@ -341,6 +365,191 @@ Array [
               href="movie-page.html"
             >
               Fantastic beasts: the crimes of Grindelwald
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          id={4}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              poster="/img/johnny-english.jpg"
+              type="video/webm"
+              width="280"
+            >
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Johnny English
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          id={5}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              poster="/img/macbeth.jpg"
+              type="video/webm"
+              width="280"
+            >
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          id={6}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              poster="/img/midnight-special.jpg"
+              type="video/webm"
+              width="280"
+            >
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Midnight Special
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          id={7}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              poster="/img/mindhunter.jpg"
+              type="video/webm"
+              width="280"
+            >
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Mindhunter
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          id={8}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              poster="/img/moonrise-kingdom.jpg"
+              type="video/webm"
+              width="280"
+            >
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Moonrise Kingdom
             </a>
           </h3>
         </article>

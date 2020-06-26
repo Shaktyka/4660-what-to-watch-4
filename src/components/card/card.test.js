@@ -2,11 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Card from './card.jsx';
 
-const filmData = {
-  id: 1,
-  title: `Mindhunter`,
-  preview: `mindhunter.jpg`
-};
+import onefilmData from '../test-data.js';
 
 describe(`Card rendering`, () => {
 
@@ -14,11 +10,15 @@ describe(`Card rendering`, () => {
     const tree = renderer
       .create(
           <Card
-            film={filmData}
+            film={onefilmData}
             onFilmCardClick={() => {}}
             onMouseEnterCard={() => {}}
             onMouseLeaveCard={() => {}}
-          />)
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
