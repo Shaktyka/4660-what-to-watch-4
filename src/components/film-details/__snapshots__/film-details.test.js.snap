@@ -4,7 +4,7 @@ exports[`FilmDetails rendering FilmDetails renders correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
-    id={6}
+    id={7}
   >
     <div
       className="movie-card__hero"
@@ -13,7 +13,7 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Midnight Special"
+          alt="Mindhunter"
           src="./img/bg-the-grand-budapest-hotel.jpg"
         />
       </div>
@@ -73,7 +73,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Midnight Special
+            Mindhunter
           </h2>
           <p
             className="movie-card__meta"
@@ -81,12 +81,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Fighter
+              Drama
             </span>
             <span
               className="movie-card__year"
             >
-              2015
+              2018
             </span>
           </p>
           <div
@@ -146,7 +146,7 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Midnight Special poster"
+            alt="Mindhunter poster"
             height="327"
             src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
@@ -199,7 +199,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              5.9
+              6.7
             </div>
             <p
               className="movie-rating__meta"
@@ -212,7 +212,7 @@ Array [
               <span
                 className="movie-rating__count"
               >
-                210
+                410
                  ratings
               </span>
             </p>
@@ -221,7 +221,7 @@ Array [
             className="movie-card__text"
           >
             <p>
-              Midnight Special is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.
+              Mindhunter is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.
                
             </p>
             <p>
@@ -245,7 +245,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Leslie Mann, John Cena
+                Rami Malek, Lucy Boynton, Gwilym Lee
                  and other
               </strong>
             </p>

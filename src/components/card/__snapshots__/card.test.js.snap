@@ -3,20 +3,28 @@
 exports[`Card rendering Card renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  id={1}
+  id={7}
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
-    onClick={[Function]}
   >
-    <img
-      alt="Mindhunter"
+    <video
       height="175"
-      src="img/mindhunter.jpg"
+      poster="mindhunter.jpg"
+      type="video/webm"
       width="280"
-    />
+    >
+      Sorry, your browser doesn't support embedded video, but don't worry, you can 
+      <a
+        href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+      >
+        download it
+      </a>
+      and watch it with your favorite video player!
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
