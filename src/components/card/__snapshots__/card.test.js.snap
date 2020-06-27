@@ -3,7 +3,7 @@
 exports[`Card rendering Card renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  id={1}
+  id={7}
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
@@ -18,7 +18,9 @@ exports[`Card rendering Card renders correctly 1`] = `
       width="280"
     >
       Sorry, your browser doesn't support embedded video, but don't worry, you can 
-      <a>
+      <a
+        href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+      >
         download it
       </a>
       and watch it with your favorite video player!
