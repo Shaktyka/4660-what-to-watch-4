@@ -1,4 +1,10 @@
-const FILMS_DATA = [
+export const promoCardData = {
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  releaseYear: 2014
+};
+
+export const FILMS_DATA = [
   {
     id: 1,
     title: `Bohemian Rhapsody`,
@@ -152,5 +158,3 @@ const FILMS_DATA = [
     source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   }
 ];
-
-export default FILMS_DATA;
