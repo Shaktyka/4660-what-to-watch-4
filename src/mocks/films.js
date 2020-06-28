@@ -1,4 +1,4 @@
-export const promoCardData = {
+export const promoFilmData = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
   releaseYear: 2014

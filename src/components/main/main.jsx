@@ -1,25 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
 
-const genresList = [
-  `All genres`,
-  `Comedies`,
-  `Crime`,
-  `Documentary`,
-  `Dramas`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`
-];
-
-const activeGenre = `All genres`;
-
-const Main = ({films, promoCard, onFilmCardClick}) => {
+const Main = ({films, genre: activeGenre, genres, promoCard, onFilmCardClick}) => {
   const {title, genre, releaseYear} = promoCard;
 
   return (
@@ -77,10 +62,10 @@ const Main = ({films, promoCard, onFilmCardClick}) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresList
-            genres={genresList}
+            genres={genres}
             activeGenre={activeGenre}
-            onFilterClick={(genre) => {
-              return genre;
+            onFilterClick={(selectedGenre) => {
+              return selectedGenre;
             }}
           />
 
@@ -111,6 +96,8 @@ const Main = ({films, promoCard, onFilmCardClick}) => {
 };
 
 Main.propTypes = {
+  genre: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   promoCard: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
@@ -126,10 +113,4 @@ Main.propTypes = {
   onFilmCardClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) = ({
-  genre: state.genre,
-  films: state.filmsList
-});
-
-export {Main};
-export default connect(mapStateToProps)(Main);
+export default Main;

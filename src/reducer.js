@@ -1,16 +1,8 @@
 import {extend} from './utils.js';
-import {FILMS_DATA, promoCardData} from './mocks/films.js';
+import {FILMS_DATA, promoFilmData} from './mocks/films.js';
 
-const initialState = {
-  genre: `All genres`,
-  filmsList: FILMS_DATA,
-  promoCard: promoCardData
-};
-
-const ActionType = {
-  CHANGE_GENRE: `CHANGE_GENRE`,
-  FILTER_BY_GENRE: `FILTER_BY_GENRE`
-};
+const MAX_GENRE_LENGTH = 9;
+const DEFAULT_GENRE = `All genres`;
 
 // Форматирование названия жанра (переписать потом)
 const formatGenre = (genreName = ``) => {
@@ -20,12 +12,11 @@ const formatGenre = (genreName = ``) => {
 // Получение списка жанров
 const getGenresList = (filmsList = []) => {
   const defaultGenre = `All genres`;
-  const maxGenresAmount = 9;
   let genres = [defaultGenre];
 
   if (filmsList.length > 0) {
     for (let i = 0; i < filmsList.length; i++) {
-      if (genres.length <= maxGenresAmount) {
+      if (genres.length <= MAX_GENRE_LENGTH) {
         const genre = formatGenre(filmsList[i].genre);
         if (!genres.includes(genre) && genre.length !== 0) {
           genres.push(genre);
@@ -36,26 +27,40 @@ const getGenresList = (filmsList = []) => {
   return genres;
 };
 
+const initialState = {
+  genre: DEFAULT_GENRE,
+  filmsList: FILMS_DATA,
+  activeFilm: promoFilmData,
+  genres: getGenresList(FILMS_DATA)
+};
+
+const ActionType = {
+  CHANGE_GENRE: `CHANGE_GENRE`,
+  FILTER_BY_GENRE: `FILTER_BY_GENRE`,
+  GET_ACTIVE_FILM: `GET_ACTIVE_FILM`
+};
+
 // Получение списка фильмов в соответствии выбранным жанром
 const filterFilmsByGenre = (films = [], genre = `All genres`) => {
   const filteredFilms = (genre !== `All genres`) ? films.filter((film) => film.genre === genre) : films;
   return filteredFilms.length !== 0 ? filteredFilms : films;
 };
 
-// Изменение фильтра по жанрам
-const changeFilterByGenre = (genre) => {
-
-};
-
 // Определяет объекты экшенов
 const ActionCreator = {
-  changeGenre: (selectedGenre) => ({
+  changeGenre: (genre) => ({
     type: ActionType.CHANGE_GENRE,
-    payload: selectedGenre
+    payload: genre
   }),
 
-  filterByGenre: () => ({
-    type: ActionType.FILTER_BY_GENRE
+  filterByGenre: (genre) => ({
+    type: ActionType.FILTER_BY_GENRE,
+    payload: genre
+  }),
+
+  getActiveFilm: (id) => ({
+    type: ActionType.GET_ACTIVE_FILM,
+    payload: id
   })
 };
 
@@ -65,13 +70,19 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         genre: action.payload
       });
+
     case ActionType.FILTER_BY_GENRE:
       return extend(state, {
         filmsList: filterFilmsByGenre(state.filmsList, state.genre)
       });
-    default:
-      return state;
+
+    case ActionType.GET_ACTIVE_FILM:
+      return extend(state, {
+        activeFilm: action.payload
+      });
   }
+
+  return state;
 };
 
 export {reducer, ActionType, ActionCreator};
