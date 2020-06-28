@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
 
-const Main = ({films, genre: activeGenre, genres, promoCard, onFilmCardClick}) => {
+const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFilmCardClick}) => {
   const {title, genre, releaseYear} = promoCard;
 
   return (
@@ -64,9 +64,7 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onFilmCardClick}) =
           <GenresList
             genres={genres}
             activeGenre={activeGenre}
-            onFilterClick={(selectedGenre) => {
-              return selectedGenre;
-            }}
+            onGenreClick={onGenreClick}
           />
 
           <MoviesList
@@ -110,6 +108,7 @@ Main.propTypes = {
         preview: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
+  onGenreClick: PropTypes.func.isRequired,
   onFilmCardClick: PropTypes.func.isRequired
 };
 

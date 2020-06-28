@@ -4,6 +4,12 @@ import {FILMS_DATA, promoFilmData} from './mocks/films.js';
 const MAX_GENRE_LENGTH = 9;
 const DEFAULT_GENRE = `All genres`;
 
+const ActionType = {
+  CHANGE_GENRE: `CHANGE_GENRE`,
+  FILTER_BY_GENRE: `FILTER_BY_GENRE`,
+  GET_ACTIVE_FILM: `GET_ACTIVE_FILM`
+};
+
 // Форматирование названия жанра (переписать потом)
 const formatGenre = (genreName = ``) => {
   return genreName.length > 0 ? `${genreName[0].toUpperCase()}${genreName.slice(1).toLowerCase()}` : ``;
@@ -32,12 +38,6 @@ const initialState = {
   filmsList: FILMS_DATA,
   activeFilm: promoFilmData,
   genres: getGenresList(FILMS_DATA)
-};
-
-const ActionType = {
-  CHANGE_GENRE: `CHANGE_GENRE`,
-  FILTER_BY_GENRE: `FILTER_BY_GENRE`,
-  GET_ACTIVE_FILM: `GET_ACTIVE_FILM`
 };
 
 // Получение списка фильмов в соответствии выбранным жанром

@@ -5,7 +5,7 @@ const GenresList = (props) => {
   const {
     genres,
     activeGenre,
-    onFilterClick
+    onGenreClick
   } = props;
 
   return (
@@ -19,7 +19,7 @@ const GenresList = (props) => {
               key={`genre-${i}`}
               onClick={(evt) => {
                 evt.preventDefault();
-                onFilterClick(genre);
+                onGenreClick(genre);
               }}
             >
               <a href="#" className="catalog__genres-link">
@@ -36,7 +36,7 @@ const GenresList = (props) => {
 GenresList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeGenre: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired
+  onGenreClick: PropTypes.func.isRequired
 };
 
 export default GenresList;
