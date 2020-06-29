@@ -5,6 +5,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import Main from './main.jsx';
 
 import {FILMS_DATA, promoCardData} from '../test-data.js';
+const genres = [`All genres`, `Crime`, `Sci-Fi`, `Drama`];
+const genre = `All genres`;
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -17,9 +19,12 @@ describe(`Main component`, () => {
 
     const main = mount(
         <Main
+          genre={genre}
+          genres={genres}
           promoCard={promoCardData}
           films={FILMS_DATA}
           onFilmCardClick={onFilmCardClick}
+          onGenreClick={() => {}}
         />
     );
 
