@@ -76,7 +76,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return extend(state, {
-        genre: action.payload
+        genre: action.payload || DEFAULT_GENRE
       });
 
     case ActionType.FILTER_BY_GENRE:

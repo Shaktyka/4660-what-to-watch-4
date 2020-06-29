@@ -1,32 +1,11 @@
 import {reducer, ActionType, ActionCreator} from './reducer.js';
 
-const MAX_GENRE_LENGTH = 9;
 const DEFAULT_GENRE = `All genres`;
 
 const promoFilmData = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
   releaseYear: 2014
-};
-
-const onefilmData = {
-  id: 7,
-  title: `Mindhunter`,
-  preview: `mindhunter.jpg`,
-  genre: `Drama`,
-  year: 2018,
-  poster: `the-grand-budapest-hotel-poster.jpg`,
-  cover: `bg-the-grand-budapest-hotel.jpg`,
-  ratingScore: 6.7,
-  ratingCount: 410,
-  description: [
-    `Mindhunter is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
-    `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
-    `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
-  ],
-  director: `Bryan Singer`,
-  starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-  source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
 };
 
 const FILMS_DATA = [
@@ -197,32 +176,121 @@ describe(`Reducer tests`, () => {
     });
   });
 
+  // Редьюсер принимает стейт и action и возвращает новый стейт
+
   // Название жанра записывается в поле genre
-  it(`Редьюсер корректно сохраняет значение жанра`, () => {
-
+  it(`Reducer writes a genre's value correctly`, () => {
+    expect(reducer({
+      genre: DEFAULT_GENRE,
+      filmsList: FILMS_DATA,
+      activeFilm: promoFilmData,
+      genres
+    }, {
+      type: ActionType.CHANGE_GENRE,
+      payload: `Drama`,
+    })).toEqual({
+      genre: `Drama`,
+      filmsList: FILMS_DATA,
+      activeFilm: promoFilmData,
+      genres
+    });
   });
 
-  it(`Редьюсер записывает в genre "All genres", если название жанра не передано`, () => {
-
+  it(`Reducer writes "All genres" in genre if genre is not supported`, () => {
+    expect(reducer({
+      genre: `Crime`,
+      filmsList: FILMS_DATA,
+      activeFilm: promoFilmData,
+      genres
+    }, {
+      type: ActionType.CHANGE_GENRE,
+      payload: null,
+    })).toEqual({
+      genre: `All genres`,
+      filmsList: FILMS_DATA,
+      activeFilm: promoFilmData,
+      genres
+    });
   });
 
-  it(`Редьюсер хранит список из не более чем 10 жанров`, () => {
-
-  });
-
-  it(`Редьюсер отдаёт правильный список фильмов при существующем значении выбранного фильтра`, () => {
-
+  it(`Reducer returns films list correctly with existing genre`, () => {
+    expect(reducer({
+      genre: DEFAULT_GENRE,
+      filmsList: FILMS_DATA,
+      activeFilm: promoFilmData,
+      genres
+    }, {
+      type: ActionType.FILTER_BY_GENRE,
+      payload: `Drama`,
+    })).toEqual({
+      genre: DEFAULT_GENRE,
+      filmsList: [
+        {
+          id: 1,
+          title: `Bohemian Rhapsody`,
+          genre: `Drama`,
+          year: 2018,
+          preview: `/img/bohemian-rhapsody.jpg`,
+          poster: `the-grand-budapest-hotel-poster.jpg`,
+          cover: `bg-the-grand-budapest-hotel.jpg`,
+          ratingScore: 8.6,
+          ratingCount: 240,
+          description: [
+            `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+            `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
+            `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
+          ],
+          director: `Bryan Singer`,
+          starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+          source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+        },
+        {
+          id: 7,
+          title: `Mindhunter`,
+          preview: `/img/mindhunter.jpg`,
+          genre: `Drama`,
+          year: 2018,
+          poster: `the-grand-budapest-hotel-poster.jpg`,
+          cover: `bg-the-grand-budapest-hotel.jpg`,
+          ratingScore: 6.7,
+          ratingCount: 410,
+          description: [
+            `Mindhunter is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+            `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
+            `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
+          ],
+          director: `Bryan Singer`,
+          starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+          source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+        }
+      ],
+      activeFilm: promoFilmData,
+      genres
+    });
   });
 
   it(`Если передано несуществующее название жанра, то редьюсер отдаёт список всех фильмов`, () => {
-
+    expect(reducer({
+      genre: `Crime`,
+      filmsList: FILMS_DATA,
+      activeFilm: promoFilmData,
+      genres
+    }, {
+      type: ActionType.CHANGE_GENRE,
+      payload: `Asdfg`,
+    })).toEqual({
+      genre: `Asdfg`,
+      filmsList: FILMS_DATA,
+      activeFilm: promoFilmData,
+      genres
+    });
   });
 
 });
 
 describe(`Action creators work correctly`, () => {
 
-  it(`Action creator for changeGenre works correctly`, () => {
+  it(`Action creator for changeGenre returns correct action`, () => {
     expect(ActionCreator.changeGenre(`Comedy`)).toEqual({
       type: ActionType.CHANGE_GENRE,
       payload: `Comedy`
@@ -236,14 +304,14 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
-  it(`Action creator for filterByGenre works correctly`, () => {
+  it(`Action creator for filterByGenre returns correct action`, () => {
     expect(ActionCreator.filterByGenre(`Sci-Fi`)).toEqual({
       type: ActionType.FILTER_BY_GENRE,
       payload: `Sci-Fi`
     });
   });
 
-  it(`Action creator for getActiveFilm works correctly`, () => {
+  it(`Action creator for getActiveFilm returns correct action`, () => {
     expect(ActionCreator.filterByGenre(1)).toEqual({
       type: ActionType.GET_ACTIVE_FILM,
       payload: 1
