@@ -48,15 +48,23 @@ const filterFilmsByGenre = (films = [], genre = `All genres`) => {
 
 // Определяет объекты экшенов
 const ActionCreator = {
-  changeGenre: (genre) => ({
-    type: ActionType.CHANGE_GENRE,
-    payload: genre
-  }),
+  changeGenre: (genre) => {
+    return (
+      {
+        type: ActionType.CHANGE_GENRE,
+        payload: genre.length === 0 ? DEFAULT_GENRE : genre
+      }
+    );
+  },
 
-  filterByGenre: (genre) => ({
-    type: ActionType.FILTER_BY_GENRE,
-    payload: genre
-  }),
+  filterByGenre: (genre) => {
+    return (
+      {
+        type: ActionType.FILTER_BY_GENRE,
+        payload: genre.length === 0 ? DEFAULT_GENRE : genre
+      }
+    );
+  },
 
   getActiveFilm: (id) => ({
     type: ActionType.GET_ACTIVE_FILM,
