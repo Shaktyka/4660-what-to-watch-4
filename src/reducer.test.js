@@ -312,7 +312,7 @@ describe(`Action creators work correctly`, () => {
   });
 
   it(`Action creator for getActiveFilm returns correct action`, () => {
-    expect(ActionCreator.filterByGenre(1)).toEqual({
+    expect(ActionCreator.getActiveFilm(1)).toEqual({
       type: ActionType.GET_ACTIVE_FILM,
       payload: 1
     });
