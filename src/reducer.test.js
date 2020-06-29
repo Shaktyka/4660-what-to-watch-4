@@ -214,6 +214,47 @@ describe(`Reducer tests`, () => {
   });
 
   it(`Reducer returns films list correctly with existing genre`, () => {
+    const dramaFilms = [
+      {
+        id: 1,
+        title: `Bohemian Rhapsody`,
+        genre: `Drama`,
+        year: 2018,
+        preview: `/img/bohemian-rhapsody.jpg`,
+        poster: `the-grand-budapest-hotel-poster.jpg`,
+        cover: `bg-the-grand-budapest-hotel.jpg`,
+        ratingScore: 8.6,
+        ratingCount: 240,
+        description: [
+          `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+          `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
+          `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
+        ],
+        director: `Bryan Singer`,
+        starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+        source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      },
+      {
+        id: 7,
+        title: `Mindhunter`,
+        preview: `/img/mindhunter.jpg`,
+        genre: `Drama`,
+        year: 2018,
+        poster: `the-grand-budapest-hotel-poster.jpg`,
+        cover: `bg-the-grand-budapest-hotel.jpg`,
+        ratingScore: 6.7,
+        ratingCount: 410,
+        description: [
+          `Mindhunter is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
+          `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
+          `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
+        ],
+        director: `Bryan Singer`,
+        starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+        source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      }
+    ];
+
     expect(reducer({
       genre: DEFAULT_GENRE,
       filmsList: FILMS_DATA,
@@ -224,52 +265,13 @@ describe(`Reducer tests`, () => {
       payload: `Drama`,
     })).toEqual({
       genre: DEFAULT_GENRE,
-      filmsList: [
-        {
-          id: 1,
-          title: `Bohemian Rhapsody`,
-          genre: `Drama`,
-          year: 2018,
-          preview: `/img/bohemian-rhapsody.jpg`,
-          poster: `the-grand-budapest-hotel-poster.jpg`,
-          cover: `bg-the-grand-budapest-hotel.jpg`,
-          ratingScore: 8.6,
-          ratingCount: 240,
-          description: [
-            `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
-            `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
-            `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
-          ],
-          director: `Bryan Singer`,
-          starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-          source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-        },
-        {
-          id: 7,
-          title: `Mindhunter`,
-          preview: `/img/mindhunter.jpg`,
-          genre: `Drama`,
-          year: 2018,
-          poster: `the-grand-budapest-hotel-poster.jpg`,
-          cover: `bg-the-grand-budapest-hotel.jpg`,
-          ratingScore: 6.7,
-          ratingCount: 410,
-          description: [
-            `Mindhunter is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
-            `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
-            `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
-          ],
-          director: `Bryan Singer`,
-          starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-          source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-        }
-      ],
+      filmsList: dramaFilms,
       activeFilm: promoFilmData,
       genres
     });
   });
 
-  it(`Если передано несуществующее название жанра, то редьюсер отдаёт список всех фильмов`, () => {
+  it(`With unexisting genre name, reducer returns all films list`, () => {
     expect(reducer({
       genre: `Crime`,
       filmsList: FILMS_DATA,

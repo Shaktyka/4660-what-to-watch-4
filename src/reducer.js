@@ -81,7 +81,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.FILTER_BY_GENRE:
       return extend(state, {
-        filmsList: filterFilmsByGenre(FILMS_DATA, state.genre)
+        filmsList: filterFilmsByGenre(FILMS_DATA, action.payload)
       });
 
     case ActionType.GET_ACTIVE_FILM:
