@@ -188,7 +188,7 @@ describe(`Main component`, () => {
       title.simulate(`click`, {preventDefault() {}});
     });
 
-    expect(onFilmCardClick).toHaveBeenCalledTimes(8);
+    expect(onFilmCardClick).toHaveBeenCalledTimes(FILMS_DATA.length);
   });
 
 });
