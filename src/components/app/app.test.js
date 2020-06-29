@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
-const promoCardData = {
+const promoFilmData = {
   title: `Dr.No`,
   genre: `Thriller`,
   releaseYear: 1962
@@ -175,7 +175,9 @@ describe(`App rendering`, () => {
   it(`App renders correctly`, () => {
     const store = mockStore({
       genre,
-      genres
+      genres,
+      filmsList: FILMS_DATA,
+      activeFilm: promoFilmData
     });
 
     const tree = renderer
@@ -184,8 +186,6 @@ describe(`App rendering`, () => {
             <App
               genre={genre}
               genres={genres}
-              activeFilm={promoCardData}
-              films={FILMS_DATA}
               onGenreClick={() => {}}
             />
           </Provider>, {
