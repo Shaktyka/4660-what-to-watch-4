@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Добавить ф-цию для вывода строки с кол-вом актёров (после 4х писать 'and other')
+const MAX_ACTORS_STRING_LENGTH = 4;
 
 const RatingBoundary = {
   BAD: 3,
@@ -10,19 +10,27 @@ const RatingBoundary = {
   VERY_GOOD: 10
 };
 
+const RatingName = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`
+};
+
 const getRatingLevel = (ratingValue) => {
   let ratingLevel = ``;
 
   if (ratingValue <= RatingBoundary.BAD) {
-    ratingLevel = `Bad`;
+    ratingLevel = RatingName.BAD;
   } else if (ratingValue > RatingBoundary.BAD && ratingValue <= RatingBoundary.NORMAL) {
-    ratingLevel = `Normal`;
+    ratingLevel = RatingName.NORMAL;
   } else if (ratingValue > RatingBoundary.NORMAL && ratingValue <= RatingBoundary.GOOD) {
-    ratingLevel = `Good`;
+    ratingLevel = RatingName.GOOD;
   } else if (ratingValue > RatingBoundary.GOOD && ratingValue < RatingBoundary.VERY_GOOD) {
-    ratingLevel = `Very good`;
+    ratingLevel = RatingName.VERY_GOOD;
   } else {
-    ratingLevel = `Awesome`;
+    ratingLevel = RatingName.AWESOME;
   }
   return ratingLevel;
 };
@@ -41,6 +49,10 @@ const MovieOverview = (props) => {
     director,
     starring
   } = props;
+
+  const getActorsList = (actors) => {
+    return actors.length > MAX_ACTORS_STRING_LENGTH ? `${actors.join(`, `)} and other` : actors.join(`, `);
+  };
 
   return (
     <>
@@ -63,7 +75,7 @@ const MovieOverview = (props) => {
         </p>
 
         <p className="movie-card__starring">
-          <strong>Starring: {starring.join(`, `)} and other</strong>
+          <strong>Starring: {getActorsList(starring)}</strong>
         </p>
       </div>
     </>
