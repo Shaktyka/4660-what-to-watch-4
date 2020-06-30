@@ -20,7 +20,8 @@ const filmData = {
   ],
   director: `Bryan Singer`,
   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
-  source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+  source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  duration: 111
 };
 
 describe(`MovieDetails component rendering`, () => {
@@ -29,7 +30,11 @@ describe(`MovieDetails component rendering`, () => {
     const tree = renderer
       .create(
           <MovieDetails
-            film={filmData}
+            director={filmData.director}
+            starring={filmData.starring}
+            duration={filmData.duration}
+            genre={filmData.genre}
+            year={filmData.year}
           />
       )
       .toJSON();

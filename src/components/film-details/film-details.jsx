@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 import DetailsTabs from '../details-tabs/details-tabs.jsx';
 const activeTab = `Overview`;
@@ -22,7 +23,8 @@ const FilmDetails = ({filmData}) => {
     ratingCount,
     description,
     director,
-    starring
+    starring,
+    duration
   } = filmData;
 
   return (
@@ -104,6 +106,16 @@ const FilmDetails = ({filmData}) => {
                   starring={starring}
                 />
               }
+
+              {
+                <MovieDetails
+                  director={director}
+                  starring={starring}
+                  duration={duration}
+                  genre={genre}
+                  year={year}
+                />
+              }
             </div>
           </div>
         </div>
@@ -181,7 +193,8 @@ FilmDetails.propTypes = PropTypes.shape({
   ratingCount: PropTypes.number.isRequired,
   description: PropTypes.arrayOf(PropTypes.string).isRequired,
   director: PropTypes.string.isRequired,
-  starring: PropTypes.arrayOf(PropTypes.string)
+  starring: PropTypes.arrayOf(PropTypes.string),
+  duration: PropTypes.number.isRequired
 }).isRequired;
 
 export default FilmDetails;

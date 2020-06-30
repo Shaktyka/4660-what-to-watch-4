@@ -22,7 +22,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    duration: 120
   },
   {
     id: 2,
@@ -41,7 +42,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    duration: 129
   },
   {
     id: 3,
@@ -60,7 +62,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    duration: 132
   },
   {
     id: 4,
@@ -79,7 +82,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    duration: 86
   },
   {
     id: 5,
@@ -98,7 +102,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    duration: 156
   },
   {
     id: 6,
@@ -117,7 +122,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    duration: 124
   },
   {
     id: 7,
@@ -136,7 +142,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    duration: 102
   },
   {
     id: 8,
@@ -155,6 +162,7 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    duration: 98
   }
 ];
