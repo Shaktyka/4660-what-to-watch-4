@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import MovieOverview from '../movie-overview/movie-overview.jsx';
 import DetailsTabs from '../details-tabs/details-tabs.jsx';
 const activeTab = `Overview`;
 const onTabClick = (/* tabName */) => {
@@ -23,29 +24,6 @@ const FilmDetails = ({filmData}) => {
     director,
     starring
   } = filmData;
-
-  const getRatingLevel = (ratingValue) => {
-    let ratingLevel = ``;
-
-    if (ratingValue <= 3) {
-      ratingLevel = `Bad`;
-    } else if (ratingValue > 3 && ratingValue <= 5) {
-      ratingLevel = `Normal`;
-    } else if (ratingValue > 5 && ratingValue <= 8) {
-      ratingLevel = `Good`;
-    } else if (ratingValue > 8 && ratingValue < 10) {
-      ratingLevel = `Very good`;
-    } else {
-      ratingLevel = `Awesome`;
-    }
-    return ratingLevel;
-  };
-
-  const getFilmDescription = () => {
-    return description.map((string, i) => (
-      <p key={i}>{string} </p>
-    ));
-  };
 
   return (
     <>
@@ -117,26 +95,15 @@ const FilmDetails = ({filmData}) => {
                 }
               </nav>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">{ratingScore}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{getRatingLevel(ratingScore)}</span>
-                  <span className="movie-rating__count">{ratingCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-
-                {getFilmDescription()}
-
-                <p className="movie-card__director">
-                  <strong>Director: {director}</strong>
-                </p>
-
-                <p className="movie-card__starring">
-                  <strong>Starring: {starring.join(`, `)} and other</strong>
-                </p>
-              </div>
+              {
+                <MovieOverview
+                  ratingScore={ratingScore}
+                  ratingCount={ratingCount}
+                  description={description}
+                  director={director}
+                  starring={starring}
+                />
+              }
             </div>
           </div>
         </div>
