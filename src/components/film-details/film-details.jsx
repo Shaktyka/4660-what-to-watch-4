@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import DetailsTabs from '../details-tabs/details-tabs.jsx';
+const activeTab = `Overview`;
+const onTabClick = (/* tabName */) => {
+  // console.log(tabName);
+};
+
+const tabs = [`Overview`, `Details`, `Reviews`];
+
 const FilmDetails = ({filmData}) => {
   const {
     id,
@@ -100,17 +108,13 @@ const FilmDetails = ({filmData}) => {
 
             <div className="movie-card__desc">
               <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
+                {
+                  <DetailsTabs
+                    tabs={tabs}
+                    activeTab={activeTab}
+                    onTabClick={onTabClick}
+                  />
+                }
               </nav>
 
               <div className="movie-rating">
