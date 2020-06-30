@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app/app.jsx';
-import filmsData from './mocks/films.js';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {reducer} from './reducer.js';
 
-const promoCardData = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  releaseYear: 2014
-};
+import App from './components/app/app.jsx';
+
+const store = createStore(
+    reducer,
+    window._REDUX_DEVTOOLS_EXTENSION_ ? window._REDUX_DEVTOOLS_EXTENSION_() : (f) => f
+);
 
 ReactDOM.render(
-    <App
-      promoCard={promoCardData}
-      films={filmsData}
-    />,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     document.querySelector(`#root`)
 );

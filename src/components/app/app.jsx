@@ -2,6 +2,9 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
+
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 
@@ -18,14 +21,17 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {films, promoCard} = this.props;
+    const {films, genre, genres, activeFilm, onGenreClick} = this.props;
     const {selectedFilmId} = this.state;
 
     if (selectedFilmId === null) {
       return (
         <Main
-          promoCard={promoCard}
-          films={films}
+          promoCard={activeFilm}
+          films={films.slice(0, 8)}
+          genre={genre}
+          genres={genres}
+          onGenreClick={onGenreClick}
           onFilmCardClick={(filmId) => (
             this.setState({
               selectedFilmId: filmId,
@@ -70,7 +76,9 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  promoCard: PropTypes.shape({
+  genre: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeFilm: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired
@@ -82,6 +90,22 @@ App.propTypes = {
         preview: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
+  onGenreClick: PropTypes.func.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  genre: state.genre,
+  genres: state.genres,
+  activeFilm: state.activeFilm,
+  films: state.filmsList
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+    dispatch(ActionCreator.filterByGenre(genre));
+  }
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
