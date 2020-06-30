@@ -9,7 +9,8 @@
     "test.jest": "jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
-    "test-update": "npm run test.jest -- -u"
+    "test-update": "npm run test.jest -- -u",
+    "coverage": "npm run test.jest -- --coverage"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
