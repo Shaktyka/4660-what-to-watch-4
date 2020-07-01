@@ -249,7 +249,6 @@ Array [
               <strong>
                 Starring: 
                 Rami Malek, Lucy Boynton, Gwilym Lee
-                 and other
               </strong>
             </p>
           </div>
@@ -271,102 +270,158 @@ Array [
       <div
         className="catalog__movies-list"
       >
-        <article
-          className="small-movie-card catalog__movies-card"
+        <div
+          className="catalog__movies-list"
         >
-          <div
-            className="small-movie-card__image"
+          <article
+            className="small-movie-card catalog__movies-card"
+            id={1}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
+            <div
+              className="small-movie-card__image"
             >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Bohemian Rhapsody"
-              height="175"
-              src="img/bohemian-rhapsody.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
+              <video
+                height="175"
+                poster="/img/bohemian-rhapsody.jpg"
+                type="video/webm"
+                width="280"
+              >
+                Sorry, your browser doesn't support embedded video, but don't worry, you can 
+                <a
+                  href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                >
+                  download it
+                </a>
+                and watch it with your favorite video player!
+              </video>
+            </div>
+            <h3
+              className="small-movie-card__title"
+              onClick={[Function]}
             >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
+              <a
+                className="small-movie-card__link"
+                href="movie-page.html"
+              >
+                Bohemian Rhapsody
+              </a>
+            </h3>
+          </article>
+          <article
+            className="small-movie-card catalog__movies-card"
+            id={2}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <img
-              alt="Macbeth"
-              height="175"
-              src="img/macbeth.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
+            <div
+              className="small-movie-card__image"
             >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Aviator"
-              height="175"
-              src="img/aviator.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
+              <video
+                height="175"
+                poster="/img/dardjeeling-limited.jpg"
+                type="video/webm"
+                width="280"
+              >
+                Sorry, your browser doesn't support embedded video, but don't worry, you can 
+                <a
+                  href="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+                >
+                  download it
+                </a>
+                and watch it with your favorite video player!
+              </video>
+            </div>
+            <h3
+              className="small-movie-card__title"
+              onClick={[Function]}
             >
-              Aviator
-            </a>
-          </h3>
-        </article>
+              <a
+                className="small-movie-card__link"
+                href="movie-page.html"
+              >
+                Dardjeeling Limited
+              </a>
+            </h3>
+          </article>
+          <article
+            className="small-movie-card catalog__movies-card"
+            id={3}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                height="175"
+                poster="/img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+                type="video/webm"
+                width="280"
+              >
+                Sorry, your browser doesn't support embedded video, but don't worry, you can 
+                <a
+                  href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Por_qu%C3%A9_hay_desabastecimiento_en_Venezuela.ogv"
+                >
+                  download it
+                </a>
+                and watch it with your favorite video player!
+              </video>
+            </div>
+            <h3
+              className="small-movie-card__title"
+              onClick={[Function]}
+            >
+              <a
+                className="small-movie-card__link"
+                href="movie-page.html"
+              >
+                Fantastic beasts: the crimes of Grindelwald
+              </a>
+            </h3>
+          </article>
+          <article
+            className="small-movie-card catalog__movies-card"
+            id={4}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                height="175"
+                poster="/img/johnny-english.jpg"
+                type="video/webm"
+                width="280"
+              >
+                Sorry, your browser doesn't support embedded video, but don't worry, you can 
+                <a
+                  href="https://upload.wikimedia.org/wikipedia/commons/6/62/MyHome.webm"
+                >
+                  download it
+                </a>
+                and watch it with your favorite video player!
+              </video>
+            </div>
+            <h3
+              className="small-movie-card__title"
+              onClick={[Function]}
+            >
+              <a
+                className="small-movie-card__link"
+                href="movie-page.html"
+              >
+                Johnny English
+              </a>
+            </h3>
+          </article>
+        </div>
       </div>
     </section>
     <footer

@@ -31,7 +31,11 @@ describe(`FilmDetails rendering`, () => {
       .create(
           <FilmDetails
             filmData={onefilmData}
-          />
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          }
       )
       .toJSON();
 

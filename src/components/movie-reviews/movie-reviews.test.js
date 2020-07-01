@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import MovieReviews from './tabs.jsx';
+import MovieReviews from './movie-reviews.jsx';
 
 const reviews = [
   {
@@ -55,7 +55,7 @@ describe(`MovieReviews component rendering`, () => {
     const tree = renderer
       .create(
           <MovieReviews
-            reviews={reviews[0]}
+            reviews={reviews.slice(0, 1)}
           />
       )
       .toJSON();

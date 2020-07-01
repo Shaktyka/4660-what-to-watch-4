@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsTabs component rendering DetailsTabs renders correctly with the first active filter 1`] = `
+exports[`MovieNavTabs component rendering MovieNavTabs renders correctly with the first active filter 1`] = `
 <ul
   className="movie-nav__list"
 >
@@ -40,7 +40,7 @@ exports[`DetailsTabs component rendering DetailsTabs renders correctly with the 
 </ul>
 `;
 
-exports[`DetailsTabs component rendering DetailsTabs renders correctly with the last active tab 1`] = `
+exports[`MovieNavTabs component rendering MovieNavTabs renders correctly with the last active tab 1`] = `
 <ul
   className="movie-nav__list"
 >
