@@ -87,7 +87,7 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    source: `https://upload.wikimedia.org/wikipedia/commons/1/1b/Por_qu%C3%A9_hay_desabastecimiento_en_Venezuela.ogv`,
     duration: 132,
     reviews: [
       {
@@ -130,7 +130,7 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    source: `https://upload.wikimedia.org/wikipedia/commons/6/62/MyHome.webm`,
     duration: 86,
     reviews: [
       {
@@ -173,7 +173,7 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    source: `https://upload.wikimedia.org/wikipedia/commons/3/3c/NETSPACE-10_years.webm`,
     duration: 156,
     reviews: [
       {
@@ -223,7 +223,7 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    source: `https://upload.wikimedia.org/wikipedia/commons/4/41/110811-water-droplets-on-lake.ogv`,
     duration: 124,
     reviews: [
       {
@@ -287,7 +287,7 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    source: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Caminandes-_Llama_Drama_-_Short_Movie.ogv`,
     duration: 102,
     reviews: [
       {
@@ -316,7 +316,7 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    source: `https://upload.wikimedia.org/wikipedia/commons/9/97/YBCO_video.webm`,
     duration: 98,
     reviews: [
       {
