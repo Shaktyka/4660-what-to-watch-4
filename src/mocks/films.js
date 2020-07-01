@@ -4,6 +4,52 @@ export const promoFilmData = {
   releaseYear: 2014
 };
 
+const reviews = [
+  {
+    text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+      kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `8,9`
+  },
+  {
+    text: `Anderson&apos;s films are too precious for some, but for those of us willing to lose ourselves
+      in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added
+      a hint of gravitas to the mix, improving the recipe.`,
+    author: `Bill Goodykoontz`,
+    date: `2015-11-18`,
+    rating: `8,0`
+  },
+  {
+    text: `I didn&apos;t find it amusing, and while I can appreciate the creativity, it&apos;s an hour and 40
+      minutes I wish I could take back.`,
+    author: `Amanda Greever`,
+    date: `2015-11-18`,
+    rating: `8,0`
+  },
+  {
+    text: `The mannered, madcap proceedings are often delightful, occasionally
+      silly, and here and there, gruesome and/or heartbreaking.`,
+    author: `Matthew Lickona`,
+    date: `2016-12-20`,
+    rating: `7,2`
+  },
+  {
+    text: `It is certainly a magical and childlike way of storytelling,
+      even if the content is a little more adult.`,
+    author: `Paula Fleri-Soler`,
+    date: `2016-12-20`,
+    rating: `7,6`
+  },
+  {
+    text: `It is certainly a magical and childlike way of storytelling,
+      even if the content is a little more adult.`,
+    author: `Marta Soler`,
+    date: `2016-12-22`,
+    rating: `7,0`
+  }
+];
+
 export const FILMS_DATA = [
   {
     id: 1,
@@ -23,7 +69,16 @@ export const FILMS_DATA = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    duration: 120
+    duration: 120,
+    reviews: [
+      {
+        text: `1 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      }
+    ]
   },
   {
     id: 2,
@@ -43,7 +98,23 @@ export const FILMS_DATA = [
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    duration: 129
+    duration: 129,
+    reviews: [
+      {
+        text: `2 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `22 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      }
+    ]
   },
   {
     id: 3,
@@ -63,7 +134,30 @@ export const FILMS_DATA = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    duration: 132
+    duration: 132,
+    reviews: [
+      {
+        text: `3 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `33 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `333 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      }
+    ]
   },
   {
     id: 4,
@@ -83,7 +177,30 @@ export const FILMS_DATA = [
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    duration: 86
+    duration: 86,
+    reviews: [
+      {
+        text: `4 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `44 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `4444 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      }
+    ]
   },
   {
     id: 5,
@@ -103,7 +220,37 @@ export const FILMS_DATA = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    duration: 156
+    duration: 156,
+    reviews: [
+      {
+        text: `5 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `55 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `555 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `5555 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      }
+    ]
   },
   {
     id: 6,
@@ -123,7 +270,51 @@ export const FILMS_DATA = [
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    duration: 124
+    duration: 124,
+    reviews: [
+      {
+        text: `6 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `66 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `666 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `6666 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `66666 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `666666 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      }
+    ]
   },
   {
     id: 7,
@@ -143,7 +334,16 @@ export const FILMS_DATA = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    duration: 102
+    duration: 102,
+    reviews: [
+      {
+        text: `7 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      }
+    ]
   },
   {
     id: 8,
@@ -163,6 +363,22 @@ export const FILMS_DATA = [
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    duration: 98
+    duration: 98,
+    reviews: [
+      {
+        text: `8 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      },
+      {
+        text: `88 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
+          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `2016-12-24`,
+        rating: `8,9`
+      }
+    ]
   }
 ];
