@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {formatGenre, getDurationFromMinutes} from '../../utils.js';
+import {formatInitCap, getDurationFromMinutes} from '../../utils.js';
 
 const getStarringList = (actors) => {
   return actors.map((actor, i) => {
@@ -31,7 +31,7 @@ const MovieDetails = (props) => {
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
-          <span className="movie-card__details-value">{formatGenre(genre)}</span>
+          <span className="movie-card__details-value">{formatInitCap(genre)}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Released</strong>

@@ -1,5 +1,6 @@
 import {extend} from './utils.js';
 import {FILMS_DATA, promoFilmData} from './mocks/films.js';
+import {formatInitCap} from './utils';
 
 const MAX_GENRE_LENGTH = 9;
 const DEFAULT_GENRE = `All genres`;
@@ -10,11 +11,6 @@ const ActionType = {
   GET_ACTIVE_FILM: `GET_ACTIVE_FILM`
 };
 
-// Форматирование названия жанра (переписать потом)
-const formatGenre = (genreName = ``) => {
-  return genreName.length > 0 ? `${genreName[0].toUpperCase()}${genreName.slice(1).toLowerCase()}` : ``;
-};
-
 // Получение списка жанров
 const getGenresList = (filmsList = []) => {
   const defaultGenre = `All genres`;
@@ -23,7 +19,7 @@ const getGenresList = (filmsList = []) => {
   if (filmsList.length > 0) {
     for (let i = 0; i < filmsList.length; i++) {
       if (genres.length <= MAX_GENRE_LENGTH) {
-        const genre = formatGenre(filmsList[i].genre);
+        const genre = formatInitCap(filmsList[i].genre);
         if (!genres.includes(genre) && genre.length !== 0) {
           genres.push(genre);
         }
