@@ -6,6 +6,8 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 // import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 
+// import {FILMS_DATA} from '../../mocks/films.js';
+
 const activeTab = `Overview`;
 const onTabClick = (/* tabName */) => {
   // console.log(tabName);
