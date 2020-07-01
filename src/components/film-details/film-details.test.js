@@ -2,8 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import FilmDetails from './film-details.jsx';
 
-// import onefilmData from '../test-data.js';
-
 const onefilmData = {
   id: 7,
   title: `Mindhunter`,
@@ -21,7 +19,8 @@ const onefilmData = {
   ],
   director: `Bryan Singer`,
   starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-  source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+  source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  duration: 126
 };
 
 describe(`FilmDetails rendering`, () => {
