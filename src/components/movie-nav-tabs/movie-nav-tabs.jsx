@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DetailsTabs = (props) => {
+const MovieNavTabs = (props) => {
   const {tabs, activeTab, onTabClick} = props;
 
   return (
@@ -24,10 +24,10 @@ const DetailsTabs = (props) => {
   );
 };
 
-DetailsTabs.propTypes = {
+MovieNavTabs.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
   onTabClick: PropTypes.func.isRequired
 };
 
-export default DetailsTabs;
+export default MovieNavTabs;

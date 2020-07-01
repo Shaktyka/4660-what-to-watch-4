@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
-import DetailsTabs from '../details-tabs/details-tabs.jsx';
+import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 const activeTab = `Overview`;
 const onTabClick = (/* tabName */) => {
   // console.log(tabName);
@@ -89,7 +89,7 @@ const FilmDetails = ({filmData}) => {
             <div className="movie-card__desc">
               <nav className="movie-nav movie-card__nav">
                 {
-                  <DetailsTabs
+                  <MovieNavTabs
                     tabs={tabs}
                     activeTab={activeTab}
                     onTabClick={onTabClick}
@@ -107,15 +107,6 @@ const FilmDetails = ({filmData}) => {
                 />
               }
 
-              {
-                <MovieDetails
-                  director={director}
-                  starring={starring}
-                  duration={duration}
-                  genre={genre}
-                  year={year}
-                />
-              }
             </div>
           </div>
         </div>
@@ -180,6 +171,18 @@ const FilmDetails = ({filmData}) => {
     </>
   );
 };
+
+/*
+{
+  <MovieDetails
+    director={director}
+    starring={starring}
+    duration={duration}
+    genre={genre}
+    year={year}
+  />
+}
+ */
 
 FilmDetails.propTypes = PropTypes.shape({
   id: PropTypes.number.isRequired,

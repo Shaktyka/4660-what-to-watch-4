@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import DetailsTabs from './details-tabs.jsx';
+import MovieNavTabs from './movie-nav-tabs.jsx';
 
 const tabs = [`Overview`, `Details`, `Reviews`];
 const activeTab = `Overview`;
@@ -11,13 +11,13 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-describe(`Details tabs works correctly`, () => {
+describe(`MovieNavTabs works correctly`, () => {
 
   it(`Clicked tabs should return correct values`, () => {
     const onTabClick = jest.fn();
 
     const tabsList = mount(
-        <DetailsTabs
+        <MovieNavTabs
           tabs={tabs}
           activeTab={activeTab}
           onTabClick={onTabClick}
