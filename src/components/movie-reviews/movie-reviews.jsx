@@ -4,8 +4,10 @@ import Review from '../review/review.jsx';
 
 const MovieReviews = (props) => {
   const {reviews} = props;
-  const secondColReviews = reviews.slice();
-  const firstColReviews = secondColReviews.splice(0, Math.ceil(secondColReviews.length / 2));
+  const secondColReviews = (reviews.length > 0) ? reviews.slice() : [];
+  const firstColReviews = (secondColReviews.length > 0)
+    ? secondColReviews.splice(0, Math.ceil(secondColReviews.length / 2))
+    : [];
 
   return (
     <div className="movie-card__reviews movie-card__row">

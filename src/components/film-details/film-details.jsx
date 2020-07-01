@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 // import MovieDetails from '../movie-details/movie-details.jsx';
-import MovieReviews from '../movie-reviews/movie-reviews.jsx';
-
-// import {FILMS_DATA} from '../../mocks/films.js';
+// import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 
 const activeTab = `Overview`;
 const onTabClick = (/* tabName */) => {
@@ -109,12 +107,6 @@ const FilmDetails = ({filmData}) => {
                   description={description}
                   director={director}
                   starring={starring}
-                />
-              }
-
-              {
-                <MovieReviews
-                  reviews={reviews}
                 />
               }
 
