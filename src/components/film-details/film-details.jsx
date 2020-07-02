@@ -6,11 +6,57 @@ import {ActionCreator} from '../../reducer.js';
 
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
-// import MovieDetails from '../movie-details/movie-details.jsx';
-// import MovieReviews from '../movie-reviews/movie-reviews.jsx';
+import MovieDetails from '../movie-details/movie-details.jsx';
+import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
 
 import {FILMS_DATA} from '../../mocks/films.js';
+
+// Выбираем активный экран
+const activeMovieDetailsScreen = (activeTab, filmData) => {
+  const {
+    genre,
+    year,
+    ratingScore,
+    ratingCount,
+    description,
+    director,
+    starring,
+    duration,
+    reviews
+  } = filmData;
+
+  switch (activeTab) {
+    case `Overview`:
+      return (
+        <MovieOverview
+          ratingScore={ratingScore}
+          ratingCount={ratingCount}
+          description={description}
+          director={director}
+          starring={starring}
+        />
+      );
+    case `Details`:
+      return (
+        <MovieDetails
+          director={director}
+          starring={starring}
+          duration={duration}
+          genre={genre}
+          year={year}
+        />
+      );
+    case `Reviews`:
+      return (
+        <MovieReviews
+          reviews={reviews}
+        />
+      );
+    default:
+      return ``;
+  }
+};
 
 const FilmDetails = (props) => {
   const {tabs, activeTab, onTabClick} = props;
@@ -20,14 +66,7 @@ const FilmDetails = (props) => {
     genre,
     year,
     poster,
-    cover,
-    ratingScore,
-    ratingCount,
-    description,
-    director,
-    starring,
-    duration,
-    reviews
+    cover
   } = props.filmData;
 
   return (
@@ -101,13 +140,7 @@ const FilmDetails = (props) => {
               </nav>
 
               {
-                <MovieOverview
-                  ratingScore={ratingScore}
-                  ratingCount={ratingCount}
-                  description={description}
-                  director={director}
-                  starring={starring}
-                />
+                activeMovieDetailsScreen(activeTab, props.filmData)
               }
 
             </div>
