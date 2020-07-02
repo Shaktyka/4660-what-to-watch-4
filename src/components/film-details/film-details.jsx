@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
+
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 // import MovieDetails from '../movie-details/movie-details.jsx';
@@ -9,12 +12,12 @@ import SimilarMovies from '../similar-movies/similar-movies.jsx';
 
 import {FILMS_DATA} from '../../mocks/films.js';
 
-const activeTab = `Overview`;
 const onTabClick = (/* tabName */) => {
   // console.log(tabName);
 };
 
-const FilmDetails = ({filmData}) => {
+const FilmDetails = (props) => {
+  const {tabs, activeTab} = props;
   const {
     id,
     title,
@@ -29,7 +32,7 @@ const FilmDetails = ({filmData}) => {
     starring,
     duration,
     reviews
-  } = filmData;
+  } = props.filmData;
 
   return (
     <>
@@ -163,4 +166,10 @@ FilmDetails.propTypes = PropTypes.shape({
   reviews: PropTypes.array.isRequired
 }).isRequired;
 
-export default FilmDetails;
+const mapStateToProps = (state) => ({
+  tabs: state.movieNavTabs,
+  activeTab: state.activeMovieNavTab
+});
+
+export {FilmDetails};
+export default connect(mapStateToProps)(FilmDetails);
