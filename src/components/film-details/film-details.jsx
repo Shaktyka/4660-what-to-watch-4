@@ -14,8 +14,6 @@ const onTabClick = (/* tabName */) => {
   // console.log(tabName);
 };
 
-const tabs = [`Overview`, `Details`, `Reviews`];
-
 const FilmDetails = ({filmData}) => {
   const {
     id,
