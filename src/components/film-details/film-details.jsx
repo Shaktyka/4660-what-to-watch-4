@@ -12,12 +12,8 @@ import SimilarMovies from '../similar-movies/similar-movies.jsx';
 
 import {FILMS_DATA} from '../../mocks/films.js';
 
-const onTabClick = (/* tabName */) => {
-  // console.log(tabName);
-};
-
 const FilmDetails = (props) => {
-  const {tabs, activeTab} = props;
+  const {tabs, activeTab, onTabClick} = props;
   const {
     id,
     title,
@@ -171,5 +167,11 @@ const mapStateToProps = (state) => ({
   activeTab: state.activeMovieNavTab
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onTabClick(tab) {
+    dispatch(ActionCreator.changeMovieNavTab(tab));
+  }
+});
+
 export {FilmDetails};
-export default connect(mapStateToProps)(FilmDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);
