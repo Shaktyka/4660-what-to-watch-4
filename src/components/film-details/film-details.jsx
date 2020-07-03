@@ -175,22 +175,34 @@ const FilmDetails = (props) => {
   );
 };
 
-FilmDetails.propTypes = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  preview: PropTypes.string,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
-  poster: PropTypes.string.isRequired,
-  cover: PropTypes.string.isRequired,
-  ratingScore: PropTypes.number.isRequired,
-  ratingCount: PropTypes.number.isRequired,
-  description: PropTypes.arrayOf(PropTypes.string).isRequired,
-  director: PropTypes.string.isRequired,
-  starring: PropTypes.arrayOf(PropTypes.string),
-  duration: PropTypes.number.isRequired,
-  reviews: PropTypes.array.isRequired
-}).isRequired;
+FilmDetails.propTypes = {
+  filmData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    preview: PropTypes.string,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    poster: PropTypes.string.isRequired,
+    cover: PropTypes.string.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    duration: PropTypes.number.isRequired,
+    reviews: PropTypes.array.isRequired
+  }).isRequired,
+  tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeTab: PropTypes.string.isRequired,
+  onTabClick: PropTypes.func.isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired
+      })
+  ).isRequired
+};
 
 const mapStateToProps = (state) => ({
   tabs: state.movieNavTabs,
