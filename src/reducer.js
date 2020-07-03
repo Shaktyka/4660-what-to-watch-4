@@ -3,7 +3,6 @@ import {FILMS_DATA, promoFilmData} from './mocks/films.js';
 import {formatInitCap} from './utils';
 
 const MAX_GENRE_LENGTH = 9;
-const MAX_SIMILAR_FILMS_AMOUNT = 4;
 const DEFAULT_GENRE = `All genres`;
 const DEFAULT_MOVIE_NAV_TAB = `Overview`;
 const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
