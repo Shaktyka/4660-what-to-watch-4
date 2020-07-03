@@ -10,8 +10,6 @@ import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
 
-import {FILMS_DATA} from '../../mocks/films.js';
-
 // Выбираем активный экран
 const activeMovieDetailsScreen = (activeTab, filmData) => {
   const {
@@ -59,7 +57,7 @@ const activeMovieDetailsScreen = (activeTab, filmData) => {
 };
 
 const FilmDetails = (props) => {
-  const {tabs, activeTab, onTabClick} = props;
+  const {tabs, activeTab, onTabClick, films} = props;
   const {
     id,
     title,
@@ -151,13 +149,12 @@ const FilmDetails = (props) => {
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <div className="catalog__movies-list">
-          {
-            <SimilarMovies
-              films={FILMS_DATA.slice(0, 4)}
-            />
-          }
-        </div>
+        {
+          <SimilarMovies
+            films={films.filter((film) => film.genre === genre).slice(0, 4)}
+          />
+        }
+
       </section>
 
       <footer className="page-footer">
@@ -197,7 +194,8 @@ FilmDetails.propTypes = PropTypes.shape({
 
 const mapStateToProps = (state) => ({
   tabs: state.movieNavTabs,
-  activeTab: state.activeMovieNavTab
+  activeTab: state.activeMovieNavTab,
+  films: state.filmsList
 });
 
 const mapDispatchToProps = (dispatch) => ({

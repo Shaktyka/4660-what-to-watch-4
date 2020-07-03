@@ -3,6 +3,7 @@ import {FILMS_DATA, promoFilmData} from './mocks/films.js';
 import {formatInitCap} from './utils';
 
 const MAX_GENRE_LENGTH = 9;
+const MAX_SIMILAR_FILMS_AMOUNT = 4;
 const DEFAULT_GENRE = `All genres`;
 const DEFAULT_MOVIE_NAV_TAB = `Overview`;
 const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
@@ -11,7 +12,8 @@ const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   FILTER_BY_GENRE: `FILTER_BY_GENRE`,
   GET_ACTIVE_FILM: `GET_ACTIVE_FILM`,
-  CHANGE_MOVIE_NAV_TAB: `CHANGE_MOVIE_NAV_TAB`
+  CHANGE_MOVIE_NAV_TAB: `CHANGE_MOVIE_NAV_TAB`,
+  SORT_BY_GENRE: `SORT_BY_GENRE`
 };
 
 // Получение списка жанров
