@@ -357,7 +357,6 @@ describe(`Reducer tests`, () => {
     });
   });
 
-  // Название жанра записывается в поле genre
   it(`Reducer writes a genre's value correctly`, () => {
     expect(reducer({
       genre: DEFAULT_GENRE,
@@ -487,6 +486,19 @@ describe(`Reducer tests`, () => {
     });
   });
 
+  it(`Reducer writes a tab's value correctly`, () => {
+    const clickedTab = `Details`;
+
+    expect(reducer({
+      activeMovieNavTab: MOVIE_NAV_TABS[0]
+    }, {
+      type: ActionType.CHANGE_MOVIE_NAV_TAB,
+      payload: clickedTab,
+    })).toEqual({
+      activeMovieNavTab: clickedTab
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, () => {
@@ -516,6 +528,15 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.getActiveFilm(1)).toEqual({
       type: ActionType.GET_ACTIVE_FILM,
       payload: 1
+    });
+  });
+
+  it(`Action creator for change movieNavTab returns correct action`, () => {
+    const clickedTab = `Reviews`;
+
+    expect(ActionCreator.changeMovieNavTab(clickedTab)).toEqual({
+      type: ActionType.CHANGE_MOVIE_NAV_TAB,
+      payload: clickedTab
     });
   });
 
