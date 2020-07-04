@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
+import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import MovieNavTabs from './movie-nav-tabs.jsx';
@@ -16,7 +16,7 @@ describe(`MovieNavTabs works correctly`, () => {
   it(`Clicked tabs should return correct values`, () => {
     const onTabClick = jest.fn();
 
-    const tabsList = mount(
+    const tabsList = shallow(
         <MovieNavTabs
           tabs={tabs}
           activeTab={activeTab}

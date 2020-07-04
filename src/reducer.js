@@ -17,20 +17,10 @@ const ActionType = {
 
 // Получение списка жанров
 const getGenresList = (filmsList = []) => {
-  const defaultGenre = `All genres`;
-  let genres = [defaultGenre];
-
-  if (filmsList.length > 0) {
-    for (let i = 0; i < filmsList.length; i++) {
-      if (genres.length <= MAX_GENRE_LENGTH) {
-        const genre = formatInitCap(filmsList[i].genre);
-        if (!genres.includes(genre) && genre.length !== 0) {
-          genres.push(genre);
-        }
-      }
-    }
-  }
-  return genres;
+  return [
+    DEFAULT_GENRE,
+    ...new Set(filmsList.map((film) => formatInitCap(film.genre)))
+  ].slice(0, MAX_GENRE_LENGTH + 1);
 };
 
 const initialState = {
