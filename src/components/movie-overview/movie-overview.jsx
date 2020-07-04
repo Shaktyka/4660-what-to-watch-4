@@ -35,12 +35,6 @@ const getRatingLevel = (ratingValue) => {
   return ratingLevel;
 };
 
-const getFilmDescription = (description) => {
-  return description.map((string, i) => (
-    <p key={i}>{string} </p>
-  ));
-};
-
 const MovieOverview = (props) => {
   const {
     ratingScore,
@@ -67,7 +61,7 @@ const MovieOverview = (props) => {
       <div className="movie-card__text">
 
         {
-          getFilmDescription(description)
+          description.map((string, i) => <p key={i}>{string} </p>)
         }
 
         <p className="movie-card__director">

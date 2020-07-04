@@ -2,12 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {formatInitCap, getDurationFromMinutes} from '../../utils.js';
 
-const getStarringList = (actors) => {
-  return actors.map((actor, i) => {
-    return (i === actors.length - 1) ? `${actor}` : [`${actor}`, `,`, <br key={i} />];
-  });
-};
-
 const MovieDetails = (props) => {
   const {director, starring, duration, genre, year} = props;
 
@@ -20,7 +14,11 @@ const MovieDetails = (props) => {
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
-          {getStarringList(starring)}
+          {
+            starring.map((star, i) => {
+              return (i === starring.length - 1) ? `${star}` : [`${star}`, `,`, <br key={i} />];
+            })
+          }
         </p>
       </div>
 
