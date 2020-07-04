@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MAX_ACTORS_STRING_LENGTH = 4;
+const MAX_STARRING_STRING_LENGTH = 4;
 
 const RatingBoundary = {
   BAD: 3,
@@ -44,10 +44,6 @@ const MovieOverview = (props) => {
     starring
   } = props;
 
-  const getActorsList = (actors) => {
-    return actors.length > MAX_ACTORS_STRING_LENGTH ? `${actors.join(`, `)} and other` : actors.join(`, `);
-  };
-
   return (
     <>
       <div className="movie-rating">
@@ -69,7 +65,13 @@ const MovieOverview = (props) => {
         </p>
 
         <p className="movie-card__starring">
-          <strong>Starring: {getActorsList(starring)}</strong>
+          <strong>
+            Starring: {
+              (starring.length > MAX_STARRING_STRING_LENGTH)
+                ? `${starring.join(`, `)} and other`
+                : starring.join(`, `)
+            }
+          </strong>
         </p>
       </div>
     </>
