@@ -11,6 +11,10 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
+const mockEvent = {
+  preventDefault() {}
+};
+
 describe(`MovieNavTabs works correctly`, () => {
 
   it(`Clicked tabs should return correct values`, () => {
@@ -25,7 +29,7 @@ describe(`MovieNavTabs works correctly`, () => {
     );
 
     const tabsElements = tabsList.find(`.movie-nav__item`);
-    tabsElements.forEach((tab) => tab.simulate(`click`));
+    tabsElements.forEach((tab) => tab.simulate(`click`, mockEvent));
     expect(onTabClick).toHaveBeenCalledTimes(tabs.length);
     expect(onTabClick.mock.calls[0][0]).toBe(tabs[0]);
     expect(onTabClick.mock.calls[1][0]).toBe(tabs[1]);

@@ -1,4 +1,5 @@
-import {reducer, ActionType, ActionCreator} from './reducer.js';
+import reducer from './reducer.js';
+import {ActionType, ActionCreator} from './actions.js';
 
 const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
 const DEFAULT_GENRE = `All genres`;

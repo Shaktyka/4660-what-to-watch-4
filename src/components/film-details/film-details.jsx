@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../store/actions.js';
 
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
@@ -11,7 +11,7 @@ import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
 
 // Выбираем активный экран
-const activeMovieDetailsScreen = (activeTab, filmData) => {
+export const activeMovieDetailsScreen = (activeTab, filmData) => {
   const {
     genre,
     year,
