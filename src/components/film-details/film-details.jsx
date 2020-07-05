@@ -10,8 +10,14 @@ import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
 
+const TabName = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`
+};
+
 // Выбираем активный экран
-export const activeMovieDetailsScreen = (activeTab, filmData) => {
+export const activeMovieDetailsScreen = (activeTab, filmData, reviews = []) => {
   const {
     genre,
     year,
@@ -20,12 +26,11 @@ export const activeMovieDetailsScreen = (activeTab, filmData) => {
     description,
     director,
     starring,
-    duration,
-    reviews
+    duration
   } = filmData;
 
   switch (activeTab) {
-    case `Overview`:
+    case TabName.OVERVIEW:
       return (
         <MovieOverview
           ratingScore={ratingScore}
@@ -35,7 +40,7 @@ export const activeMovieDetailsScreen = (activeTab, filmData) => {
           starring={starring}
         />
       );
-    case `Details`:
+    case TabName.DETAILS:
       return (
         <MovieDetails
           director={director}
@@ -45,7 +50,7 @@ export const activeMovieDetailsScreen = (activeTab, filmData) => {
           year={year}
         />
       );
-    case `Reviews`:
+    case TabName.REVIEWS:
       return (
         <MovieReviews
           reviews={reviews}
@@ -57,7 +62,7 @@ export const activeMovieDetailsScreen = (activeTab, filmData) => {
 };
 
 const FilmDetails = (props) => {
-  const {tabs, activeTab, onTabClick, films} = props;
+  const {tabs, activeTab, onTabClick, films, reviews} = props;
   const {
     id,
     title,
@@ -138,7 +143,7 @@ const FilmDetails = (props) => {
               </nav>
 
               {
-                activeMovieDetailsScreen(activeTab, props.filmData)
+                activeMovieDetailsScreen(activeTab, props.filmData, reviews)
               }
 
             </div>
@@ -189,12 +194,12 @@ FilmDetails.propTypes = {
     description: PropTypes.arrayOf(PropTypes.string).isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string),
-    duration: PropTypes.number.isRequired,
-    reviews: PropTypes.array.isRequired
+    duration: PropTypes.number.isRequired
   }).isRequired,
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
   onTabClick: PropTypes.func.isRequired,
+  reviews: PropTypes.array.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -207,7 +212,8 @@ FilmDetails.propTypes = {
 const mapStateToProps = (state) => ({
   tabs: state.movieNavTabs,
   activeTab: state.activeMovieNavTab,
-  films: state.filmsList
+  films: state.filmsList,
+  reviews: state.filmReviews
 });
 
 const mapDispatchToProps = (dispatch) => ({

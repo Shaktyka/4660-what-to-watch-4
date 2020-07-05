@@ -1,5 +1,5 @@
 import {extend, formatInitCap} from '../utils.js';
-import {FILMS_DATA, promoFilmData} from '../mocks/films.js';
+import {FILMS_DATA, promoFilmData, REVIEWS} from '../mocks/films.js';
 import {ActionType} from './actions.js';
 
 const MAX_GENRE_LENGTH = 9;
@@ -20,7 +20,8 @@ const initialState = {
   activeFilm: promoFilmData,
   genres: getGenresList(FILMS_DATA),
   movieNavTabs: MOVIE_NAV_TABS,
-  activeMovieNavTab: MOVIE_NAV_TABS[0]
+  activeMovieNavTab: MOVIE_NAV_TABS[0],
+  filmReviews: REVIEWS
 };
 
 // Получение списка фильмов в соответствии выбранным жанром

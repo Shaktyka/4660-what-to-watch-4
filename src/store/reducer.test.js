@@ -10,7 +10,7 @@ const promoFilmData = {
   releaseYear: 2014
 };
 
-const FILMS_DATA = [
+const FILMS = [
   {
     id: 1,
     title: `Bohemian Rhapsody`,
@@ -345,17 +345,19 @@ const FILMS_DATA = [
 
 const genres = [`All genres`, `Drama`, `Comedy`, `Fantasy`, `Biography`, `Crime`, `Fighter`];
 
+const initState = {
+  genre: DEFAULT_GENRE,
+  filmsList: FILMS,
+  activeFilm: promoFilmData,
+  genres,
+  movieNavTabs: MOVIE_NAV_TABS,
+  activeMovieNavTab: MOVIE_NAV_TABS[0]
+};
+
 describe(`Reducer tests`, () => {
 
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      genre: DEFAULT_GENRE,
-      filmsList: FILMS_DATA,
-      activeFilm: promoFilmData,
-      genres,
-      movieNavTabs: MOVIE_NAV_TABS,
-      activeMovieNavTab: MOVIE_NAV_TABS[0]
-    });
+    expect(reducer(void 0, {})).toEqual(initState);
   });
 
   it(`Reducer writes a genre's value correctly`, () => {
