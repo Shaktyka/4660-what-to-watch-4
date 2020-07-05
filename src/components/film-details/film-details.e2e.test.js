@@ -40,7 +40,7 @@ const FILMS_DATA = [
     description: [
       `Dardjeeling Limited`
     ],
-    director: `Bryan Singer`,
+    director: `Joe Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     duration: 129
@@ -72,9 +72,9 @@ const mockEvent = {
 
 const mockStore = configureStore([]);
 
-describe(`FilmDetails renders details screen accordingly with selected tab`, () => {
+describe(`FilmDetails renders screens correctly`, () => {
 
-  it(`FilmDetails renders MovieOverview screen with Overview tab selected`, () => {
+  it(`FilmDetails renders MovieOverview screen with Overview tab clicked`, () => {
     const onTabClick = jest.fn();
 
     const store = mockStore({
@@ -84,7 +84,7 @@ describe(`FilmDetails renders details screen accordingly with selected tab`, () 
       filmReviews: REVIEWS
     });
 
-    const filmDetails = mount(
+    const component = mount(
         <Provider store={store}>
           <FilmDetails
             onTabClick={onTabClick}
@@ -94,23 +94,71 @@ describe(`FilmDetails renders details screen accordingly with selected tab`, () 
         </Provider>
     );
 
-    const allTabs = filmDetails.find(`.movie-nav__item`);
+    const allTabs = component.find(`.movie-nav__item`);
     const firstTab = allTabs.at(0);
     firstTab.simulate(`click`, mockEvent);
 
-    const screen = filmDetails.find(`.movie-card__text`);
+    const scoreValue = component.find(`.movie-rating__score`).text();
 
-    expect(screen).toBeTruthy();
+    expect(scoreValue).toEqual(`8.6`);
   });
 
-/*
-  it(`FilmDetails renders MovieDetails screen with Details tab selected`, () => {
+  it(`FilmDetails renders MovieDetails screen with Details tab clicked`, () => {
+    const onTabClick = jest.fn();
 
+    const store = mockStore({
+      filmsList: FILMS_DATA,
+      movieNavTabs: TABS,
+      activeMovieNavTab: `Details`,
+      filmReviews: REVIEWS
+    });
+
+    const component = mount(
+        <Provider store={store}>
+          <FilmDetails
+            onTabClick={onTabClick}
+            filmData={FILMS_DATA[0]}
+            films={FILMS_DATA}
+          />
+        </Provider>
+    );
+
+    const allTabs = component.find(`.movie-nav__item`);
+    const tab = allTabs.at(1);
+    tab.simulate(`click`, mockEvent);
+
+    const directorName = component.find(`.movie-card__details-value`).at(0).text();
+
+    expect(directorName).toEqual(`Bryan Singer`);
   });
 
-  it(`FilmDetails renders MovieReviews screen with Reviews tab selected`, () => {
+  it(`FilmDetails renders MovieReviews screen with Reviews tab clicked`, () => {
+    const onTabClick = jest.fn();
 
+    const store = mockStore({
+      filmsList: FILMS_DATA,
+      movieNavTabs: TABS,
+      activeMovieNavTab: `Reviews`,
+      filmReviews: REVIEWS
+    });
+
+    const component = mount(
+        <Provider store={store}>
+          <FilmDetails
+            onTabClick={onTabClick}
+            filmData={FILMS_DATA[0]}
+            films={FILMS_DATA}
+          />
+        </Provider>
+    );
+
+    const allTabs = component.find(`.movie-nav__item`);
+    const tab = allTabs.at(2);
+    tab.simulate(`click`, mockEvent);
+
+    const commentText = component.find(`.review__text`).at(0).text();
+
+    expect(commentText).toEqual(`6 review`);
   });
-*/
+
 });
-
