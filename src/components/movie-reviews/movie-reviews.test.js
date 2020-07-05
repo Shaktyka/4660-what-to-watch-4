@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import MovieReviews from './movie-reviews.jsx';
 
-const reviews = [
+const REVIEWS = [
   {
     text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
       kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
@@ -32,20 +32,6 @@ const reviews = [
     author: `Matthew Lickona`,
     date: `2016-12-20`,
     rating: `7,2`
-  },
-  {
-    text: `It is certainly a magical and childlike way of storytelling,
-      even if the content is a little more adult.`,
-    author: `Paula Fleri-Soler`,
-    date: `2016-12-20`,
-    rating: `7,6`
-  },
-  {
-    text: `It is certainly a magical and childlike way of storytelling,
-      even if the content is a little more adult.`,
-    author: `Marta Soler`,
-    date: `2016-12-22`,
-    rating: `7,0`
   }
 ];
 
@@ -55,7 +41,7 @@ describe(`MovieReviews component rendering`, () => {
     const tree = renderer
       .create(
           <MovieReviews
-            reviews={reviews.slice(0, 1)}
+            reviews={REVIEWS.slice(0, 1)}
           />
       )
       .toJSON();
@@ -68,7 +54,7 @@ describe(`MovieReviews component rendering`, () => {
     const tree = renderer
       .create(
           <MovieReviews
-            reviews={reviews.slice(0, 3)}
+            reviews={REVIEWS.slice(0, 3)}
           />
       )
       .toJSON();
@@ -80,7 +66,7 @@ describe(`MovieReviews component rendering`, () => {
     const tree = renderer
       .create(
           <MovieReviews
-            reviews={reviews}
+            reviews={REVIEWS}
           />
       )
       .toJSON();

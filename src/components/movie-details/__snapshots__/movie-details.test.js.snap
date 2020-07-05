@@ -58,7 +58,7 @@ exports[`MovieDetails component rendering MovieDetails renders correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        1h 51m
+        1h 52m
       </span>
     </p>
     <p

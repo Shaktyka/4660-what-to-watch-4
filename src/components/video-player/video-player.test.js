@@ -3,7 +3,10 @@ import renderer from 'react-test-renderer';
 
 import VideoPlayer from './video-player.jsx';
 
-import {onefilmData} from '../test-data.js';
+const onefilmData = {
+  preview: `mindhunter.jpg`,
+  source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+};
 
 describe(`VideoPlayer rendering`, () => {
 

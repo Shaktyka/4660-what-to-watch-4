@@ -3,8 +3,7 @@ import renderer from 'react-test-renderer';
 import Review from './review.jsx';
 
 const reviewData = {
-  text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-    kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
+  text: `Discerning travellers`,
   author: `Kate Muir`,
   date: `2016-12-24`,
   rating: `8,9`

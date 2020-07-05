@@ -51,21 +51,6 @@ const FILMS_DATA = [
   }
 ];
 
-const REVIEWS = [
-  {
-    text: `6 review`,
-    author: `Kate Muir`,
-    date: `2016-12-24`,
-    rating: `8,1`
-  },
-  {
-    text: `66 review`,
-    author: `Kate Muir`,
-    date: `2016-12-24`,
-    rating: `7,5`
-  }
-];
-
 const onefilmData = FILMS_DATA[0];
 
 const mockStore = configureStore([]);
@@ -77,7 +62,7 @@ describe(`FilmDetails rendering`, () => {
       movieNavTabs: MOVIE_NAV_TABS,
       activeMovieNavTab: ACTIVE_MOVIE_NAV_TAB,
       filmsList: FILMS_DATA,
-      filmReviews: REVIEWS
+      filmReviews: []
     });
 
     const tree = renderer
