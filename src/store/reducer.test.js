@@ -10,7 +10,7 @@ const promoFilmData = {
   releaseYear: 2014
 };
 
-const FILMS = [
+const FILMS_DATA = [
   {
     id: 1,
     title: `Bohemian Rhapsody`,
@@ -29,16 +29,7 @@ const FILMS = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    duration: 120,
-    reviews: [
-      {
-        text: `1 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      }
-    ]
+    duration: 120
   },
   {
     id: 2,
@@ -58,23 +49,7 @@ const FILMS = [
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    duration: 129,
-    reviews: [
-      {
-        text: `2 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `22 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      }
-    ]
+    duration: 129
   },
   {
     id: 3,
@@ -94,30 +69,7 @@ const FILMS = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://upload.wikimedia.org/wikipedia/commons/1/1b/Por_qu%C3%A9_hay_desabastecimiento_en_Venezuela.ogv`,
-    duration: 132,
-    reviews: [
-      {
-        text: `3 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `33 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `333 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      }
-    ]
+    duration: 132
   },
   {
     id: 4,
@@ -137,30 +89,7 @@ const FILMS = [
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/6/62/MyHome.webm`,
-    duration: 86,
-    reviews: [
-      {
-        text: `4 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `44 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `4444 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      }
-    ]
+    duration: 86
   },
   {
     id: 5,
@@ -180,37 +109,7 @@ const FILMS = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://upload.wikimedia.org/wikipedia/commons/3/3c/NETSPACE-10_years.webm`,
-    duration: 156,
-    reviews: [
-      {
-        text: `5 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `55 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `555 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `5555 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      }
-    ]
+    duration: 156
   },
   {
     id: 6,
@@ -230,51 +129,7 @@ const FILMS = [
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/4/41/110811-water-droplets-on-lake.ogv`,
-    duration: 124,
-    reviews: [
-      {
-        text: `6 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `66 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `666 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `6666 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `66666 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `666666 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      }
-    ]
+    duration: 124
   },
   {
     id: 7,
@@ -294,16 +149,7 @@ const FILMS = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Caminandes-_Llama_Drama_-_Short_Movie.ogv`,
-    duration: 102,
-    reviews: [
-      {
-        text: `7 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      }
-    ]
+    duration: 102
   },
   {
     id: 8,
@@ -323,35 +169,59 @@ const FILMS = [
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
     source: `https://upload.wikimedia.org/wikipedia/commons/9/97/YBCO_video.webm`,
-    duration: 98,
-    reviews: [
-      {
-        text: `8 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      },
-      {
-        text: `88 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-          kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-        author: `Kate Muir`,
-        date: `2016-12-24`,
-        rating: `8,9`
-      }
-    ]
+    duration: 98
   }
 ];
 
 const genres = [`All genres`, `Drama`, `Comedy`, `Fantasy`, `Biography`, `Crime`, `Fighter`];
 
+const REVIEWS = [
+  {
+    text: `6 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `8,1`
+  },
+  {
+    text: `66 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `7,5`
+  },
+  {
+    text: `666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `6,4`
+  },
+  {
+    text: `6666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `9,0`
+  },
+  {
+    text: `66666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `2,6`
+  },
+  {
+    text: `666666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `5,9`
+  }
+];
+
 const initState = {
   genre: DEFAULT_GENRE,
-  filmsList: FILMS,
+  filmsList: FILMS_DATA,
   activeFilm: promoFilmData,
   genres,
   movieNavTabs: MOVIE_NAV_TABS,
-  activeMovieNavTab: MOVIE_NAV_TABS[0]
+  activeMovieNavTab: MOVIE_NAV_TABS[0],
+  filmReviews: REVIEWS
 };
 
 describe(`Reducer tests`, () => {
@@ -414,16 +284,7 @@ describe(`Reducer tests`, () => {
         director: `Bryan Singer`,
         starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
         source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-        duration: 120,
-        reviews: [
-          {
-            text: `1 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-              kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-            author: `Kate Muir`,
-            date: `2016-12-24`,
-            rating: `8,9`
-          }
-        ]
+        duration: 120
       },
       {
         id: 7,
@@ -443,16 +304,7 @@ describe(`Reducer tests`, () => {
         director: `Bryan Singer`,
         starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
         source: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Caminandes-_Llama_Drama_-_Short_Movie.ogv`,
-        duration: 102,
-        reviews: [
-          {
-            text: `7 Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European
-              kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`,
-            author: `Kate Muir`,
-            date: `2016-12-24`,
-            rating: `8,9`
-          }
-        ]
+        duration: 102
       }
     ];
 
