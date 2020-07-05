@@ -2,8 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Card from './card.jsx';
 
-// import onefilmData from '../test-data.js';
-
 const onefilmData = {
   id: 7,
   title: `Mindhunter`,
@@ -15,9 +13,9 @@ const onefilmData = {
   ratingScore: 6.7,
   ratingCount: 410,
   description: [
-    `Mindhunter is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
-    `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
-    `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
+    `Mindhunter`,
+    `The film`,
+    `They reach`
   ],
   director: `Bryan Singer`,
   starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
