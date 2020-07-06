@@ -4,7 +4,7 @@ exports[`FilmDetails rendering FilmDetails renders correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
-    id={7}
+    id={1}
   >
     <div
       className="movie-card__hero"
@@ -13,7 +13,7 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Mindhunter"
+          alt="Bohemian Rhapsody"
           src="./img/bg-the-grand-budapest-hotel.jpg"
         />
       </div>
@@ -73,7 +73,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Mindhunter
+            Bohemian Rhapsody
           </h2>
           <p
             className="movie-card__meta"
@@ -146,7 +146,7 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Mindhunter poster"
+            alt="Bohemian Rhapsody poster"
             height="327"
             src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
@@ -163,6 +163,7 @@ Array [
             >
               <li
                 className="movie-nav__item movie-nav__item--active"
+                onClick={[Function]}
               >
                 <a
                   className="movie-nav__link"
@@ -172,7 +173,8 @@ Array [
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
+                onClick={[Function]}
               >
                 <a
                   className="movie-nav__link"
@@ -182,7 +184,8 @@ Array [
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
+                onClick={[Function]}
               >
                 <a
                   className="movie-nav__link"
@@ -199,7 +202,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              6.7
+              8.6
             </div>
             <p
               className="movie-rating__meta"
@@ -207,12 +210,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Good
+                Very good
               </span>
               <span
                 className="movie-rating__count"
               >
-                410
+                240
                  ratings
               </span>
             </p>
@@ -221,7 +224,7 @@ Array [
             className="movie-card__text"
           >
             <p>
-              Mindhunter is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.
+              Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.
                
             </p>
             <p>
@@ -246,7 +249,6 @@ Array [
               <strong>
                 Starring: 
                 Rami Malek, Lucy Boynton, Gwilym Lee
-                 and other
               </strong>
             </p>
           </div>
@@ -270,97 +272,38 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          id={1}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              poster="/img/bohemian-rhapsody.jpg"
+              type="video/webm"
               width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Bohemian Rhapsody"
-              height="175"
-              src="img/bohemian-rhapsody.jpg"
-              width="280"
-            />
+              Sorry, your browser doesn't support embedded video, but don't worry, you can 
+              <a
+                href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              >
+                download it
+              </a>
+              and watch it with your favorite video player!
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
+            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
             >
               Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Macbeth"
-              height="175"
-              src="img/macbeth.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Aviator"
-              height="175"
-              src="img/aviator.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Aviator
             </a>
           </h3>
         </article>

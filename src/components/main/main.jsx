@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
+import ShowMore from '../show-more/show-more.jsx';
+
+const onShowMoreClick = () => {
+  //
+};
 
 const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFilmCardClick}) => {
   const {title, genre, releaseYear} = promoCard;
@@ -72,9 +77,7 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFil
             onFilmCardClick={onFilmCardClick}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMore onShowMoreClick={onShowMoreClick} />
         </section>
         <footer className="page-footer">
           <div className="logo">

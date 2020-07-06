@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetails component rendering MovieDetails renders correctly 1`] = `
+<div
+  className="movie-card__text movie-card__row"
+>
+  <div
+    className="movie-card__text-col"
+  >
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Director
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        Bryan Singer
+      </span>
+    </p>
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Starring
+      </strong>
+      Bill Murray
+      ,
+      <br />
+      Edward Norton
+      ,
+      <br />
+      Jude Law
+      ,
+      <br />
+      Willem Dafoe
+      ,
+      <br />
+      Saoirse Ronan
+    </p>
+  </div>
+  <div
+    className="movie-card__text-col"
+  >
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Run Time
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        1h 52m
+      </span>
+    </p>
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Genre
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        Drama
+      </span>
+    </p>
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Released
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        2018
+      </span>
+    </p>
+  </div>
+</div>
+`;

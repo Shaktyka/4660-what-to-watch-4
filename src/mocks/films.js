@@ -22,7 +22,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    duration: 120
   },
   {
     id: 2,
@@ -41,7 +42,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    duration: 129
   },
   {
     id: 3,
@@ -60,7 +62,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://upload.wikimedia.org/wikipedia/commons/1/1b/Por_qu%C3%A9_hay_desabastecimiento_en_Venezuela.ogv`,
+    duration: 132
   },
   {
     id: 4,
@@ -79,7 +82,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/6/62/MyHome.webm`,
+    duration: 86
   },
   {
     id: 5,
@@ -98,7 +102,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://upload.wikimedia.org/wikipedia/commons/3/3c/NETSPACE-10_years.webm`,
+    duration: 156
   },
   {
     id: 6,
@@ -117,7 +122,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/4/41/110811-water-droplets-on-lake.ogv`,
+    duration: 124
   },
   {
     id: 7,
@@ -136,7 +142,8 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Caminandes-_Llama_Drama_-_Short_Movie.ogv`,
+    duration: 102
   },
   {
     id: 8,
@@ -155,6 +162,46 @@ export const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/9/97/YBCO_video.webm`,
+    duration: 98
+  }
+];
+
+export const REVIEWS = [
+  {
+    text: `6 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `8,1`
+  },
+  {
+    text: `66 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `7,5`
+  },
+  {
+    text: `666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `6,4`
+  },
+  {
+    text: `6666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `9,0`
+  },
+  {
+    text: `66666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `2,6`
+  },
+  {
+    text: `666666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `5,9`
   }
 ];

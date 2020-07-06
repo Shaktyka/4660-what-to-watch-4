@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MoviesList rendering MoviesList renders correctly 1`] = `
+exports[`SimilarMovies rendering SimilarMovies renders correctly 1`] = `
 <div
   className="catalog__movies-list"
 >

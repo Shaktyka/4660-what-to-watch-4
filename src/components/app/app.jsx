@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../store/actions.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
@@ -66,7 +66,7 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderApp()}
           </Route>
-          <Route exact path="/dev-film">
+          <Route exact path="/details">
             {this._renderFilmDetails()}
           </Route>
         </Switch>
@@ -88,7 +88,7 @@ App.propTypes = {
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired
-      }).isRequired
+      })
   ).isRequired,
   onGenreClick: PropTypes.func.isRequired
 };

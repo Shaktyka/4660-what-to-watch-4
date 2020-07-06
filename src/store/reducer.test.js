@@ -1,5 +1,7 @@
-import {reducer, ActionType, ActionCreator} from './reducer.js';
+import reducer from './reducer.js';
+import {ActionType, ActionCreator} from './actions.js';
 
+const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
 const DEFAULT_GENRE = `All genres`;
 
 const promoFilmData = {
@@ -26,7 +28,8 @@ const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    duration: 120
   },
   {
     id: 2,
@@ -45,7 +48,8 @@ const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    duration: 129
   },
   {
     id: 3,
@@ -64,7 +68,8 @@ const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://upload.wikimedia.org/wikipedia/commons/1/1b/Por_qu%C3%A9_hay_desabastecimiento_en_Venezuela.ogv`,
+    duration: 132
   },
   {
     id: 4,
@@ -83,7 +88,8 @@ const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/6/62/MyHome.webm`,
+    duration: 86
   },
   {
     id: 5,
@@ -102,7 +108,8 @@ const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://upload.wikimedia.org/wikipedia/commons/3/3c/NETSPACE-10_years.webm`,
+    duration: 156
   },
   {
     id: 6,
@@ -121,7 +128,8 @@ const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/4/41/110811-water-droplets-on-lake.ogv`,
+    duration: 124
   },
   {
     id: 7,
@@ -140,7 +148,8 @@ const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    source: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Caminandes-_Llama_Drama_-_Short_Movie.ogv`,
+    duration: 102
   },
   {
     id: 8,
@@ -159,26 +168,68 @@ const FILMS_DATA = [
     ],
     director: `Bryan Singer`,
     starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    source: `https://upload.wikimedia.org/wikipedia/commons/9/97/YBCO_video.webm`,
+    duration: 98
   }
 ];
 
 const genres = [`All genres`, `Drama`, `Comedy`, `Fantasy`, `Biography`, `Crime`, `Fighter`];
 
+const REVIEWS = [
+  {
+    text: `6 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `8,1`
+  },
+  {
+    text: `66 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `7,5`
+  },
+  {
+    text: `666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `6,4`
+  },
+  {
+    text: `6666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `9,0`
+  },
+  {
+    text: `66666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `2,6`
+  },
+  {
+    text: `666666 review`,
+    author: `Kate Muir`,
+    date: `2016-12-24`,
+    rating: `5,9`
+  }
+];
+
+const initState = {
+  genre: DEFAULT_GENRE,
+  filmsList: FILMS_DATA,
+  activeFilm: promoFilmData,
+  genres,
+  movieNavTabs: MOVIE_NAV_TABS,
+  activeMovieNavTab: MOVIE_NAV_TABS[0],
+  filmReviews: REVIEWS
+};
+
 describe(`Reducer tests`, () => {
 
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      genre: DEFAULT_GENRE,
-      filmsList: FILMS_DATA,
-      activeFilm: promoFilmData,
-      genres
-    });
+    expect(reducer(void 0, {})).toEqual(initState);
   });
 
-  // Редьюсер принимает стейт и action и возвращает новый стейт
-
-  // Название жанра записывается в поле genre
   it(`Reducer writes a genre's value correctly`, () => {
     expect(reducer({
       genre: DEFAULT_GENRE,
@@ -232,7 +283,8 @@ describe(`Reducer tests`, () => {
         ],
         director: `Bryan Singer`,
         starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-        source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+        source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        duration: 120
       },
       {
         id: 7,
@@ -251,7 +303,8 @@ describe(`Reducer tests`, () => {
         ],
         director: `Bryan Singer`,
         starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-        source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+        source: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Caminandes-_Llama_Drama_-_Short_Movie.ogv`,
+        duration: 102
       }
     ];
 
@@ -288,6 +341,19 @@ describe(`Reducer tests`, () => {
     });
   });
 
+  it(`Reducer writes a tab's value correctly`, () => {
+    const clickedTab = `Details`;
+
+    expect(reducer({
+      activeMovieNavTab: MOVIE_NAV_TABS[0]
+    }, {
+      type: ActionType.CHANGE_MOVIE_NAV_TAB,
+      payload: clickedTab,
+    })).toEqual({
+      activeMovieNavTab: clickedTab
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, () => {
@@ -317,6 +383,15 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.getActiveFilm(1)).toEqual({
       type: ActionType.GET_ACTIVE_FILM,
       payload: 1
+    });
+  });
+
+  it(`Action creator for change movieNavTab returns correct action`, () => {
+    const clickedTab = `Reviews`;
+
+    expect(ActionCreator.changeMovieNavTab(clickedTab)).toEqual({
+      type: ActionType.CHANGE_MOVIE_NAV_TAB,
+      payload: clickedTab
     });
   });
 

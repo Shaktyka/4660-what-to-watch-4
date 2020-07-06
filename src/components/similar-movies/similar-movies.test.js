@@ -1,17 +1,8 @@
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import renderer from 'react-test-renderer';
+import SimilarMovies from './similar-movies.jsx';
 
-import Main from './main.jsx';
-
-const genres = [`All genres`, `Crime`, `Sci-Fi`, `Drama`];
-const genre = `All genres`;
-
-const promoCardData = {
-  title: `Dr.No`,
-  genre: `Thriller`,
-  releaseYear: 1962
-};
+const MAX_SIMILAR_FILMS_AMOUNT = 4;
 
 const FILMS_DATA = [
   {
@@ -54,33 +45,26 @@ const FILMS_DATA = [
   }
 ];
 
-Enzyme.configure({
-  adapter: new Adapter()
-});
+describe(`SimilarMovies rendering`, () => {
 
-describe(`Main component`, () => {
+  it(`SimilarMovies renders correctly`, () => {
+    const films = FILMS_DATA.slice(0, MAX_SIMILAR_FILMS_AMOUNT);
 
-  it(`Title has been clicked`, () => {
-    const onFilmCardClick = jest.fn();
+    const tree = renderer
+      .create(
+          <SimilarMovies
+            films={films}
+            onFilmCardClick={() => {}}
+            onHoverCard={() => {}}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          }
+      )
+      .toJSON();
 
-    const main = mount(
-        <Main
-          genre={genre}
-          genres={genres}
-          promoCard={promoCardData}
-          films={FILMS_DATA}
-          onFilmCardClick={onFilmCardClick}
-          onGenreClick={() => {}}
-        />
-    );
-
-    const cardTitles = main.find(`.small-movie-card__title`);
-
-    cardTitles.forEach((title) => {
-      title.simulate(`click`, {preventDefault() {}});
-    });
-
-    expect(onFilmCardClick).toHaveBeenCalledTimes(FILMS_DATA.length);
+    expect(tree).toMatchSnapshot();
   });
 
 });
