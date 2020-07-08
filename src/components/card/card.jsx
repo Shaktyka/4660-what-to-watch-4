@@ -1,7 +1,10 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
+import withVideo from '../../hocs/with-video/with-video.js';
 import VideoPlayer from '../video-player/video-player.jsx';
+
+const Video = withVideo(VideoPlayer);
 
 class Card extends PureComponent {
   constructor(props) {
@@ -34,7 +37,7 @@ class Card extends PureComponent {
         <div
           className="small-movie-card__image"
         >
-          <VideoPlayer
+          <Video
             src={source}
             poster={preview}
             isPlaying={isPlaying}
