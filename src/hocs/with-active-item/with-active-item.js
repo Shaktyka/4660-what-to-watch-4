@@ -1,7 +1,5 @@
 import React, {PureComponent} from 'react';
 
-// применить общее поведение (выделение элемента) для «Список жанров» и «Список карточек с фильмами»
-
 const withActiveItem = (Component) => {
 
   class WithActiveItem extends PureComponent {
