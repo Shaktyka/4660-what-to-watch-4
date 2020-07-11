@@ -1,7 +1,10 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
+import withCard from '../../hocs/with-сard/with-card.js';
 import Card from '../card/card.jsx';
+
+const FilmCard = withCard(Card);
 
 class MoviesList extends PureComponent {
   constructor(props) {
@@ -29,7 +32,7 @@ class MoviesList extends PureComponent {
 
   _getFilm(filmData, cardClickHandler) {
     return (
-      <Card
+      <FilmCard
         film={filmData}
         key={`movie-${filmData.id}`}
         onFilmCardClick={cardClickHandler}

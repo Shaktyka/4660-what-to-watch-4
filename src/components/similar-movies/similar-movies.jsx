@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import withCard from '../../hocs/with-сard/with-card.js';
 import Card from '../card/card.jsx';
+
+const FilmCard = withCard(Card);
 
 const SimilarMovies = (props) => {
   const {films} = props;
@@ -9,7 +13,7 @@ const SimilarMovies = (props) => {
     <div className="catalog__movies-list">
       {
         films.map((filmData) => (
-          <Card
+          <FilmCard
             film={filmData}
             key={`movie-${filmData.id}`}
             onFilmCardClick={() => {}}
