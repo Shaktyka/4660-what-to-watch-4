@@ -1,41 +1,38 @@
 import React, {PureComponent} from 'react';
 
-const withActiveItem = (Component) => {
+const withActiveItem = (Component, activeItemValue = false) => {
 
   class WithActiveItem extends PureComponent {
     constructor(props) {
       super(props);
 
       this.state = {
-        activeItem: 0
+        activeItem: activeItemValue
       };
+
+      this._setActiveItem = this._setActiveItem.bind(this);
     }
 
-    // _handleClick() {
-    //   this.setState({
-    //     activeItem
-    //   });
-    // }
+    _setActiveItem(item) {
+      this.setState({
+        activeItem: item
+      });
+    }
 
     render() {
-      const handleClick = (activeElement, action) => {
-        console.log(activeElement, action);
-        // store.dispatch.action(activeElement);
-      };
+      const {activeItem} = this.state;
 
       return (
         <Component
           {...this.props}
-          onClick={handleClick}
+          activeItem={activeItem}
+          setActiveItem={this.setActiveItem}
         />
       );
     }
   }
 
-  WithActiveItem.propTypes = {};
-
   return WithActiveItem;
-
 };
 
 export default withActiveItem;
