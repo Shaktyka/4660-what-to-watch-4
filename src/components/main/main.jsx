@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
 import ShowMore from '../show-more/show-more.jsx';
+
+const MoviesListWrapped = withActiveItem(MoviesList);
 
 const onShowMoreClick = () => {
   //
@@ -72,7 +75,7 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFil
             onGenreClick={onGenreClick}
           />
 
-          <MoviesList
+          <MoviesListWrapped
             films={films}
             onFilmCardClick={onFilmCardClick}
           />
