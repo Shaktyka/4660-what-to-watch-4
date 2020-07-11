@@ -1,7 +1,8 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import PropTypes from "prop-types";
-import withVideo from "./with-video.js";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import PropTypes from 'prop-types';
+
+import withVideo from './with-video.js';
 
 const MockComponent = (props) => {
   const {children} = props;

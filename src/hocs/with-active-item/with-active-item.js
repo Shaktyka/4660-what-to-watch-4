@@ -7,19 +7,26 @@ const withActiveItem = (Component) => {
       super(props);
 
       this.state = {
-        activeItemId: 0,
+        activeItem: 0
       };
     }
 
+    // _handleClick() {
+    //   this.setState({
+    //     activeItem
+    //   });
+    // }
+
     render() {
-      const {activeItemId} = this.state;
+      const handleClick = (activeElement, action) => {
+        console.log(activeElement, action);
+        // store.dispatch.action(activeElement);
+      };
 
       return (
         <Component
           {...this.props}
-          onClick={() => this.setState({
-            activeItemId
-          })}
+          onClick={handleClick}
         />
       );
     }
