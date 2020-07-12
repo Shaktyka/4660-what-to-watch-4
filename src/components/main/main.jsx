@@ -9,10 +9,6 @@ import ShowMore from '../show-more/show-more.jsx';
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
 
-const onShowMoreClick = () => {
-  //
-};
-
 const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFilmCardClick}) => {
   const {title, genre, releaseYear} = promoCard;
 
@@ -81,7 +77,7 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFil
             onFilmCardClick={onFilmCardClick}
           />
 
-          <ShowMore onShowMoreClick={onShowMoreClick} />
+          <ShowMore onShowMoreClick={() => {}} />
         </section>
         <footer className="page-footer">
           <div className="logo">
