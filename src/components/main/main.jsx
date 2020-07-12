@@ -7,6 +7,7 @@ import GenresList from '../genres-list/genres-list.jsx';
 import ShowMore from '../show-more/show-more.jsx';
 
 const MoviesListWrapped = withActiveItem(MoviesList);
+const GenresListWrapped = withActiveItem(GenresList);
 
 const onShowMoreClick = () => {
   //
@@ -69,7 +70,7 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFil
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList
+          <GenresListWrapped
             genres={genres}
             activeGenre={activeGenre}
             onGenreClick={onGenreClick}
