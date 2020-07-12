@@ -14,7 +14,7 @@ const Card = (props) => {
     <article
       id={id}
       className="small-movie-card catalog__movies-card"
-      onClick={onFilmCardClick}
+      onClick={() => onFilmCardClick(id)}
       onMouseEnter={() => onMouseEnterCard(id)}
       onMouseLeave={() => onMouseLeaveCard()}
     >
