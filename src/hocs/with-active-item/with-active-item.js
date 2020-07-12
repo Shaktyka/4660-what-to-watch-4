@@ -19,6 +19,12 @@ const withActiveItem = (Component, activeItemValue = false) => {
       });
     }
 
+    _resetActiveItem() {
+      this.setState({
+        activeItem: null
+      });
+    }
+
     render() {
       const {activeItem} = this.state;
 
@@ -26,7 +32,8 @@ const withActiveItem = (Component, activeItemValue = false) => {
         <Component
           {...this.props}
           activeItem={activeItem}
-          setActiveItem={this.setActiveItem}
+          setActiveItem={this._setActiveItem}
+          resetActiveItem={this._resetActiveItem}
         />
       );
     }

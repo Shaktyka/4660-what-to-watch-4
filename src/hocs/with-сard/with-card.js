@@ -14,17 +14,14 @@ const withCard = (Component) => {
 
     render() {
       const {isPlaying} = this.state;
-      const {film, onMouseEnterCard, onMouseLeaveCard} = this.props;
 
       const handleMouseEnter = () => {
-        onMouseEnterCard(film.id);
         this.setState({
           isPlaying: true
         });
       };
 
       const handleMouseLeave = () => {
-        onMouseLeaveCard();
         this.setState({
           isPlaying: false
         });
@@ -47,10 +44,7 @@ const withCard = (Component) => {
       title: PropTypes.string.isRequired,
       preview: PropTypes.string.isRequired,
       source: PropTypes.string.isRequired
-    }).isRequired,
-    onFilmCardClick: PropTypes.func.isRequired,
-    onMouseEnterCard: PropTypes.func.isRequired,
-    onMouseLeaveCard: PropTypes.func.isRequired
+    }).isRequired
   };
 
   return WithCard;
