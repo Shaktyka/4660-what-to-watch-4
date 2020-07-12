@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withActiveItem rendering withActiveItem renders with ... 1`] = `<div />`;
+
+exports[`withActiveItem rendering withActiveItem renders with ... 2`] = `<div />`;

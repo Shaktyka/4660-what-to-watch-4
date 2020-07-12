@@ -1,18 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VideoPlayer rendering VideoPlayer renders correctly 1`] = `
-<video
-  height="175"
-  poster="mindhunter.jpg"
-  type="video/webm"
-  width="280"
->
-  Sorry, your browser doesn't support embedded video, but don't worry, you can 
-  <a
-    href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-  >
-    download it
-  </a>
-  and watch it with your favorite video player!
-</video>
-`;
+exports[`VideoPlayer rendering VideoPlayer renders correctly 1`] = `<video />`;

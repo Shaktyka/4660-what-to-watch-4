@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import withActiveItem from './with-active-item.jsx';
+import withActiveItem from './with-active-item.js';
 
 const onefilmData = {
   id: 7,
