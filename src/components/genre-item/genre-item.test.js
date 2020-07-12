@@ -7,13 +7,12 @@ describe(`GenreItem rendering`, () => {
 
   it(`GenreItem renders correctly like clicked element`, () => {
     const genre = `Comedy`;
-    const activeClass = `catalog__genres-item--active`;
 
     const tree = renderer
       .create(
           <GenreItem
             genre={genre}
-            activeClass={activeClass}
+            isActive={true}
             onGenreClick={() => {}}
           />
       )
@@ -24,13 +23,12 @@ describe(`GenreItem rendering`, () => {
 
   it(`GenreItem renders correctly`, () => {
     const genre = `Comedy`;
-    const activeClass = ``;
 
     const tree = renderer
       .create(
           <GenreItem
             genre={genre}
-            activeClass={activeClass}
+            isActive={false}
             onGenreClick={() => {}}
           />
       )

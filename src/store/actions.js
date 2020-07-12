@@ -1,5 +1,7 @@
-const DEFAULT_GENRE = `All genres`;
-const DEFAULT_MOVIE_NAV_TAB = `Overview`;
+import {
+  DEFAULT_GENRE,
+  DEFAULT_MOVIE_NAV_TAB
+} from '../consts.js';
 
 export const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,

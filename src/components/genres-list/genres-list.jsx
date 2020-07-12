@@ -14,12 +14,13 @@ const GenresList = (props) => {
     <ul className="catalog__genres-list">
       {
         genres.map((genre, i) => {
-          const activeClass = genre === activeGenre ? `catalog__genres-item--active` : ``;
+          const isActive = genre === activeGenre;
+
           return (
             <GenreItem
               key={i}
+              isActive={isActive}
               genre={genre}
-              activeClass={activeClass}
               onGenreClick={onGenreClick}
             />
           );

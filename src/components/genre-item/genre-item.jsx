@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const GenreItem = (props) => {
-  const {genre, activeClass, onGenreClick} = props;
+  const {genre, isActive, onGenreClick} = props;
+  const activeClass = isActive ? `catalog__genres-item--active` : ``;
 
   return (
     <li
@@ -21,7 +22,7 @@ const GenreItem = (props) => {
 
 GenreItem.propTypes = {
   genre: PropTypes.string.isRequired,
-  activeClass: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
   onGenreClick: PropTypes.func.isRequired
 };
 

@@ -2,9 +2,11 @@ import {extend, formatInitCap} from '../utils.js';
 import {FILMS_DATA, promoFilmData, REVIEWS} from '../mocks/films.js';
 import {ActionType} from './actions.js';
 
-const MAX_GENRE_LENGTH = 9;
-const DEFAULT_GENRE = `All genres`;
-const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
+import {
+  MAX_GENRE_LENGTH,
+  DEFAULT_GENRE,
+  MOVIE_NAV_TABS
+} from '../consts.js';
 
 // Получение списка жанров
 const getGenresList = (filmsList = []) => {
