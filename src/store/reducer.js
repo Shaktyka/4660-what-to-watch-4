@@ -45,7 +45,7 @@ const reducer = (state = initialState, action) => {
         filmsList: filterFilmsByGenre(FILMS_DATA, action.payload)
       });
 
-    case ActionType.GET_ACTIVE_FILM:
+    case ActionType.SET_ACTIVE_FILM:
       return extend(state, {
         activeFilm: FILMS_DATA.find((film) => film.id === action.payload) || FILMS_DATA[0]
       });

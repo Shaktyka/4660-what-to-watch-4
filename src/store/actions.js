@@ -6,7 +6,7 @@ import {
 export const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   FILTER_BY_GENRE: `FILTER_BY_GENRE`,
-  GET_ACTIVE_FILM: `GET_ACTIVE_FILM`,
+  SET_ACTIVE_FILM: `SET_ACTIVE_FILM`,
   CHANGE_MOVIE_NAV_TAB: `CHANGE_MOVIE_NAV_TAB`,
   SORT_BY_GENRE: `SORT_BY_GENRE`
 };
@@ -40,8 +40,8 @@ export const ActionCreator = {
     );
   },
 
-  getActiveFilm: (id) => ({
-    type: ActionType.GET_ACTIVE_FILM,
+  setActiveFilm: (id) => ({
+    type: ActionType.SET_ACTIVE_FILM,
     payload: id
   })
 };

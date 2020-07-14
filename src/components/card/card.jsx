@@ -56,7 +56,7 @@ Card.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onCardClick(id) {
-    dispatch(ActionCreator.getActiveFilm(id));
+    dispatch(ActionCreator.setActiveFilm(id));
   }
 });
 
