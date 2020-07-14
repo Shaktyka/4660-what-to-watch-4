@@ -21,7 +21,6 @@ const initialState = {
   filmsList: FILMS_DATA,
   selectedFilmId: null,
   activeFilm: promoFilmData,
-  activeFilmId: promoFilmData.id,
   genres: getGenresList(FILMS_DATA),
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],

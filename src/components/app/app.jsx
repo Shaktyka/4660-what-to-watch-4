@@ -45,7 +45,6 @@ class App extends PureComponent {
 App.propTypes = {
   genre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeFilmId: PropTypes.number.isRequired,
   activeFilm: PropTypes.object.isRequired,
   selectedFilmId: PropTypes.number,
   films: PropTypes.arrayOf(
@@ -62,7 +61,6 @@ const mapStateToProps = (state) => ({
   genre: state.genre,
   genres: state.genres,
   films: state.filmsList,
-  activeFilmId: state.activeFilmId,
   activeFilm: state.activeFilm,
   selectedFilmId: state.selectedFilmId
 });
