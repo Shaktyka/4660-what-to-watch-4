@@ -20,6 +20,7 @@ const initialState = {
   genre: DEFAULT_GENRE,
   filmsList: FILMS_DATA,
   activeFilm: promoFilmData,
+  activeFilmId: promoFilmData.id,
   genres: getGenresList(FILMS_DATA),
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],

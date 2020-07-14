@@ -9,8 +9,8 @@ import ShowMore from '../show-more/show-more.jsx';
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
 
-const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFilmCardClick}) => {
-  const {title, genre, releaseYear} = promoCard;
+const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick}) => {
+  const {title, genre, year} = promoCard;
 
   return (
     <>
@@ -42,7 +42,7 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFil
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{releaseYear}</span>
+                <span className="movie-card__year">{year}</span>
               </p>
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
@@ -74,7 +74,7 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick, onFil
 
           <MoviesListWrapped
             films={films}
-            onFilmCardClick={onFilmCardClick}
+            onFilmCardClick={() => {}}
           />
 
           <ShowMore onShowMoreClick={() => {}} />
@@ -102,7 +102,7 @@ Main.propTypes = {
   promoCard: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
@@ -111,8 +111,7 @@ Main.propTypes = {
         preview: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  onGenreClick: PropTypes.func.isRequired,
-  onFilmCardClick: PropTypes.func.isRequired
+  onGenreClick: PropTypes.func.isRequired
 };
 
 export default Main;
