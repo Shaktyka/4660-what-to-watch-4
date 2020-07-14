@@ -61,7 +61,7 @@ App.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilmId: PropTypes.number.isRequired,
   activeFilm: PropTypes.object.isRequired,
-  selectedFilmId: PropTypes.number.isRequired,
+  selectedFilmId: PropTypes.number,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
