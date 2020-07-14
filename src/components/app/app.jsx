@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
@@ -8,38 +8,62 @@ import {ActionCreator} from '../../store/actions.js';
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 
-const App = (props) => {
-  const {films, genre, genres, activeFilm, onGenreClick} = props;
+// Перенести фильтрацию фильмов по жанрам сюда
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          {
-            <Main
-              promoCard={activeFilm}
-              films={films.slice(0, 8)}
-              genre={genre}
-              genres={genres}
-              onGenreClick={onGenreClick}
-            />
-          }
-        </Route>
-        <Route exact path="/details">
-          {
+class App extends PureComponent {
+
+  _renderApp() {
+    const {films, genre, genres, activeFilm, selectedFilmId, onGenreClick} = this.props;
+
+    if (selectedFilmId === null) {
+      return (
+        <Main
+          promoCard={activeFilm}
+          films={films.slice(0, 8)}
+          genre={genre}
+          genres={genres}
+          onGenreClick={onGenreClick}
+        />
+      );
+    }
+
+    if (selectedFilmId) {
+      return (
+        <FilmDetails
+          filmData={films[0]}
+        />
+      );
+    }
+
+    return null;
+  }
+
+  render() {
+    const {films} = this.props;
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {
+              this._renderApp()
+            }
+          </Route>
+          <Route exact path="/details">
             <FilmDetails filmData={films[0]} />
-          }
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-};
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
   genre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilmId: PropTypes.number.isRequired,
   activeFilm: PropTypes.object.isRequired,
+  selectedFilmId: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -55,7 +79,8 @@ const mapStateToProps = (state) => ({
   genres: state.genres,
   films: state.filmsList,
   activeFilmId: state.activeFilmId,
-  activeFilm: state.activeFilm
+  activeFilm: state.activeFilm,
+  selectedFilmId: state.selectedFilmId
 });
 
 const mapDispatchToProps = (dispatch) => ({

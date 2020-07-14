@@ -19,8 +19,9 @@ const getGenresList = (filmsList = []) => {
 const initialState = {
   genre: DEFAULT_GENRE,
   filmsList: FILMS_DATA,
+  selectedFilmId: null,
   activeFilm: promoFilmData,
-  activeFilmId: promoFilmData.id, // пока непонятно, что делать с id
+  activeFilmId: promoFilmData.id,
   genres: getGenresList(FILMS_DATA),
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],
@@ -45,7 +46,7 @@ const reducer = (state = initialState, action) => {
         filmsList: filterFilmsByGenre(FILMS_DATA, action.payload)
       });
 
-    case ActionType.SET_ACTIVE_FILM:
+    case ActionType.SET_SELECTED_FILM:
       return extend(state, {
         activeFilm: FILMS_DATA.find((film) => film.id === action.payload) || FILMS_DATA[0]
       });
