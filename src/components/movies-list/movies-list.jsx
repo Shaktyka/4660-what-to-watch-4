@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import withCard from '../../hocs/with-сard/with-card.js';
 import Card from '../card/card.jsx';
 
-const FilmCard = withCard(Card);
+const CardWrapped = withCard(Card);
 
 const MoviesList = (props) => {
   const {films} = props;
@@ -14,7 +14,7 @@ const MoviesList = (props) => {
       {
         films.map((film, i) => {
           return (
-            <FilmCard
+            <CardWrapped
               film={film}
               key={`movie-${i}`}
             />

@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/actions.js';
+
 import withVideo from '../../hocs/with-video/with-video.js';
 import VideoPlayer from '../video-player/video-player.jsx';
 
 const Video = withVideo(VideoPlayer);
 
 const Card = (props) => {
-  const {film, /* onFilmCardClick, */ onMouseEnterCard, onMouseLeaveCard, isPlaying} = props;
+  const {film, onCardClick, onMouseEnterCard, onMouseLeaveCard, isPlaying} = props;
   const {id, title, preview, source} = film;
 
   return (
     <article
       id={id}
       className="small-movie-card catalog__movies-card"
-      onClick={() => {} /* console.log(id) onFilmCardClick(id) */}
+      onClick={() => onCardClick(id)}
       onMouseEnter={() => onMouseEnterCard(id)}
       onMouseLeave={() => onMouseLeaveCard()}
     >
@@ -45,10 +48,17 @@ Card.propTypes = {
     preview: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired
   }).isRequired,
-  // onFilmCardClick: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
   onMouseEnterCard: PropTypes.func.isRequired,
   onMouseLeaveCard: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired
 };
 
-export default Card;
+const mapDispatchToProps = (dispatch) => ({
+  onCardClick(id) {
+    dispatch(ActionCreator.getActiveFilm(id));
+  }
+});
+
+export {Card};
+export default connect(null, mapDispatchToProps)(Card);

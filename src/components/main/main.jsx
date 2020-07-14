@@ -74,7 +74,6 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick}) => {
 
           <MoviesListWrapped
             films={films}
-            onFilmCardClick={() => {}}
           />
 
           <ShowMore onShowMoreClick={() => {}} />

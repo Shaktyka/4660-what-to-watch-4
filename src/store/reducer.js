@@ -20,7 +20,7 @@ const initialState = {
   genre: DEFAULT_GENRE,
   filmsList: FILMS_DATA,
   activeFilm: promoFilmData,
-  activeFilmId: promoFilmData.id,
+  activeFilmId: promoFilmData.id, // пока непонятно, что делать с id
   genres: getGenresList(FILMS_DATA),
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],
@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.GET_ACTIVE_FILM:
       return extend(state, {
-        activeFilm: action.payload
+        activeFilm: FILMS_DATA.find((film) => film.id === action.payload) || FILMS_DATA[0]
       });
 
     case ActionType.CHANGE_MOVIE_NAV_TAB:
