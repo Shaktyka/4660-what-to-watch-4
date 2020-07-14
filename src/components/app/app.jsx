@@ -10,41 +10,27 @@ import FilmDetails from '../film-details/film-details.jsx';
 
 class App extends PureComponent {
 
-  _renderApp() {
-    const {films, genre, genres, activeFilm, selectedFilmId, onGenreClick} = this.props;
-
-    if (selectedFilmId === null) {
-      return (
-        <Main
-          promoCard={activeFilm}
-          films={films.slice(0, 8)}
-          genre={genre}
-          genres={genres}
-          onGenreClick={onGenreClick}
-        />
-      );
-    }
-
-    if (selectedFilmId) {
-      return (
-        <FilmDetails
-          filmData={films.find((film) => film.id === selectedFilmId)}
-        />
-      );
-    }
-
-    return null;
-  }
-
   render() {
-    const {films} = this.props;
+    const {films, genre, genres, activeFilm, selectedFilmId, onGenreClick} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
             {
-              this._renderApp()
+              selectedFilmId
+                ?
+                <FilmDetails
+                  filmData={films.find((film) => film.id === selectedFilmId)}
+                />
+                :
+                <Main
+                  promoCard={activeFilm}
+                  films={films.slice(0, 8)}
+                  genre={genre}
+                  genres={genres}
+                  onGenreClick={onGenreClick}
+                />
             }
           </Route>
           <Route exact path="/details">
