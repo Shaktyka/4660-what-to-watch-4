@@ -30,7 +30,7 @@ class App extends PureComponent {
     if (selectedFilmId) {
       return (
         <FilmDetails
-          filmData={films[0]}
+          filmData={films.find((film) => film.id === selectedFilmId)}
         />
       );
     }
