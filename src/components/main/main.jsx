@@ -76,7 +76,11 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick}) => {
             films={films}
           />
 
-          <ShowMore onShowMoreClick={() => {}} />
+          {
+            films.length > 8
+              ? <ShowMore onShowMoreClick={() => {}} />
+              : null
+          }
         </section>
         <footer className="page-footer">
           <div className="logo">

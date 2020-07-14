@@ -8,8 +8,6 @@ import {ActionCreator} from '../../store/actions.js';
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 
-// Перенести фильтрацию фильмов по жанрам сюда
-
 class App extends PureComponent {
 
   _renderApp() {
