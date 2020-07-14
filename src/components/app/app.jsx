@@ -9,65 +9,32 @@ import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedFilmId: null
-    };
-
-    this._renderApp = this._renderApp.bind(this);
-    this._renderFilmDetails = this._renderFilmDetails.bind(this);
-  }
-
-  _renderApp() {
-    const {films, genre, genres, activeFilm, onGenreClick} = this.props;
-    const {selectedFilmId} = this.state;
-
-    if (selectedFilmId === null) {
-      return (
-        <Main
-          promoCard={activeFilm}
-          films={films.slice(0, 8)}
-          genre={genre}
-          genres={genres}
-          onGenreClick={onGenreClick}
-          onFilmCardClick={(filmId) => (
-            this.setState({
-              selectedFilmId: filmId,
-            })
-          )}
-        />
-      );
-    }
-
-    if (selectedFilmId) {
-      return (
-        <FilmDetails
-          filmData={films.find((film) => film.id === selectedFilmId)}
-        />
-      );
-    }
-
-    return null;
-  }
-
-  _renderFilmDetails() {
-    const {films} = this.props;
-    return (
-      <FilmDetails filmData={films[0]} />
-    );
-  }
 
   render() {
+    const {films, genre, genres, activeFilm, selectedFilmId, onGenreClick} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderApp()}
+            {
+              selectedFilmId
+                ?
+                <FilmDetails
+                  filmData={films.find((film) => film.id === selectedFilmId)}
+                />
+                :
+                <Main
+                  promoCard={activeFilm}
+                  films={films.slice(0, 8)}
+                  genre={genre}
+                  genres={genres}
+                  onGenreClick={onGenreClick}
+                />
+            }
           </Route>
           <Route exact path="/details">
-            {this._renderFilmDetails()}
+            <FilmDetails filmData={films[0]} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -78,11 +45,8 @@ class App extends PureComponent {
 App.propTypes = {
   genre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeFilm: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired
-  }).isRequired,
+  activeFilm: PropTypes.object.isRequired,
+  selectedFilmId: PropTypes.number,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -96,8 +60,9 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   genre: state.genre,
   genres: state.genres,
+  films: state.filmsList,
   activeFilm: state.activeFilm,
-  films: state.filmsList
+  selectedFilmId: state.selectedFilmId
 });
 
 const mapDispatchToProps = (dispatch) => ({

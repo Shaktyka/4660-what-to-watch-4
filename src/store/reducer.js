@@ -2,9 +2,11 @@ import {extend, formatInitCap} from '../utils.js';
 import {FILMS_DATA, promoFilmData, REVIEWS} from '../mocks/films.js';
 import {ActionType} from './actions.js';
 
-const MAX_GENRE_LENGTH = 9;
-const DEFAULT_GENRE = `All genres`;
-const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
+import {
+  MAX_GENRE_LENGTH,
+  DEFAULT_GENRE,
+  MOVIE_NAV_TABS
+} from '../consts.js';
 
 // Получение списка жанров
 const getGenresList = (filmsList = []) => {
@@ -17,6 +19,7 @@ const getGenresList = (filmsList = []) => {
 const initialState = {
   genre: DEFAULT_GENRE,
   filmsList: FILMS_DATA,
+  selectedFilmId: null,
   activeFilm: promoFilmData,
   genres: getGenresList(FILMS_DATA),
   movieNavTabs: MOVIE_NAV_TABS,
@@ -42,9 +45,9 @@ const reducer = (state = initialState, action) => {
         filmsList: filterFilmsByGenre(FILMS_DATA, action.payload)
       });
 
-    case ActionType.GET_ACTIVE_FILM:
+    case ActionType.SET_SELECTED_FILM:
       return extend(state, {
-        activeFilm: action.payload
+        selectedFilmId: action.payload
       });
 
     case ActionType.CHANGE_MOVIE_NAV_TAB:

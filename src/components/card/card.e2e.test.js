@@ -37,6 +37,7 @@ describe(`Card component test`, () => {
           onFilmCardClick={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
+          isPlaying={false}
         />
     );
 
@@ -56,6 +57,7 @@ describe(`Card component test`, () => {
           onFilmCardClick={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
+          isPlaying={false}
         />
     );
 
@@ -75,6 +77,7 @@ describe(`Card component test`, () => {
           onFilmCardClick={() => {}}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
+          isPlaying={false}
         />
     );
 
@@ -93,6 +96,7 @@ describe(`Card component test`, () => {
           onFilmCardClick={onFilmCardClick}
           onMouseEnterCard={onMouseEnterCard}
           onMouseLeaveCard={onMouseLeaveCard}
+          isPlaying={false}
         />
     );
 

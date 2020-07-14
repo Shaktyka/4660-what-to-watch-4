@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/actions.js';
 
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
+
+const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
 const TabName = {
   OVERVIEW: `Overview`,
@@ -155,7 +158,7 @@ const FilmDetails = (props) => {
         <h2 className="catalog__title">More like this</h2>
 
         {
-          <SimilarMovies
+          <SimilarMoviesWrapped
             films={films.filter((film) => film.genre === genre).slice(0, 4)}
           />
         }

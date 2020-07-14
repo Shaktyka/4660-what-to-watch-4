@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import GenreItem from '../genre-item/genre-item.jsx';
+
 const GenresList = (props) => {
   const {
     genres,
@@ -12,20 +14,15 @@ const GenresList = (props) => {
     <ul className="catalog__genres-list">
       {
         genres.map((genre, i) => {
-          const activeClass = genre === activeGenre ? `catalog__genres-item--active` : ``;
+          const isActive = genre === activeGenre;
+
           return (
-            <li
-              className={`catalog__genres-item ${activeClass}`}
-              key={`genre-${i}`}
-              onClick={(evt) => {
-                evt.preventDefault();
-                onGenreClick(genre);
-              }}
-            >
-              <a href="#" className="catalog__genres-link">
-                {genre}
-              </a>
-            </li>
+            <GenreItem
+              key={i}
+              isActive={isActive}
+              genre={genre}
+              onGenreClick={onGenreClick}
+            />
           );
         })
       }

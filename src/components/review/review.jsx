@@ -1,15 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
-
-// Возвращает дату в формате 'MMMM DD, YYYY'
-const formatDate = (date) => {
-  return (
-    <Moment className="review__date" format="MMMM DD, YYYY">
-      {date}
-    </Moment>
-  );
-};
+import moment from 'moment';
 
 const Review = (props) => {
   const {text, author, date, rating} = props;
@@ -21,7 +12,11 @@ const Review = (props) => {
 
         <footer className="review__details">
           <cite className="review__author">{author}</cite>
-          {formatDate(date)}
+          <time className="review__date" dateTime={moment(date)}>
+            {
+              moment(date).format(`MMMM DD, YYYY`)
+            }
+          </time>
         </footer>
       </blockquote>
 

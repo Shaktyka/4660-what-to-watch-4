@@ -1,10 +1,12 @@
-const DEFAULT_GENRE = `All genres`;
-const DEFAULT_MOVIE_NAV_TAB = `Overview`;
+import {
+  DEFAULT_GENRE,
+  DEFAULT_MOVIE_NAV_TAB
+} from '../consts.js';
 
 export const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   FILTER_BY_GENRE: `FILTER_BY_GENRE`,
-  GET_ACTIVE_FILM: `GET_ACTIVE_FILM`,
+  SET_SELECTED_FILM: `SET_SELECTED_FILM`,
   CHANGE_MOVIE_NAV_TAB: `CHANGE_MOVIE_NAV_TAB`,
   SORT_BY_GENRE: `SORT_BY_GENRE`
 };
@@ -38,8 +40,8 @@ export const ActionCreator = {
     );
   },
 
-  getActiveFilm: (id) => ({
-    type: ActionType.GET_ACTIVE_FILM,
+  setSelectedFilm: (id) => ({
+    type: ActionType.SET_SELECTED_FILM,
     payload: id
   })
 };
