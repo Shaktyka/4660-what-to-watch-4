@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.SET_SELECTED_FILM:
       return extend(state, {
-        activeFilm: FILMS_DATA.find((film) => film.id === action.payload) || FILMS_DATA[0]
+        selectedFilmId: action.payload
       });
 
     case ActionType.CHANGE_MOVIE_NAV_TAB:
