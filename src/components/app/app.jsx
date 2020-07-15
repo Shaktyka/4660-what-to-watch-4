@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/actions.js';
+import {ActionCreator} from '../../reducer/app-state/app-state.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';

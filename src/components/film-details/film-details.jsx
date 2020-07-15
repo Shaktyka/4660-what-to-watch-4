@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/actions.js';
+import {ActionCreator} from '../../reducer/app-state/app-state.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';

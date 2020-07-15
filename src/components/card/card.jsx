@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/actions.js';
+import {ActionCreator} from '../../reducer/app-state/app-state.js';
 
 import withVideo from '../../hocs/with-video/with-video.js';
 import VideoPlayer from '../video-player/video-player.jsx';

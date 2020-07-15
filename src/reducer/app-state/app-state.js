@@ -1,12 +1,12 @@
-import {extend, formatInitCap} from '../utils.js';
-import {FILMS_DATA, promoFilmData, REVIEWS} from '../mocks/films.js';
-import {ActionType} from './actions.js';
+import {extend, formatInitCap} from '../../utils.js';
+import {FILMS_DATA, promoFilmData, REVIEWS} from '../../mocks/films.js';
 
 import {
   MAX_GENRE_LENGTH,
   DEFAULT_GENRE,
-  MOVIE_NAV_TABS
-} from '../consts.js';
+  MOVIE_NAV_TABS,
+  DEFAULT_MOVIE_NAV_TAB
+} from '../../consts.js';
 
 // Получение списка жанров
 const getGenresList = (filmsList = []) => {
@@ -18,13 +18,59 @@ const getGenresList = (filmsList = []) => {
 
 const initialState = {
   genre: DEFAULT_GENRE,
-  filmsList: FILMS_DATA,
   selectedFilmId: null,
   activeFilm: promoFilmData,
   genres: getGenresList(FILMS_DATA),
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],
   filmReviews: REVIEWS
+};
+
+const ActionType = {
+  CHANGE_GENRE: `CHANGE_GENRE`,
+  FILTER_BY_GENRE: `FILTER_BY_GENRE`,
+  SET_SELECTED_FILM: `SET_SELECTED_FILM`,
+  CHANGE_MOVIE_NAV_TAB: `CHANGE_MOVIE_NAV_TAB`,
+  SORT_BY_GENRE: `SORT_BY_GENRE`
+};
+
+// Определяет объекты экшенов
+const ActionCreator = {
+  changeGenre: (genre = DEFAULT_GENRE) => {
+    return (
+      {
+        type: ActionType.CHANGE_GENRE,
+        payload: genre
+      }
+    );
+  },
+
+  filterByGenre: (genre = DEFAULT_GENRE) => {
+    return (
+      {
+        type: ActionType.FILTER_BY_GENRE,
+        payload: genre
+      }
+    );
+  },
+
+  changeMovieNavTab: (tab = DEFAULT_MOVIE_NAV_TAB) => {
+    return (
+      {
+        type: ActionType.CHANGE_MOVIE_NAV_TAB,
+        payload: tab
+      }
+    );
+  },
+
+  setSelectedFilm: (id) => {
+    return (
+      {
+        type: ActionType.SET_SELECTED_FILM,
+        payload: id
+      }
+    );
+  }
 };
 
 // Получение списка фильмов в соответствии выбранным жанром
@@ -59,4 +105,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export default reducer;
+export {reducer, ActionCreator, ActionType};
