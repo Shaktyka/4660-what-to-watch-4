@@ -26,7 +26,15 @@ const ActionCreator = {
   }
 };
 
-// const Operation = {};
+// Все асинхронные операции
+const Operation = {
+  loadFilms: () => (dispatch, getState, api) => {
+    return api.get(`/films`)
+      .then((res) => {
+        dispatch(ActionCreator.loadFilms(res.data));
+      });
+  },
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -45,4 +53,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionCreator, ActionType};
+export {reducer, ActionCreator, ActionType, Operation};
