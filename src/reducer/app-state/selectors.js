@@ -2,8 +2,12 @@ import NameSpace from '../name-space.js';
 
 const NAME_SPACE = NameSpace.APP_STATE;
 
-const getCurrentGenre = (state) => {
+const getGenre = (state) => {
   return state[NAME_SPACE].genre;
 };
 
-export {getCurrentGenre};
+const getSelectedFilmId = (state) => {
+  return state[NAME_SPACE].selectedFilmId;
+};
+
+export {getGenre, getSelectedFilmId};

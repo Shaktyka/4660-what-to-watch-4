@@ -1,8 +1,8 @@
 import {extend, formatInitCap} from '../../utils.js';
-import {FILMS_DATA, promoFilmData, REVIEWS} from '../../mocks/films.js';
+// import {FILMS_DATA, promoFilmData, REVIEWS} from '../../mocks/films.js';
 
 import {
-  MAX_GENRE_LENGTH,
+  MAX_GENRES_LENGTH,
   DEFAULT_GENRE,
   MOVIE_NAV_TABS,
   DEFAULT_MOVIE_NAV_TAB
@@ -13,17 +13,17 @@ const getGenresList = (filmsList = []) => {
   return [
     DEFAULT_GENRE,
     ...new Set(filmsList.map((film) => formatInitCap(film.genre)))
-  ].slice(0, MAX_GENRE_LENGTH + 1);
+  ].slice(0, MAX_GENRES_LENGTH + 1);
 };
 
 const initialState = {
   genre: DEFAULT_GENRE,
   selectedFilmId: null,
-  activeFilm: promoFilmData,
-  genres: getGenresList(FILMS_DATA),
+  activeFilm: null,
+  genres: [],
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],
-  filmReviews: REVIEWS
+  filmReviews: []
 };
 
 const ActionType = {
@@ -86,10 +86,10 @@ const reducer = (state = initialState, action) => {
         genre: action.payload || DEFAULT_GENRE
       });
 
-    case ActionType.FILTER_BY_GENRE:
-      return extend(state, {
-        filmsList: filterFilmsByGenre(FILMS_DATA, action.payload)
-      });
+    // case ActionType.FILTER_BY_GENRE:
+    //   return extend(state, {
+    //     filmsList: filterFilmsByGenre(FILMS_DATA, action.payload)
+    //   });
 
     case ActionType.SET_SELECTED_FILM:
       return extend(state, {

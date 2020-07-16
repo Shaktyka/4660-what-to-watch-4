@@ -7,7 +7,6 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  onReviewSuccess: false,
   showSendError: false
 };
 
