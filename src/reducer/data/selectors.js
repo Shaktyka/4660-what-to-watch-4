@@ -9,8 +9,8 @@ const getFilms = (state) => {
   return state[NAME_SPACE].films;
 };
 
-const getActiveFilm = (state) => {
-  return state[NAME_SPACE].activeFilm;
+const getPromoFilm = (state) => {
+  return state[NAME_SPACE].promoFilm;
 };
 
 const getGenres = (state) => {
@@ -28,4 +28,4 @@ const getFilmsByGenre = createSelector(
     }
 );
 
-export {getFilms, getActiveFilm, getGenres, getFilmsByGenre};
+export {getFilms, getPromoFilm, getGenres, getFilmsByGenre};

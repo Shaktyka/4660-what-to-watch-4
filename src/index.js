@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
-import {reducer} from './reducer/app-state/app-state.js';
+import reducer from './reducer/reducer.js';
 import thunk from 'redux-thunk';
 import createAPI from './api.js';
 import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from './reducer/user/user.js';

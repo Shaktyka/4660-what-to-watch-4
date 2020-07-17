@@ -19,8 +19,6 @@ const getGenresList = (filmsList = []) => {
 const initialState = {
   genre: DEFAULT_GENRE,
   selectedFilmId: null,
-  activeFilm: null,
-  genres: [],
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],
   filmReviews: []

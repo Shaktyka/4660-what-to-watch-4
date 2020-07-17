@@ -4,8 +4,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 
-import {getActiveFilm, getGenres, getFilmsByGenre} from '../../reducer/data/selectors.js';
-import {ActionCreator} from '../../reducer/app-state/app-state.js';
+import {getPromoFilm, getGenres, getFilmsByGenre} from '../../reducer/data/selectors.js';
+// import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {getGenre, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation, AuthorizationStatus} from '../../reducer/user/user.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
@@ -17,9 +17,9 @@ import Loader from '../loader/loader.jsx';
 class App extends PureComponent {
 
   _renderApp() {
-    const {films, genre, genres, activeFilm, selectedFilmId, onGenreClick} = this.props;
+    const {films, genre, genres, promoFilm, selectedFilmId, onGenreClick} = this.props;
 
-    if (films === null || activeFilm === null || genres === null) {
+    if (films === null || promoFilm === null || genres === null) {
       return (
         <Loader />
       );
@@ -32,7 +32,7 @@ class App extends PureComponent {
       />
       :
       <Main
-        promoCard={activeFilm}
+        promoCard={promoFilm}
         films={films}
         genre={genre}
         genres={genres}
@@ -42,8 +42,6 @@ class App extends PureComponent {
   }
 
   render() {
-    const {films} = this.props;
-
     return (
       <BrowserRouter>
         <Switch>
@@ -53,7 +51,7 @@ class App extends PureComponent {
             }
           </Route>
           <Route exact path="/details">
-            <FilmDetails filmData={films[0]} />
+            <FilmDetails filmData={{}} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -62,17 +60,11 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  films: PropTypes.array.isRequired,
   genre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeFilm: PropTypes.object.isRequired,
+  promoFilm: PropTypes.object.isRequired,
   selectedFilmId: PropTypes.number,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired
-      })
-  ).isRequired,
   onGenreClick: PropTypes.func.isRequired
 };
 
@@ -80,18 +72,19 @@ const mapStateToProps = (state) => ({
   genre: getGenre(state),
   genres: getGenres(state),
   films: getFilmsByGenre(state),
-  activeFilm: getActiveFilm(state),
+  promoFilm: getPromoFilm(state),
   selectedFilmId: getSelectedFilmId(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
-  },
-  onGenreClick(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.filterByGenre(genre));
   }
+  // ,
+  // onGenreClick(genre) {
+  //   dispatch(ActionCreator.changeGenre(genre));
+  //   dispatch(ActionCreator.filterByGenre(genre));
+  // }
 });
 
 export {App};

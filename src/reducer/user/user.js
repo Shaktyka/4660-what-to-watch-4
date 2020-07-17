@@ -42,7 +42,7 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       })
       .catch((err) => {
-        throw err;
+        // throw err;
       });
   },
 
@@ -53,6 +53,9 @@ const Operation = {
     })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      })
+      .catch((err) => {
+        //
       });
   }
 

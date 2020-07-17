@@ -3,9 +3,9 @@ import {getAdaptedFilm} from '../../adapter/adapter.js';
 import {DEFAULT_GENRE, MAX_GENRES_LENGTH} from '../../consts.js';
 
 const initialState = {
-  films: null,
-  promoFilm: null,
-  genres: null
+  films: [],
+  promoFilm: {},
+  genres: []
 };
 
 const ActionType = {
@@ -37,29 +37,8 @@ const ActionCreator = {
   }
 };
 
-// Все асинхронные операции
-const Operation = {
-  loadFilms: () => (dispatch, getState, api) => {
-    return api.get(`/films`)
-      .then((res) => {
-        const adaptedFilm = res.data.map((film) => getAdaptedFilm(film));
-        dispatch(ActionCreator.loadFilms(adaptedFilm));
-        dispatch(ActionCreator.loadGenres(
-            [DEFAULT_GENRE, ...new Set(adaptedFilm.map((filmObject) => filmObject.genre)
-              .slice(0, MAX_GENRES_LENGTH))])
-        );
-      });
-  },
-
-  loadPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`/films/promo`)
-      .then((res) => {
-        dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
-      });
-  }
-};
-
 const reducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
 
     case ActionType.LOAD_FILMS:
@@ -79,6 +58,32 @@ const reducer = (state = initialState, action) => {
   }
 
   return state;
+};
+
+// Все асинхронные операции
+const Operation = {
+  loadFilms: () => (dispatch, getState, api) => {
+    return api.get(`/films`)
+      .then((res) => {
+        const adaptedFilms = res.data.map((film) => getAdaptedFilm(film));
+        dispatch(ActionCreator.loadFilms(adaptedFilms));
+        const genresList = [
+          DEFAULT_GENRE,
+          ...new Set(adaptedFilms.map((filmObject) => filmObject.genre).slice(0, MAX_GENRES_LENGTH))
+        ];
+        dispatch(ActionCreator.loadGenres(genresList));
+      })
+      .catch((err) => {
+        //
+      });
+  },
+
+  loadPromoFilm: () => (dispatch, getState, api) => {
+    return api.get(`/films/promo`)
+      .then((res) => {
+        dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
+      });
+  }
 };
 
 export {reducer, ActionCreator, ActionType, Operation};
