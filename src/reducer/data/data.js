@@ -38,7 +38,6 @@ const ActionCreator = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
 
     case ActionType.LOAD_FILMS:
@@ -48,7 +47,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.LOAD_PROMO_FILM:
       return extend(state, {
-        films: action.payload
+        promoFilm: action.payload
       });
 
     case ActionType.LOAD_GENRES:

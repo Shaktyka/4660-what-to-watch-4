@@ -2,8 +2,8 @@ const getAdaptedFilm = (data) => {
   return ({
     id: data.id,
     title: data.name,
-    preview: data.poster_image,
-    poster: data.preview_image,
+    preview: data.preview_image,
+    poster: data.poster_image,
     cover: data.background_image,
     bgColor: data.background_color,
     source: data.video_link,

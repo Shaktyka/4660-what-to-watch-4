@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {getPromoFilm, getGenres, getFilmsByGenre} from '../../reducer/data/selectors.js';
-// import {ActionCreator} from '../../reducer/app-state/app-state.js';
+import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {getGenre, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation, AuthorizationStatus} from '../../reducer/user/user.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
@@ -79,12 +79,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
+  },
+  onGenreClick(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+    dispatch(ActionCreator.filterByGenre(genre));
   }
-  // ,
-  // onGenreClick(genre) {
-  //   dispatch(ActionCreator.changeGenre(genre));
-  //   dispatch(ActionCreator.filterByGenre(genre));
-  // }
 });
 
 export {App};
