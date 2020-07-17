@@ -13,6 +13,7 @@ import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 import Loader from '../loader/loader.jsx';
+import ErrorMessage from '../error-message/error-message.jsx';
 
 class App extends PureComponent {
 
