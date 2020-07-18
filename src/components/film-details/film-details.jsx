@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
 
 import {getMovieNavTabs, getActiveTab, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
@@ -63,7 +62,7 @@ export const getDetailsScreen = (activeTab, filmData, reviews = []) => {
 };
 
 const FilmDetails = (props) => {
-  const {tabs, activeTab, onTabClick, films, selectedFilmId, filmReviews} = props;
+  const {tabs, activeTab, films, selectedFilmId, filmReviews} = props;
   const filmData = films.find((film) => film.id === selectedFilmId);
   const {id, title, genre, year, poster, cover, bgColor} = filmData;
 
@@ -132,7 +131,6 @@ const FilmDetails = (props) => {
                   <MovieNavTabs
                     tabs={tabs}
                     activeTab={activeTab}
-                    onTabClick={onTabClick}
                   />
                 }
               </nav>
@@ -178,7 +176,6 @@ const FilmDetails = (props) => {
 FilmDetails.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
-  onTabClick: PropTypes.func.isRequired,
   filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired
@@ -192,11 +189,5 @@ const mapStateToProps = (state) => ({
   filmReviews: getReviews(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onTabClick(tab) {
-    dispatch(ActionCreator.changeMovieNavTab(tab));
-  }
-});
-
 export {FilmDetails};
-export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);
+export default connect(mapStateToProps)(FilmDetails);

@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer/app-state/app-state.js';
+
 const MovieNavTabs = (props) => {
   const {tabs, activeTab, onTabClick} = props;
 
@@ -30,4 +33,11 @@ MovieNavTabs.propTypes = {
   onTabClick: PropTypes.func.isRequired
 };
 
-export default MovieNavTabs;
+const mapDispatchToProps = (dispatch) => ({
+  onTabClick(tab) {
+    dispatch(ActionCreator.changeMovieNavTab(tab));
+  }
+});
+
+export {MovieNavTabs};
+export default connect(null, mapDispatchToProps)(MovieNavTabs);
