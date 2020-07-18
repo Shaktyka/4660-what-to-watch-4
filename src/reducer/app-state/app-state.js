@@ -1,27 +1,26 @@
-import {extend, formatInitCap} from '../../utils.js';
+import {extend} from '../../utils.js';
 // import {FILMS_DATA, promoFilmData, REVIEWS} from '../../mocks/films.js';
 
 import {
-  MAX_GENRES_LENGTH,
   DEFAULT_GENRE,
   MOVIE_NAV_TABS,
   DEFAULT_MOVIE_NAV_TAB
 } from '../../consts.js';
 
 // Получение списка жанров
-const getGenresList = (filmsList = []) => {
-  return [
-    DEFAULT_GENRE,
-    ...new Set(filmsList.map((film) => formatInitCap(film.genre)))
-  ].slice(0, MAX_GENRES_LENGTH + 1);
-};
+// const getGenresList = (filmsList = []) => {
+//   return [
+//     DEFAULT_GENRE,
+//     ...new Set(filmsList.map((film) => formatInitCap(film.genre)))
+//   ].slice(0, MAX_GENRES_LENGTH + 1);
+// };
 
 const initialState = {
   genre: DEFAULT_GENRE,
   selectedFilmId: null,
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],
-  filmReviews: []
+  errorMessage: null,
 };
 
 const ActionType = {
@@ -34,6 +33,7 @@ const ActionType = {
 
 // Определяет объекты экшенов
 const ActionCreator = {
+
   changeGenre: (genre = DEFAULT_GENRE) => {
     return (
       {
@@ -83,11 +83,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         genre: action.payload || DEFAULT_GENRE
       });
-
-    // case ActionType.FILTER_BY_GENRE:
-    //   return extend(state, {
-    //     filmsList: filterFilmsByGenre(FILMS_DATA, action.payload)
-    //   });
 
     case ActionType.SET_SELECTED_FILM:
       return extend(state, {

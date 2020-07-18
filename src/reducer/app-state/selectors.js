@@ -6,8 +6,12 @@ const getGenre = (state) => {
   return state[NAME_SPACE].genre;
 };
 
+const getLoading = (state) => {
+  return state[NAME_SPACE].isLoading;
+};
+
 const getSelectedFilmId = (state) => {
   return state[NAME_SPACE].selectedFilmId;
 };
 
-export {getGenre, getSelectedFilmId};
+export {getGenre, getLoading, getSelectedFilmId};

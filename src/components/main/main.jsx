@@ -9,7 +9,7 @@ import ShowMore from '../show-more/show-more.jsx';
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
 
-const Main = ({films, genre: activeGenre, genres, promoFilm, onGenreClick}) => {
+const Main = ({films, genre: activeGenre, promoFilm}) => {
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
 
   return (
@@ -67,9 +67,7 @@ const Main = ({films, genre: activeGenre, genres, promoFilm, onGenreClick}) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresListWrapped
-            genres={genres}
             activeGenre={activeGenre}
-            onGenreClick={onGenreClick}
           />
 
           <MoviesListWrapped
@@ -101,7 +99,6 @@ const Main = ({films, genre: activeGenre, genres, promoFilm, onGenreClick}) => {
 
 Main.propTypes = {
   genre: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   promoFilm: PropTypes.shape({
     title: PropTypes.string,
     genre: PropTypes.string,
@@ -117,7 +114,6 @@ Main.propTypes = {
         preview: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  onGenreClick: PropTypes.func.isRequired
 };
 
 export default Main;
