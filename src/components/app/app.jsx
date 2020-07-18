@@ -33,7 +33,7 @@ class App extends PureComponent {
       />
       :
       <Main
-        promoCard={promoFilm}
+        promoFilm={promoFilm}
         films={films}
         genre={genre}
         genres={genres}

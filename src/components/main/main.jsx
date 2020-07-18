@@ -9,14 +9,18 @@ import ShowMore from '../show-more/show-more.jsx';
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
 
-const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick}) => {
-  const {title, genre, year} = promoCard;
+const Main = ({films, genre: activeGenre, genres, promoFilm, onGenreClick}) => {
+  const {title, genre, year, bgColor, cover, poster} = promoFilm;
+
+  const styles = {
+    backgroundColor: bgColor
+  };
 
   return (
     <>
       <section className="movie-card">
-        <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <div className="movie-card__bg" style={styles}>
+          <img src={cover} alt={title} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header movie-card__head">
@@ -36,7 +40,7 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick}) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={poster} alt={`${title} poster`} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{title}</h2>
@@ -102,10 +106,13 @@ const Main = ({films, genre: activeGenre, genres, promoCard, onGenreClick}) => {
 Main.propTypes = {
   genre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  promoCard: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
+  promoFilm: PropTypes.shape({
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    bgColor: PropTypes.string,
+    cover: PropTypes.string,
+    poster: PropTypes.string
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
