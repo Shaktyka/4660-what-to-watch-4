@@ -15,6 +15,7 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_GENRES: `LOAD_GENRES`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
   SET_LOADING: `SET_LOADING`
 };
 
@@ -47,6 +48,13 @@ const ActionCreator = {
       type: ActionType.LOAD_GENRES,
       payload: genres
     };
+  },
+
+  loadReviews: (reviews) => {
+    return {
+      type: ActionType.LOAD_REVIEWS,
+      payload: reviews
+    };
   }
 };
 
@@ -71,6 +79,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_LOADING:
       return extend(state, {
         isLoading: action.payload
+      });
+
+    case ActionType.LOAD_REVIEWS:
+      return extend(state, {
+        filmReviews: action.payload
       });
   }
 
@@ -104,8 +117,13 @@ const Operation = {
     return api.get(`/films/promo`)
       .then((res) => {
         dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
+      })
+      .catch((err) => {
+        //
       });
   }
+  // Дописать загрузку отзывов
+  // Добавить setLoading
 };
 
 export {reducer, ActionCreator, ActionType, Operation};
