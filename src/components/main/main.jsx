@@ -12,14 +12,10 @@ const GenresListWrapped = withActiveItem(GenresList);
 const Main = ({films, genre: activeGenre, genres, promoFilm, onGenreClick}) => {
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
 
-  const styles = {
-    backgroundColor: bgColor
-  };
-
   return (
     <>
       <section className="movie-card">
-        <div className="movie-card__bg" style={styles}>
+        <div className="movie-card__bg" style={{backgroundColor: bgColor}}>
           <img src={cover} alt={title} />
         </div>
         <h1 className="visually-hidden">WTW</h1>

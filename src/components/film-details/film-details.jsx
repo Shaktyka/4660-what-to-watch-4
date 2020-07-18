@@ -65,29 +65,30 @@ export const activeMovieDetailsScreen = (activeTab, filmData, reviews = []) => {
 };
 
 const FilmDetails = (props) => {
-  const {tabs, activeTab, onTabClick, films, reviews} = props;
+  const {tabs = [], activeTab = ``, onTabClick, films = [], reviews = []} = props;
   const {
     id,
     title,
     genre,
     year,
     poster,
-    cover
+    cover,
+    bgColor
   } = props.filmData;
 
   return (
     <>
       <section className="movie-card movie-card--full" id={id}>
-        <div className="movie-card__hero">
+        <div className="movie-card__hero" style={{backgroundColor: bgColor}}>
           <div className="movie-card__bg">
-            <img src={`./img/${cover}`} alt={title} />
+            <img src={cover} alt={title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <a href="/main.html" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -131,7 +132,7 @@ const FilmDetails = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${poster}`} alt={`${title} poster`} width="218" height="327" />
+              <img src={poster} alt={`${title} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -185,19 +186,20 @@ const FilmDetails = (props) => {
 
 FilmDetails.propTypes = {
   filmData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    preview: PropTypes.string,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
-    cover: PropTypes.string.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string).isRequired,
-    director: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    preview: PropTypes,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    poster: PropTypes.string,
+    cover: PropTypes.string,
+    ratingScore: PropTypes.number,
+    ratingCount: PropTypes.number,
+    description: PropTypes.arrayOf(PropTypes.string),
+    director: PropTypes.string,
     starring: PropTypes.arrayOf(PropTypes.string),
-    duration: PropTypes.number.isRequired
+    duration: PropTypes.number,
+    bgColor: PropTypes.string
   }).isRequired,
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
