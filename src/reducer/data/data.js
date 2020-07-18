@@ -1,5 +1,5 @@
 import {extend} from '../../utils.js';
-import {getAdaptedFilm} from '../../adapter/adapter.js';
+import {getAdaptedFilm /* , getAdaptedReview */} from '../../adapter/adapter.js';
 import {DEFAULT_GENRE, MAX_GENRES_LENGTH} from '../../consts.js';
 
 const initialState = {
@@ -121,9 +121,17 @@ const Operation = {
       .catch((err) => {
         //
       });
+  },
+
+  loadReviews: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`)
+      .then((res) => {
+        dispatch(ActionCreator.loadReviews(res.data));
+      })
+      .catch((err) => {
+        //
+      });
   }
-  // Дописать загрузку отзывов
-  // Добавить setLoading
 };
 
 export {reducer, ActionCreator, ActionType, Operation};

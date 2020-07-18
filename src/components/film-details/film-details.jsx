@@ -63,10 +63,8 @@ export const getDetailsScreen = (activeTab, filmData, reviews = []) => {
 };
 
 const FilmDetails = (props) => {
-  const {tabs, activeTab, onTabClick, films, selectedFilmId, reviews} = props;
-
+  const {tabs, activeTab, onTabClick, films, selectedFilmId, filmReviews} = props;
   const filmData = films.find((film) => film.id === selectedFilmId);
-
   const {id, title, genre, year, poster, cover, bgColor} = filmData;
 
   return (
@@ -140,7 +138,7 @@ const FilmDetails = (props) => {
               </nav>
 
               {
-                getDetailsScreen(activeTab, filmData, reviews)
+                getDetailsScreen(activeTab, filmData, filmReviews)
               }
 
             </div>
@@ -181,7 +179,7 @@ FilmDetails.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
   onTabClick: PropTypes.func.isRequired,
-  reviews: PropTypes.array.isRequired,
+  filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired
 };
@@ -191,7 +189,7 @@ const mapStateToProps = (state) => ({
   tabs: getMovieNavTabs(state),
   activeTab: getActiveTab(state),
   films: getFilmsByGenre(state),
-  reviews: getReviews(state) // возможно, вынести прямо в компонент, где нужны отзывы
+  filmReviews: getReviews(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
