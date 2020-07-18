@@ -25,11 +25,11 @@ class App extends PureComponent {
       );
     }
 
+    // filmData={films.find((film) => film.id === selectedFilmId)}
+
     const component = selectedFilmId
       ?
-      <FilmDetails
-        filmData={films.find((film) => film.id === selectedFilmId)}
-      />
+      <FilmDetails/>
       :
       <Main
         promoFilm={promoFilm}

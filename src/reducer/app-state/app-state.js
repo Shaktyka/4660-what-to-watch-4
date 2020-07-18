@@ -1,19 +1,10 @@
 import {extend} from '../../utils.js';
-// import {FILMS_DATA, promoFilmData, REVIEWS} from '../../mocks/films.js';
 
 import {
   DEFAULT_GENRE,
   MOVIE_NAV_TABS,
   DEFAULT_MOVIE_NAV_TAB
 } from '../../consts.js';
-
-// Получение списка жанров
-// const getGenresList = (filmsList = []) => {
-//   return [
-//     DEFAULT_GENRE,
-//     ...new Set(filmsList.map((film) => formatInitCap(film.genre)))
-//   ].slice(0, MAX_GENRES_LENGTH + 1);
-// };
 
 const initialState = {
   genre: DEFAULT_GENRE,
@@ -69,12 +60,6 @@ const ActionCreator = {
       }
     );
   }
-};
-
-// Получение списка фильмов в соответствии выбранным жанром
-const filterFilmsByGenre = (films = [], genre = `All genres`) => {
-  const filteredFilms = (genre !== `All genres`) ? films.filter((film) => film.genre === genre) : films;
-  return filteredFilms.length !== 0 ? filteredFilms : films;
 };
 
 const reducer = (state = initialState, action) => {

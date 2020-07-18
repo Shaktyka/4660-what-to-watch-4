@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app-state/app-state.js';
+import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
+
+import {getMovieNavTabs, getActiveTab, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
@@ -10,17 +13,12 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
+import {TabName} from '../../consts.js';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
-const TabName = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`
-};
-
 // Выбираем активный экран
-export const activeMovieDetailsScreen = (activeTab, filmData, reviews = []) => {
+export const getDetailsScreen = (activeTab, filmData, reviews = []) => {
   const {
     genre,
     year,
@@ -65,16 +63,11 @@ export const activeMovieDetailsScreen = (activeTab, filmData, reviews = []) => {
 };
 
 const FilmDetails = (props) => {
-  const {tabs = [], activeTab = ``, onTabClick, films = [], reviews = []} = props;
-  const {
-    id,
-    title,
-    genre,
-    year,
-    poster,
-    cover,
-    bgColor
-  } = props.filmData;
+  const {tabs, activeTab, onTabClick, films, selectedFilmId, reviews} = props;
+
+  const filmData = films.find((film) => film.id === selectedFilmId);
+
+  const {id, title, genre, year, poster, cover, bgColor} = filmData;
 
   return (
     <>
@@ -147,7 +140,7 @@ const FilmDetails = (props) => {
               </nav>
 
               {
-                activeMovieDetailsScreen(activeTab, props.filmData, reviews)
+                getDetailsScreen(activeTab, filmData, reviews)
               }
 
             </div>
@@ -185,40 +178,20 @@ const FilmDetails = (props) => {
 };
 
 FilmDetails.propTypes = {
-  filmData: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    preview: PropTypes,
-    genre: PropTypes.string,
-    year: PropTypes.number,
-    poster: PropTypes.string,
-    cover: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.arrayOf(PropTypes.string),
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    duration: PropTypes.number,
-    bgColor: PropTypes.string
-  }).isRequired,
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
   onTabClick: PropTypes.func.isRequired,
   reviews: PropTypes.array.isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired
-      })
-  ).isRequired
+  films: PropTypes.array.isRequired,
+  selectedFilmId: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  tabs: state.movieNavTabs,
-  activeTab: state.activeMovieNavTab,
-  films: state.filmsList,
-  reviews: state.filmReviews
+  selectedFilmId: getSelectedFilmId(state),
+  tabs: getMovieNavTabs(state),
+  activeTab: getActiveTab(state),
+  films: getFilmsByGenre(state),
+  reviews: getReviews(state) // возможно, вынести прямо в компонент, где нужны отзывы
 });
 
 const mapDispatchToProps = (dispatch) => ({

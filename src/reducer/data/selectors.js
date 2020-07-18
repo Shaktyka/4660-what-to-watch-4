@@ -17,6 +17,10 @@ const getGenres = (state) => {
   return state[NAME_SPACE].genres;
 };
 
+const getReviews = (state) => {
+  return state[NAME_SPACE].filmReviews;
+};
+
 const getFilmsByGenre = createSelector(
     getGenre,
     getFilms,
@@ -28,4 +32,10 @@ const getFilmsByGenre = createSelector(
     }
 );
 
-export {getFilms, getPromoFilm, getGenres, getFilmsByGenre};
+export {
+  getFilms,
+  getPromoFilm,
+  getGenres,
+  getFilmsByGenre,
+  getReviews
+};

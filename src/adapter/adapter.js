@@ -8,7 +8,7 @@ const getAdaptedFilm = (data) => {
     bgColor: data.background_color,
     source: data.video_link,
     previewVideoLink: data.preview_video_link,
-    description: data.decription,
+    description: data.description,
     ratingScore: data.rating,
     ratingCount: data.scores_count,
     director: data.director,
