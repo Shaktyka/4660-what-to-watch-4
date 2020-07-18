@@ -7,7 +7,6 @@ import {getPromoFilm, getFilmsByGenre} from '../../reducer/data/selectors.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
-import ShowMore from '../show-more/show-more.jsx';
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
@@ -74,12 +73,6 @@ const Main = ({films, promoFilm}) => {
           <MoviesListWrapped
             films={films}
           />
-
-          {
-            films.length > 8
-              ? <ShowMore onShowMoreClick={() => {}} />
-              : null
-          }
         </section>
         <footer className="page-footer">
           <div className="logo">
@@ -107,13 +100,7 @@ Main.propTypes = {
     cover: PropTypes.string,
     poster: PropTypes.string
   }).isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired
-      }).isRequired
-  ).isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
