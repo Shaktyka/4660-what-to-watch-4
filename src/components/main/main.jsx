@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {connect} from 'react-redux';
+import {getPromoFilm, getFilmsByGenre} from '../../reducer/data/selectors.js';
+
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
@@ -9,7 +12,7 @@ import ShowMore from '../show-more/show-more.jsx';
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
 
-const Main = ({films, genre: activeGenre, promoFilm}) => {
+const Main = ({films, promoFilm}) => {
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
 
   return (
@@ -66,9 +69,7 @@ const Main = ({films, genre: activeGenre, promoFilm}) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresListWrapped
-            activeGenre={activeGenre}
-          />
+          <GenresListWrapped />
 
           <MoviesListWrapped
             films={films}
@@ -98,7 +99,6 @@ const Main = ({films, genre: activeGenre, promoFilm}) => {
 };
 
 Main.propTypes = {
-  genre: PropTypes.string.isRequired,
   promoFilm: PropTypes.shape({
     title: PropTypes.string,
     genre: PropTypes.string,
@@ -116,4 +116,10 @@ Main.propTypes = {
   ).isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  films: getFilmsByGenre(state),
+  promoFilm: getPromoFilm(state),
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);

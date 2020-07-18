@@ -4,8 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 
-import {getPromoFilm, getFilmsByGenre} from '../../reducer/data/selectors.js';
-import {getGenre, getLoading, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
+import {getLoading, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 // import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 
@@ -17,7 +16,7 @@ import Loader from '../loader/loader.jsx';
 class App extends PureComponent {
 
   _renderApp() {
-    const {films, genre, promoFilm, selectedFilmId, isLoading} = this.props;
+    const {selectedFilmId, isLoading} = this.props;
 
     if (isLoading) {
       return (
@@ -25,17 +24,11 @@ class App extends PureComponent {
       );
     }
 
-    // filmData={films.find((film) => film.id === selectedFilmId)}
-
     const component = selectedFilmId
       ?
       <FilmDetails/>
       :
-      <Main
-        promoFilm={promoFilm}
-        films={films.slice(0, 8)}
-        genre={genre}
-      />;
+      <Main />;
     return component;
   }
 
@@ -49,7 +42,7 @@ class App extends PureComponent {
             }
           </Route>
           <Route exact path="/details">
-            <FilmDetails filmData={{}} />
+            <FilmDetails />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -58,19 +51,13 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  films: PropTypes.array.isRequired,
-  genre: PropTypes.string.isRequired,
-  promoFilm: PropTypes.object.isRequired,
-  selectedFilmId: PropTypes.number,
   isLoading: PropTypes.bool,
+  selectedFilmId: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
-  genre: getGenre(state),
-  films: getFilmsByGenre(state),
-  promoFilm: getPromoFilm(state),
-  selectedFilmId: getSelectedFilmId(state),
-  isLoading: getLoading(state)
+  isLoading: getLoading(state),
+  selectedFilmId: getSelectedFilmId(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
