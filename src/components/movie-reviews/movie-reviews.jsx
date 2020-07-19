@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {getReviewsErrorMessage} from '../../reducer/data/selectors.js';
+import {getReviewsErrorMessage, getIsReviewsLoading} from '../../reducer/data/selectors.js';
 
 import Review from '../review/review.jsx';
+import Loader from '../loader/loader.jsx';
 
 const MovieReviews = (props) => {
-  const {reviews, loadReviewsErr} = props;
+  const {reviews, loadReviewsErr, isReviewsLoading} = props;
+
   const secondColReviews = (reviews.length > 0) ? reviews.slice() : [];
   const firstColReviews = (secondColReviews.length > 0)
     ? secondColReviews.splice(0, Math.ceil(secondColReviews.length / 2))
@@ -15,10 +17,11 @@ const MovieReviews = (props) => {
 
   return (
     <div className="movie-card__reviews movie-card__row">
+      {loadReviewsErr && <div>loadReviewsErr</div>}
       {
-        loadReviewsErr
+        isReviewsLoading
           ?
-          <div>loadReviewsErr</div>
+          <Loader />
           :
         <>
           <div className="movie-card__reviews-col">
@@ -59,11 +62,13 @@ const MovieReviews = (props) => {
 
 MovieReviews.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loadReviewsErr: PropTypes.string
+  loadReviewsErr: PropTypes.string,
+  isReviewsLoading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
-  loadPromoErr: getReviewsErrorMessage(state)
+  loadPromoErr: getReviewsErrorMessage(state),
+  isReviewsLoading: getIsReviewsLoading(state)
 });
 
 export {MovieReviews};
