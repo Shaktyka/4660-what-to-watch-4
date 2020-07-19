@@ -10,6 +10,7 @@ import {Operation as UserOperation} from '../../reducer/user/user.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 
 class App extends PureComponent {
 
@@ -35,6 +36,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/details">
             <FilmDetails />
+          </Route>
+          <Route exact path="/login">
+            <SignIn />
           </Route>
         </Switch>
       </BrowserRouter>
