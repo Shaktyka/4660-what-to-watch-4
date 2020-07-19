@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {getPromoFilm, getFilmsByGenre} from '../../reducer/data/selectors.js';
-import {getFilmsErrorMessage} from '../../reducer/data/selectors.js';
+import {getFilmsErrorMessage, getPromoErrorMessage} from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MoviesList from '../movies-list/movies-list.jsx';
@@ -12,12 +12,17 @@ import GenresList from '../genres-list/genres-list.jsx';
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
 
+import ErrorMessage from '../error-message/error-message.jsx';
+
 const Main = (props) => {
-  const {films, promoFilm, loadFilmsErr} = props;
+  const {films, promoFilm, loadFilmsErr, loadPromoErr} = props;
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
 
   return (
     <>
+      {
+        loadPromoErr && <ErrorMessage message={loadPromoErr} />
+      }
       <section className="movie-card">
         <div className="movie-card__bg" style={{backgroundColor: bgColor}}>
           <img src={cover} alt={title} />
@@ -103,13 +108,15 @@ Main.propTypes = {
     poster: PropTypes.string
   }).isRequired,
   films: PropTypes.array.isRequired,
-  loadFilmsErr: PropTypes.string
+  loadFilmsErr: PropTypes.string,
+  loadPromoErr: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
   films: getFilmsByGenre(state),
   promoFilm: getPromoFilm(state),
-  loadFilmsErr: getFilmsErrorMessage(state)
+  loadFilmsErr: getFilmsErrorMessage(state),
+  loadPromoErr: getPromoErrorMessage(state)
 });
 
 export {Main};

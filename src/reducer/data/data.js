@@ -77,6 +77,24 @@ const ActionCreator = {
       }
     );
   },
+
+  setPromoErrMsg: (message) => {
+    return (
+      {
+        type: ActionType.SET_PROMO_ERR_MSG,
+        payload: message
+      }
+    );
+  },
+
+  setReviewsErrMsg: (message) => {
+    return (
+      {
+        type: ActionType.SET_REVIEWS_ERR_MSG,
+        payload: message
+      }
+    );
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -110,6 +128,16 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_FILMS_ERR_MSG:
       return extend(state, {
         loadFilmsErr: action.payload
+      });
+
+    case ActionType.SET_PROMO_ERR_MSG:
+      return extend(state, {
+        loadPromoErr: action.payload
+      });
+
+    case ActionType.SET_REVIEWS_ERR_MSG:
+      return extend(state, {
+        loadReviewsErr: action.payload
       });
   }
 
@@ -151,9 +179,9 @@ const Operation = {
       .catch((err) => {
         dispatch(ActionCreator.setLoading(false));
         if (err.response.status !== 200) {
-          dispatch(ActionCreator.setErrorMessage(`${err.response.status} ${err.response.data.error}`));
+          dispatch(ActionCreator.setPromoErrMsg(`${err.response.status} ${err.response.data.error}`));
         } else {
-          dispatch(ActionCreator.setErrorMessage(null));
+          dispatch(ActionCreator.setPromoErrMsg(null));
         }
       });
   },
@@ -166,9 +194,9 @@ const Operation = {
       .catch((err) => {
         dispatch(ActionCreator.setLoading(false));
         if (err.response.status !== 200) {
-          dispatch(ActionCreator.setErrorMessage(`${err.response.status} ${err.response.data.error}`));
+          dispatch(ActionCreator.setReviewsErrMsg(`${err.response.status} ${err.response.data.error}`));
         } else {
-          dispatch(ActionCreator.setErrorMessage(null));
+          dispatch(ActionCreator.setReviewsErrMsg(null));
         }
       });
   }
