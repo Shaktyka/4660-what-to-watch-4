@@ -4,24 +4,17 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 
-import {getLoading, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
+import {getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 // import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
-import Loader from '../loader/loader.jsx';
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {selectedFilmId, isLoading} = this.props;
-
-    // if (isLoading) {
-    //   return (
-    //     <Loader />
-    //   );
-    // }
+    const {selectedFilmId} = this.props;
 
     const component = selectedFilmId
       ?
@@ -50,12 +43,10 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  // isLoading: PropTypes.bool,
   selectedFilmId: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
-  // isLoading: getLoading(state),
   selectedFilmId: getSelectedFilmId(state)
 });
 
