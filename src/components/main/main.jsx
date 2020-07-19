@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {getPromoFilm, getFilmsByGenre} from '../../reducer/data/selectors.js';
-import {getFilmsErrorMessage, getPromoErrorMessage} from '../../reducer/data/selectors.js';
+import {
+  getPromoFilm,
+  getFilmsByGenre,
+  getFilmsErrorMessage,
+  getPromoErrorMessage
+} from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MoviesList from '../movies-list/movies-list.jsx';
