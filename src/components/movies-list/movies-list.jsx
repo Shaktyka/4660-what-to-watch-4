@@ -8,9 +8,12 @@ import ShowMore from '../show-more/show-more.jsx';
 const CardWrapped = withCard(Card);
 
 const MoviesList = (props) => {
-  const {films} = props;
+  const {films, error} = props;
 
-  return (
+  return error
+    ?
+    <div>{error}</div>
+    :
     <>
       <div className="catalog__movies-list">
         {
@@ -25,8 +28,7 @@ const MoviesList = (props) => {
         }
       </div>
       <ShowMore />
-    </>
-  );
+    </>;
 };
 
 MoviesList.propTypes = {
@@ -37,7 +39,8 @@ MoviesList.propTypes = {
         preview: PropTypes.string.isRequired,
         source: PropTypes.string.isRequired
       })
-  ).isRequired
+  ).isRequired,
+  error: PropTypes.string
 };
 
 export default MoviesList;

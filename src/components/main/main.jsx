@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {getPromoFilm, getFilmsByGenre} from '../../reducer/data/selectors.js';
+import {getFilmsErrorMessage} from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MoviesList from '../movies-list/movies-list.jsx';
@@ -11,7 +12,8 @@ import GenresList from '../genres-list/genres-list.jsx';
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
 
-const Main = ({films, promoFilm}) => {
+const Main = (props) => {
+  const {films, promoFilm, loadFilmsErr} = props;
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
 
   return (
@@ -70,9 +72,9 @@ const Main = ({films, promoFilm}) => {
 
           <GenresListWrapped />
 
-          <MoviesListWrapped
-            films={films}
-          />
+          {
+            <MoviesListWrapped films={films} error={loadFilmsErr} />
+          }
         </section>
         <footer className="page-footer">
           <div className="logo">
@@ -101,11 +103,13 @@ Main.propTypes = {
     poster: PropTypes.string
   }).isRequired,
   films: PropTypes.array.isRequired,
+  loadFilmsErr: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
   films: getFilmsByGenre(state),
   promoFilm: getPromoFilm(state),
+  loadFilmsErr: getFilmsErrorMessage(state)
 });
 
 export {Main};

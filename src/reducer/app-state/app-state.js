@@ -10,8 +10,7 @@ const initialState = {
   genre: DEFAULT_GENRE,
   selectedFilmId: null,
   movieNavTabs: MOVIE_NAV_TABS,
-  activeMovieNavTab: MOVIE_NAV_TABS[0],
-  errorMessage: null,
+  activeMovieNavTab: MOVIE_NAV_TABS[0]
 };
 
 const ActionType = {

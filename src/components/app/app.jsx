@@ -6,17 +6,24 @@ import {connect} from 'react-redux';
 
 import {getLoading, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
+import {getErrorMessage} from '../../reducer/data/selectors.js';
 // import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 import Loader from '../loader/loader.jsx';
-// import ErrorMessage from '../error-message/error-message.jsx';
+import ErrorMessage from '../error-message/error-message.jsx';
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {selectedFilmId, isLoading} = this.props;
+    const {selectedFilmId, isLoading, errorMsg} = this.props;
+
+    // if (errorMsg) {
+    //   return (
+    //     <ErrorMessage message={errorMsg} />
+    //   );
+    // }
 
     if (isLoading) {
       return (

@@ -8,7 +8,9 @@ const initialState = {
   genres: [],
   filmReviews: [],
   isLoading: false,
-  errors: null
+  loadFilmsErr: null,
+  loadPromoErr: null,
+  loadReviewsErr: null
 };
 
 const ActionType = {
@@ -16,18 +18,19 @@ const ActionType = {
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_GENRES: `LOAD_GENRES`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
-  SET_LOADING: `SET_LOADING`
+  SET_LOADING: `SET_LOADING`,
+  SET_FILMS_ERR_MSG: `SET_FILMS_ERR_MSG`,
+  SET_PROMO_ERR_MSG: `SET_PROMO_ERR_MSG`,
+  SET_REVIEWS_ERR_MSG: `SET_REVIEWS_ERR_MSG`
+};
+
+const Endpoint = {
+  FILMS: `/films`,
+  PROMO_FILM: `/films/promo`,
+  REVIEWS: `/comments/`
 };
 
 const ActionCreator = {
-  setLoading: (isLoading) => {
-    return (
-      {
-        type: ActionType.SET_LOADING,
-        payload: isLoading
-      }
-    );
-  },
 
   loadFilms: (films) => {
     return ({
@@ -55,7 +58,25 @@ const ActionCreator = {
       type: ActionType.LOAD_REVIEWS,
       payload: reviews
     };
-  }
+  },
+
+  setLoading: (isLoading) => {
+    return (
+      {
+        type: ActionType.SET_LOADING,
+        payload: isLoading
+      }
+    );
+  },
+
+  setFilmsErrMsg: (message) => {
+    return (
+      {
+        type: ActionType.SET_FILMS_ERR_MSG,
+        payload: message
+      }
+    );
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -76,14 +97,19 @@ const reducer = (state = initialState, action) => {
         genres: action.payload,
       });
 
+    case ActionType.LOAD_REVIEWS:
+      return extend(state, {
+        filmReviews: action.payload
+      });
+
     case ActionType.SET_LOADING:
       return extend(state, {
         isLoading: action.payload
       });
 
-    case ActionType.LOAD_REVIEWS:
+    case ActionType.SET_FILMS_ERR_MSG:
       return extend(state, {
-        filmReviews: action.payload
+        loadFilmsErr: action.payload
       });
   }
 
@@ -95,7 +121,7 @@ const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
     dispatch(ActionCreator.setLoading(true));
 
-    return api.get(`/films`)
+    return api.get(Endpoint.FILMS)
       .then((res) => {
         const adaptedFilms = res.data.map((film) => getAdaptedFilm(film));
 
@@ -109,27 +135,41 @@ const Operation = {
       })
       .catch((err) => {
         dispatch(ActionCreator.setLoading(false));
-        // добавить запись ошибки в стейт
+        if (err.response.status !== 200) {
+          dispatch(ActionCreator.setFilmsErrMsg(`${err.response.status} ${err.response.data.error}`));
+        } else {
+          dispatch(ActionCreator.setFilmsErrMsg(null));
+        }
       });
   },
 
   loadPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`/films/promo`)
+    return api.get(Endpoint.PROMO_FILM)
       .then((res) => {
         dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
       })
       .catch((err) => {
-        //
+        dispatch(ActionCreator.setLoading(false));
+        if (err.response.status !== 200) {
+          dispatch(ActionCreator.setErrorMessage(`${err.response.status} ${err.response.data.error}`));
+        } else {
+          dispatch(ActionCreator.setErrorMessage(null));
+        }
       });
   },
 
   loadReviews: (id) => (dispatch, getState, api) => {
-    return api.get(`/comments/${id}`)
+    return api.get(`${Endpoint.COMMENTS}${id}`)
       .then((res) => {
         dispatch(ActionCreator.loadReviews(res.data));
       })
       .catch((err) => {
-        //
+        dispatch(ActionCreator.setLoading(false));
+        if (err.response.status !== 200) {
+          dispatch(ActionCreator.setErrorMessage(`${err.response.status} ${err.response.data.error}`));
+        } else {
+          dispatch(ActionCreator.setErrorMessage(null));
+        }
       });
   }
 };

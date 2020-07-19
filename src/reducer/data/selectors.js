@@ -21,6 +21,10 @@ const getReviews = (state) => {
   return state[NAME_SPACE].filmReviews;
 };
 
+const getFilmsErrorMessage = (state) => {
+  return state[NAME_SPACE].loadFilmsErr;
+};
+
 const getFilmsByGenre = createSelector(
     getGenre,
     getFilms,
@@ -37,5 +41,6 @@ export {
   getPromoFilm,
   getGenres,
   getFilmsByGenre,
-  getReviews
+  getReviews,
+  getFilmsErrorMessage
 };
