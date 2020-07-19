@@ -204,12 +204,14 @@ const Operation = {
   },
 
   loadPromoFilm: () => (dispatch, getState, api) => {
+    dispatch(ActionCreator.setPromoLoading(true));
+
     return api.get(Endpoint.PROMO_FILM)
       .then((res) => {
         dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
       })
       .catch((err) => {
-        dispatch(ActionCreator.setLoading(false));
+        dispatch(ActionCreator.setPromoLoading(false));
         if (err.response.status !== 200) {
           dispatch(ActionCreator.setPromoErrMsg(`${err.response.status} ${err.response.data.error}`));
         } else {
@@ -219,13 +221,15 @@ const Operation = {
   },
 
   loadReviews: (id) => (dispatch, getState, api) => {
+    dispatch(ActionCreator.setReviewsLoading(true));
+
     return api.get(`${Endpoint.REVIEWS}${id}`)
       .then((res) => {
         const adaptedReviews = res.data.map((review) => getAdaptedReview(review));
         dispatch(ActionCreator.loadReviews(adaptedReviews));
       })
       .catch((err) => {
-        dispatch(ActionCreator.setLoading(false));
+        dispatch(ActionCreator.setReviewsLoading(false));
         if (err.response.status !== 200) {
           dispatch(ActionCreator.setReviewsErrMsg(`${err.response.status} ${err.response.data.error}`));
         } else {
