@@ -7,7 +7,9 @@ const initialState = {
   promoFilm: {},
   genres: [],
   filmReviews: [],
-  isLoading: false,
+  isFilmsLoading: false,
+  isPromoLoading: false,
+  isReviewsLoading: false,
   loadFilmsErr: null,
   loadPromoErr: null,
   loadReviewsErr: null
@@ -18,7 +20,9 @@ const ActionType = {
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_GENRES: `LOAD_GENRES`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
-  SET_LOADING: `SET_LOADING`,
+  SET_FILMS_LOADING: `SET_FILMS_LOADING`,
+  SET_PROMO_LOADING: `SET_PROMO_LOADING`,
+  SET_REVIEWS_LOADING: `SET_REVIEWS_LOADING`,
   SET_FILMS_ERR_MSG: `SET_FILMS_ERR_MSG`,
   SET_PROMO_ERR_MSG: `SET_PROMO_ERR_MSG`,
   SET_REVIEWS_ERR_MSG: `SET_REVIEWS_ERR_MSG`
@@ -60,11 +64,29 @@ const ActionCreator = {
     };
   },
 
-  setLoading: (isLoading) => {
+  setFilmsLoading: (isFilmsLoading) => {
     return (
       {
-        type: ActionType.SET_LOADING,
-        payload: isLoading
+        type: ActionType.SET_FILMS_LOADING,
+        payload: isFilmsLoading
+      }
+    );
+  },
+
+  setPromoLoading: (isPromoLoading) => {
+    return (
+      {
+        type: ActionType.SET_PROMO_LOADING,
+        payload: isPromoLoading
+      }
+    );
+  },
+
+  setReviewsLoading: (isReviewsLoading) => {
+    return (
+      {
+        type: ActionType.SET_REVIEWS_LOADING,
+        payload: isReviewsLoading
       }
     );
   },
@@ -120,9 +142,19 @@ const reducer = (state = initialState, action) => {
         filmReviews: action.payload
       });
 
-    case ActionType.SET_LOADING:
+    case ActionType.SET_FILMS_LOADING:
       return extend(state, {
-        isLoading: action.payload
+        isFilmsLoading: action.payload
+      });
+
+    case ActionType.SET_PROMO_LOADING:
+      return extend(state, {
+        isPromoLoading: action.payload
+      });
+
+    case ActionType.SET_REVIEWS_LOADING:
+      return extend(state, {
+        isReviewsLoading: action.payload
       });
 
     case ActionType.SET_FILMS_ERR_MSG:
@@ -147,7 +179,7 @@ const reducer = (state = initialState, action) => {
 // Асинхронные операции
 const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
-    dispatch(ActionCreator.setLoading(true));
+    dispatch(ActionCreator.setFilmsLoading(true));
 
     return api.get(Endpoint.FILMS)
       .then((res) => {
@@ -159,10 +191,10 @@ const Operation = {
           ...new Set(adaptedFilms.map((filmObject) => filmObject.genre).slice(0, MAX_GENRES_LENGTH))
         ];
         dispatch(ActionCreator.loadGenres(genresList));
-        dispatch(ActionCreator.setLoading(false));
+        dispatch(ActionCreator.setFilmsLoading(false));
       })
       .catch((err) => {
-        dispatch(ActionCreator.setLoading(false));
+        dispatch(ActionCreator.setFilmsLoading(false));
         if (err.response.status !== 200) {
           dispatch(ActionCreator.setFilmsErrMsg(`${err.response.status} ${err.response.data.error}`));
         } else {

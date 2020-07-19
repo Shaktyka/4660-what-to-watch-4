@@ -6,7 +6,8 @@ import {
   getPromoFilm,
   getFilmsByGenre,
   getFilmsErrorMessage,
-  getPromoErrorMessage
+  getPromoErrorMessage,
+  getIsFilmsLoading
 } from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
@@ -19,7 +20,7 @@ const GenresListWrapped = withActiveItem(GenresList);
 import ErrorMessage from '../error-message/error-message.jsx';
 
 const Main = (props) => {
-  const {films, promoFilm, loadFilmsErr, loadPromoErr} = props;
+  const {films, promoFilm, loadFilmsErr, loadPromoErr, isFilmsLoading} = props;
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
 
   return (
@@ -82,7 +83,11 @@ const Main = (props) => {
           <GenresListWrapped />
 
           {
-            <MoviesListWrapped films={films} error={loadFilmsErr} />
+            <MoviesListWrapped
+              films={films}
+              isLoading={isFilmsLoading}
+              error={loadFilmsErr}
+            />
           }
         </section>
         <footer className="page-footer">
@@ -113,14 +118,16 @@ Main.propTypes = {
   }).isRequired,
   films: PropTypes.array.isRequired,
   loadFilmsErr: PropTypes.string,
-  loadPromoErr: PropTypes.string
+  loadPromoErr: PropTypes.string,
+  isFilmsLoading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
   films: getFilmsByGenre(state),
   promoFilm: getPromoFilm(state),
   loadFilmsErr: getFilmsErrorMessage(state),
-  loadPromoErr: getPromoErrorMessage(state)
+  loadPromoErr: getPromoErrorMessage(state),
+  isFilmsLoading: getIsFilmsLoading(state)
 });
 
 export {Main};

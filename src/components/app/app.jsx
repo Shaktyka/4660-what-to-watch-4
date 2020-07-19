@@ -6,30 +6,22 @@ import {connect} from 'react-redux';
 
 import {getLoading, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
-// import {getErrorMessage} from '../../reducer/data/selectors.js';
 // import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 import Loader from '../loader/loader.jsx';
-// import ErrorMessage from '../error-message/error-message.jsx';
 
 class App extends PureComponent {
 
   _renderApp() {
     const {selectedFilmId, isLoading} = this.props;
 
-    // if (errorMsg) {
+    // if (isLoading) {
     //   return (
-    //     <ErrorMessage message={errorMsg} />
+    //     <Loader />
     //   );
     // }
-
-    if (isLoading) {
-      return (
-        <Loader />
-      );
-    }
 
     const component = selectedFilmId
       ?
@@ -58,12 +50,12 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  isLoading: PropTypes.bool,
+  // isLoading: PropTypes.bool,
   selectedFilmId: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: getLoading(state),
+  // isLoading: getLoading(state),
   selectedFilmId: getSelectedFilmId(state)
 });
 

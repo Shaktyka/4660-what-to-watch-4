@@ -21,6 +21,18 @@ const getReviews = (state) => {
   return state[NAME_SPACE].filmReviews;
 };
 
+const getIsFilmsLoading = (state) => {
+  return state[NAME_SPACE].isFilmsLoading;
+};
+
+const getIsPromoLoading = (state) => {
+  return state[NAME_SPACE].isPromoLoading;
+};
+
+const getIsReviewsLoading = (state) => {
+  return state[NAME_SPACE].isReviewsLoading;
+};
+
 const getFilmsErrorMessage = (state) => {
   return state[NAME_SPACE].loadFilmsErr;
 };
@@ -52,5 +64,8 @@ export {
   getReviews,
   getFilmsErrorMessage,
   getPromoErrorMessage,
-  getReviewsErrorMessage
+  getReviewsErrorMessage,
+  getIsFilmsLoading,
+  getIsPromoLoading,
+  getIsReviewsLoading
 };

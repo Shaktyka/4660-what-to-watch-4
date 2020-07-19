@@ -8,7 +8,7 @@ import ShowMore from '../show-more/show-more.jsx';
 const CardWrapped = withCard(Card);
 
 const MoviesList = (props) => {
-  const {films, error} = props;
+  const {films, error, isLoading} = props;
 
   return error
     ?
@@ -17,6 +17,10 @@ const MoviesList = (props) => {
     <>
       <div className="catalog__movies-list">
         {
+          isLoading
+          ?
+            <div>Loading...</div>
+          :
           films.map((film, i) => {
             return (
               <CardWrapped
@@ -40,7 +44,8 @@ MoviesList.propTypes = {
         source: PropTypes.string.isRequired
       })
   ).isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  isLoading: PropTypes.bool
 };
 
 export default MoviesList;
