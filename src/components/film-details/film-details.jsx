@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
 
 import {getMovieNavTabs, getActiveTab, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
+import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
@@ -62,7 +63,12 @@ export const getDetailsScreen = (activeTab, filmData, reviews = []) => {
 };
 
 const FilmDetails = (props) => {
-  const {tabs, activeTab, films, selectedFilmId, filmReviews} = props;
+  const {
+    tabs, activeTab,
+    films, selectedFilmId,
+    filmReviews, loadFilmsErr,
+    isFilmsLoading
+  } = props;
   const filmData = films.find((film) => film.id === selectedFilmId);
   const {id, title, genre, year, poster, cover, bgColor} = filmData;
 
@@ -150,6 +156,8 @@ const FilmDetails = (props) => {
         {
           <SimilarMoviesWrapped
             films={films.filter((film) => film.genre === genre).slice(0, 4)}
+            isLoading={isFilmsLoading}
+            error={loadFilmsErr}
           />
         }
 
@@ -178,7 +186,9 @@ FilmDetails.propTypes = {
   activeTab: PropTypes.string.isRequired,
   filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
-  selectedFilmId: PropTypes.number.isRequired
+  selectedFilmId: PropTypes.number.isRequired,
+  loadFilmsErr: PropTypes.string,
+  isFilmsLoading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
@@ -186,7 +196,9 @@ const mapStateToProps = (state) => ({
   tabs: getMovieNavTabs(state),
   activeTab: getActiveTab(state),
   films: getFilmsByGenre(state),
-  filmReviews: getReviews(state)
+  filmReviews: getReviews(state),
+  isFilmsLoading: getIsFilmsLoading(state),
+  loadFilmsErr: getFilmsErrorMessage(state)
 });
 
 export {FilmDetails};

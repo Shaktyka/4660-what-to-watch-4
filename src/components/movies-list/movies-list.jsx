@@ -25,8 +25,8 @@ const MoviesList = (props) => {
             films.map((film, i) => {
               return (
                 <CardWrapped
-                  film={film}
                   key={`movie-${i}`}
+                  film={film}
                 />
               );
             })
