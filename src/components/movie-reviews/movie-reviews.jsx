@@ -26,8 +26,10 @@ const MovieReviews = (props) => {
               firstColReviews.map((review, i) => (
                 <Review
                   key={i}
+                  id={review.id}
+                  authorId={review.authorId}
+                  authorName={review.authorName}
                   text={review.text}
-                  author={review.author}
                   date={review.date}
                   rating={review.rating}
                 />
@@ -39,8 +41,10 @@ const MovieReviews = (props) => {
               secondColReviews.map((review, i) => (
                 <Review
                   key={i}
+                  id={review.id}
+                  authorId={review.authorId}
+                  authorName={review.authorName}
                   text={review.text}
-                  author={review.author}
                   date={review.date}
                   rating={review.rating}
                 />
@@ -54,14 +58,7 @@ const MovieReviews = (props) => {
 };
 
 MovieReviews.propTypes = {
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        text: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired
-      })
-  ).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadReviewsErr: PropTypes.string
 };
 

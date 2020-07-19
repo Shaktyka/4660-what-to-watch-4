@@ -25,7 +25,7 @@ const getAdaptedReview = (data) => {
     id: data.id,
     authorId: data.user.id,
     authorName: data.user.name,
-    rating: data.rating, // число!
+    rating: data.rating,
     text: data.comment,
     date: data.date
   });

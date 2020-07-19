@@ -1,5 +1,5 @@
 import {extend} from '../../utils.js';
-import {getAdaptedFilm /* , getAdaptedReview */} from '../../adapter/adapter.js';
+import {getAdaptedFilm, getAdaptedReview} from '../../adapter/adapter.js';
 import {DEFAULT_GENRE, MAX_GENRES_LENGTH} from '../../consts.js';
 
 const initialState = {
@@ -187,9 +187,10 @@ const Operation = {
   },
 
   loadReviews: (id) => (dispatch, getState, api) => {
-    return api.get(`${Endpoint.COMMENTS}${id}`)
+    return api.get(`${Endpoint.REVIEWS}${id}`)
       .then((res) => {
-        dispatch(ActionCreator.loadReviews(res.data));
+        const adaptedReviews = res.data.map((review) => getAdaptedReview(review));
+        dispatch(ActionCreator.loadReviews(adaptedReviews));
       })
       .catch((err) => {
         dispatch(ActionCreator.setLoading(false));
