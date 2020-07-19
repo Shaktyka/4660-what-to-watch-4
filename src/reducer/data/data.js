@@ -209,6 +209,7 @@ const Operation = {
     return api.get(Endpoint.PROMO_FILM)
       .then((res) => {
         dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
+        dispatch(ActionCreator.setPromoLoading(false));
       })
       .catch((err) => {
         dispatch(ActionCreator.setPromoLoading(false));
@@ -227,6 +228,7 @@ const Operation = {
       .then((res) => {
         const adaptedReviews = res.data.map((review) => getAdaptedReview(review));
         dispatch(ActionCreator.loadReviews(adaptedReviews));
+        dispatch(ActionCreator.setReviewsLoading(false));
       })
       .catch((err) => {
         dispatch(ActionCreator.setReviewsLoading(false));

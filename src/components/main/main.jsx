@@ -7,12 +7,14 @@ import {
   getFilmsByGenre,
   getFilmsErrorMessage,
   getPromoErrorMessage,
-  getIsFilmsLoading
+  getIsFilmsLoading,
+  getIsPromoLoading
 } from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
+import Loader from '../loader/loader.jsx';
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 const GenresListWrapped = withActiveItem(GenresList);
@@ -20,7 +22,12 @@ const GenresListWrapped = withActiveItem(GenresList);
 import ErrorMessage from '../error-message/error-message.jsx';
 
 const Main = (props) => {
-  const {films, promoFilm, loadFilmsErr, loadPromoErr, isFilmsLoading} = props;
+  const {
+    films, promoFilm,
+    loadFilmsErr, loadPromoErr,
+    isFilmsLoading, isPromoLoading
+  } = props;
+
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
 
   return (
@@ -53,25 +60,33 @@ const Main = (props) => {
               <img src={poster} alt={`${title} poster`} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
-              </p>
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-              </div>
+              {
+                isPromoLoading
+                  ?
+                  <Loader />
+                  :
+                <>
+                  <h2 className="movie-card__title">{title}</h2>
+                  <p className="movie-card__meta">
+                    <span className="movie-card__genre">{genre}</span>
+                    <span className="movie-card__year">{year}</span>
+                  </p>
+                  <div className="movie-card__buttons">
+                    <button className="btn btn--play movie-card__button" type="button">
+                      <svg viewBox="0 0 19 19" width="19" height="19">
+                        <use xlinkHref="#play-s"></use>
+                      </svg>
+                      <span>Play</span>
+                    </button>
+                    <button className="btn btn--list movie-card__button" type="button">
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                  </div>
+                </>
+              }
             </div>
           </div>
         </div>
@@ -119,7 +134,8 @@ Main.propTypes = {
   films: PropTypes.array.isRequired,
   loadFilmsErr: PropTypes.string,
   loadPromoErr: PropTypes.string,
-  isFilmsLoading: PropTypes.bool
+  isFilmsLoading: PropTypes.bool,
+  isPromoLoading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
@@ -127,7 +143,8 @@ const mapStateToProps = (state) => ({
   promoFilm: getPromoFilm(state),
   loadFilmsErr: getFilmsErrorMessage(state),
   loadPromoErr: getPromoErrorMessage(state),
-  isFilmsLoading: getIsFilmsLoading(state)
+  isFilmsLoading: getIsFilmsLoading(state),
+  isPromoLoading: getIsPromoLoading(state)
 });
 
 export {Main};
