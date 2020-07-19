@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import withCard from '../../hocs/with-сard/with-card.js';
 import Card from '../card/card.jsx';
 import ShowMore from '../show-more/show-more.jsx';
+import Loader from '../loader/loader.jsx';
 
 const CardWrapped = withCard(Card);
 
@@ -18,17 +19,17 @@ const MoviesList = (props) => {
       <div className="catalog__movies-list">
         {
           isLoading
-          ?
-            <div>Loading...</div>
-          :
-          films.map((film, i) => {
-            return (
-              <CardWrapped
-                film={film}
-                key={`movie-${i}`}
-              />
-            );
-          })
+            ?
+            <Loader />
+            :
+            films.map((film, i) => {
+              return (
+                <CardWrapped
+                  film={film}
+                  key={`movie-${i}`}
+                />
+              );
+            })
         }
       </div>
       <ShowMore />
