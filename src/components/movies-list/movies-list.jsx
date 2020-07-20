@@ -10,7 +10,6 @@ const CardWrapped = withCard(Card);
 
 const MoviesList = (props) => {
   const {films, error, isLoading, isShowed, onShowMoreClick} = props;
-  console.log(props);
 
   return error
     ?

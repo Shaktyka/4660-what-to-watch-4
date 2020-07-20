@@ -11,7 +11,7 @@ const withShowMore = (Component) => {
 
       this.state = {
         renderedFilms: props.films.slice(0, FILMS_PORTION),
-        isShowedShowMore: true, // как установить и потом менять?
+        isShowedShowMore: true
       };
 
       this._handleShowMoreClick = this._handleShowMoreClick.bind(this);
@@ -20,7 +20,8 @@ const withShowMore = (Component) => {
     componentDidUpdate(prevProps) {
       if (prevProps !== this.props) {
         this.setState({
-          renderedFilms: this.props.films.slice(0, FILMS_PORTION)
+          renderedFilms: this.props.films.slice(0, FILMS_PORTION),
+          isShowedShowMore: this.props.films.length > FILMS_PORTION
         });
       }
     }
@@ -34,6 +35,7 @@ const withShowMore = (Component) => {
               prevState.renderedFilms.length + FILMS_PORTION
           )
         ],
+        isShowedShowMore: prevState.renderedFilms.length + FILMS_PORTION <= this.props.films.length
       }));
     }
 
