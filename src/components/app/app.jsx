@@ -11,6 +11,7 @@ import {Operation as UserOperation} from '../../reducer/user/user.js';
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
+import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 
 class App extends PureComponent {
 
@@ -39,6 +40,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/login">
             <SignIn />
+          </Route>
+          <Route exact path="/full-video">
+            <FullScreenVideoPlayer />
           </Route>
         </Switch>
       </BrowserRouter>

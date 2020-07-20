@@ -39,7 +39,7 @@ const FullScreenVideoPlayer = (props) => {
               max="100">
             </progress>
             <div className="player__toggler"
-              style="left: 30%;"
+              style={{left: `30%`}}
             >
               Toggler
             </div>
