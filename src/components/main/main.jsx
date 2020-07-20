@@ -16,12 +16,12 @@ import withShowMore from '../../hocs/with-show-more/with-show-more.js';
 
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
+
 import Loader from '../loader/loader.jsx';
+import ErrorMessage from '../error-message/error-message.jsx';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
-
-import ErrorMessage from '../error-message/error-message.jsx';
 
 const Main = (props) => {
   const {
