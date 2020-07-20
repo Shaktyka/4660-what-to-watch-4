@@ -12,11 +12,13 @@ import {
 } from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import withShowMore from '../../hocs/with-show-more/with-show-more.js';
+
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
 import Loader from '../loader/loader.jsx';
 
-const MoviesListWrapped = withActiveItem(MoviesList);
+const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
 
 import ErrorMessage from '../error-message/error-message.jsx';

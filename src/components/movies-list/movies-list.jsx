@@ -9,7 +9,8 @@ import Loader from '../loader/loader.jsx';
 const CardWrapped = withCard(Card);
 
 const MoviesList = (props) => {
-  const {films, error, isLoading} = props;
+  const {films, error, isLoading, isShowed, onShowMoreClick} = props;
+  console.log(props);
 
   return error
     ?
@@ -32,7 +33,9 @@ const MoviesList = (props) => {
             })
         }
       </div>
-      <ShowMore />
+      {
+        isShowed && <ShowMore onShowMoreClick={onShowMoreClick} />
+      }
     </>;
 };
 
@@ -46,7 +49,9 @@ MoviesList.propTypes = {
       })
   ).isRequired,
   error: PropTypes.string,
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  isShowed: PropTypes.bool,
+  onShowMoreClick: PropTypes.func
 };
 
 export default MoviesList;
