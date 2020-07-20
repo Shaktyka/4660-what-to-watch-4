@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {connect} from 'react-redux';
+import {getGenres} from '../../reducer/data/selectors.js';
+import {getGenre} from '../../reducer/app-state/selectors.js';
+import {ActionCreator} from '../../reducer/app-state/app-state.js';
+
 import GenreItem from '../genre-item/genre-item.jsx';
 
 const GenresList = (props) => {
-  const {
-    genres,
-    activeGenre,
-    onGenreClick
-  } = props;
+  const {genres, activeGenre, onGenreClick} = props;
 
   return (
     <ul className="catalog__genres-list">
@@ -36,4 +37,16 @@ GenresList.propTypes = {
   onGenreClick: PropTypes.func.isRequired
 };
 
-export default GenresList;
+const mapStateToProps = (state) => ({
+  genres: getGenres(state),
+  activeGenre: getGenre(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick(genre) {
+    dispatch(ActionCreator.setGenre(genre));
+  }
+});
+
+export {GenresList};
+export default connect(mapStateToProps, mapDispatchToProps)(GenresList);

@@ -3,26 +3,37 @@ import PropTypes from 'prop-types';
 
 import withCard from '../../hocs/with-сard/with-card.js';
 import Card from '../card/card.jsx';
+import ShowMore from '../show-more/show-more.jsx';
+import Loader from '../loader/loader.jsx';
 
 const CardWrapped = withCard(Card);
 
 const MoviesList = (props) => {
-  const {films} = props;
+  const {films, error, isLoading} = props;
 
-  return (
-    <div className="catalog__movies-list">
-      {
-        films.map((film, i) => {
-          return (
-            <CardWrapped
-              film={film}
-              key={`movie-${i}`}
-            />
-          );
-        })
-      }
-    </div>
-  );
+  return error
+    ?
+    <div>{error}</div>
+    :
+    <>
+      <div className="catalog__movies-list">
+        {
+          isLoading
+            ?
+            <Loader />
+            :
+            films.map((film, i) => {
+              return (
+                <CardWrapped
+                  key={`movie-${i}`}
+                  film={film}
+                />
+              );
+            })
+        }
+      </div>
+      <ShowMore />
+    </>;
 };
 
 MoviesList.propTypes = {
@@ -33,7 +44,9 @@ MoviesList.propTypes = {
         preview: PropTypes.string.isRequired,
         source: PropTypes.string.isRequired
       })
-  ).isRequired
+  ).isRequired,
+  error: PropTypes.string,
+  isLoading: PropTypes.bool
 };
 
 export default MoviesList;

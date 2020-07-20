@@ -59,9 +59,7 @@ const MovieOverview = (props) => {
 
       <div className="movie-card__text">
 
-        {
-          description.map((string, i) => <p key={i}>{string} </p>)
-        }
+        {description}
 
         <p className="movie-card__director">
           <strong>Director: {director}</strong>
@@ -84,7 +82,7 @@ const MovieOverview = (props) => {
 MovieOverview.propTypes = {
   ratingScore: PropTypes.number.isRequired,
   ratingCount: PropTypes.number.isRequired,
-  description: PropTypes.arrayOf(PropTypes.string).isRequired,
+  description: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
   starring: PropTypes.arrayOf(PropTypes.string)
 };

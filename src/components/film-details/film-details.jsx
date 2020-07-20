@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/actions.js';
+import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
+
+import {getMovieNavTabs, getActiveTab, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
+import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
@@ -10,17 +13,12 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
+import {TabName} from '../../consts.js';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
-const TabName = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`
-};
-
 // Выбираем активный экран
-export const activeMovieDetailsScreen = (activeTab, filmData, reviews = []) => {
+export const getDetailsScreen = (activeTab, filmData, reviews = []) => {
   const {
     genre,
     year,
@@ -65,29 +63,28 @@ export const activeMovieDetailsScreen = (activeTab, filmData, reviews = []) => {
 };
 
 const FilmDetails = (props) => {
-  const {tabs, activeTab, onTabClick, films, reviews} = props;
   const {
-    id,
-    title,
-    genre,
-    year,
-    poster,
-    cover
-  } = props.filmData;
+    tabs, activeTab,
+    films, selectedFilmId,
+    filmReviews, loadFilmsErr,
+    isFilmsLoading
+  } = props;
+  const filmData = films.find((film) => film.id === selectedFilmId);
+  const {id, title, genre, year, poster, cover, bgColor} = filmData;
 
   return (
     <>
       <section className="movie-card movie-card--full" id={id}>
-        <div className="movie-card__hero">
+        <div className="movie-card__hero" style={{backgroundColor: bgColor}}>
           <div className="movie-card__bg">
-            <img src={`./img/${cover}`} alt={title} />
+            <img src={cover} alt={title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <a href="/main.html" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -131,7 +128,7 @@ const FilmDetails = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${poster}`} alt={`${title} poster`} width="218" height="327" />
+              <img src={poster} alt={`${title} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -140,13 +137,12 @@ const FilmDetails = (props) => {
                   <MovieNavTabs
                     tabs={tabs}
                     activeTab={activeTab}
-                    onTabClick={onTabClick}
                   />
                 }
               </nav>
 
               {
-                activeMovieDetailsScreen(activeTab, props.filmData, reviews)
+                getDetailsScreen(activeTab, filmData, filmReviews)
               }
 
             </div>
@@ -160,6 +156,8 @@ const FilmDetails = (props) => {
         {
           <SimilarMoviesWrapped
             films={films.filter((film) => film.genre === genre).slice(0, 4)}
+            isLoading={isFilmsLoading}
+            error={loadFilmsErr}
           />
         }
 
@@ -184,46 +182,24 @@ const FilmDetails = (props) => {
 };
 
 FilmDetails.propTypes = {
-  filmData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    preview: PropTypes.string,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
-    cover: PropTypes.string.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string).isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    duration: PropTypes.number.isRequired
-  }).isRequired,
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
-  onTabClick: PropTypes.func.isRequired,
-  reviews: PropTypes.array.isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired
-      })
-  ).isRequired
+  filmReviews: PropTypes.array.isRequired,
+  films: PropTypes.array.isRequired,
+  selectedFilmId: PropTypes.number.isRequired,
+  loadFilmsErr: PropTypes.string,
+  isFilmsLoading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
-  tabs: state.movieNavTabs,
-  activeTab: state.activeMovieNavTab,
-  films: state.filmsList,
-  reviews: state.filmReviews
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onTabClick(tab) {
-    dispatch(ActionCreator.changeMovieNavTab(tab));
-  }
+  selectedFilmId: getSelectedFilmId(state),
+  tabs: getMovieNavTabs(state),
+  activeTab: getActiveTab(state),
+  films: getFilmsByGenre(state),
+  filmReviews: getReviews(state),
+  isFilmsLoading: getIsFilmsLoading(state),
+  loadFilmsErr: getFilmsErrorMessage(state)
 });
 
 export {FilmDetails};
-export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);
+export default connect(mapStateToProps)(FilmDetails);
