@@ -53,7 +53,6 @@ const Operation = {
         // запишет авторизац-ный токен в куки
         // сервер может вернуть код 400 (Bad request)
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        window.location.href = `/`;
       })
       .catch((err) => {
         throw err;
