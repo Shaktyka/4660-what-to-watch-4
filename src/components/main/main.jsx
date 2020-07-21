@@ -12,14 +12,16 @@ import {
 } from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import withShowMore from '../../hocs/with-show-more/with-show-more.js';
+
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
+
 import Loader from '../loader/loader.jsx';
-
-const MoviesListWrapped = withActiveItem(MoviesList);
-const GenresListWrapped = withActiveItem(GenresList);
-
 import ErrorMessage from '../error-message/error-message.jsx';
+
+const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
+const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {
@@ -72,7 +74,11 @@ const Main = (props) => {
                     <span className="movie-card__year">{year}</span>
                   </p>
                   <div className="movie-card__buttons">
-                    <button className="btn btn--play movie-card__button" type="button">
+                    <button
+                      className="btn btn--play movie-card__button"
+                      type="button"
+                      onClick={() => {}}
+                    >
                       <svg viewBox="0 0 19 19" width="19" height="19">
                         <use xlinkHref="#play-s"></use>
                       </svg>
