@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import {connect} from 'react-redux';
-
 import {getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
+import {AuthorizationStatus} from '../../consts.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
-import {AuthorizationStatus} from '../../consts.js';
+import AddReview from '../add-review/add-review.jsx';
 
 class App extends PureComponent {
 
@@ -49,6 +49,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/full-video">
             <FullScreenVideoPlayer />
+          </Route>
+          <Route exact path="/review">
+            <AddReview />
           </Route>
         </Switch>
       </BrowserRouter>
