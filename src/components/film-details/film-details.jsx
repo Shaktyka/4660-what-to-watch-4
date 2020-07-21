@@ -13,7 +13,7 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
-import {TabName} from '../../consts.js';
+import {TabName, AuthorizationStatus} from '../../consts.js';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
@@ -64,11 +64,16 @@ export const getDetailsScreen = (activeTab, filmData, reviews = []) => {
 
 const FilmDetails = (props) => {
   const {
-    tabs, activeTab,
-    films, selectedFilmId,
-    filmReviews, loadFilmsErr,
-    isFilmsLoading
+    tabs,
+    activeTab,
+    films,
+    selectedFilmId,
+    filmReviews,
+    loadFilmsErr,
+    isFilmsLoading,
+    authorizationStatus
   } = props;
+
   const filmData = films.find((film) => film.id === selectedFilmId);
   const {id, title, genre, year, poster, cover, bgColor} = filmData;
 
@@ -92,9 +97,15 @@ const FilmDetails = (props) => {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
+              {
+                authorizationStatus === AuthorizationStatus.AUTH
+                  ?
+                  <div className="user-block__avatar">
+                    <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                  </div>
+                  :
+                  <a href="sign-in.html" className="user-block__link">Sign in</a>
+              }
             </div>
           </header>
 
@@ -192,7 +203,8 @@ FilmDetails.propTypes = {
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired,
   loadFilmsErr: PropTypes.string,
-  isFilmsLoading: PropTypes.bool
+  isFilmsLoading: PropTypes.bool,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({

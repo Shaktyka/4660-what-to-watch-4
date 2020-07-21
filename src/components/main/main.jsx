@@ -10,6 +10,7 @@ import {
   getIsFilmsLoading,
   getIsPromoLoading
 } from '../../reducer/data/selectors.js';
+import {AuthorizationStatus} from '../../consts.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import withShowMore from '../../hocs/with-show-more/with-show-more.js';
@@ -27,7 +28,8 @@ const Main = (props) => {
   const {
     films, promoFilm,
     loadFilmsErr, loadPromoErr,
-    isFilmsLoading, isPromoLoading
+    isFilmsLoading, isPromoLoading,
+    authorizationStatus
   } = props;
 
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
@@ -51,9 +53,15 @@ const Main = (props) => {
             </a>
           </div>
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {
+              authorizationStatus === AuthorizationStatus.AUTH
+                ?
+                <div className="user-block__avatar">
+                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                </div>
+                :
+                <a href="sign-in.html" className="user-block__link">Sign in</a>
+            }
           </div>
         </header>
         <div className="movie-card__wrap">
@@ -141,7 +149,8 @@ Main.propTypes = {
   loadFilmsErr: PropTypes.string,
   loadPromoErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
-  isPromoLoading: PropTypes.bool
+  isPromoLoading: PropTypes.bool,
+  authorizationStatus: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({

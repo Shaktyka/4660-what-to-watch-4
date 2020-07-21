@@ -1,9 +1,5 @@
 import {extend} from '../../utils.js';
-
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`
-};
+import {AuthorizationStatus} from '../../consts.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -38,11 +34,12 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       })
       .catch((err) => {
-        // throw err;
+        // console.log(err);
       });
   },
 

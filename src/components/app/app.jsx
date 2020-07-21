@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 import {getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
-// import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
+import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
@@ -16,17 +16,19 @@ import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video
 class App extends PureComponent {
 
   _renderApp() {
-    const {selectedFilmId} = this.props;
+    const {selectedFilmId, authorizationStatus} = this.props;
 
     const component = selectedFilmId
       ?
-      <FilmDetails/>
+      <FilmDetails authorizationStatus={authorizationStatus} />
       :
-      <Main />;
+      <Main authorizationStatus={authorizationStatus} />;
     return component;
   }
 
   render() {
+    const {authorizationStatus} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -36,7 +38,7 @@ class App extends PureComponent {
             }
           </Route>
           <Route exact path="/details">
-            <FilmDetails />
+            <FilmDetails authorizationStatus={authorizationStatus} />
           </Route>
           <Route exact path="/login">
             <SignIn />
@@ -51,11 +53,13 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  selectedFilmId: PropTypes.number
+  selectedFilmId: PropTypes.number,
+  authorizationStatus: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-  selectedFilmId: getSelectedFilmId(state)
+  selectedFilmId: getSelectedFilmId(state),
+  authorizationStatus: getAuthorizationStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
