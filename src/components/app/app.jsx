@@ -12,17 +12,21 @@ import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
+import {AuthorizationStatus} from '../../consts.js';
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {selectedFilmId, authorizationStatus} = this.props;
+    const {
+      selectedFilmId,
+      authorizationStatus
+    } = this.props;
 
     const component = selectedFilmId
       ?
-      <FilmDetails authorizationStatus={authorizationStatus} />
+      <FilmDetails isAuthorized={authorizationStatus === AuthorizationStatus.AUTH} />
       :
-      <Main authorizationStatus={authorizationStatus} />;
+      <Main isAuthorized={authorizationStatus === AuthorizationStatus.AUTH} />;
     return component;
   }
 
@@ -38,7 +42,7 @@ class App extends PureComponent {
             }
           </Route>
           <Route exact path="/details">
-            <FilmDetails authorizationStatus={authorizationStatus} />
+            <FilmDetails isAuthorized={authorizationStatus === AuthorizationStatus.AUTH} />
           </Route>
           <Route exact path="/login">
             <SignIn />

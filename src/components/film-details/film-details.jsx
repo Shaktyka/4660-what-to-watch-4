@@ -13,7 +13,7 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
-import {TabName, AuthorizationStatus} from '../../consts.js';
+import {TabName} from '../../consts.js';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
@@ -71,7 +71,7 @@ const FilmDetails = (props) => {
     filmReviews,
     loadFilmsErr,
     isFilmsLoading,
-    authorizationStatus
+    isAuthorized
   } = props;
 
   const filmData = films.find((film) => film.id === selectedFilmId);
@@ -98,7 +98,7 @@ const FilmDetails = (props) => {
 
             <div className="user-block">
               {
-                authorizationStatus === AuthorizationStatus.AUTH
+                isAuthorized
                   ?
                   <div className="user-block__avatar">
                     <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
@@ -204,7 +204,7 @@ FilmDetails.propTypes = {
   selectedFilmId: PropTypes.number.isRequired,
   loadFilmsErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
-  authorizationStatus: PropTypes.string.isRequired
+  isAuthorized: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
