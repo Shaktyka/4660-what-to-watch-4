@@ -34,11 +34,12 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+      .then((res) => {
+        // console.log(res);
+        // dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   },
 
@@ -48,14 +49,14 @@ const Operation = {
       password: authData.password,
     })
       .then((res) => {
-        console.log(res);
-        // в теле запроса вернёт объект вида AuthInfo
+        // в теле запроса возвращает объект res.data
         // запишет авторизац-ный токен в куки
         // сервер может вернуть код 400 (Bad request)
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        window.location.href = `/`;
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   }
 
