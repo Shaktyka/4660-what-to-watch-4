@@ -28,7 +28,8 @@ const Main = (props) => {
     films, promoFilm,
     loadFilmsErr, loadPromoErr,
     isFilmsLoading, isPromoLoading,
-    isAuthorized
+    isAuthorized,
+    userData
   } = props;
 
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
@@ -56,7 +57,7 @@ const Main = (props) => {
               isAuthorized
                 ?
                 <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                  <img src={userData.url} alt={`${userData.name} avatar`} width="63" height="63" />
                 </div>
                 :
                 <a href="/login" className="user-block__link">Sign in</a>
@@ -149,7 +150,8 @@ Main.propTypes = {
   loadPromoErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
   isPromoLoading: PropTypes.bool,
-  isAuthorized: PropTypes.bool.isRequired
+  isAuthorized: PropTypes.bool.isRequired,
+  userData: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({

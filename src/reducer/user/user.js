@@ -3,11 +3,14 @@ import {AuthorizationStatus} from '../../consts.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  showSendError: false
+  userData: null,
+  authError: null
 };
 
 const ActionType = {
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_AUTH_ERROR: `SET_AUTH_ERROR`,
+  SET_USER_DATA: `SET_USER_DATA`
 };
 
 const ActionCreator = {
@@ -15,6 +18,20 @@ const ActionCreator = {
     return {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: status
+    };
+  },
+
+  setAuthError: (text) => {
+    return {
+      type: ActionType.SET_AUTH_ERROR,
+      payload: text
+    };
+  },
+
+  setUserData: (userInfo) => {
+    return {
+      type: ActionType.SET_USER_DATA,
+      payload: userInfo
     };
   }
 };
@@ -26,6 +43,16 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         authorizationStatus: action.payload
       });
+
+    case ActionType.SET_AUTH_ERROR:
+      return extend(state, {
+        authError: action.payload
+      });
+
+    case ActionType.SET_USER_DATA:
+      return extend(state, {
+        userData: action.payload
+      });
   }
 
   return state;
@@ -34,11 +61,13 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
-        // console.log(res);
-        // dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+      .then((res) => {
+        return res.data;
       })
       .catch((err) => {
+        if (err.status === 401) {
+          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+        }
         throw err;
       });
   },
@@ -48,13 +77,16 @@ const Operation = {
       email: authData.email,
       password: authData.password,
     })
-      .then(() => {
-        // в теле запроса возвращает объект res.data
-        // запишет авторизац-ный токен в куки
-        // сервер может вернуть код 400 (Bad request)
+      .then((res) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.setUserData(res.data));
       })
       .catch((err) => {
+        console.log(err);
+        if (err.code !== 200) {
+          dispatch(ActionCreator.setAuthError(err.message));
+        }
+        // обработать код 400 (Bad request)
         throw err;
       });
   }

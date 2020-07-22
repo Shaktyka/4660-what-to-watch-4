@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
-import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {AuthorizationStatus} from '../../consts.js';
 
 import Main from '../main/main.jsx';
@@ -19,19 +19,26 @@ class App extends PureComponent {
   _renderApp() {
     const {
       selectedFilmId,
-      authorizationStatus
+      authorizationStatus,
+      userData
     } = this.props;
 
     const component = selectedFilmId
       ?
-      <FilmDetails isAuthorized={authorizationStatus === AuthorizationStatus.AUTH} />
+      <FilmDetails
+        isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
+        userData={userData}
+      />
       :
-      <Main isAuthorized={authorizationStatus === AuthorizationStatus.AUTH} />;
+      <Main
+        isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
+        userData
+      />;
     return component;
   }
 
   render() {
-    const {authorizationStatus} = this.props;
+    const {authorizationStatus, userData} = this.props;
 
     return (
       <BrowserRouter>
@@ -42,7 +49,10 @@ class App extends PureComponent {
             }
           </Route>
           <Route exact path="/details">
-            <FilmDetails isAuthorized={authorizationStatus === AuthorizationStatus.AUTH} />
+            <FilmDetails
+              isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
+              userData={userData}
+            />
           </Route>
           <Route exact path="/login">
             <SignIn />
@@ -61,12 +71,14 @@ class App extends PureComponent {
 
 App.propTypes = {
   selectedFilmId: PropTypes.number,
-  authorizationStatus: PropTypes.string
+  authorizationStatus: PropTypes.string,
+  userData: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
   selectedFilmId: getSelectedFilmId(state),
-  authorizationStatus: getAuthorizationStatus(state)
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

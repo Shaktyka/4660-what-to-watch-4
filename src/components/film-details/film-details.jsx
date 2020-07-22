@@ -71,7 +71,8 @@ const FilmDetails = (props) => {
     filmReviews,
     loadFilmsErr,
     isFilmsLoading,
-    isAuthorized
+    isAuthorized,
+    userData
   } = props;
 
   const filmData = films.find((film) => film.id === selectedFilmId);
@@ -101,7 +102,7 @@ const FilmDetails = (props) => {
                 isAuthorized
                   ?
                   <div className="user-block__avatar">
-                    <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                    <img src={userData.url} alt={`${userData.name} avatar`} width="63" height="63" />
                   </div>
                   :
                   <a href="/login" className="user-block__link">Sign in</a>
@@ -204,7 +205,8 @@ FilmDetails.propTypes = {
   selectedFilmId: PropTypes.number.isRequired,
   loadFilmsErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
-  isAuthorized: PropTypes.bool.isRequired
+  isAuthorized: PropTypes.bool.isRequired,
+  userData: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
