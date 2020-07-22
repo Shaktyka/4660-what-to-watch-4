@@ -15,6 +15,11 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`
 };
 
+const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`
+};
+
 export {
   MAX_GENRES_LENGTH,
   DEFAULT_GENRE,
@@ -22,5 +27,6 @@ export {
   DEFAULT_MOVIE_NAV_TAB,
   TabName,
   FILMS_PORTION,
-  AuthorizationStatus
+  AuthorizationStatus,
+  AppRoute
 };

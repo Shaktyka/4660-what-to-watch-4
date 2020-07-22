@@ -1,18 +1,20 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Router, Route, Switch} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import {getSelectedFilmId} from '../../reducer/app-state/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import {AuthorizationStatus} from '../../consts.js';
+import {AuthorizationStatus, AppRoute} from '../../consts.js';
 
 import Main from '../main/main.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 import AddReview from '../add-review/add-review.jsx';
+
+import history from '../../history.js';
 
 class App extends PureComponent {
 
@@ -41,9 +43,11 @@ class App extends PureComponent {
     const {authorizationStatus, userData} = this.props;
 
     return (
-      <BrowserRouter>
+      <Router
+        history={history}
+      >
         <Switch>
-          <Route exact path="/">
+          <Route exact path={AppRoute.ROOT}>
             {
               this._renderApp()
             }
@@ -54,7 +58,7 @@ class App extends PureComponent {
               userData={userData}
             />
           </Route>
-          <Route exact path="/login">
+          <Route exact path={AppRoute.LOGIN}>
             <SignIn />
           </Route>
           <Route exact path="/full-video">
@@ -64,7 +68,7 @@ class App extends PureComponent {
             <AddReview />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
