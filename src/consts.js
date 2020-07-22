@@ -10,11 +10,17 @@ const TabName = {
   REVIEWS: `Reviews`
 };
 
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`
+};
+
 export {
   MAX_GENRES_LENGTH,
   DEFAULT_GENRE,
   MOVIE_NAV_TABS,
   DEFAULT_MOVIE_NAV_TAB,
   TabName,
-  FILMS_PORTION
+  FILMS_PORTION,
+  AuthorizationStatus
 };

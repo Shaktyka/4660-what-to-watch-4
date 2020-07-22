@@ -1,9 +1,5 @@
 import {extend} from '../../utils.js';
-
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`
-};
+import {AuthorizationStatus} from '../../consts.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -38,11 +34,12 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+      .then((res) => {
+        // console.log(res);
+        // dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       })
       .catch((err) => {
-        // throw err;
+        throw err;
       });
   },
 
@@ -51,11 +48,14 @@ const Operation = {
       email: authData.email,
       password: authData.password,
     })
-      .then(() => {
+      .then((res) => {
+        // в теле запроса возвращает объект res.data
+        // запишет авторизац-ный токен в куки
+        // сервер может вернуть код 400 (Bad request)
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       })
       .catch((err) => {
-        //
+        throw err;
       });
   }
 

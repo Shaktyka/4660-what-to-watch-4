@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import reducer from './reducer/reducer.js';
 import thunk from 'redux-thunk';
 import createAPI from './api.js';
-import {Operation as /* UserOperation, */ ActionCreator, AuthorizationStatus} from './reducer/user/user.js';
+import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from './reducer/user/user.js';
 import {Operation as DataOperation} from './reducer/data/data.js';
 
 import App from './components/app/app.jsx';
@@ -26,7 +26,7 @@ const store = createStore(
 
 store.dispatch(DataOperation.loadFilms());
 store.dispatch(DataOperation.loadPromoFilm());
-// store.dispatch(UserOperation.checkAuth());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>

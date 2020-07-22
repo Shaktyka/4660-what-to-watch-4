@@ -27,7 +27,8 @@ const Main = (props) => {
   const {
     films, promoFilm,
     loadFilmsErr, loadPromoErr,
-    isFilmsLoading, isPromoLoading
+    isFilmsLoading, isPromoLoading,
+    isAuthorized
   } = props;
 
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
@@ -51,9 +52,15 @@ const Main = (props) => {
             </a>
           </div>
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {
+              isAuthorized
+                ?
+                <div className="user-block__avatar">
+                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                </div>
+                :
+                <a href="/login" className="user-block__link">Sign in</a>
+            }
           </div>
         </header>
         <div className="movie-card__wrap">
@@ -141,7 +148,8 @@ Main.propTypes = {
   loadFilmsErr: PropTypes.string,
   loadPromoErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
-  isPromoLoading: PropTypes.bool
+  isPromoLoading: PropTypes.bool,
+  isAuthorized: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
