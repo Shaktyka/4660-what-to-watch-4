@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FullScreenVideoPlayer = (props) => {
-  const {isPlaying, currentProgress, onPlayBtnClick, onFullScreenClick, children} = props;
+  const {currentProgress, onPlayBtnClick, onFullScreenClick} = props;
 
   return (
     <div className="player">
