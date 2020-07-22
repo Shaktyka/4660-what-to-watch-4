@@ -77,6 +77,7 @@ const FilmDetails = (props) => {
 
   const filmData = films.find((film) => film.id === selectedFilmId);
   const {id, title, genre, year, poster, cover, bgColor} = filmData;
+  const {avatar_url: avatarUrl, name} = userData;
 
   return (
     <>
@@ -102,7 +103,7 @@ const FilmDetails = (props) => {
                 isAuthorized
                   ?
                   <div className="user-block__avatar">
-                    <img src={userData.url} alt={`${userData.name} avatar`} width="63" height="63" />
+                    <img src={avatarUrl} alt={`${name} avatar`} width="63" height="63" />
                   </div>
                   :
                   <a href="/login" className="user-block__link">Sign in</a>

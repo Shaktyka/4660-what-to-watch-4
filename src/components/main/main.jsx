@@ -33,6 +33,7 @@ const Main = (props) => {
   } = props;
 
   const {title, genre, year, bgColor, cover, poster} = promoFilm;
+  const {avatar_url: avatarUrl, name} = userData;
 
   return (
     <>
@@ -57,7 +58,7 @@ const Main = (props) => {
               isAuthorized
                 ?
                 <div className="user-block__avatar">
-                  <img src={userData.url} alt={`${userData.name} avatar`} width="63" height="63" />
+                  <img src={avatarUrl} alt={`${name}'s avatar`} width="63" height="63" />
                 </div>
                 :
                 <a href="/login" className="user-block__link">Sign in</a>
