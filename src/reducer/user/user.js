@@ -81,13 +81,12 @@ const Operation = {
       .then((res) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setUserData(res.data));
+        dispatch(ActionCreator.setAuthError(null));
       })
       .catch((err) => {
-        console.log(err);
-        if (err.code !== 200) {
+        if (err.code === 400) {
           dispatch(ActionCreator.setAuthError(err.message));
         }
-        // обработать код 400 (Bad request)
         throw err;
       });
   }
