@@ -32,7 +32,7 @@ class App extends PureComponent {
       :
       <Main
         isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
-        userData
+        userData={userData}
       />;
     return component;
   }

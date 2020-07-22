@@ -3,7 +3,7 @@ import {AuthorizationStatus} from '../../consts.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  userData: null,
+  userData: {},
   authError: null
 };
 
@@ -67,6 +67,7 @@ const Operation = {
       .catch((err) => {
         if (err.status === 401) {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+          dispatch(ActionCreator.setUserData({}));
         }
         throw err;
       });
