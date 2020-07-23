@@ -7,22 +7,18 @@ import App from './app.jsx';
 
 const mockStore = configureStore([]);
 
-
 describe(`App rendering`, () => {
 
   it(`App renders correctly`, () => {
     const store = mockStore({
-      isLoading,
-      selectedFilmId
+      isLoading: false,
+      selectedFilmId: 1
     });
 
     const tree = renderer
       .create(
           <Provider store={store}>
-            <App
-              isLoading={false}
-              selectedFilmId={1}
-            />
+            <App />
           </Provider>, {
             createNodeMock: () => {
               return {};

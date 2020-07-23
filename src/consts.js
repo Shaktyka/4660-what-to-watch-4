@@ -4,6 +4,8 @@ const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
 const DEFAULT_MOVIE_NAV_TAB = `Overview`;
 const FILMS_PORTION = 8;
 
+const BASE_URL = `https://4.react.pages.academy`;
+
 const TabName = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
@@ -15,6 +17,11 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`
 };
 
+const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`
+};
+
 export {
   MAX_GENRES_LENGTH,
   DEFAULT_GENRE,
@@ -22,5 +29,7 @@ export {
   DEFAULT_MOVIE_NAV_TAB,
   TabName,
   FILMS_PORTION,
-  AuthorizationStatus
+  AuthorizationStatus,
+  AppRoute,
+  BASE_URL
 };

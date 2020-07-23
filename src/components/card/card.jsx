@@ -36,7 +36,7 @@ const Card = (props) => {
         className="small-movie-card__title"
         onClick={(evt) => evt.preventDefault()}
       >
-        <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+        <a href="/movie-page.html" className="small-movie-card__link">{title}</a>
       </h3>
     </article>
   );

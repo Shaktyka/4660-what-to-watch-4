@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const AddReview = () => {
 
@@ -79,8 +79,7 @@ const AddReview = () => {
   );
 };
 
-AddReview.propTypes = {
-  //
-};
+// AddReview.propTypes = {
+// };
 
 export default AddReview;

@@ -2,7 +2,9 @@ import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
+import {getAuthError} from '../../reducer/user/selectors.js';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -27,15 +29,17 @@ class SignIn extends PureComponent {
   }
 
   render() {
+    const {authError} = this.props;
+
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <a href="/" className="logo__link">
+            <Link to="/" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <h1 className="page-title user-page__title">Sign in</h1>
@@ -48,6 +52,15 @@ class SignIn extends PureComponent {
             method="post"
             onSubmit={this._handleSubmit}
           >
+            {
+              authError
+                ?
+                <div className="sign-in__message">
+                  <p>{authError}</p>
+                </div>
+                :
+                null
+            }
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input
@@ -91,11 +104,11 @@ class SignIn extends PureComponent {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="/" className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -108,8 +121,13 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  authError: PropTypes.string
 };
+
+const mapStateToProps = (state) => ({
+  authError: getAuthError(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
@@ -118,4 +136,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {SignIn};
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
