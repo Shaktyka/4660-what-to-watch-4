@@ -7,7 +7,6 @@ import App from './app.jsx';
 
 const mockStore = configureStore([]);
 
-
 describe(`App rendering`, () => {
 
   it(`App renders correctly`, () => {
