@@ -14,8 +14,13 @@ const getUserData = (state) => {
   return state[NAME_SPACE].userData;
 };
 
+const getFavoritesFilms = (state) => {
+  return state[NAME_SPACE].favoritesFilms;
+};
+
 export {
   getAuthorizationStatus,
   getAuthError,
-  getUserData
+  getUserData,
+  getFavoritesFilms
 };
