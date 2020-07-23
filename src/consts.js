@@ -4,6 +4,8 @@ const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
 const DEFAULT_MOVIE_NAV_TAB = `Overview`;
 const FILMS_PORTION = 8;
 
+const BASE_URL = `https://4.react.pages.academy`;
+
 const TabName = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
@@ -28,5 +30,6 @@ export {
   TabName,
   FILMS_PORTION,
   AuthorizationStatus,
-  AppRoute
+  AppRoute,
+  BASE_URL
 };

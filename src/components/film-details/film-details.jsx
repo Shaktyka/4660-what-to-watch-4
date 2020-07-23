@@ -13,7 +13,7 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
-import {TabName} from '../../consts.js';
+import {TabName, BASE_URL} from '../../consts.js';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
@@ -103,7 +103,7 @@ const FilmDetails = (props) => {
                 isAuthorized
                   ?
                   <div className="user-block__avatar">
-                    <img src={avatarUrl} alt={`${name} avatar`} width="63" height="63" />
+                    <img src={`${BASE_URL}${avatarUrl}`} alt={`${name} avatar`} width="63" height="63" />
                   </div>
                   :
                   <a href="/login" className="user-block__link">Sign in</a>

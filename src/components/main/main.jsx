@@ -20,6 +20,8 @@ import GenresList from '../genres-list/genres-list.jsx';
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/error-message.jsx';
 
+import {BASE_URL} from '../../consts.js';
+
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
 
@@ -58,7 +60,7 @@ const Main = (props) => {
               isAuthorized
                 ?
                 <div className="user-block__avatar">
-                  <img src={avatarUrl} alt={`${name}'s avatar`} width="63" height="63" />
+                  <img src={`${BASE_URL}${avatarUrl}`} alt={`${name}'s avatar`} width="63" height="63" />
                 </div>
                 :
                 <a href="/login" className="user-block__link">Sign in</a>
