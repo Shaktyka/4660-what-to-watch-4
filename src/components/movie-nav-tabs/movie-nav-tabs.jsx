@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app-state/app-state.js';
@@ -20,7 +19,7 @@ const MovieNavTabs = (props) => {
               onTabClick(tab);
             }}
           >
-            <Link to="#" className="movie-nav__link">{tab}</Link>
+            <a href="#" className="movie-nav__link">{tab}</a>
           </li>
         ))
       }
