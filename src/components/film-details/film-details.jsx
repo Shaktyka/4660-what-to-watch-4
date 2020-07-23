@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
 
 import {getMovieNavTabs, getActiveTab, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
@@ -91,22 +92,26 @@ const FilmDetails = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="/" className="logo__link">
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
               {
                 isAuthorized
                   ?
-                  <div className="user-block__avatar">
-                    <img src={`${BASE_URL}${avatarUrl}`} alt={`${name} avatar`} width="63" height="63" />
-                  </div>
+                  <Link
+                    to="/mylist"
+                    className="user-block__avatar"
+                    style={{display: `block`}}
+                  >
+                    <img src={`${BASE_URL}${avatarUrl}`} alt={`${name}'s avatar`} width="63" height="63" />
+                  </Link>
                   :
-                  <a href="/login" className="user-block__link">Sign in</a>
+                  <Link to="/login" className="user-block__link">Sign in</Link>
               }
             </div>
           </header>
@@ -136,7 +141,7 @@ const FilmDetails = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to="/add-review" className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -182,11 +187,11 @@ const FilmDetails = (props) => {
 
       <footer className="page-footer">
         <div className="logo">
-          <a href="/" className="logo__link logo__link--light">
+          <Link to="/" className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">
