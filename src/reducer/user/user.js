@@ -84,8 +84,10 @@ const Operation = {
         dispatch(ActionCreator.setAuthError(null));
       })
       .catch((err) => {
-        if (err.code === 400) {
+        if (err.code !== 200) {
           dispatch(ActionCreator.setAuthError(err.message));
+        } else {
+          dispatch(ActionCreator.setAuthError(null));
         }
         throw err;
       });

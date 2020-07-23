@@ -55,7 +55,7 @@ class SignIn extends PureComponent {
               authError
                 ?
                 <div className="sign-in__message">
-                  <p>Please enter an email and a password</p>
+                  <p>{authError}</p>
                 </div>
                 :
                 null
