@@ -77,7 +77,7 @@ const FilmDetails = (props) => {
   } = props;
 
   const filmData = films.find((film) => film.id === selectedFilmId);
-  const {id, title, genre, year, poster, cover, bgColor} = filmData;
+  const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
   const {avatar_url: avatarUrl, name} = userData;
 
   return (
@@ -136,9 +136,17 @@ const FilmDetails = (props) => {
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                  {
+                    isFavorite
+                      ?
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      :
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                  }
                   <span>My list</span>
                 </button>
                 <Link to="/add-review" className="btn movie-card__button">Add review</Link>

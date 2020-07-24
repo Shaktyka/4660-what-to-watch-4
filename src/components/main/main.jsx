@@ -36,7 +36,7 @@ const Main = (props) => {
     userData
   } = props;
 
-  const {title, genre, year, bgColor, cover, poster} = promoFilm;
+  const {title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
   const {avatar_url: avatarUrl, name} = userData;
 
   return (
@@ -102,9 +102,17 @@ const Main = (props) => {
                       <span>Play</span>
                     </button>
                     <button className="btn btn--list movie-card__button" type="button">
-                      <svg viewBox="0 0 19 20" width="19" height="20">
-                        <use xlinkHref="#add"></use>
-                      </svg>
+                      {
+                        isFavorite
+                          ?
+                          <svg viewBox="0 0 18 14" width="18" height="14">
+                            <use xlinkHref="#in-list"></use>
+                          </svg>
+                          :
+                          <svg viewBox="0 0 19 20" width="19" height="20">
+                            <use xlinkHref="#add"></use>
+                          </svg>
+                      }
                       <span>My list</span>
                     </button>
                   </div>
@@ -152,7 +160,8 @@ Main.propTypes = {
     year: PropTypes.number,
     bgColor: PropTypes.string,
     cover: PropTypes.string,
-    poster: PropTypes.string
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool
   }).isRequired,
   films: PropTypes.array.isRequired,
   loadFilmsErr: PropTypes.string,
