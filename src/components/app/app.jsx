@@ -10,8 +10,8 @@ import {AuthorizationStatus, AppRoute} from '../../consts.js';
 
 import Main from '../main/main.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
-
 // import FilmDetails from '../film-details/film-details.jsx';
+
 // import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 // import AddReview from '../add-review/add-review.jsx';
 
