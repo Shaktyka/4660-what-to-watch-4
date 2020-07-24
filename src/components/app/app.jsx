@@ -10,6 +10,7 @@ import {AuthorizationStatus, AppRoute} from '../../consts.js';
 
 import Main from '../main/main.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
+import MyList from '../my-list/my-list.jsx';
 // import FilmDetails from '../film-details/film-details.jsx';
 
 // import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
@@ -39,6 +40,9 @@ class App extends PureComponent {
               : <Redirect to={AppRoute.ROOT} />
             }
           >
+          </Route>
+          <Route exact path={AppRoute.MYLIST}>
+            <MyList />
           </Route>
         </Switch>
       </Router>
