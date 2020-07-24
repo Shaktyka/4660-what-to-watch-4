@@ -25,7 +25,7 @@ class App extends PureComponent {
       userData
     } = this.props;
 
-    const coreComponent = selectedFilmId
+    const content = selectedFilmId
       ?
       <FilmDetails
         isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
@@ -36,12 +36,6 @@ class App extends PureComponent {
         isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
         userData={userData}
       />;
-
-    const content = authorizationStatus === `AUTH`
-      ?
-      coreComponent
-      :
-      <SignIn />;
 
     return content;
   }
