@@ -1,8 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import {BASE_URL} from '../../consts.js';
+import PropTypes from 'prop-types';
 
-const MyList = () => {
+const MyList = (props) => {
+  const {userData} = props;
+  const {avatar_url: avatarUrl, name} = userData;
 
   return (
     <div className="user-page">
@@ -19,7 +22,7 @@ const MyList = () => {
 
         <div className="user-block">
           <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <img src={`${BASE_URL}${avatarUrl}`} alt={`${name}'s avatar`} width="63" height="63" />
           </div>
         </div>
       </header>
@@ -56,6 +59,13 @@ const MyList = () => {
       </footer>
     </div>
   );
+};
+
+MyList.propTypes = {
+  userData: PropTypes.shape({
+    avatarUrl: PropTypes.string,
+    name: PropTypes.string
+  })
 };
 
 export default MyList;
