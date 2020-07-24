@@ -41,8 +41,6 @@ class App extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus, userData} = this.props;
-
     return (
       <Router
         history={history}
@@ -53,20 +51,8 @@ class App extends PureComponent {
               this._renderApp()
             }
           </Route>
-          <Route exact path="/details">
-            <FilmDetails
-              isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
-              userData={userData}
-            />
-          </Route>
           <Route exact path={AppRoute.LOGIN}>
             <SignIn />
-          </Route>
-          <Route exact path="/full-video">
-            <FullScreenVideoPlayer />
-          </Route>
-          <Route exact path="/review">
-            <AddReview />
           </Route>
         </Switch>
       </Router>
