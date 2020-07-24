@@ -33,7 +33,8 @@ class App extends PureComponent {
               userData={userData}
             />
           </Route>
-          <Route exact path={AppRoute.LOGIN}
+          <Route
+            exact path={AppRoute.LOGIN}
             render = {() => authorizationStatus === AuthorizationStatus.NO_AUTH
               ? <SignIn />
               : <Redirect to={AppRoute.ROOT} />
