@@ -7,7 +7,7 @@ import PageFooter from '../page-footer/page-footer.jsx';
 
 const MyList = (props) => {
   const {userData} = props;
-  const {avatar_url: avatarUrl, name} = userData;
+  const {avatar, name} = userData;
 
   return (
     <div className="user-page">
@@ -24,7 +24,7 @@ const MyList = (props) => {
 
         <div className="user-block">
           <div className="user-block__avatar">
-            <img src={`${BASE_URL}${avatarUrl}`} alt={`${name}'s avatar`} width="63" height="63" />
+            <img src={`${BASE_URL}${avatar}`} alt={`${name}'s avatar`} width="63" height="63" />
           </div>
         </div>
       </header>
@@ -53,7 +53,7 @@ const MyList = (props) => {
 
 MyList.propTypes = {
   userData: PropTypes.shape({
-    avatarUrl: PropTypes.string,
+    avatar: PropTypes.string,
     name: PropTypes.string
   })
 };

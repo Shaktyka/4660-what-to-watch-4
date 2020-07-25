@@ -77,11 +77,9 @@ const FilmDetails = (props) => {
     userData
   } = props;
 
-  // console.log(films);
-
   const filmData = films.find((film) => film.id === selectedFilmId);
   const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
-  const {avatar_url: avatarUrl, name} = userData;
+  const {avatar, name} = userData;
 
   return (
     <>
@@ -111,7 +109,7 @@ const FilmDetails = (props) => {
                     className="user-block__avatar"
                     style={{display: `block`}}
                   >
-                    <img src={`${BASE_URL}${avatarUrl}`} alt={`${name}'s avatar`} width="63" height="63" />
+                    <img src={`${BASE_URL}${avatar}`} alt={`${name}'s avatar`} width="63" height="63" />
                   </Link>
                   :
                   <Link to="/login" className="user-block__link">Sign in</Link>
@@ -210,7 +208,10 @@ FilmDetails.propTypes = {
   loadFilmsErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
   isAuthorized: PropTypes.bool.isRequired,
-  userData: PropTypes.object
+  userData: PropTypes.shape({
+    avatar: PropTypes.string,
+    name: PropTypes.string
+  })
 };
 
 const mapStateToProps = (state) => ({

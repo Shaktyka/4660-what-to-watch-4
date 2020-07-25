@@ -1,6 +1,6 @@
 import {extend} from '../../utils.js';
 import {AuthorizationStatus} from '../../consts.js';
-import {getAdaptedFilm} from '../../adapter/adapter.js';
+import {getAdaptedFilm, getAdaptedUserData} from '../../adapter/adapter.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -103,7 +103,7 @@ const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((res) => {
-        return res.data;
+        return getAdaptedUserData(res.data);
       })
       .catch((err) => {
         if (err.status === 401) {
@@ -121,7 +121,7 @@ const Operation = {
     })
       .then((res) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.setUserData(res.data));
+        dispatch(ActionCreator.setUserData(getAdaptedUserData(res.data)));
         dispatch(ActionCreator.setAuthError(null));
       })
       .catch((err) => {

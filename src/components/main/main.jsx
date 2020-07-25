@@ -30,15 +30,18 @@ const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {
-    films, promoFilm,
-    loadFilmsErr, loadPromoErr,
-    isFilmsLoading, isPromoLoading,
+    films,
+    promoFilm,
+    loadFilmsErr,
+    loadPromoErr,
+    isFilmsLoading,
+    isPromoLoading,
     isAuthorized,
     userData
   } = props;
 
   const {title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
-  const {avatar_url: avatarUrl, name} = userData;
+  const {avatar, name} = userData;
 
   return (
     <>
@@ -67,7 +70,7 @@ const Main = (props) => {
                   className="user-block__avatar"
                   style={{display: `block`}}
                 >
-                  <img src={`${BASE_URL}${avatarUrl}`} alt={`${name}'s avatar`} width="63" height="63" />
+                  <img src={`${BASE_URL}${avatar}`} alt={`${name}'s avatar`} width="63" height="63" />
                 </Link>
                 :
                 <Link to="/login" className="user-block__link">Sign in</Link>
@@ -159,7 +162,10 @@ Main.propTypes = {
   isFilmsLoading: PropTypes.bool,
   isPromoLoading: PropTypes.bool,
   isAuthorized: PropTypes.bool.isRequired,
-  userData: PropTypes.object
+  userData: PropTypes.shape({
+    avatar: PropTypes.string,
+    name: PropTypes.string
+  })
 };
 
 const mapStateToProps = (state) => ({
