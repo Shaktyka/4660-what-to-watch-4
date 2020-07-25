@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import {Link} from 'react-router-dom';
 
-const PageHeader = ({children}) => {
+const PageHeader = ({children, uniqueClass}) => {
+  const headerClass = uniqueClass ? uniqueClass : `movie-card__head`;
 
   return (
-    <header className="page-header movie-card__head">
+    <header className={`page-header ${headerClass}`}>
       <div className="logo">
         <Link to="/" className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
@@ -22,7 +23,8 @@ const PageHeader = ({children}) => {
 };
 
 PageHeader.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  uniqueClass: PropTypes.string
 };
 
 export default PageHeader;
