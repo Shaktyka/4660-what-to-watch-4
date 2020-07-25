@@ -284,8 +284,8 @@ const Operation = {
   loadFavoriteFilms: () => (dispatch, getState, api) => {
     return api.get(Endpoint.FAVORITE)
       .then((res) => {
-        dispatch(ActionCreator.loadFavoritesFilms(res.data
-          .map((film) => getAdaptedFilm(film))
+        dispatch(ActionCreator.loadFavoritesFilms(
+            res.data.map((film) => getAdaptedFilm(film))
         ));
       })
       .catch((err) => {
@@ -295,13 +295,13 @@ const Operation = {
 
   changeFavoriteStatus: (id, status) => (dispatch, getState, api) => {
     return api.post(`${Endpoint.FAVORITE}/${id}/${status}`)
-      .then((res) => {
-        dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
+      .then(() => {
+        //
       })
       .catch((err) => {
         throw err;
       });
-  },
+  }
 };
 
 export {reducer, ActionCreator, ActionType, Operation};

@@ -1,4 +1,5 @@
 import {extend} from '../../utils.js';
+import {getAdaptedFilm} from '../../adapter/adapter.js';
 
 import {
   DEFAULT_GENRE,
@@ -9,15 +10,24 @@ import {
 const initialState = {
   genre: DEFAULT_GENRE,
   selectedFilmId: null,
+  selectedFilm: {},
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0]
 };
 
+const Endpoint = {
+  FILMS: `/films`,
+  PROMO_FILM: `/films/promo`,
+  REVIEWS: `/comments/`,
+  FAVORITE: `/favorite`
+};
+
 const ActionType = {
   SET_GENRE: `SET_GENRE`,
-  SET_SELECTED_FILM: `SET_SELECTED_FILM`,
   CHANGE_MOVIE_NAV_TAB: `CHANGE_MOVIE_NAV_TAB`,
-  SORT_BY_GENRE: `SORT_BY_GENRE`
+  SORT_BY_GENRE: `SORT_BY_GENRE`,
+  SET_SELECTED_FILM_ID: `SET_SELECTED_FILM_ID`,
+  SET_SELECTED_FILM: `SET_SELECTED_FILM`,
 };
 
 const ActionCreator = {
@@ -40,11 +50,20 @@ const ActionCreator = {
     );
   },
 
-  setSelectedFilm: (id) => {
+  setSelectedFilmId: (id) => {
     return (
       {
-        type: ActionType.SET_SELECTED_FILM,
+        type: ActionType.SET_SELECTED_FILM_ID,
         payload: id
+      }
+    );
+  },
+
+  setSelectedFilm: (data) => {
+    return (
+      {
+        type: ActionType.GET_SELECTED_FILM,
+        payload: data
       }
     );
   }
@@ -57,9 +76,14 @@ const reducer = (state = initialState, action) => {
         genre: action.payload || DEFAULT_GENRE
       });
 
-    case ActionType.SET_SELECTED_FILM:
+    case ActionType.SET_SELECTED_FILM_ID:
       return extend(state, {
         selectedFilmId: action.payload
+      });
+
+    case ActionType.SET_SELECTED_FILM:
+      return extend(state, {
+        selectedFilm: action.payload
       });
 
     case ActionType.CHANGE_MOVIE_NAV_TAB:
@@ -71,4 +95,18 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionCreator, ActionType};
+const Operation = {
+
+  getFavoriteFilm: (id, status) => (dispatch, getState, api) => {
+    return api.get(`${Endpoint.FAVORITE}/${id}/${status}`)
+      .then((res) => {
+        dispatch(ActionCreator.setSelectedFilm(getAdaptedFilm(res.data)));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+};
+
+export {reducer, ActionType, ActionCreator, Operation};

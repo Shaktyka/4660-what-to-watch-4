@@ -97,7 +97,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setSelectedFilmId(id) {
-    dispatch(ActionCreator.setSelectedFilm(id));
+    dispatch(ActionCreator.setSelectedFilmId(id));
   }
 });
 

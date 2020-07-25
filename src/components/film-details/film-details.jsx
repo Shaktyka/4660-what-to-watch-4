@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
+import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {Operation as AppStateOperation} from '../../reducer/app-state/app-state.js';
 
 import {
   getMovieNavTabs,
   getActiveTab,
-  getSelectedFilmId
+  getSelectedFilmId,
+  getSelectedFilm
 } from '../../reducer/app-state/selectors.js';
-import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
@@ -75,15 +78,17 @@ const FilmDetails = (props) => {
     tabs,
     activeTab,
     films,
-    selectedFilmId,
+    selectedFilmId, // id
+    selectedFilm, // объект
     filmReviews,
     loadFilmsErr,
     isFilmsLoading,
     isAuthorized,
-    userData
+    userData,
+    changeFavoriteStatus
   } = props;
 
-  const filmData = films.find((film) => film.id === selectedFilmId);
+  const filmData = (films.find((film) => film.id === selectedFilmId));
   const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
 
   return (
@@ -119,20 +124,33 @@ const FilmDetails = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  {
-                    isFavorite
-                      ?
-                      <svg viewBox="0 0 18 14" width="18" height="14">
-                        <use xlinkHref="#in-list"></use>
-                      </svg>
-                      :
-                      <svg viewBox="0 0 19 20" width="19" height="20">
-                        <use xlinkHref="#add"></use>
-                      </svg>
-                  }
-                  <span>My list</span>
-                </button>
+                {
+                  isAuthorized
+                    ?
+                    (<button
+                      className="btn btn--list movie-card__button"
+                      type="button"
+                      onClick={() => {
+                        const status = !isFavorite ? 1 : 0;
+                        return changeFavoriteStatus(id, status);
+                      }}
+                    >
+                      {
+                        isFavorite
+                          ?
+                          <svg viewBox="0 0 18 14" width="18" height="14">
+                            <use xlinkHref="#in-list"></use>
+                          </svg>
+                          :
+                          <svg viewBox="0 0 19 20" width="19" height="20">
+                            <use xlinkHref="#add"></use>
+                          </svg>
+                      }
+                      <span>My list</span>
+                    </button>)
+                    :
+                    null
+                }
                 <Link to="/add-review" className="btn movie-card__button">Add review</Link>
               </div>
             </div>
@@ -188,17 +206,20 @@ FilmDetails.propTypes = {
   filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired,
+  selectedFilm: PropTypes.object,
   loadFilmsErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
   isAuthorized: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string
-  })
+  }),
+  changeFavoriteStatus: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
   selectedFilmId: getSelectedFilmId(state),
+  selectedFilm: getSelectedFilm(state),
   tabs: getMovieNavTabs(state),
   activeTab: getActiveTab(state),
   films: getFilmsByGenre(state),
@@ -207,5 +228,13 @@ const mapStateToProps = (state) => ({
   loadFilmsErr: getFilmsErrorMessage(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  changeFavoriteStatus(id, status) {
+    dispatch(DataOperation.changeFavoriteStatus(id, status));
+    // dispatch(AppStateOperation.getFavoriteFilm(id, status)); // лучше это, но не работает пока
+    dispatch(DataOperation.loadFilms());
+  }
+});
+
 export {FilmDetails};
-export default connect(mapStateToProps)(FilmDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);

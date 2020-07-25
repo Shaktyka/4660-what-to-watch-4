@@ -22,10 +22,15 @@ const getSelectedFilmId = (state) => {
   return state[NAME_SPACE].selectedFilmId;
 };
 
+const getSelectedFilm = (state) => {
+  return state[NAME_SPACE].selectedFilm;
+};
+
 export {
   getLoading,
   getGenre,
   getMovieNavTabs,
   getActiveTab,
-  getSelectedFilmId
+  getSelectedFilmId,
+  getSelectedFilm
 };
