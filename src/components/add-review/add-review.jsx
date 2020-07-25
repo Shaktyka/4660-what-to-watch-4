@@ -1,7 +1,13 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import PageHeader from '../page-header/page-header.jsx';
+import UserBlock from '../user-block/user-block.jsx';
+import {connect} from 'react-redux';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {AuthorizationStatus} from '../../consts.js';
 
-const AddReview = () => {
+const AddReview = (props) => {
+  const {authorizationStatus, userData} = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -12,32 +18,26 @@ const AddReview = () => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <PageHeader>
+          {
+            <nav className="breadcrumbs">
+              <ul className="breadcrumbs__list">
+                <li className="breadcrumbs__item">
+                  <a href="movie-page.html" className="breadcrumbs__link">
+                    The Grand Budapest Hotel
+                  </a>
+                </li>
+                <li className="breadcrumbs__item">
+                  <a className="breadcrumbs__link">Add review</a>
+                </li>
+              </ul>
+            </nav>
+          }
+          <UserBlock
+            isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
+            userData={userData}
+          />
+        </PageHeader>
 
         <div className="movie-card__poster movie-card__poster--small">
           <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
@@ -79,7 +79,18 @@ const AddReview = () => {
   );
 };
 
-// AddReview.propTypes = {
-// };
+AddReview.propTypes = {
+  authorizationStatus: PropTypes.string,
+  userData: PropTypes.shape({
+    avatar: PropTypes.string,
+    name: PropTypes.string
+  })
+};
 
-export default AddReview;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state)
+});
+
+export {AddReview};
+export default connect(mapStateToProps)(AddReview);

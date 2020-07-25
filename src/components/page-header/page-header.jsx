@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 const PageHeader = ({children, uniqueClass}) => {
-  const headerClass = uniqueClass ? uniqueClass : `movie-card__head`;
+  const headerClass = uniqueClass ? uniqueClass : ``;
 
   return (
     <header className={`page-header ${headerClass}`}>

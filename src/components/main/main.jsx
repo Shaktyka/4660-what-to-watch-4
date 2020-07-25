@@ -51,7 +51,7 @@ const Main = (props) => {
         </div>
         <h1 className="visually-hidden">WTW</h1>
 
-        <PageHeader>
+        <PageHeader uniqueClass={`movie-card__head`}>
           <UserBlock isAuthorized={isAuthorized} userData={userData} />
         </PageHeader>
 
