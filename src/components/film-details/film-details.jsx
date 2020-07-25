@@ -77,6 +77,8 @@ const FilmDetails = (props) => {
     userData
   } = props;
 
+  // console.log(films);
+
   const filmData = films.find((film) => film.id === selectedFilmId);
   const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
   const {avatar_url: avatarUrl, name} = userData;

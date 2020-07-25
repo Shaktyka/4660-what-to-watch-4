@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch, Redirect, Link} from 'react-router-dom';
 
 import {connect} from 'react-redux';
-import {getSelectedFilmId} from '../../reducer/app-state/selectors.js';
-import {Operation as UserOperation} from '../../reducer/user/user.js';
+import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {AuthorizationStatus, AppRoute} from '../../consts.js';
 
@@ -18,7 +17,7 @@ import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video
 class App extends PureComponent {
 
   render() {
-    const {authorizationStatus, userData} = this.props;
+    const {authorizationStatus, userData, setSelectedFilmId} = this.props;
 
     return (
       <BrowserRouter>
@@ -46,14 +45,17 @@ class App extends PureComponent {
               );
             }}
           />
-          <Route exact path="/films/:id"
-            render = {(props) => (
-              <FilmDetails
-                {...props}
-                isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
-                userData={userData}
-              />
-            )}
+          <Route exact path={`/films/:id`}
+            render = {(props) => {
+              setSelectedFilmId(+props.match.params.id);
+              return (
+                <FilmDetails
+                  {...props}
+                  isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
+                  userData={userData}
+                />
+              );
+            }}
           />
           <Route exact path="/player/:id"
             render = {(props) => (
@@ -66,9 +68,7 @@ class App extends PureComponent {
             render={() => (
               <>
                 <h1>
-                  404.
-                  <br />
-                  <small>Page not found</small>
+                  404. <small>Page not found</small>
                 </h1>
                 <Link to="/">Go to main page</Link>
               </>
@@ -81,20 +81,19 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  selectedFilmId: PropTypes.number,
   authorizationStatus: PropTypes.string,
-  userData: PropTypes.object
+  userData: PropTypes.object,
+  setSelectedFilmId: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
-  selectedFilmId: getSelectedFilmId(state),
   authorizationStatus: getAuthorizationStatus(state),
-  userData: getUserData(state)
+  userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  checkAuth() {
-    dispatch(UserOperation.checkAuth());
+  setSelectedFilmId(id) {
+    dispatch(ActionCreator.setSelectedFilm(id));
   }
 });
 

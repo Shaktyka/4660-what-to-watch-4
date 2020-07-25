@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
-// import history from '../../history.js';
-// import {Link} from 'react-router-dom';
+import history from '../../history.js';
+import {Link} from 'react-router-dom';
 
 import withVideo from '../../hocs/with-video/with-video.js';
 import VideoPlayer from '../video-player/video-player.jsx';
@@ -22,6 +22,7 @@ const Card = (props) => {
       className="small-movie-card catalog__movies-card"
       onClick={() => {
         onCardClick(id);
+        history.push(`/films/${id}`);
       }}
       onMouseEnter={() => onMouseEnterCard(id)}
       onMouseLeave={() => onMouseLeaveCard()}
@@ -38,9 +39,8 @@ const Card = (props) => {
       </div>
       <h3
         className="small-movie-card__title"
-        onClick={(evt) => evt.preventDefault()}
       >
-        <a href="/movie-page.html" className="small-movie-card__link">{title}</a>
+        <Link to={`/films/${id}`} className="small-movie-card__link">{title}</Link>
       </h3>
     </article>
   );
