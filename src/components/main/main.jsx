@@ -22,6 +22,7 @@ import PageFooter from '../page-footer/page-footer.jsx';
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/error-message.jsx';
 import UserBlock from '../user-block/user-block.jsx';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
@@ -35,10 +36,11 @@ const Main = (props) => {
     isFilmsLoading,
     isPromoLoading,
     isAuthorized,
-    userData
+    userData,
+    changeFavoriteStatus
   } = props;
 
-  const {title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
+  const {id, title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
 
   return (
     <>
@@ -83,20 +85,33 @@ const Main = (props) => {
                       </svg>
                       <span>Play</span>
                     </button>
-                    <button className="btn btn--list movie-card__button" type="button">
-                      {
-                        isFavorite
-                          ?
-                          <svg viewBox="0 0 18 14" width="18" height="14">
-                            <use xlinkHref="#in-list"></use>
-                          </svg>
-                          :
-                          <svg viewBox="0 0 19 20" width="19" height="20">
-                            <use xlinkHref="#add"></use>
-                          </svg>
-                      }
-                      <span>My list</span>
-                    </button>
+                    {
+                      isAuthorized
+                        ?
+                        (<button
+                          className="btn btn--list movie-card__button"
+                          type="button"
+                          onClick={() => {
+                            const status = !isFavorite ? 1 : 0;
+                            return changeFavoriteStatus(id, status);
+                          }}
+                        >
+                          {
+                            isFavorite
+                              ?
+                              <svg viewBox="0 0 18 14" width="18" height="14">
+                                <use xlinkHref="#in-list"></use>
+                              </svg>
+                              :
+                              <svg viewBox="0 0 19 20" width="19" height="20">
+                                <use xlinkHref="#add"></use>
+                              </svg>
+                          }
+                          <span>My list</span>
+                        </button>)
+                        :
+                        null
+                    }
                   </div>
                 </>
               }
@@ -126,6 +141,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   promoFilm: PropTypes.shape({
+    id: PropTypes.number,
     title: PropTypes.string,
     genre: PropTypes.string,
     year: PropTypes.number,
@@ -143,7 +159,8 @@ Main.propTypes = {
   userData: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string
-  })
+  }),
+  changeFavoriteStatus: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -155,5 +172,11 @@ const mapStateToProps = (state) => ({
   isPromoLoading: getIsPromoLoading(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  changeFavoriteStatus(id, status) {
+    dispatch(DataOperation.changeFavoriteStatus(id, status));
+  }
+});
+
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

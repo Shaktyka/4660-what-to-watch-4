@@ -4,6 +4,7 @@ import {DEFAULT_GENRE, MAX_GENRES_LENGTH} from '../../consts.js';
 
 const initialState = {
   films: [],
+  favoritesFilms: [],
   promoFilm: {},
   genres: [],
   filmReviews: [],
@@ -25,13 +26,17 @@ const ActionType = {
   SET_REVIEWS_LOADING: `SET_REVIEWS_LOADING`,
   SET_FILMS_ERR_MSG: `SET_FILMS_ERR_MSG`,
   SET_PROMO_ERR_MSG: `SET_PROMO_ERR_MSG`,
-  SET_REVIEWS_ERR_MSG: `SET_REVIEWS_ERR_MSG`
+  SET_REVIEWS_ERR_MSG: `SET_REVIEWS_ERR_MSG`,
+  ADD_FAVORITE_FILM: `ADD_FAVORITE_FILM`,
+  LOAD_FAVORITES_FILMS: `LOAD_FAVORITES_FILMS`,
+  REMOVE_FAVORITE_FILM: `REMOVE_FAVORITE_FILM`
 };
 
 const Endpoint = {
   FILMS: `/films`,
   PROMO_FILM: `/films/promo`,
-  REVIEWS: `/comments/`
+  REVIEWS: `/comments/`,
+  FAVORITE: `/favorite`
 };
 
 const ActionCreator = {
@@ -117,6 +122,27 @@ const ActionCreator = {
       }
     );
   },
+
+  addFavoriteFilm: (filmId) => {
+    return {
+      type: ActionType.ADD_FAVORITE_FILM,
+      payload: filmId
+    };
+  },
+
+  loadFavoritesFilms: (films) => {
+    return {
+      type: ActionType.LOAD_FAVORITES_FILMS,
+      payload: films
+    };
+  },
+
+  removeFavoriteFilm: (filmId) => {
+    return {
+      type: ActionType.REMOVE_FAVORITE_FILM,
+      payload: filmId
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -170,6 +196,21 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_REVIEWS_ERR_MSG:
       return extend(state, {
         loadReviewsErr: action.payload
+      });
+
+    case ActionType.ADD_FAVORITE_FILM:
+      return extend(state, {
+        favoritesFilms: [...state.favoritesFilms, action.payload]
+      });
+
+    case ActionType.LOAD_FAVORITES_FILMS:
+      return extend(state, {
+        favoritesFilms: action.payload
+      });
+
+    case ActionType.REMOVE_FAVORITE_FILM:
+      return extend(state, {
+        favoritesFilms: [...state.favoritesFilms].filter((film) => film.id !== action.payload.id)
       });
   }
 
@@ -238,7 +279,29 @@ const Operation = {
           dispatch(ActionCreator.setReviewsErrMsg(null));
         }
       });
-  }
+  },
+
+  loadFavoriteFilms: () => (dispatch, getState, api) => {
+    return api.get(Endpoint.FAVORITE)
+      .then((res) => {
+        dispatch(ActionCreator.loadFavoritesFilms(res.data
+          .map((film) => getAdaptedFilm(film))
+        ));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
+
+  changeFavoriteStatus: (id, status) => (dispatch, getState, api) => {
+    return api.post(`${Endpoint.FAVORITE}/${id}/${status}`)
+      .then((res) => {
+        dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
 };
 
 export {reducer, ActionCreator, ActionType, Operation};
