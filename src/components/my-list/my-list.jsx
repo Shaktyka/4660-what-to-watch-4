@@ -1,33 +1,28 @@
 import React from 'react';
 
-import {Link} from 'react-router-dom';
-import {BASE_URL} from '../../consts.js';
 import PropTypes from 'prop-types';
+import PageHeader from '../page-header/page-header.jsx';
+import UserBlock from '../user-block/user-block.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
+
+const getPageTitle = () => {
+  return (
+    <h1 className="page-title user-page__title">My list</h1>
+  );
+};
 
 const MyList = (props) => {
   const {userData} = props;
-  const {avatar, name} = userData;
 
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to="/" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
-        <h1 className="page-title user-page__title">My list</h1>
-
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src={`${BASE_URL}${avatar}`} alt={`${name}'s avatar`} width="63" height="63" />
-          </div>
-        </div>
-      </header>
+      <PageHeader uniqueClass={`user-page__head`}>
+        {getPageTitle()}
+        <UserBlock
+          isAuthorized={true}
+          userData={userData}
+        />
+      </PageHeader>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -52,10 +47,7 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  userData: PropTypes.shape({
-    avatar: PropTypes.string,
-    name: PropTypes.string
-  })
+  userData: PropTypes.object
 };
 
 export default MyList;
