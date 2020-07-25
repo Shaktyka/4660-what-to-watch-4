@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
 
-import {getMovieNavTabs, getActiveTab, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
+import {
+  getMovieNavTabs,
+  getActiveTab,
+  getSelectedFilmId
+} from '../../reducer/app-state/selectors.js';
 import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
@@ -14,8 +17,11 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
+import PageHeader from '../page-header/page-header.jsx';
+import UserBlock from '../user-block/user-block.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
-import {TabName, BASE_URL} from '../../consts.js';
+import {Link} from 'react-router-dom';
+import {TabName} from '../../consts.js';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
@@ -79,7 +85,6 @@ const FilmDetails = (props) => {
 
   const filmData = films.find((film) => film.id === selectedFilmId);
   const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
-  const {avatar, name} = userData;
 
   return (
     <>
@@ -91,31 +96,9 @@ const FilmDetails = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              {
-                isAuthorized
-                  ?
-                  <Link
-                    to="/mylist"
-                    className="user-block__avatar"
-                    style={{display: `block`}}
-                  >
-                    <img src={`${BASE_URL}${avatar}`} alt={`${name}'s avatar`} width="63" height="63" />
-                  </Link>
-                  :
-                  <Link to="/login" className="user-block__link">Sign in</Link>
-              }
-            </div>
-          </header>
+          <PageHeader>
+            <UserBlock isAuthorized={isAuthorized} userData={userData} />
+          </PageHeader>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">

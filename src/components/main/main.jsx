@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import PageFooter from '../page-footer/page-footer.jsx';
-import {Link} from 'react-router-dom';
 
 import {
   getPromoFilm,
@@ -19,11 +17,11 @@ import withShowMore from '../../hocs/with-show-more/with-show-more.js';
 
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
-
+import PageHeader from '../page-header/page-header.jsx';
+import PageFooter from '../page-footer/page-footer.jsx';
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/error-message.jsx';
-
-import {BASE_URL} from '../../consts.js';
+import UserBlock from '../user-block/user-block.jsx';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
@@ -41,7 +39,6 @@ const Main = (props) => {
   } = props;
 
   const {title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
-  const {avatar, name} = userData;
 
   return (
     <>
@@ -53,30 +50,11 @@ const Main = (props) => {
           <img src={cover} alt={title} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <Link to="/" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-          <div className="user-block">
-            {
-              isAuthorized
-                ?
-                <Link
-                  to="/mylist"
-                  className="user-block__avatar"
-                  style={{display: `block`}}
-                >
-                  <img src={`${BASE_URL}${avatar}`} alt={`${name}'s avatar`} width="63" height="63" />
-                </Link>
-                :
-                <Link to="/login" className="user-block__link">Sign in</Link>
-            }
-          </div>
-        </header>
+
+        <PageHeader>
+          <UserBlock isAuthorized={isAuthorized} userData={userData} />
+        </PageHeader>
+
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">

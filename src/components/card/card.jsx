@@ -35,6 +35,7 @@ const Card = (props) => {
         </div>
         <h3
           className="small-movie-card__title"
+          style={{color: `#d9ca74`}}
         >
           {title}
         </h3>
