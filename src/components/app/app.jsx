@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Router, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import {getSelectedFilmId} from '../../reducer/app-state/selectors.js';
@@ -15,17 +15,13 @@ import FilmDetails from '../film-details/film-details.jsx';
 import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 // import AddReview from '../add-review/add-review.jsx';
 
-import history from '../../history.js';
-
 class App extends PureComponent {
 
   render() {
     const {authorizationStatus, userData} = this.props;
 
     return (
-      <Router
-        history={history}
-      >
+      <BrowserRouter>
         <Switch>
           <Route exact path={AppRoute.ROOT}>
             <Main
@@ -67,7 +63,7 @@ class App extends PureComponent {
             )}
           />
         </Switch>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
