@@ -13,6 +13,7 @@ import MyList from '../my-list/my-list.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
 import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 import AddReview from '../add-review/add-review.jsx';
+import NotFound from '../not-found/not-found.jsx';
 
 class App extends PureComponent {
 
@@ -74,12 +75,7 @@ class App extends PureComponent {
           />
           <Route
             render={() => (
-              <>
-                <h1>
-                  404. <small>Page not found</small>
-                </h1>
-                <Link to="/">Go to main page</Link>
-              </>
+              <NotFound />
             )}
           />
         </Switch>
