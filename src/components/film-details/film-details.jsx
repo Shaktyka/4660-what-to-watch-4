@@ -14,6 +14,7 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
+import PageFooter from '../page-footer/page-footer.jsx';
 import {TabName, BASE_URL} from '../../consts.js';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
@@ -192,20 +193,7 @@ const FilmDetails = (props) => {
         }
 
       </section>
-
-      <footer className="page-footer">
-        <div className="logo">
-          <Link to="/" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <PageFooter />
     </div>
     </>
   );

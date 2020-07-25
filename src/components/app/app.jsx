@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect, Link} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import {getSelectedFilmId} from '../../reducer/app-state/selectors.js';
@@ -60,6 +60,18 @@ class App extends PureComponent {
               <FullScreenVideoPlayer
                 {...props}
               />
+            )}
+          />
+          <Route
+            render={() => (
+              <>
+                <h1>
+                  404.
+                  <br />
+                  <small>Page not found</small>
+                </h1>
+                <Link to="/">Go to main page</Link>
+              </>
             )}
           />
         </Switch>
