@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch, Redirect, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app-state/app-state.js';
@@ -66,7 +66,7 @@ class App extends PureComponent {
               );
             }}
           />
-          <Route exact path="/player/:id"
+          <Route exact path={`/player/:id`}
             render = {(props) => (
               <FullScreenVideoPlayer
                 {...props}
