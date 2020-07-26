@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
 import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
-import {Operation as AppStateOperation} from '../../reducer/app-state/app-state.js';
+// import {Operation as AppStateOperation} from '../../reducer/app-state/app-state.js';
 
 import {
   getMovieNavTabs,
@@ -114,7 +114,8 @@ const FilmDetails = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button
+                <Link
+                  to={`/player/${id}`}
                   className="btn btn--play movie-card__button"
                   type="button"
                   onClick={() => {}}
@@ -123,7 +124,7 @@ const FilmDetails = (props) => {
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 {
                   isAuthorized
                     ?
@@ -151,7 +152,12 @@ const FilmDetails = (props) => {
                     :
                     null
                 }
-                <Link to="/add-review" className="btn movie-card__button">Add review</Link>
+                <Link
+                  to={`/add-review`}
+                  className="btn movie-card__button"
+                >
+                  Add review
+                </Link>
               </div>
             </div>
           </div>

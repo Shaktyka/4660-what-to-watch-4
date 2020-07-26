@@ -22,6 +22,7 @@ import PageFooter from '../page-footer/page-footer.jsx';
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/error-message.jsx';
 import UserBlock from '../user-block/user-block.jsx';
+import {Link} from 'react-router-dom';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
@@ -75,7 +76,8 @@ const Main = (props) => {
                     <span className="movie-card__year">{year}</span>
                   </p>
                   <div className="movie-card__buttons">
-                    <button
+                    <Link
+                      to={`/player/${id}`}
                       className="btn btn--play movie-card__button"
                       type="button"
                       onClick={() => {}}
@@ -84,7 +86,7 @@ const Main = (props) => {
                         <use xlinkHref="#play-s"></use>
                       </svg>
                       <span>Play</span>
-                    </button>
+                    </Link>
                     {
                       isAuthorized
                         ?
