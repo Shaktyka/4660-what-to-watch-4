@@ -32,6 +32,16 @@ const App = (props) => {
             : <Redirect to={AppRoute.ROOT} />
           }
         />
+        <Route exact path={`/films/:id`}
+          render = {(properties) => {
+            setSelectedFilmId(+properties.match.params.id);
+            return (
+              <FilmDetails
+                {...properties}
+              />
+            );
+          }}
+        />
         <Route
           exact path={AppRoute.MYLIST}
           render={() => {
@@ -47,16 +57,6 @@ const App = (props) => {
           render={() => {
             return (
               <AddReview />
-            );
-          }}
-        />
-        <Route exact path={`/films/:id`}
-          render = {(properties) => {
-            setSelectedFilmId(+properties.match.params.id);
-            return (
-              <FilmDetails
-                {...properties}
-              />
             );
           }}
         />

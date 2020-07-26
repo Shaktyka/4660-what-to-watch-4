@@ -2,12 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
-import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
+
+import {
+  getFilmsByGenre,
+  getReviews,
+  getFilmsErrorMessage,
+  getIsFilmsLoading
+} from '../../reducer/data/selectors.js';
+
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {AuthorizationStatus} from '../../consts.js';
-// import {Operation as AppStateOperation} from '../../reducer/app-state/app-state.js';
 
 import {
   getMovieNavTabs,
@@ -17,6 +22,7 @@ import {
 } from '../../reducer/app-state/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
@@ -243,6 +249,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.changeFavoriteStatus(id, status));
     // dispatch(AppStateOperation.getFavoriteFilm(id, status)); // лучше это, но не работает пока
     dispatch(DataOperation.loadFilms());
+  },
+  loadFilms() {
+    DataOperation.loadFilms();
   }
 });
 
