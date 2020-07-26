@@ -73,6 +73,13 @@ class App extends PureComponent {
               />
             )}
           />
+          <Route exact path={`/films/:id/review`}
+            render = {(props) => (
+              <AddReview
+                {...props}
+              />
+            )}
+          />
           <Route
             render={() => (
               <NotFound />
