@@ -78,8 +78,7 @@ const FilmDetails = (props) => {
     tabs,
     activeTab,
     films,
-    selectedFilmId, // id
-    selectedFilm, // объект
+    selectedFilmId,
     filmReviews,
     loadFilmsErr,
     isFilmsLoading,

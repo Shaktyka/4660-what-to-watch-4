@@ -1,6 +1,6 @@
 import {extend} from '../../utils.js';
 import {AuthorizationStatus} from '../../consts.js';
-import {getAdaptedFilm, getAdaptedUserData} from '../../adapter/adapter.js';
+import {getAdaptedUserData} from '../../adapter/adapter.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
