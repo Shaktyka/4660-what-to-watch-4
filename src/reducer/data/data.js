@@ -13,7 +13,9 @@ const initialState = {
   isReviewsLoading: false,
   loadFilmsErr: null,
   loadPromoErr: null,
-  loadReviewsErr: null
+  loadReviewsErr: null,
+  isReviewPosting: false,
+  postingReviewErr: null,
 };
 
 const ActionType = {
@@ -29,7 +31,9 @@ const ActionType = {
   SET_REVIEWS_ERR_MSG: `SET_REVIEWS_ERR_MSG`,
   ADD_FAVORITE_FILM: `ADD_FAVORITE_FILM`,
   LOAD_FAVORITES_FILMS: `LOAD_FAVORITES_FILMS`,
-  REMOVE_FAVORITE_FILM: `REMOVE_FAVORITE_FILM`
+  REMOVE_FAVORITE_FILM: `REMOVE_FAVORITE_FILM`,
+  SET_REVIEW_POSTING: `SET_REVIEW_POSTING`,
+  SET_REVIEW_ERR_MSG: `SET_REVIEW_ERR_MSG`,
 };
 
 const Endpoint = {
@@ -96,6 +100,15 @@ const ActionCreator = {
     );
   },
 
+  setReviewPosting: (isReviewPosting) => {
+    return (
+      {
+        type: ActionType.SET_REVIEW_POSTING,
+        payload: isReviewPosting
+      }
+    );
+  },
+
   setFilmsErrMsg: (message) => {
     return (
       {
@@ -118,6 +131,15 @@ const ActionCreator = {
     return (
       {
         type: ActionType.SET_REVIEWS_ERR_MSG,
+        payload: message
+      }
+    );
+  },
+
+  setReviewErrMsg: (message) => {
+    return (
+      {
+        type: ActionType.SET_REVIEW_ERR_MSG,
         payload: message
       }
     );
@@ -181,6 +203,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_REVIEWS_LOADING:
       return extend(state, {
         isReviewsLoading: action.payload
+      });
+
+    case ActionType.SET_REVIEW_POSTING:
+      return extend(state, {
+        isReviewPosting: action.payload
       });
 
     case ActionType.SET_FILMS_ERR_MSG:
@@ -278,6 +305,25 @@ const Operation = {
         } else {
           dispatch(ActionCreator.setReviewsErrMsg(null));
         }
+      });
+  },
+
+  addReview: (id) => (dispatch, getState, api) => {
+    dispatch(ActionCreator.setReviewPosting(true));
+
+    return api.post(`${Endpoint.FILMS}/${id}review`)
+      .then((res) => {
+        dispatch(ActionCreator.setReviewPosting(false));
+        console.log(res);
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.setReviewPosting(false));
+        if (err.response.status !== 200) {
+          dispatch(ActionCreator.setReviewErrMsg(`${err.response.status} ${err.response.data.error}`));
+        } else {
+          dispatch(ActionCreator.setReviewErrMsg(null));
+        }
+        throw err;
       });
   },
 
