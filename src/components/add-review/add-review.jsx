@@ -1,13 +1,32 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
-import PageHeader from '../page-header/page-header.jsx';
-import UserBlock from '../user-block/user-block.jsx';
+
 import {connect} from 'react-redux';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getIsReviewPosting, getReviewErrorMessage} from '../../reducer/data/selectors.js';
 import {AuthorizationStatus} from '../../consts.js';
 
+import PageHeader from '../page-header/page-header.jsx';
+import UserBlock from '../user-block/user-block.jsx';
+import {Link} from 'react-router-dom';
+
+const mockFilm = {
+  // id
+  // название
+  // бэк
+  // постер
+};
+
 const AddReview = (props) => {
-  const {authorizationStatus, userData} = props;
+  const {
+    authorizationStatus,
+    userData,
+    submitReview,
+    isReviewPosting,
+    postingReviewErr
+  } = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -23,9 +42,9 @@ const AddReview = (props) => {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">
+                  <Link to="movie-page.html" className="breadcrumbs__link">
                     The Grand Budapest Hotel
-                  </a>
+                  </Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -40,12 +59,25 @@ const AddReview = (props) => {
         </PageHeader>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img
+            src="img/the-grand-budapest-hotel-poster.jpg"
+            alt="The Grand Budapest Hotel poster"
+            width="218"
+            height="327"
+          />
         </div>
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
+        <form
+          action="#"
+          className="add-review__form"
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            submitReview();
+            return;
+          }}
+        >
           <div className="rating">
             <div className="rating__stars">
               <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
@@ -66,9 +98,18 @@ const AddReview = (props) => {
           </div>
 
           <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+            <textarea
+              className="add-review__textarea"
+              name="review-text"
+              id="review-text"
+              placeholder="Review text"
+            ></textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
+              <button
+                className="add-review__btn"
+                type="submit"
+              >Post
+              </button>
             </div>
 
           </div>
@@ -84,13 +125,24 @@ AddReview.propTypes = {
   userData: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string
-  })
+  }),
+  submitReview: PropTypes.func,
+  isReviewPosting: PropTypes.bool,
+  postingReviewErr: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  userData: getUserData(state)
+  userData: getUserData(state),
+  isReviewPosting: getIsReviewPosting(state),
+  postingReviewErr: getReviewErrorMessage(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  submitReview(filmId, reviewData) {
+    dispatch(DataOperation.addReview(filmId, reviewData));
+  }
 });
 
 export {AddReview};
-export default connect(mapStateToProps)(AddReview);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

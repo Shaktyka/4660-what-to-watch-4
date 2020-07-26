@@ -309,7 +309,7 @@ const Operation = {
       });
   },
 
-  addReview: (id) => (dispatch, getState, api) => {
+  addReview: (filmId, reviewData) => (dispatch, getState, api) => {
     dispatch(ActionCreator.setReviewPosting(true));
 
     return api.post(`${Endpoint.COMMENTS}/${id}`)
