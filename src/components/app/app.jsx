@@ -64,6 +64,7 @@ const App = (props) => {
           render = {(properties) => (
             <FullScreenVideoPlayer
               {...properties}
+              filmId={properties.match.params.id}
             />
           )}
         />
