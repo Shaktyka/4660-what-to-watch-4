@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 
@@ -15,81 +15,78 @@ import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video
 import AddReview from '../add-review/add-review.jsx';
 import NotFound from '../not-found/not-found.jsx';
 
-class App extends PureComponent {
+const App = (props) => {
+  const {authorizationStatus, userData, setSelectedFilmId} = props;
 
-  render() {
-    const {authorizationStatus, userData, setSelectedFilmId} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            <Main
-              isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
-              userData={userData}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={AppRoute.ROOT}>
+          <Main
+            isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
+            userData={userData}
+          />
+        </Route>
+        <Route
+          exact path={AppRoute.LOGIN}
+          render = {() => authorizationStatus === AuthorizationStatus.NO_AUTH
+            ? <SignIn />
+            : <Redirect to={AppRoute.ROOT} />
+          }
+        />
+        <Route
+          exact path={AppRoute.MYLIST}
+          render={() => {
+            return (
+              <MyList
+                userData={userData}
+              />
+            );
+          }}
+        />
+        <Route
+          exact path={AppRoute.ADD_REVIEW}
+          render={() => {
+            return (
+              <AddReview />
+            );
+          }}
+        />
+        <Route exact path={`/films/:id`}
+          render = {(properties) => {
+            setSelectedFilmId(+properties.match.params.id);
+            return (
+              <FilmDetails
+                {...properties}
+                isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
+                userData={userData}
+              />
+            );
+          }}
+        />
+        <Route exact path={`/player/:id`}
+          render = {(properties) => (
+            <FullScreenVideoPlayer
+              {...properties}
             />
-          </Route>
-          <Route
-            exact path={AppRoute.LOGIN}
-            render = {() => authorizationStatus === AuthorizationStatus.NO_AUTH
-              ? <SignIn />
-              : <Redirect to={AppRoute.ROOT} />
-            }
-          />
-          <Route
-            exact path={AppRoute.MYLIST}
-            render={() => {
-              return (
-                <MyList
-                  userData={userData}
-                />
-              );
-            }}
-          />
-          <Route
-            exact path={AppRoute.ADD_REVIEW}
-            render={() => {
-              return (
-                <AddReview />
-              );
-            }}
-          />
-          <Route exact path={`/films/:id`}
-            render = {(props) => {
-              setSelectedFilmId(+props.match.params.id);
-              return (
-                <FilmDetails
-                  {...props}
-                  isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
-                  userData={userData}
-                />
-              );
-            }}
-          />
-          <Route exact path={`/player/:id`}
-            render = {(props) => (
-              <FullScreenVideoPlayer
-                {...props}
-              />
-            )}
-          />
-          <Route exact path={`/films/:id/review`}
-            render = {(props) => (
-              <AddReview
-                {...props}
-              />
-            )}
-          />
-          <Route
-            render={() => (
-              <NotFound />
-            )}
-          />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+          )}
+        />
+        <Route exact path={`/films/:id/review`}
+          render = {(properties) => (
+            <AddReview
+              {...properties}
+            />
+          )}
+        />
+        <Route
+          render={() => (
+            <NotFound />
+          )}
+        />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = {
   authorizationStatus: PropTypes.string,
