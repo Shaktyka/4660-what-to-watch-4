@@ -17,19 +17,17 @@ import NotFound from '../not-found/not-found.jsx';
 
 const App = (props) => {
   const {authorizationStatus, userData, setSelectedFilmId} = props;
+  const isNoAuthorization = authorizationStatus === AuthorizationStatus.NO_AUTH;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <Main
-            isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
-            userData={userData}
-          />
+          <Main />
         </Route>
         <Route
           exact path={AppRoute.LOGIN}
-          render = {() => authorizationStatus === AuthorizationStatus.NO_AUTH
+          render = {() => isNoAuthorization
             ? <SignIn />
             : <Redirect to={AppRoute.ROOT} />
           }
@@ -58,8 +56,6 @@ const App = (props) => {
             return (
               <FilmDetails
                 {...properties}
-                isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
-                userData={userData}
               />
             );
           }}

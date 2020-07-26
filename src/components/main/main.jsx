@@ -24,6 +24,8 @@ import ErrorMessage from '../error-message/error-message.jsx';
 import UserBlock from '../user-block/user-block.jsx';
 import {Link} from 'react-router-dom';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {AuthorizationStatus} from '../../consts.js';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
@@ -36,11 +38,12 @@ const Main = (props) => {
     loadPromoErr,
     isFilmsLoading,
     isPromoLoading,
-    isAuthorized,
     userData,
-    changeFavoriteStatus
+    changeFavoriteStatus,
+    authorizationStatus
   } = props;
 
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
   const {id, title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
 
   return (
@@ -142,6 +145,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string,
   promoFilm: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
@@ -157,7 +161,6 @@ Main.propTypes = {
   loadPromoErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
   isPromoLoading: PropTypes.bool,
-  isAuthorized: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string
@@ -166,6 +169,8 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
   films: getFilmsByGenre(state),
   promoFilm: getPromoFilm(state),
   loadFilmsErr: getFilmsErrorMessage(state),

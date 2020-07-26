@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
 import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {AuthorizationStatus} from '../../consts.js';
 // import {Operation as AppStateOperation} from '../../reducer/app-state/app-state.js';
 
 import {
@@ -82,13 +84,14 @@ const FilmDetails = (props) => {
     filmReviews,
     loadFilmsErr,
     isFilmsLoading,
-    isAuthorized,
+    authorizationStatus,
     userData,
     changeFavoriteStatus
   } = props;
 
   const filmData = (films.find((film) => film.id === selectedFilmId));
   const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <>
@@ -214,7 +217,7 @@ FilmDetails.propTypes = {
   selectedFilm: PropTypes.object,
   loadFilmsErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
-  isAuthorized: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   userData: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string
@@ -223,6 +226,8 @@ FilmDetails.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
   selectedFilmId: getSelectedFilmId(state),
   selectedFilm: getSelectedFilm(state),
   tabs: getMovieNavTabs(state),
