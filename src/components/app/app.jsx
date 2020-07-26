@@ -52,14 +52,6 @@ const App = (props) => {
             );
           }}
         />
-        <Route
-          exact path={AppRoute.ADD_REVIEW}
-          render={() => {
-            return (
-              <AddReview />
-            );
-          }}
-        />
         <Route exact path={`/player/:id`}
           render = {(properties) => (
             <FullScreenVideoPlayer

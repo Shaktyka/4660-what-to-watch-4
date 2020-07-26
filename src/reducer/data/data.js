@@ -40,7 +40,8 @@ const Endpoint = {
   FILMS: `/films`,
   PROMO_FILM: `/films/promo`,
   REVIEWS: `/comments/`,
-  FAVORITE: `/favorite`
+  FAVORITE: `/favorite`,
+  COMMENTS: `/comments`
 };
 
 const ActionCreator = {
@@ -311,7 +312,7 @@ const Operation = {
   addReview: (id) => (dispatch, getState, api) => {
     dispatch(ActionCreator.setReviewPosting(true));
 
-    return api.post(`${Endpoint.FILMS}/${id}review`)
+    return api.post(`${Endpoint.COMMENTS}/${id}`)
       .then((res) => {
         dispatch(ActionCreator.setReviewPosting(false));
         console.log(res);
