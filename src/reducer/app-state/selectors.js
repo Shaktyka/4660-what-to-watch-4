@@ -26,11 +26,16 @@ const getSelectedFilm = (state) => {
   return state[NAME_SPACE].selectedFilm;
 };
 
+const getReviewedFilm = (state) => {
+  return state[NAME_SPACE].reviewedFilm;
+};
+
 export {
   getLoading,
   getGenre,
   getMovieNavTabs,
   getActiveTab,
   getSelectedFilmId,
-  getSelectedFilm
+  getSelectedFilm,
+  getReviewedFilm
 };

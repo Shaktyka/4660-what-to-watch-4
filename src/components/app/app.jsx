@@ -5,6 +5,9 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {
+  getFilmsByGenre
+} from '../../reducer/data/selectors.js';
 import {AuthorizationStatus, AppRoute} from '../../consts.js';
 
 import Main from '../main/main.jsx';
@@ -16,7 +19,7 @@ import AddReview from '../add-review/add-review.jsx';
 import NotFound from '../not-found/not-found.jsx';
 
 const App = (props) => {
-  const {authorizationStatus, userData, setSelectedFilmId} = props;
+  const {authorizationStatus, userData, setSelectedFilmId, setReviewedFilm, films} = props;
   const isNoAuthorization = authorizationStatus === AuthorizationStatus.NO_AUTH;
 
   return (
@@ -61,11 +64,17 @@ const App = (props) => {
           )}
         />
         <Route exact path={`/films/:id/review`}
-          render = {(properties) => (
-            <AddReview
-              {...properties}
-            />
-          )}
+          render = {(properties) => {
+            const id = properties.match.params.id;
+            const filmData = films.find((film) => film.id === +id);
+            setReviewedFilm(filmData);
+            return (
+              <AddReview
+                {...properties}
+                filmId={id}
+              />
+            );
+          }}
         />
         <Route
           render={() => (
@@ -80,17 +89,22 @@ const App = (props) => {
 App.propTypes = {
   authorizationStatus: PropTypes.string,
   userData: PropTypes.object,
-  setSelectedFilmId: PropTypes.func
+  setSelectedFilmId: PropTypes.func,
+  setReviewedFilm: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
+  films: getFilmsByGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setSelectedFilmId(id) {
     dispatch(ActionCreator.setSelectedFilmId(id));
+  },
+  setReviewedFilm(data) {
+    dispatch(ActionCreator.setReviewedFilm(data));
   }
 });
 

@@ -12,7 +12,8 @@ const initialState = {
   selectedFilmId: null,
   selectedFilm: {},
   movieNavTabs: MOVIE_NAV_TABS,
-  activeMovieNavTab: MOVIE_NAV_TABS[0]
+  activeMovieNavTab: MOVIE_NAV_TABS[0],
+  reviewedFilm: {}
 };
 
 const Endpoint = {
@@ -28,6 +29,7 @@ const ActionType = {
   SORT_BY_GENRE: `SORT_BY_GENRE`,
   SET_SELECTED_FILM_ID: `SET_SELECTED_FILM_ID`,
   SET_SELECTED_FILM: `SET_SELECTED_FILM`,
+  SET_REVIEWED_FILM: `SET_REVIEWED_FILM`,
 };
 
 const ActionCreator = {
@@ -66,7 +68,16 @@ const ActionCreator = {
         payload: data
       }
     );
-  }
+  },
+
+  setReviewedFilm: (data) => {
+    return (
+      {
+        type: ActionType.SET_REVIEWED_FILM,
+        payload: data
+      }
+    );
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -89,6 +100,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_MOVIE_NAV_TAB:
       return extend(state, {
         activeMovieNavTab: action.payload
+      });
+
+    case ActionType.SET_REVIEWED_FILM:
+      return extend(state, {
+        reviewedFilm: action.payload
       });
   }
 

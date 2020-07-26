@@ -310,9 +310,10 @@ const Operation = {
   },
 
   addReview: (filmId, reviewData) => (dispatch, getState, api) => {
+    // как тут тело запроса отправить?
     dispatch(ActionCreator.setReviewPosting(true));
 
-    return api.post(`${Endpoint.COMMENTS}/${id}`)
+    return api.post(`${Endpoint.COMMENTS}/${filmId}`)
       .then((res) => {
         dispatch(ActionCreator.setReviewPosting(false));
         console.log(res);
