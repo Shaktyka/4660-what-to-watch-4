@@ -33,6 +33,10 @@ const getIsReviewsLoading = (state) => {
   return state[NAME_SPACE].isReviewsLoading;
 };
 
+const getIsReviewPosting = (state) => {
+  return state[NAME_SPACE].isReviewPosting;
+};
+
 const getFilmsErrorMessage = (state) => {
   return state[NAME_SPACE].loadFilmsErr;
 };
@@ -43,6 +47,14 @@ const getPromoErrorMessage = (state) => {
 
 const getReviewsErrorMessage = (state) => {
   return state[NAME_SPACE].loadReviewsErr;
+};
+
+const getReviewErrorMessage = (state) => {
+  return state[NAME_SPACE].postingReviewErr;
+};
+
+const getFavoritesFilms = (state) => {
+  return state[NAME_SPACE].favoritesFilms;
 };
 
 const getFilmsByGenre = createSelector(
@@ -67,5 +79,8 @@ export {
   getReviewsErrorMessage,
   getIsFilmsLoading,
   getIsPromoLoading,
-  getIsReviewsLoading
+  getIsReviewsLoading,
+  getFavoritesFilms,
+  getIsReviewPosting,
+  getReviewErrorMessage
 };

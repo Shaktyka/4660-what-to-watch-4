@@ -40,7 +40,7 @@ const withVideo = (Component) => {
     }
 
     render() {
-      const {src, poster} = this.props;
+      const {poster} = this.props;
 
       return (
         <Component
@@ -53,9 +53,7 @@ const withVideo = (Component) => {
             poster={poster}
             ref={this._videoRef}
           >
-            Sorry, your browser doesn&apos;t support embedded video,
-            but don&apos;t worry, you can <a href={src}>download it</a>
-            and watch it with your favorite video player!
+            Sorry, your browser doesn&apos;t support embedded video
           </video>
         </Component>
       );

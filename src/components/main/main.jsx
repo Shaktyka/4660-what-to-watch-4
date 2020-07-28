@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 
 import {
   getPromoFilm,
@@ -18,26 +17,34 @@ import withShowMore from '../../hocs/with-show-more/with-show-more.js';
 
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
-
+import PageHeader from '../page-header/page-header.jsx';
+import PageFooter from '../page-footer/page-footer.jsx';
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/error-message.jsx';
-
-import {BASE_URL} from '../../consts.js';
+import UserBlock from '../user-block/user-block.jsx';
+import {Link} from 'react-router-dom';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {AuthorizationStatus} from '../../consts.js';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {
-    films, promoFilm,
-    loadFilmsErr, loadPromoErr,
-    isFilmsLoading, isPromoLoading,
-    isAuthorized,
-    userData
+    films,
+    promoFilm,
+    loadFilmsErr,
+    loadPromoErr,
+    isFilmsLoading,
+    isPromoLoading,
+    userData,
+    changeFavoriteStatus,
+    authorizationStatus
   } = props;
 
-  const {title, genre, year, bgColor, cover, poster} = promoFilm;
-  const {avatar_url: avatarUrl, name} = userData;
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+  const {id, title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
 
   return (
     <>
@@ -49,30 +56,11 @@ const Main = (props) => {
           <img src={cover} alt={title} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <Link to="/" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-          <div className="user-block">
-            {
-              isAuthorized
-                ?
-                <Link
-                  to="/mylist"
-                  className="user-block__avatar"
-                  style={{display: `block`}}
-                >
-                  <img src={`${BASE_URL}${avatarUrl}`} alt={`${name}'s avatar`} width="63" height="63" />
-                </Link>
-                :
-                <Link to="/login" className="user-block__link">Sign in</Link>
-            }
-          </div>
-        </header>
+
+        <PageHeader uniqueClass={`movie-card__head`}>
+          <UserBlock isAuthorized={isAuthorized} userData={userData} />
+        </PageHeader>
+
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
@@ -91,7 +79,8 @@ const Main = (props) => {
                     <span className="movie-card__year">{year}</span>
                   </p>
                   <div className="movie-card__buttons">
-                    <button
+                    <Link
+                      to={`/player/${id}`}
                       className="btn btn--play movie-card__button"
                       type="button"
                       onClick={() => {}}
@@ -100,13 +89,34 @@ const Main = (props) => {
                         <use xlinkHref="#play-s"></use>
                       </svg>
                       <span>Play</span>
-                    </button>
-                    <button className="btn btn--list movie-card__button" type="button">
-                      <svg viewBox="0 0 19 20" width="19" height="20">
-                        <use xlinkHref="#add"></use>
-                      </svg>
-                      <span>My list</span>
-                    </button>
+                    </Link>
+                    {
+                      isAuthorized
+                        ?
+                        (<button
+                          className="btn btn--list movie-card__button"
+                          type="button"
+                          onClick={() => {
+                            const status = !isFavorite ? 1 : 0;
+                            return changeFavoriteStatus(id, status);
+                          }}
+                        >
+                          {
+                            isFavorite
+                              ?
+                              <svg viewBox="0 0 18 14" width="18" height="14">
+                                <use xlinkHref="#in-list"></use>
+                              </svg>
+                              :
+                              <svg viewBox="0 0 19 20" width="19" height="20">
+                                <use xlinkHref="#add"></use>
+                              </svg>
+                          }
+                          <span>My list</span>
+                        </button>)
+                        :
+                        null
+                    }
                   </div>
                 </>
               }
@@ -128,42 +138,39 @@ const Main = (props) => {
             />
           }
         </section>
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <PageFooter />
       </div>
     </>
   );
 };
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string,
   promoFilm: PropTypes.shape({
+    id: PropTypes.number,
     title: PropTypes.string,
     genre: PropTypes.string,
     year: PropTypes.number,
     bgColor: PropTypes.string,
     cover: PropTypes.string,
-    poster: PropTypes.string
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool
   }).isRequired,
   films: PropTypes.array.isRequired,
   loadFilmsErr: PropTypes.string,
   loadPromoErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
   isPromoLoading: PropTypes.bool,
-  isAuthorized: PropTypes.bool.isRequired,
-  userData: PropTypes.object
+  userData: PropTypes.shape({
+    avatar: PropTypes.string,
+    name: PropTypes.string
+  }),
+  changeFavoriteStatus: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
   films: getFilmsByGenre(state),
   promoFilm: getPromoFilm(state),
   loadFilmsErr: getFilmsErrorMessage(state),
@@ -172,5 +179,12 @@ const mapStateToProps = (state) => ({
   isPromoLoading: getIsPromoLoading(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  changeFavoriteStatus(id, status) {
+    dispatch(DataOperation.changeFavoriteStatus(id, status));
+    dispatch(DataOperation.loadPromoFilm());
+  }
+});
+
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

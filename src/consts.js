@@ -19,7 +19,9 @@ const AuthorizationStatus = {
 
 const AppRoute = {
   ROOT: `/`,
-  LOGIN: `/login`
+  LOGIN: `/login`,
+  MYLIST: `/mylist`,
+  ADD_REVIEW: `/add-review`
 };
 
 export {

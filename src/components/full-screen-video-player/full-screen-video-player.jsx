@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FullScreenVideoPlayer = (props) => {
-  const {currentProgress, onPlayBtnClick, onFullScreenClick} = props;
+  const {
+    currentProgress,
+    onPlayClick,
+    onExitClick,
+    onFullScreenClick
+  } = props;
+
+  console.log(props);
 
   return (
     <div className="player">
@@ -20,12 +27,16 @@ const FullScreenVideoPlayer = (props) => {
         </svg>
       </div>
 
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video
+        src="#"
+        className="player__video"
+        poster="img/player-poster.jpg"
+      ></video>
 
       <button
         type="button"
         className="player__exit"
-        onClick={() => {}}
+        onClick={() => onExitClick()}
       >
         Exit
       </button>
@@ -51,7 +62,7 @@ const FullScreenVideoPlayer = (props) => {
           <button
             type="button"
             className="player__play"
-            onClick={() => onPlayBtnClick()}
+            onClick={() => onPlayClick()}
           >
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref="#play-s"></use>
@@ -79,7 +90,8 @@ const FullScreenVideoPlayer = (props) => {
 FullScreenVideoPlayer.propTypes = {
   isPlaying: PropTypes.bool,
   currentProgress: PropTypes.string,
-  onPlayBtnClick: PropTypes.func,
+  onPlayClick: PropTypes.func,
+  onExitClick: PropTypes.func,
   onFullScreenClick: PropTypes.func,
   children: PropTypes.node
 };

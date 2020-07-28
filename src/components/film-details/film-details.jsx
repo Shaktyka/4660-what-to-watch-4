@@ -2,19 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {getFilmsByGenre, getReviews} from '../../reducer/data/selectors.js';
 
-import {getMovieNavTabs, getActiveTab, getSelectedFilmId} from '../../reducer/app-state/selectors.js';
-import {getFilmsErrorMessage, getIsFilmsLoading} from '../../reducer/data/selectors.js';
+import {
+  getFilmsByGenre,
+  getReviews,
+  getFilmsErrorMessage,
+  getIsFilmsLoading
+} from '../../reducer/data/selectors.js';
+
+import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {AuthorizationStatus} from '../../consts.js';
+
+import {
+  getMovieNavTabs,
+  getActiveTab,
+  getSelectedFilmId,
+  getSelectedFilm
+} from '../../reducer/app-state/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import SimilarMovies from '../similar-movies/similar-movies.jsx';
-import {TabName, BASE_URL} from '../../consts.js';
+import PageHeader from '../page-header/page-header.jsx';
+import UserBlock from '../user-block/user-block.jsx';
+import PageFooter from '../page-footer/page-footer.jsx';
+import {Link} from 'react-router-dom';
+import {TabName} from '../../consts.js';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
@@ -72,13 +90,14 @@ const FilmDetails = (props) => {
     filmReviews,
     loadFilmsErr,
     isFilmsLoading,
-    isAuthorized,
-    userData
+    authorizationStatus,
+    userData,
+    changeFavoriteStatus
   } = props;
 
-  const filmData = films.find((film) => film.id === selectedFilmId);
-  const {id, title, genre, year, poster, cover, bgColor} = filmData;
-  const {avatar_url: avatarUrl, name} = userData;
+  const filmData = (films.find((film) => film.id === selectedFilmId));
+  const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <>
@@ -90,31 +109,9 @@ const FilmDetails = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              {
-                isAuthorized
-                  ?
-                  <Link
-                    to="/mylist"
-                    className="user-block__avatar"
-                    style={{display: `block`}}
-                  >
-                    <img src={`${BASE_URL}${avatarUrl}`} alt={`${name}'s avatar`} width="63" height="63" />
-                  </Link>
-                  :
-                  <Link to="/login" className="user-block__link">Sign in</Link>
-              }
-            </div>
-          </header>
+          <PageHeader uniqueClass={`movie-card__head`}>
+            <UserBlock isAuthorized={isAuthorized} userData={userData} />
+          </PageHeader>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -125,7 +122,8 @@ const FilmDetails = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button
+                <Link
+                  to={`/player/${id}`}
                   className="btn btn--play movie-card__button"
                   type="button"
                   onClick={() => {}}
@@ -134,14 +132,42 @@ const FilmDetails = (props) => {
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <Link to="/add-review" className="btn movie-card__button">Add review</Link>
+                </Link>
+                {
+                  isAuthorized
+                    ?
+                    <>
+                      <button
+                        className="btn btn--list movie-card__button"
+                        type="button"
+                        onClick={() => {
+                          const status = !isFavorite ? 1 : 0;
+                          return changeFavoriteStatus(id, status);
+                        }}
+                      >
+                        {
+                          isFavorite
+                            ?
+                            <svg viewBox="0 0 18 14" width="18" height="14">
+                              <use xlinkHref="#in-list"></use>
+                            </svg>
+                            :
+                            <svg viewBox="0 0 19 20" width="19" height="20">
+                              <use xlinkHref="#add"></use>
+                            </svg>
+                        }
+                        <span>My list</span>
+                      </button>
+                      <Link
+                        to={`/films/${id}/review`}
+                        className="btn movie-card__button"
+                      >
+                        Add review
+                      </Link>
+                    </>
+                    :
+                    null
+                }
               </div>
             </div>
           </div>
@@ -184,20 +210,7 @@ const FilmDetails = (props) => {
         }
 
       </section>
-
-      <footer className="page-footer">
-        <div className="logo">
-          <Link to="/" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <PageFooter />
     </div>
     </>
   );
@@ -209,14 +222,22 @@ FilmDetails.propTypes = {
   filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired,
+  selectedFilm: PropTypes.object,
   loadFilmsErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool,
-  isAuthorized: PropTypes.bool.isRequired,
-  userData: PropTypes.object
+  authorizationStatus: PropTypes.string.isRequired,
+  userData: PropTypes.shape({
+    avatar: PropTypes.string,
+    name: PropTypes.string
+  }),
+  changeFavoriteStatus: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
   selectedFilmId: getSelectedFilmId(state),
+  selectedFilm: getSelectedFilm(state),
   tabs: getMovieNavTabs(state),
   activeTab: getActiveTab(state),
   films: getFilmsByGenre(state),
@@ -225,5 +246,16 @@ const mapStateToProps = (state) => ({
   loadFilmsErr: getFilmsErrorMessage(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  changeFavoriteStatus(id, status) {
+    dispatch(DataOperation.changeFavoriteStatus(id, status));
+    // dispatch(AppStateOperation.getFavoriteFilm(id, status)); // лучше это, но не работает пока
+    dispatch(DataOperation.loadFilms());
+  },
+  loadFilms() {
+    DataOperation.loadFilms();
+  }
+});
+
 export {FilmDetails};
-export default connect(mapStateToProps)(FilmDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);

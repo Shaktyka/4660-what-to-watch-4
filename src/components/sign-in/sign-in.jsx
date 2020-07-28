@@ -2,9 +2,10 @@ import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import {getAuthError} from '../../reducer/user/selectors.js';
+import PageHeader from '../page-header/page-header.jsx';
+import PageFooter from '../page-footer/page-footer.jsx';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -28,22 +29,21 @@ class SignIn extends PureComponent {
     onSubmit(authData);
   }
 
+  _getPageTitle() {
+    return (
+      <h1 className="page-title user-page__title">Sign in</h1>
+    );
+  }
+
   render() {
     const {authError} = this.props;
+    const pageTitle = this._getPageTitle();
 
     return (
       <div className="user-page">
-        <header className="page-header user-page__head">
-          <div className="logo">
-            <Link to="/" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <h1 className="page-title user-page__title">Sign in</h1>
-        </header>
+        <PageHeader uniqueClass={`user-page__head`}>
+          {pageTitle}
+        </PageHeader>
 
         <div className="sign-in user-page__content">
           <form
@@ -102,19 +102,7 @@ class SignIn extends PureComponent {
           </form>
         </div>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <PageFooter />
       </div>
     );
   }

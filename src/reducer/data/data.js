@@ -4,6 +4,7 @@ import {DEFAULT_GENRE, MAX_GENRES_LENGTH} from '../../consts.js';
 
 const initialState = {
   films: [],
+  favoritesFilms: [],
   promoFilm: {},
   genres: [],
   filmReviews: [],
@@ -12,7 +13,9 @@ const initialState = {
   isReviewsLoading: false,
   loadFilmsErr: null,
   loadPromoErr: null,
-  loadReviewsErr: null
+  loadReviewsErr: null,
+  isReviewPosting: false,
+  postingReviewErr: null,
 };
 
 const ActionType = {
@@ -25,13 +28,20 @@ const ActionType = {
   SET_REVIEWS_LOADING: `SET_REVIEWS_LOADING`,
   SET_FILMS_ERR_MSG: `SET_FILMS_ERR_MSG`,
   SET_PROMO_ERR_MSG: `SET_PROMO_ERR_MSG`,
-  SET_REVIEWS_ERR_MSG: `SET_REVIEWS_ERR_MSG`
+  SET_REVIEWS_ERR_MSG: `SET_REVIEWS_ERR_MSG`,
+  ADD_FAVORITE_FILM: `ADD_FAVORITE_FILM`,
+  LOAD_FAVORITES_FILMS: `LOAD_FAVORITES_FILMS`,
+  REMOVE_FAVORITE_FILM: `REMOVE_FAVORITE_FILM`,
+  SET_REVIEW_POSTING: `SET_REVIEW_POSTING`,
+  SET_REVIEW_ERR_MSG: `SET_REVIEW_ERR_MSG`,
 };
 
 const Endpoint = {
   FILMS: `/films`,
   PROMO_FILM: `/films/promo`,
-  REVIEWS: `/comments/`
+  REVIEWS: `/comments/`,
+  FAVORITE: `/favorite`,
+  COMMENTS: `/comments`
 };
 
 const ActionCreator = {
@@ -91,6 +101,15 @@ const ActionCreator = {
     );
   },
 
+  setReviewPosting: (isReviewPosting) => {
+    return (
+      {
+        type: ActionType.SET_REVIEW_POSTING,
+        payload: isReviewPosting
+      }
+    );
+  },
+
   setFilmsErrMsg: (message) => {
     return (
       {
@@ -116,6 +135,36 @@ const ActionCreator = {
         payload: message
       }
     );
+  },
+
+  setReviewErrMsg: (message) => {
+    return (
+      {
+        type: ActionType.SET_REVIEW_ERR_MSG,
+        payload: message
+      }
+    );
+  },
+
+  addFavoriteFilm: (filmId) => {
+    return {
+      type: ActionType.ADD_FAVORITE_FILM,
+      payload: filmId
+    };
+  },
+
+  loadFavoritesFilms: (films) => {
+    return {
+      type: ActionType.LOAD_FAVORITES_FILMS,
+      payload: films
+    };
+  },
+
+  removeFavoriteFilm: (filmId) => {
+    return {
+      type: ActionType.REMOVE_FAVORITE_FILM,
+      payload: filmId
+    };
   },
 };
 
@@ -157,6 +206,11 @@ const reducer = (state = initialState, action) => {
         isReviewsLoading: action.payload
       });
 
+    case ActionType.SET_REVIEW_POSTING:
+      return extend(state, {
+        isReviewPosting: action.payload
+      });
+
     case ActionType.SET_FILMS_ERR_MSG:
       return extend(state, {
         loadFilmsErr: action.payload
@@ -170,6 +224,21 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_REVIEWS_ERR_MSG:
       return extend(state, {
         loadReviewsErr: action.payload
+      });
+
+    case ActionType.ADD_FAVORITE_FILM:
+      return extend(state, {
+        favoritesFilms: [...state.favoritesFilms, action.payload]
+      });
+
+    case ActionType.LOAD_FAVORITES_FILMS:
+      return extend(state, {
+        favoritesFilms: action.payload
+      });
+
+    case ActionType.REMOVE_FAVORITE_FILM:
+      return extend(state, {
+        favoritesFilms: [...state.favoritesFilms].filter((film) => film.id !== action.payload.id)
       });
   }
 
@@ -237,6 +306,48 @@ const Operation = {
         } else {
           dispatch(ActionCreator.setReviewsErrMsg(null));
         }
+      });
+  },
+
+  addReview: (filmId, reviewData) => (dispatch, getState, api) => {
+    // как тут тело запроса отправить?
+    dispatch(ActionCreator.setReviewPosting(true));
+
+    return api.post(`${Endpoint.COMMENTS}/${filmId}`)
+      .then((res) => {
+        dispatch(ActionCreator.setReviewPosting(false));
+        console.log(res);
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.setReviewPosting(false));
+        if (err.response.status !== 200) {
+          dispatch(ActionCreator.setReviewErrMsg(`${err.response.status} ${err.response.data.error}`));
+        } else {
+          dispatch(ActionCreator.setReviewErrMsg(null));
+        }
+        throw err;
+      });
+  },
+
+  loadFavoriteFilms: () => (dispatch, getState, api) => {
+    return api.get(Endpoint.FAVORITE)
+      .then((res) => {
+        dispatch(ActionCreator.loadFavoritesFilms(
+            res.data.map((film) => getAdaptedFilm(film))
+        ));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
+
+  changeFavoriteStatus: (id, status) => (dispatch, getState, api) => {
+    return api.post(`${Endpoint.FAVORITE}/${id}/${status}`)
+      .then(() => {
+        //
+      })
+      .catch((err) => {
+        throw err;
       });
   }
 };

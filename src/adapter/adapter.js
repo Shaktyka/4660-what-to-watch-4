@@ -31,4 +31,13 @@ const getAdaptedReview = (data) => {
   });
 };
 
-export {getAdaptedFilm, getAdaptedReview};
+const getAdaptedUserData = (data) => {
+  return ({
+    id: data.id,
+    name: data.name,
+    email: data.email,
+    avatar: data.avatar_url
+  });
+};
+
+export {getAdaptedFilm, getAdaptedReview, getAdaptedUserData};

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {Link} from 'react-router-dom';
 
 import withVideo from '../../hocs/with-video/with-video.js';
 import VideoPlayer from '../video-player/video-player.jsx';
@@ -15,30 +16,31 @@ const Card = (props) => {
   const {id, title, preview, source} = film;
 
   return (
-    <article
-      id={id}
-      className="small-movie-card catalog__movies-card"
-      onClick={() => onCardClick(id)}
-      onMouseEnter={() => onMouseEnterCard(id)}
-      onMouseLeave={() => onMouseLeaveCard()}
-    >
-      <div
-        className="small-movie-card__image"
+    <Link to={`/films/${id}`} className="small-movie-card catalog__movies-card">
+      <article
+        id={id}
+        onClick={() => onCardClick(id)}
+        onMouseEnter={() => onMouseEnterCard(id)}
+        onMouseLeave={() => onMouseLeaveCard()}
       >
-        <Video
-          src={source}
-          poster={preview}
-          isPlaying={isPlaying}
-          muted
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-        onClick={(evt) => evt.preventDefault()}
-      >
-        <a href="/movie-page.html" className="small-movie-card__link">{title}</a>
-      </h3>
-    </article>
+        <div
+          className="small-movie-card__image"
+        >
+          <Video
+            src={source}
+            poster={preview}
+            isPlaying={isPlaying}
+            muted
+          />
+        </div>
+        <h3
+          className="small-movie-card__title"
+          style={{color: `#d9ca74`}}
+        >
+          {title}
+        </h3>
+      </article>
+    </Link>
   );
 };
 
@@ -57,7 +59,7 @@ Card.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onCardClick(id) {
-    dispatch(ActionCreator.setSelectedFilm(id));
+    dispatch(ActionCreator.setSelectedFilmId(id));
     dispatch(DataOperation.loadReviews(id));
   }
 });

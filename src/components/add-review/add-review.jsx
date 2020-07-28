@@ -1,85 +1,171 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, {PureComponent, createRef} from 'react';
 
-const AddReview = () => {
+import PropTypes from 'prop-types';
 
-  return (
-    <section className="movie-card movie-card--full">
-      <div className="movie-card__header">
-        <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+import {connect} from 'react-redux';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getIsReviewPosting, getReviewErrorMessage} from '../../reducer/data/selectors.js';
+import {getReviewedFilm} from '../../reducer/app-state/selectors.js';
+import {AuthorizationStatus} from '../../consts.js';
+
+import PageHeader from '../page-header/page-header.jsx';
+import UserBlock from '../user-block/user-block.jsx';
+import {Link} from 'react-router-dom';
+
+class AddReview extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.commentRef = createRef();
+    this.formRef = createRef();
+
+    this._handleSubmit = this._handleSubmit.bind(this);
+  }
+
+  _handleSubmit(evt) {
+    const {submitReview} = this.props;
+    evt.preventDefault();
+
+    const commentData = {
+      comment: this.commentRef.current.value,
+      rating: this.formRef.current.rating.value,
+    };
+
+    submitReview(commentData);
+  }
+
+  render() {
+    const {
+      authorizationStatus,
+      userData,
+      isReviewPosting,
+      postingReviewErr,
+      filmId,
+      reviewedFilm
+    } = this.props;
+
+    const id = 1; // mock
+
+    return (
+      <section className="movie-card movie-card--full">
+        <div className="movie-card__header">
+          <div className="movie-card__bg">
+            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          </div>
+
+          <h1 className="visually-hidden">WTW</h1>
+
+          <PageHeader>
+            {
+              <nav className="breadcrumbs">
+                <ul className="breadcrumbs__list">
+                  <li className="breadcrumbs__item">
+                    <Link to={`/films/${id}`} className="breadcrumbs__link">
+                      Заголовок фильма
+                    </Link>
+                  </li>
+                  <li className="breadcrumbs__item">
+                    <a className="breadcrumbs__link">Add review</a>
+                  </li>
+                </ul>
+              </nav>
+            }
+            <UserBlock
+              isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
+              userData={userData}
+            />
+          </PageHeader>
+
+          <div className="movie-card__poster movie-card__poster--small">
+            <img
+              src="img/the-grand-budapest-hotel-poster.jpg"
+              alt="The Grand Budapest Hotel poster"
+              width="218"
+              height="327"
+            />
+          </div>
         </div>
 
-        <h1 className="visually-hidden">WTW</h1>
+        <div className="add-review">
+          <form
+            action="#"
+            method="post"
+            className="add-review__form"
+            onSubmit={this._handleSubmit}
+            ref={this.formRef}
+          >
+            <div className="rating">
+              <div className="rating__stars">
+                <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
+                <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
-        <header className="page-header">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
+                <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
+                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked />
+                <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
+                <label className="rating__label" htmlFor="star-4">Rating 4</label>
+
+                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
+                <label className="rating__label" htmlFor="star-5">Rating 5</label>
+              </div>
             </div>
-          </div>
-        </header>
 
-        <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <div className="add-review__text">
+              <textarea
+                ref={this.commentRef}
+                className="add-review__textarea"
+                name="review-text"
+                id="review-text"
+                placeholder="Review text"
+                minLength={50}
+                maxLength={400}
+                required
+              ></textarea>
+              <div className="add-review__submit">
+                <button
+                  className="add-review__btn"
+                  type="submit"
+                >Post
+                </button>
+              </div>
+
+            </div>
+          </form>
         </div>
-      </div>
 
-      <div className="add-review">
-        <form action="#" className="add-review__form">
-          <div className="rating">
-            <div className="rating__stars">
-              <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
-              <label className="rating__label" htmlFor="star-1">Rating 1</label>
+      </section>
+    );
+  }
+}
 
-              <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
-              <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-              <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked />
-              <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-              <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
-              <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-              <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
-              <label className="rating__label" htmlFor="star-5">Rating 5</label>
-            </div>
-          </div>
-
-          <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
-            <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
-            </div>
-
-          </div>
-        </form>
-      </div>
-
-    </section>
-  );
+AddReview.propTypes = {
+  authorizationStatus: PropTypes.string,
+  userData: PropTypes.shape({
+    avatar: PropTypes.string,
+    name: PropTypes.string
+  }),
+  submitReview: PropTypes.func,
+  isReviewPosting: PropTypes.bool,
+  postingReviewErr: PropTypes.string
 };
 
-// AddReview.propTypes = {
-// };
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
+  isReviewPosting: getIsReviewPosting(state),
+  postingReviewErr: getReviewErrorMessage(state),
+  reviewedFilm: getReviewedFilm(state),
+});
 
-export default AddReview;
+const mapDispatchToProps = (dispatch) => ({
+  submitReview(filmId, reviewData) {
+    dispatch(DataOperation.addReview(filmId, reviewData));
+  }
+});
+
+export {AddReview};
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
