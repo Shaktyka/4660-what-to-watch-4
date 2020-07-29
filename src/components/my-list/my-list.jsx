@@ -1,6 +1,10 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
+
+import {connect} from 'react-redux';
+import {getUserData} from '../../reducer/user/selectors.js';
+
 import PageHeader from '../page-header/page-header.jsx';
 import UserBlock from '../user-block/user-block.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
@@ -50,4 +54,9 @@ MyList.propTypes = {
   userData: PropTypes.object
 };
 
-export default MyList;
+const mapStateToProps = (state) => ({
+  userData: getUserData(state)
+});
+
+export {MyList};
+export default connect(mapStateToProps)(MyList);

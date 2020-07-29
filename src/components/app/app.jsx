@@ -49,9 +49,7 @@ const App = (props) => {
           exact path={AppRoute.MYLIST}
           render={() => {
             return (
-              <MyList
-                userData={userData}
-              />
+              <MyList />
             );
           }}
         />
