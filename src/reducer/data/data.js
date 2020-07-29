@@ -16,6 +16,8 @@ const initialState = {
   loadReviewsErr: null,
   isReviewPosting: false,
   postingReviewErr: null,
+  isFavoritesFilmsLoading: false,
+  loadFavoritesFilmsErr: null
 };
 
 const ActionType = {
@@ -34,6 +36,8 @@ const ActionType = {
   REMOVE_FAVORITE_FILM: `REMOVE_FAVORITE_FILM`,
   SET_REVIEW_POSTING: `SET_REVIEW_POSTING`,
   SET_REVIEW_ERR_MSG: `SET_REVIEW_ERR_MSG`,
+  SET_FAVORITES_FILMS_LOADING: `SET_FAVORITES_FILMS_LOADING`,
+  SET_FAVORITES_FILMS_ERR_MSG: `SET_FAVORITES_FILMS_ERR_MSG`
 };
 
 const Endpoint = {
@@ -83,6 +87,15 @@ const ActionCreator = {
     );
   },
 
+  setFavoritesFilmsLoading: (isFavoritesFilmsLoading) => {
+    return (
+      {
+        type: ActionType.SET_FAVORITES_FILMS_LOADING,
+        payload: isFavoritesFilmsLoading
+      }
+    );
+  },
+
   setPromoLoading: (isPromoLoading) => {
     return (
       {
@@ -114,6 +127,15 @@ const ActionCreator = {
     return (
       {
         type: ActionType.SET_FILMS_ERR_MSG,
+        payload: message
+      }
+    );
+  },
+
+  setFavoritesFilmsErrMsg: (message) => {
+    return (
+      {
+        type: ActionType.SET_FAVORITES_FILMS_ERR_MSG,
         payload: message
       }
     );
@@ -216,6 +238,11 @@ const reducer = (state = initialState, action) => {
         loadFilmsErr: action.payload
       });
 
+    case ActionType.SET_FAVORITES_FILMS_ERR_MSG:
+      return extend(state, {
+        loadFavoritesFilmsErr: action.payload
+      });
+
     case ActionType.SET_PROMO_ERR_MSG:
       return extend(state, {
         loadPromoErr: action.payload
@@ -234,6 +261,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FAVORITES_FILMS:
       return extend(state, {
         favoritesFilms: action.payload
+      });
+
+    case ActionType.SET_FAVORITES_FILMS_LOADING:
+      return extend(state, {
+        isFavoritesFilmsLoading: action.payload
       });
 
     case ActionType.REMOVE_FAVORITE_FILM:
@@ -269,6 +301,26 @@ const Operation = {
         } else {
           dispatch(ActionCreator.setFilmsErrMsg(null));
         }
+      });
+  },
+
+  loadFavoriteFilms: () => (dispatch, getState, api) => {
+    dispatch(ActionCreator.setFavoritesFilmsLoading(true));
+
+    return api.get(Endpoint.FAVORITE)
+      .then((res) => {
+        const adaptedFilms = res.data.map((film) => getAdaptedFilm(film));
+        dispatch(ActionCreator.loadFavoritesFilms(adaptedFilms));
+        dispatch(ActionCreator.setFavoritesFilmsLoading(false));
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.setFavoritesFilmsLoading(false));
+        if (err.response.status !== 200) {
+          dispatch(ActionCreator.setFavoritesFilmsErrMsg(`${err.response.status} ${err.response.data.error}`));
+        } else {
+          dispatch(ActionCreator.setFavoritesFilmsErrMsg(null));
+        }
+        throw err;
       });
   },
 
@@ -324,18 +376,6 @@ const Operation = {
         } else {
           dispatch(ActionCreator.setReviewErrMsg(null));
         }
-        throw err;
-      });
-  },
-
-  loadFavoriteFilms: () => (dispatch, getState, api) => {
-    return api.get(Endpoint.FAVORITE)
-      .then((res) => {
-        dispatch(ActionCreator.loadFavoritesFilms(
-            res.data.map((film) => getAdaptedFilm(film))
-        ));
-      })
-      .catch((err) => {
         throw err;
       });
   },

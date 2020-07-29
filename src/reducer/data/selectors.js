@@ -57,6 +57,14 @@ const getFavoritesFilms = (state) => {
   return state[NAME_SPACE].favoritesFilms;
 };
 
+const getIsFavoritesFilmsLoading = (state) => {
+  return state[NAME_SPACE].isFavoritesFilmsLoading;
+};
+
+const getLoadFavoritesFilmsErr = (state) => {
+  return state[NAME_SPACE].loadFavoritesFilmsErr;
+};
+
 const getFilmsByGenre = createSelector(
     getGenre,
     getFilms,
@@ -82,5 +90,7 @@ export {
   getIsReviewsLoading,
   getFavoritesFilms,
   getIsReviewPosting,
-  getReviewErrorMessage
+  getReviewErrorMessage,
+  getIsFavoritesFilmsLoading,
+  getLoadFavoritesFilmsErr
 };
