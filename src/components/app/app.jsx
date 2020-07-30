@@ -25,7 +25,8 @@ const App = (props) => {
     setReviewedFilm,
     films,
     loadFavoritesFilms,
-    loadFilms
+    loadFilms,
+    loadReviews
   } = props;
 
   const isNoAuthorization = authorizationStatus === AuthorizationStatus.NO_AUTH;
@@ -47,6 +48,7 @@ const App = (props) => {
           render = {(properties) => {
             const filmId = +properties.match.params.id;
             setSelectedFilmId(filmId);
+            loadReviews(filmId);
 
             if (!films) {
               loadFilms();
@@ -102,7 +104,8 @@ App.propTypes = {
   setReviewedFilm: PropTypes.func,
   loadFavoritesFilms: PropTypes.func,
   films: PropTypes.array,
-  loadFilms: PropTypes.func
+  loadFilms: PropTypes.func,
+  loadReviews: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -123,6 +126,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadFilms() {
     dispatch(DataOperation.loadFilms());
+  },
+  loadReviews(id) {
+    dispatch(DataOperation.loadReviews(id));
   }
 });
 

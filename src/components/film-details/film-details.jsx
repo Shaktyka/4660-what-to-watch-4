@@ -249,7 +249,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeFavoriteStatus(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
-    // dispatch(AppStateOperation.getFavoriteFilm(id, status)); // лучше это, но не работает пока
     dispatch(DataOperation.loadFilms());
   },
   loadFilms() {
