@@ -16,15 +16,16 @@ import FilmDetails from '../film-details/film-details.jsx';
 import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 import AddReview from '../add-review/add-review.jsx';
 import NotFound from '../not-found/not-found.jsx';
+import Loader from '../loader/loader.jsx';
 
 const App = (props) => {
   const {
     authorizationStatus,
-    userData,
     setSelectedFilmId,
     setReviewedFilm,
     films,
-    loadFavoritesFilms
+    loadFavoritesFilms,
+    loadFilms
   } = props;
 
   const isNoAuthorization = authorizationStatus === AuthorizationStatus.NO_AUTH;
@@ -44,12 +45,14 @@ const App = (props) => {
         />
         <Route exact path={`/films/:id`}
           render = {(properties) => {
-            setSelectedFilmId(+properties.match.params.id);
-            return (
-              <FilmDetails
-                {...properties}
-              />
-            );
+            const filmId = +properties.match.params.id;
+            setSelectedFilmId(filmId);
+
+            if (!films) {
+              loadFilms();
+            }
+
+            return films.length > 0 ? <FilmDetails /> : <Loader />;
           }}
         />
         <Route
@@ -97,7 +100,9 @@ App.propTypes = {
   userData: PropTypes.object,
   setSelectedFilmId: PropTypes.func,
   setReviewedFilm: PropTypes.func,
-  loadFavoritesFilms: PropTypes.func
+  loadFavoritesFilms: PropTypes.func,
+  films: PropTypes.array,
+  loadFilms: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -115,6 +120,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadFavoritesFilms() {
     dispatch(DataOperation.loadFavoriteFilms());
+  },
+  loadFilms() {
+    dispatch(DataOperation.loadFilms());
   }
 });
 

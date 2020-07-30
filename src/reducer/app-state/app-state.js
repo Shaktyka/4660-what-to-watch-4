@@ -122,7 +122,6 @@ const Operation = {
         throw err;
       });
   }
-
 };
 
 export {reducer, ActionType, ActionCreator, Operation};
