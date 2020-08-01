@@ -1,4 +1,4 @@
-import React, {createRef, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 const withFullscreenVideo = (Component) => {
@@ -106,7 +106,10 @@ const withFullscreenVideo = (Component) => {
     }
   }
 
-  WithFullscreenVideo.propTypes = {};
+  WithFullscreenVideo.propTypes = {
+    films: PropTypes.array.isRequired,
+    filmId: PropTypes.number
+  };
 
   return WithFullscreenVideo;
 
