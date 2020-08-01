@@ -71,12 +71,15 @@ const App = (props) => {
           )}
         /> */}
         <Route exact path={`/player/:id`}
-          render = {(properties) => (
-            <FullScreenVideoPlayer
-              {...properties}
-              filmId={properties.match.params.id}
-            />
-          )}
+          render = {(properties) => {
+            const filmId = +properties.match.params.id;
+            if (!films) {
+              loadFilms();
+            }
+            return films.length > 0
+              ? <FullScreenVideoPlayer {...properties} filmId={filmId} />
+              : <Loader />;
+          }}
         />
         <Route exact path={`/films/:id/review`}
           render = {(properties) => {

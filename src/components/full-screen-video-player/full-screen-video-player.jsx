@@ -6,10 +6,13 @@ const FullScreenVideoPlayer = (props) => {
     currentProgress,
     onPlayClick,
     onExitClick,
-    onFullScreenClick
+    onFullScreenClick,
+    filmId
   } = props;
 
-  console.log(props);
+  // const filmData = films.find((film) => film.id === filmId);
+  // const {} = filmData;
+  // console.log(filmData);
 
   return (
     <div className="player">
