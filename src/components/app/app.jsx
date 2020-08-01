@@ -17,6 +17,7 @@ import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video
 import AddReview from '../add-review/add-review.jsx';
 import NotFound from '../not-found/not-found.jsx';
 import Loader from '../loader/loader.jsx';
+import PrivateRouter from '../private-route/private-route.js';
 
 const App = (props) => {
   const {
@@ -37,6 +38,10 @@ const App = (props) => {
         <Route exact path={AppRoute.ROOT}>
           <Main />
         </Route>
+        <PrivateRouter
+          exact path={`/mylist`}
+          component={MyList}
+        />
         <Route
           exact path={AppRoute.LOGIN}
           render = {() => isNoAuthorization
@@ -57,15 +62,14 @@ const App = (props) => {
             return films.length > 0 ? <FilmDetails /> : <Loader />;
           }}
         />
-        <Route
+        {/* <Route
           exact path={AppRoute.MYLIST}
-          render={() => {
-            loadFavoritesFilms();
-            return (
-              <MyList />
-            );
-          }}
-        />
+          render={() => (
+            isNoAuthorization
+              ? <Redirect to={AppRoute.LOGIN} />
+              : <MyList />
+          )}
+        /> */}
         <Route exact path={`/player/:id`}
           render = {(properties) => (
             <FullScreenVideoPlayer
