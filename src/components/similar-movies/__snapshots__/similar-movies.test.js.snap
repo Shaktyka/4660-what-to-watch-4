@@ -4,79 +4,39 @@ exports[`SimilarMovies rendering SimilarMovies renders correctly 1`] = `
 <div
   className="catalog__movies-list"
 >
-  <article
+  <a
     className="small-movie-card catalog__movies-card"
-    id={1}
+    href="/films/1"
     onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <article
+      id={1}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
-      <video
-        height="175"
-        poster="/img/bohemian-rhapsody.jpg"
-        type="video/webm"
-        width="280"
+      <div
+        className="small-movie-card__image"
       >
-        Sorry, your browser doesn't support embedded video, but don't worry, you can 
-        <a
-          href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+        <video
+          height="175"
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
+          type="video/webm"
+          width="280"
         >
-          download it
-        </a>
-        and watch it with your favorite video player!
-      </video>
-    </div>
-    <h3
-      className="small-movie-card__title"
-      onClick={[Function]}
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
+          Sorry, your browser doesn't support embedded video
+        </video>
+      </div>
+      <h3
+        className="small-movie-card__title"
+        style={
+          Object {
+            "color": "#d9ca74",
+          }
+        }
       >
-        Bohemian Rhapsody
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    id={2}
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
-    >
-      <video
-        height="175"
-        poster="/img/dardjeeling-limited.jpg"
-        type="video/webm"
-        width="280"
-      >
-        Sorry, your browser doesn't support embedded video, but don't worry, you can 
-        <a
-          href="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-        >
-          download it
-        </a>
-        and watch it with your favorite video player!
-      </video>
-    </div>
-    <h3
-      className="small-movie-card__title"
-      onClick={[Function]}
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >
-        Dardjeeling Limited
-      </a>
-    </h3>
-  </article>
+        Gangs of new york
+      </h3>
+    </article>
+  </a>
 </div>
 `;
