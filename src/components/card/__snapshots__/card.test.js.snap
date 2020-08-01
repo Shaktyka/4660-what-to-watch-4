@@ -1,41 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Card rendering Card renders correctly 1`] = `
-<article
+<a
   className="small-movie-card catalog__movies-card"
-  id={7}
+  href="/films/1"
   onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
 >
-  <div
-    className="small-movie-card__image"
+  <article
+    id={1}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <video
-      height="175"
-      poster="mindhunter.jpg"
-      type="video/webm"
-      width="280"
+    <div
+      className="small-movie-card__image"
     >
-      Sorry, your browser doesn't support embedded video, but don't worry, you can 
-      <a
-        href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+      <video
+        height="175"
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
+        type="video/webm"
+        width="280"
       >
-        download it
-      </a>
-      and watch it with your favorite video player!
-    </video>
-  </div>
-  <h3
-    className="small-movie-card__title"
-    onClick={[Function]}
-  >
-    <a
-      className="small-movie-card__link"
-      href="movie-page.html"
+        Sorry, your browser doesn't support embedded video
+      </video>
+    </div>
+    <h3
+      className="small-movie-card__title"
+      style={
+        Object {
+          "color": "#d9ca74",
+        }
+      }
     >
-      Mindhunter
-    </a>
-  </h3>
-</article>
+      Gangs of new york
+    </h3>
+  </article>
+</a>
 `;

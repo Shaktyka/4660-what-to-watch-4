@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import ErrorMessage from './error-message.jsx';
 
-describe(`Card rendering`, () => {
+describe(`ErrorMessage rendering`, () => {
 
   it(`ErrorMessage renders correctly`, () => {
     const message = `Текст ошибки`;
