@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserBlock rendering UserBlock renders correctly 1`] = `
+<div
+  className="user-block"
+>
+  <a
+    className="user-block__avatar"
+    href="/mylist"
+    onClick={[Function]}
+    style={
+      Object {
+        "display": "block",
+      }
+    }
+  >
+    <img
+      alt="Igar's avatar"
+      height="63"
+      src="https://4.react.pages.academy/img.jpg"
+      width="63"
+    />
+  </a>
+</div>
+`;

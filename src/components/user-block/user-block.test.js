@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
 
 import UserBlock from './user-block.jsx';
 
@@ -13,10 +14,12 @@ describe(`UserBlock rendering`, () => {
 
     const tree = renderer
       .create(
-          <UserBlock
-            isAuthorized={true}
-            userData={userData}
-          />, {
+          <BrowserRouter>
+            <UserBlock
+              isAuthorized={true}
+              userData={userData}
+            />
+          </BrowserRouter>, {
             createNodeMock: () => {
               return {};
             }
