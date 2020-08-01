@@ -16,7 +16,11 @@ describe(`UserBlock rendering`, () => {
           <UserBlock
             isAuthorized={true}
             userData={userData}
-          />
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          }
       )
       .toJSON();
 

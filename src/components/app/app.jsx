@@ -86,15 +86,14 @@ const App = (props) => {
         />
         <Route exact path={`/films/:id/review`}
           render = {(properties) => {
-            const id = properties.match.params.id;
-            const filmData = films.find((film) => film.id === +id);
-            setReviewedFilm(filmData);
-            return (
-              <AddReview
-                {...properties}
-                filmId={id}
-              />
-            );
+            const filmId = +properties.match.params.id;
+            if (!films) {
+              loadFilms();
+            }
+            return films.length > 0
+              ? <AddReview films={films} {...properties} filmId={filmId} />
+              : <Loader />;
+            // setReviewedFilm(filmData); // убрать потом, когда будет готово
           }}
         />
         <Route

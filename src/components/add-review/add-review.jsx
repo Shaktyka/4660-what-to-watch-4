@@ -39,6 +39,8 @@ class AddReview extends PureComponent {
     const {
       authorizationStatus,
       userData,
+      films,
+      filmId
     } = this.props;
 
     // isReviewPosting,
@@ -46,13 +48,15 @@ class AddReview extends PureComponent {
     // filmId,
     // reviewedFilm
 
-    const id = 1; // mock
+    const filmData = films.find((film) => film.id === filmId);
+    const {id, title, bgColor, poster, cover} = filmData;
+    console.log(filmData);
 
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
-          <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <div className="movie-card__bg" style={{backgroundColor: bgColor}}>
+            <img src={cover} alt={title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -63,7 +67,7 @@ class AddReview extends PureComponent {
                 <ul className="breadcrumbs__list">
                   <li className="breadcrumbs__item">
                     <Link to={`/films/${id}`} className="breadcrumbs__link">
-                      Заголовок фильма
+                      {title}
                     </Link>
                   </li>
                   <li className="breadcrumbs__item">
@@ -80,8 +84,8 @@ class AddReview extends PureComponent {
 
           <div className="movie-card__poster movie-card__poster--small">
             <img
-              src="img/the-grand-budapest-hotel-poster.jpg"
-              alt="The Grand Budapest Hotel poster"
+              src={poster}
+              alt={title}
               width="218"
               height="327"
             />
@@ -149,6 +153,8 @@ AddReview.propTypes = {
     avatar: PropTypes.string,
     name: PropTypes.string
   }),
+  films: PropTypes.array,
+  filmId: PropTypes.number,
   submitReview: PropTypes.func,
   isReviewPosting: PropTypes.bool,
   postingReviewErr: PropTypes.string
