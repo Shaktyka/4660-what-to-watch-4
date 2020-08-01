@@ -9,15 +9,19 @@ import {getFilmsByGenre} from '../../reducer/data/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {AuthorizationStatus, AppRoute} from '../../consts.js';
 
+import withFullscreenVideo from '../../hocs/with-fullscreen-video/with-fullscreen-video.js';
+
 import Main from '../main/main.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import MyList from '../my-list/my-list.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
-import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 import AddReview from '../add-review/add-review.jsx';
 import NotFound from '../not-found/not-found.jsx';
 import Loader from '../loader/loader.jsx';
 import PrivateRouter from '../private-route/private-route.js';
+import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
+
+const FullScreenPlayerWrapped = withFullscreenVideo(FullScreenVideoPlayer);
 
 const App = (props) => {
   const {
@@ -77,7 +81,7 @@ const App = (props) => {
               loadFilms();
             }
             return films.length > 0
-              ? <FullScreenVideoPlayer {...properties} filmId={filmId} />
+              ? <FullScreenPlayerWrapped films={films} {...properties} filmId={filmId} />
               : <Loader />;
           }}
         />

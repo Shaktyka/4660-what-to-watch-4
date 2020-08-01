@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const addZero = (number) => number < 10 ? `0${number}` : number;
+
 const formatTime = (time) => {
   const hours = Math.floor(time / 60 / 60);
   const minutes = Math.floor(time / 60) - (hours * 60);
   const seconds = time % 60;
 
-  return `${hours}:${minutes}:${seconds}`;
+  return `${addZero(hours)}:${addZero(minutes)}:${addZero(seconds)}`;
 };
 
 const FullScreenVideoPlayer = (props) => {
   const {
+    history,
     isPlay,
     timeElapsed,
     currentProgress,
@@ -18,6 +21,8 @@ const FullScreenVideoPlayer = (props) => {
     onFullscreenClick,
     children
   } = props;
+
+  console.log(props);
 
   return (
     <div className="player">
@@ -40,9 +45,7 @@ const FullScreenVideoPlayer = (props) => {
       <button
         type="button"
         className="player__exit"
-        onClick={() => {
-          history.goBack();
-        }}
+        onClick={() => history.goBack()}
       >
         Exit
       </button>
@@ -77,7 +80,7 @@ const FullScreenVideoPlayer = (props) => {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">Название фильма</div>
 
           <button
             type="button"
@@ -101,7 +104,8 @@ FullScreenVideoPlayer.propTypes = {
   currentProgress: PropTypes.string,
   onPlayButtonClick: PropTypes.func,
   onFullscreenClick: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
+  history: PropTypes.object
 };
 
 export default FullScreenVideoPlayer;

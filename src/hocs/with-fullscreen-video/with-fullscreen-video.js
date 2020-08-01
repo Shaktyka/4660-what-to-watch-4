@@ -24,12 +24,13 @@ const withFullscreenVideo = (Component) => {
     componentDidMount() {
       const {films, filmId} = this.props;
       const filmData = films.find((film) => film.id === filmId);
-      const {poster, videoLink} = filmData;
+      const {poster, source, title} = filmData;
 
       const video = this._videoRef.current;
+      video.parentElement.querySelector(`.player__name`).textContent = title;
 
       video.poster = poster;
-      video.src = videoLink;
+      video.src = source;
 
       video.ontimeupdate = () => this.setState({
         timeElapsed: Math.floor(video.duration - video.currentTime),
@@ -70,7 +71,7 @@ const withFullscreenVideo = (Component) => {
     _handleFullscreenClick() {
       const {isFullscreen} = this.state;
 
-      this.state({
+      this.setState({
         isFullscreen: !isFullscreen
       });
     }
@@ -89,6 +90,7 @@ const withFullscreenVideo = (Component) => {
           {...this.props}
           isPlay={this.state.isPlay}
           timeElapsed={this.state.timeElapsed}
+          filmData={this.state.filmData}
           currentProgress={Math.floor(this.state.progress * 100 / this.state.duration).toString()}
           onPlayButtonClick={this._handlePlayButtonClick}
           onFullscreenClick={this._handleFullscreenClick}
@@ -97,7 +99,6 @@ const withFullscreenVideo = (Component) => {
             className="player__video"
             ref={this._videoRef}
             autoPlay={true}
-            controls
           >
             Sorry, your browser doesn&apos;t support embedded video
           </video>
