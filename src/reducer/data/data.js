@@ -345,7 +345,7 @@ const Operation = {
   loadReviews: (id) => (dispatch, getState, api) => {
     dispatch(ActionCreator.setReviewsLoading(true));
 
-    return api.get(`${Endpoint.REVIEWS}${id}`)
+    return api.get(`${Endpoint.REVIEWS}/${id}`)
       .then((res) => {
         const adaptedReviews = res.data.map((review) => getAdaptedReview(review));
         dispatch(ActionCreator.loadReviews(adaptedReviews));
