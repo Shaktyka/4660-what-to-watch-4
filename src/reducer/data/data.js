@@ -43,7 +43,7 @@ const ActionType = {
 const Endpoint = {
   FILMS: `/films`,
   PROMO_FILM: `/films/promo`,
-  REVIEWS: `/comments/`,
+  REVIEWS: `/comments`,
   FAVORITE: `/favorite`,
   COMMENTS: `/comments`
 };
