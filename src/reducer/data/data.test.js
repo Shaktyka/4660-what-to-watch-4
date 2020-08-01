@@ -76,60 +76,158 @@ describe(`Data Reducer works correctly`, () => {
     });
   });
 
-  it(`Data Reducer should change favoritesFilms by a given value`, () => {
-
-  });
-
   it(`Data Reducer should change promoFilm by a given value`, () => {
-
+    expect(reducer({
+      promoFilm: filmData
+    }, {
+      type: ActionType.LOAD_PROMO_FILM,
+      payload: filmData
+    })).toEqual({
+      promoFilm: filmData
+    });
   });
 
   it(`Data Reducer should change genres by a given value`, () => {
+    expect(reducer({
+      genres: []
+    }, {
+      type: ActionType.LOAD_GENRES,
+      payload: genres
+    })).toEqual({
+      genres
+    });
+  });
 
+  it(`Data Reducer should change filmReviews by a given value`, () => {
+    expect(reducer({
+      filmReviews: []
+    }, {
+      type: ActionType.LOAD_REVIEWS,
+      payload: [review]
+    })).toEqual({
+      filmReviews: [review]
+    });
+  });
+
+  it(`Data Reducer should change isFilmsLoading by a given value`, () => {
+    expect(reducer({
+      isFilmsLoading: false
+    }, {
+      type: ActionType.SET_FILMS_LOADING,
+      payload: true
+    })).toEqual({
+      isFilmsLoading: true
+    });
+  });
+
+  it(`Data Reducer should change isPromoLoading by a given value`, () => {
+    expect(reducer({
+      isPromoLoading: false
+    }, {
+      type: ActionType.SET_PROMO_LOADING,
+      payload: true
+    })).toEqual({
+      isPromoLoading: true
+    });
   });
 
   it(`Data Reducer should change . by a given value`, () => {
-
+    expect(reducer({
+      isReviewsLoading: false
+    }, {
+      type: ActionType.SET_REVIEWS_LOADING,
+      payload: true
+    })).toEqual({
+      isReviewsLoading: true
+    });
   });
 
-  it(`Data Reducer should change . by a given value`, () => {
-
+  it(`Data Reducer should change isReviewPosting by a given value`, () => {
+    expect(reducer({
+      isReviewPosting: false
+    }, {
+      type: ActionType.SET_REVIEW_POSTING,
+      payload: true
+    })).toEqual({
+      isReviewPosting: true
+    });
   });
 
-  it(`Data Reducer should change . by a given value`, () => {
-
+  it(`Data Reducer should change loadFilmsErr by a given value`, () => {
+    expect(reducer({
+      loadFilmsErr: null
+    }, {
+      type: ActionType.SET_FILMS_ERR_MSG,
+      payload: `error text 1`
+    })).toEqual({
+      loadFilmsErr: `error text 1`
+    });
   });
 
-  it(`Data Reducer should change . by a given value`, () => {
-
+  it(`Data Reducer should change loadFavoritesFilmsErr by a given value`, () => {
+    expect(reducer({
+      loadFavoritesFilmsErr: null
+    }, {
+      type: ActionType.SET_FAVORITES_FILMS_ERR_MSG,
+      payload: `error text 2`
+    })).toEqual({
+      loadFavoritesFilmsErr: `error text 2`
+    });
   });
 
-  it(`Data Reducer should change . by a given value`, () => {
-
+  it(`Data Reducer should change loadPromoErr by a given value`, () => {
+    expect(reducer({
+      loadPromoErr: null
+    }, {
+      type: ActionType.SET_PROMO_ERR_MSG,
+      payload: `error text 3`
+    })).toEqual({
+      loadPromoErr: `error text 3`
+    });
   });
 
-  it(`Data Reducer should change . by a given value`, () => {
-
+  it(`Data Reducer should change loadReviewsErr by a given value`, () => {
+    expect(reducer({
+      loadReviewsErr: null
+    }, {
+      type: ActionType.SET_REVIEWS_ERR_MSG,
+      payload: `error text 4`
+    })).toEqual({
+      loadReviewsErr: `error text 4`
+    });
   });
 
-  it(`Data Reducer should change . by a given value`, () => {
-
+  it(`Data Reducer should change favoritesFilms by a given value 1`, () => {
+    expect(reducer({
+      favoritesFilms: [{id: 2}]
+    }, {
+      type: ActionType.ADD_FAVORITE_FILM,
+      payload: filmData
+    })).toEqual({
+      favoritesFilms: [{id: 2}, filmData]
+    });
   });
 
-  it(`Data Reducer should change . by a given value`, () => {
-
+  it(`Data Reducer should change favoritesFilms by a given value 2`, () => {
+    expect(reducer({
+      favoritesFilms: []
+    }, {
+      type: ActionType.LOAD_FAVORITES_FILMS,
+      payload: [filmData]
+    })).toEqual({
+      favoritesFilms: [filmData]
+    });
   });
 
-  it(`Data Reducer should change . by a given value`, () => {
-
-  });
-
-  it(`Data Reducer should change . by a given value`, () => {
-
-  });
-
-  it(`Data Reducer should change . by a given value`, () => {
-
+  it(`Data Reducer should change isFavoritesFilmsLoading by a given value`, () => {
+    expect(reducer({
+      isFavoritesFilmsLoading: false
+    }, {
+      type: ActionType.SET_FAVORITES_FILMS_LOADING,
+      payload: true
+    })).toEqual({
+      isFavoritesFilmsLoading: true
+    });
   });
 
 });
