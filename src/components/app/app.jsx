@@ -29,7 +29,6 @@ const App = (props) => {
     setSelectedFilmId,
     setReviewedFilm,
     films,
-    loadFavoritesFilms,
     loadFilms,
     loadReviews
   } = props;

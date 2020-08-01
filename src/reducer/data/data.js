@@ -365,9 +365,9 @@ const Operation = {
     dispatch(ActionCreator.setReviewPosting(true));
 
     return api.post(`${Endpoint.COMMENTS}/${filmId}`, reviewData)
-      .then((res) => {
+      .then(() => {
         dispatch(ActionCreator.setReviewPosting(false));
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         dispatch(ActionCreator.setReviewPosting(false));

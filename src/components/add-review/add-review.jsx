@@ -39,11 +39,12 @@ class AddReview extends PureComponent {
     const {
       authorizationStatus,
       userData,
-      isReviewPosting,
-      postingReviewErr,
-      filmId,
-      reviewedFilm
     } = this.props;
+
+    // isReviewPosting,
+    // postingReviewErr,
+    // filmId,
+    // reviewedFilm
 
     const id = 1; // mock
 
