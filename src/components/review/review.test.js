@@ -9,20 +9,21 @@ const reviewData = {
   text: `Discerning travellers`,
   authorName: `Kate Muir`,
   date: `2016-12-24`,
-  rating: `8,9`
+  rating: 8.9
 };
 
 describe(`Review rendering`, () => {
 
   it(`Review renders correctly`, () => {
-    const {id, text, authorName, date, rating} = reviewData;
+    const {id, text, authorName, authorId, date, rating} = reviewData;
 
     const tree = renderer
       .create(
           <Review
             id={id}
             text={text}
-            author={authorName}
+            authorId={authorId}
+            authorName={authorName}
             date={date}
             rating={rating}
           />, {
@@ -30,8 +31,7 @@ describe(`Review rendering`, () => {
               return {};
             }
           }
-      )
-      .toJSON();
+      ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
