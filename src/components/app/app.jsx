@@ -18,7 +18,7 @@ import FilmDetails from '../film-details/film-details.jsx';
 import AddReview from '../add-review/add-review.jsx';
 import NotFound from '../not-found/not-found.jsx';
 import Loader from '../loader/loader.jsx';
-import PrivateRouter from '../private-route/private-route.js';
+import PrivateRoute from '../private-route/private-route.js';
 import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 
 const FullScreenPlayerWrapped = withFullscreenVideo(FullScreenVideoPlayer);
@@ -42,21 +42,8 @@ const App = (props) => {
         <Route exact path={AppRoute.ROOT}>
           <Main />
         </Route>
-        <PrivateRouter
-          exact
-          path={`/mylist`}
-          render={() => {
-            if (!favoritesFilms) {
-              loadFavoritesFilms();
-            }
-            return (
-              <MyList />
-            );
-          }}
-        />
         <Route
-          exact
-          path={AppRoute.LOGIN}
+          exact path={AppRoute.LOGIN}
           render = {() => isNoAuthorization
             ? <SignIn />
             : <Redirect to={AppRoute.ROOT} />
@@ -86,8 +73,21 @@ const App = (props) => {
               : <Loader />;
           }}
         />
-        <Route exact path={`/films/:id/review`}
+        <PrivateRoute
+          exact path={`/mylist`}
+          render={() => {
+            if (!favoritesFilms) {
+              loadFavoritesFilms();
+            }
+            return <MyList />;
+          }}
+        />
+        <Route
+          exact path={`/films/:id/review`}
           render = {(properties) => {
+            if (isNoAuthorization) {
+              return <Redirect to={AppRoute.LOGIN} />;
+            }
             const filmId = +properties.match.params.id;
             if (!films) {
               loadFilms();
@@ -95,7 +95,6 @@ const App = (props) => {
             return films.length > 0
               ? <AddReview films={films} filmId={filmId} {...properties} />
               : <Loader />;
-            // setReviewedFilm(filmData); // убрать потом, когда будет готово
           }}
         />
         <Route

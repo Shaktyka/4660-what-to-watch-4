@@ -248,8 +248,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeFavoriteStatus(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
-    dispatch(DataOperation.loadFavoriteFilms());
     dispatch(DataOperation.loadFilms());
+    dispatch(DataOperation.loadFavoriteFilms());
   },
   loadFilms() {
     DataOperation.loadFilms();
