@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
-import {getIsReviewPosting, getReviewErrorMessage} from '../../reducer/data/selectors.js';
+import {getIsReviewPosting, getReviewErrorMessage, getIsReviewSent} from '../../reducer/data/selectors.js';
 import {getReviewedFilm} from '../../reducer/app-state/selectors.js';
 import {AuthorizationStatus} from '../../consts.js';
 
@@ -24,7 +24,7 @@ class AddReview extends PureComponent {
   }
 
   _handleSubmit(evt) {
-    const {submitReview} = this.props;
+    const {filmId, submitReview} = this.props;
     evt.preventDefault();
 
     const commentData = {
@@ -32,7 +32,7 @@ class AddReview extends PureComponent {
       rating: this.formRef.current.rating.value,
     };
 
-    submitReview(commentData);
+    submitReview(filmId, commentData);
   }
 
   render() {
@@ -40,17 +40,14 @@ class AddReview extends PureComponent {
       authorizationStatus,
       userData,
       films,
-      filmId
+      filmId,
+      postingReviewErr,
+      isReviewPosting,
+      isReviewSent
     } = this.props;
-
-    // isReviewPosting,
-    // postingReviewErr,
-    // filmId,
-    // reviewedFilm
 
     const filmData = films.find((film) => film.id === filmId);
     const {id, title, bgColor, poster, cover} = filmData;
-    console.log(filmData);
 
     return (
       <section className="movie-card movie-card--full">
@@ -137,8 +134,12 @@ class AddReview extends PureComponent {
                 >Post
                 </button>
               </div>
-
             </div>
+            {
+              postingReviewErr
+                &&
+              <p style={{textAlign: `center`, color: `brown`}}>{postingReviewErr}</p>
+            }
           </form>
         </div>
 
@@ -157,7 +158,8 @@ AddReview.propTypes = {
   filmId: PropTypes.number,
   submitReview: PropTypes.func,
   isReviewPosting: PropTypes.bool,
-  postingReviewErr: PropTypes.string
+  postingReviewErr: PropTypes.string,
+  isReviewSent: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
@@ -166,6 +168,7 @@ const mapStateToProps = (state) => ({
   isReviewPosting: getIsReviewPosting(state),
   postingReviewErr: getReviewErrorMessage(state),
   reviewedFilm: getReviewedFilm(state),
+  isReviewSent: getIsReviewSent(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

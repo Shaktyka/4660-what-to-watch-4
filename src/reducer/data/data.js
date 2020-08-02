@@ -15,6 +15,7 @@ const initialState = {
   loadPromoErr: null,
   loadReviewsErr: null,
   isReviewPosting: false,
+  isReviewSent: false,
   postingReviewErr: null,
   isFavoritesFilmsLoading: false,
   loadFavoritesFilmsErr: null
@@ -37,7 +38,8 @@ const ActionType = {
   SET_REVIEW_POSTING: `SET_REVIEW_POSTING`,
   SET_REVIEW_ERR_MSG: `SET_REVIEW_ERR_MSG`,
   SET_FAVORITES_FILMS_LOADING: `SET_FAVORITES_FILMS_LOADING`,
-  SET_FAVORITES_FILMS_ERR_MSG: `SET_FAVORITES_FILMS_ERR_MSG`
+  SET_FAVORITES_FILMS_ERR_MSG: `SET_FAVORITES_FILMS_ERR_MSG`,
+  SET_REVIEW_SET: `SET_REVIEW_SET`
 };
 
 const Endpoint = {
@@ -119,6 +121,15 @@ const ActionCreator = {
       {
         type: ActionType.SET_REVIEW_POSTING,
         payload: isReviewPosting
+      }
+    );
+  },
+
+  setReviewSent: (isReviewSent) => {
+    return (
+      {
+        type: ActionType.SET_REVIEW_SENT,
+        payload: isReviewSent
       }
     );
   },
@@ -231,6 +242,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_REVIEW_POSTING:
       return extend(state, {
         isReviewPosting: action.payload
+      });
+
+    case ActionType.SET_REVIEW_SENT:
+      return extend(state, {
+        isReviewSent: action.payload
       });
 
     case ActionType.SET_FILMS_ERR_MSG:
@@ -367,7 +383,7 @@ const Operation = {
     return api.post(`${Endpoint.COMMENTS}/${filmId}`, reviewData)
       .then(() => {
         dispatch(ActionCreator.setReviewPosting(false));
-        // console.log(res);
+        dispatch(ActionCreator.setReviewSent(true));
       })
       .catch((err) => {
         dispatch(ActionCreator.setReviewPosting(false));
@@ -383,7 +399,6 @@ const Operation = {
   changeFavoriteStatus: (id, status) => (dispatch, getState, api) => {
     return api.post(`${Endpoint.FAVORITE}/${id}/${status}`)
       .then(() => {
-        //
       })
       .catch((err) => {
         throw err;

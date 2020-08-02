@@ -37,6 +37,10 @@ const getIsReviewPosting = (state) => {
   return state[NAME_SPACE].isReviewPosting;
 };
 
+const getIsReviewSent = (state) => {
+  return state[NAME_SPACE].isReviewSent;
+};
+
 const getFilmsErrorMessage = (state) => {
   return state[NAME_SPACE].loadFilmsErr;
 };
@@ -92,5 +96,6 @@ export {
   getIsReviewPosting,
   getReviewErrorMessage,
   getIsFavoritesFilmsLoading,
-  getLoadFavoritesFilmsErr
+  getLoadFavoritesFilmsErr,
+  getIsReviewSent
 };

@@ -91,7 +91,7 @@ const App = (props) => {
               loadFilms();
             }
             return films.length > 0
-              ? <AddReview films={films} {...properties} filmId={filmId} />
+              ? <AddReview films={films} filmId={filmId} {...properties} />
               : <Loader />;
             // setReviewedFilm(filmData); // убрать потом, когда будет готово
           }}
