@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import {getFilmsByGenre} from '../../reducer/data/selectors.js';
+import {getFilmsByGenre, getFavoritesFilms} from '../../reducer/data/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {AuthorizationStatus, AppRoute} from '../../consts.js';
 
@@ -29,7 +29,9 @@ const App = (props) => {
     setSelectedFilmId,
     films,
     loadFilms,
-    loadReviews
+    loadReviews,
+    favoritesFilms,
+    loadFavoritesFilms
   } = props;
 
   const isNoAuthorization = authorizationStatus === AuthorizationStatus.NO_AUTH;
@@ -41,11 +43,20 @@ const App = (props) => {
           <Main />
         </Route>
         <PrivateRouter
-          exact path={`/mylist`}
-          component={MyList}
+          exact
+          path={`/mylist`}
+          render={() => {
+            if (!favoritesFilms) {
+              loadFavoritesFilms();
+            }
+            return (
+              <MyList />
+            );
+          }}
         />
         <Route
-          exact path={AppRoute.LOGIN}
+          exact
+          path={AppRoute.LOGIN}
           render = {() => isNoAuthorization
             ? <SignIn />
             : <Redirect to={AppRoute.ROOT} />
@@ -64,14 +75,6 @@ const App = (props) => {
             return films.length > 0 ? <FilmDetails /> : <Loader />;
           }}
         />
-        {/* <Route
-          exact path={AppRoute.MYLIST}
-          render={() => (
-            isNoAuthorization
-              ? <Redirect to={AppRoute.LOGIN} />
-              : <MyList />
-          )}
-        /> */}
         <Route exact path={`/player/:id`}
           render = {(properties) => {
             const filmId = +properties.match.params.id;
@@ -109,9 +112,10 @@ App.propTypes = {
   authorizationStatus: PropTypes.string,
   userData: PropTypes.object,
   setSelectedFilmId: PropTypes.func,
-  loadFavoritesFilms: PropTypes.func,
   films: PropTypes.array,
+  favoritesFilms: PropTypes.array,
   loadFilms: PropTypes.func,
+  loadFavoritesFilms: PropTypes.func,
   loadReviews: PropTypes.func
 };
 
@@ -119,6 +123,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
   films: getFilmsByGenre(state),
+  favoritesFilms: getFavoritesFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
