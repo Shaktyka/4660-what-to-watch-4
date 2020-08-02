@@ -48,21 +48,18 @@ const MyList = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__movies-list" style={{width: `100%`}}>
+        {
+          isFavoritesFilmsLoading
+            ?
+            <Loader />
+            :
+            <MoviesListWrapped
+              films={favoritesFilms}
+              isLoading={isFavoritesFilmsLoading}
+              error={loadFavoritesFilmsErr}
+            />
+        }
 
-          {
-            isFavoritesFilmsLoading
-              ?
-              <Loader />
-              :
-              <MoviesListWrapped
-                films={favoritesFilms}
-                isLoading={isFavoritesFilmsLoading}
-                error={loadFavoritesFilmsErr}
-              />
-          }
-
-        </div>
       </section>
 
       <PageFooter />

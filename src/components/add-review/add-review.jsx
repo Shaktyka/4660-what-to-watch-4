@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
-import {getIsReviewPosting, getReviewErrorMessage, getIsReviewSent} from '../../reducer/data/selectors.js';
+import {getIsReviewPosting, getReviewErrorMessage} from '../../reducer/data/selectors.js';
 import {AuthorizationStatus} from '../../consts.js';
 
 import PageHeader from '../page-header/page-header.jsx';
@@ -34,6 +34,14 @@ class AddReview extends PureComponent {
     submitReview(filmId, commentData);
   }
 
+  componentDidUpdate() {
+    const {isReviewPosting, filmId, history} = this.props;
+
+    if (isReviewPosting) {
+      history.push(`/films/${filmId}`);
+    }
+  }
+
   render() {
     const {
       authorizationStatus,
@@ -41,8 +49,7 @@ class AddReview extends PureComponent {
       films,
       filmId,
       postingReviewErr,
-      isReviewPosting,
-      isReviewSent
+      isReviewPosting
     } = this.props;
 
     const filmData = films.find((film) => film.id === filmId);
@@ -98,19 +105,19 @@ class AddReview extends PureComponent {
           >
             <div className="rating">
               <div className="rating__stars">
-                <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
+                <input className="rating__input" id="star-1" type="radio" name="rating" value="1" disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
-                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
+                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked />
+                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
-                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
+                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-4">Rating 4</label>
 
-                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
+                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-5">Rating 5</label>
               </div>
             </div>
@@ -125,6 +132,7 @@ class AddReview extends PureComponent {
                 minLength={50}
                 maxLength={400}
                 required
+                disabled={isReviewPosting}
               ></textarea>
               <div className="add-review__submit">
                 <button
@@ -158,7 +166,7 @@ AddReview.propTypes = {
   submitReview: PropTypes.func,
   isReviewPosting: PropTypes.bool,
   postingReviewErr: PropTypes.string,
-  isReviewSent: PropTypes.bool
+  history: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
@@ -166,12 +174,12 @@ const mapStateToProps = (state) => ({
   userData: getUserData(state),
   isReviewPosting: getIsReviewPosting(state),
   postingReviewErr: getReviewErrorMessage(state),
-  isReviewSent: getIsReviewSent(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   submitReview(filmId, reviewData) {
     dispatch(DataOperation.addReview(filmId, reviewData));
+    dispatch(DataOperation.loadReviews(filmId));
   }
 });
 

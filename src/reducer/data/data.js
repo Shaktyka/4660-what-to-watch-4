@@ -15,7 +15,6 @@ const initialState = {
   loadPromoErr: null,
   loadReviewsErr: null,
   isReviewPosting: false,
-  isReviewSent: false,
   postingReviewErr: null,
   isFavoritesFilmsLoading: false,
   loadFavoritesFilmsErr: null
@@ -121,15 +120,6 @@ const ActionCreator = {
       {
         type: ActionType.SET_REVIEW_POSTING,
         payload: isReviewPosting
-      }
-    );
-  },
-
-  setReviewSent: (isReviewSent) => {
-    return (
-      {
-        type: ActionType.SET_REVIEW_SENT,
-        payload: isReviewSent
       }
     );
   },
@@ -242,11 +232,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_REVIEW_POSTING:
       return extend(state, {
         isReviewPosting: action.payload
-      });
-
-    case ActionType.SET_REVIEW_SENT:
-      return extend(state, {
-        isReviewSent: action.payload
       });
 
     case ActionType.SET_FILMS_ERR_MSG:
@@ -383,7 +368,6 @@ const Operation = {
     return api.post(`${Endpoint.COMMENTS}/${filmId}`, reviewData)
       .then(() => {
         dispatch(ActionCreator.setReviewPosting(false));
-        dispatch(ActionCreator.setReviewSent(true));
       })
       .catch((err) => {
         dispatch(ActionCreator.setReviewPosting(false));

@@ -27,7 +27,6 @@ const App = (props) => {
   const {
     authorizationStatus,
     setSelectedFilmId,
-    setReviewedFilm,
     films,
     loadFilms,
     loadReviews
@@ -110,7 +109,6 @@ App.propTypes = {
   authorizationStatus: PropTypes.string,
   userData: PropTypes.object,
   setSelectedFilmId: PropTypes.func,
-  setReviewedFilm: PropTypes.func,
   loadFavoritesFilms: PropTypes.func,
   films: PropTypes.array,
   loadFilms: PropTypes.func,
@@ -126,9 +124,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setSelectedFilmId(id) {
     dispatch(ActionCreator.setSelectedFilmId(id));
-  },
-  setReviewedFilm(data) {
-    dispatch(ActionCreator.setReviewedFilm(data));
   },
   loadFavoritesFilms() {
     dispatch(DataOperation.loadFavoriteFilms());
