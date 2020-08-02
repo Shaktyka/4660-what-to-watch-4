@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import NameSpace from "../../reducer/name-space";
+import {BrowserRouter} from 'react-router-dom';
 
 import AddReview from './add-review.jsx';
 
@@ -53,9 +54,11 @@ describe(`AddReview rendering`, () => {
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <AddReview />
-          </Provider>, {
+          <BrowserRouter>
+            <Provider store={store}>
+              <AddReview films={films} filmId={1} />
+            </Provider>
+          </BrowserRouter>, {
             createNodeMock: () => {
               return {};
             }
