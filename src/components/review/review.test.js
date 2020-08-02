@@ -15,11 +15,12 @@ const reviewData = {
 describe(`Review rendering`, () => {
 
   it(`Review renders correctly`, () => {
-    const {text, authorName, date, rating} = reviewData;
+    const {id, text, authorName, date, rating} = reviewData;
 
     const tree = renderer
       .create(
           <Review
+            id={id}
             text={text}
             author={authorName}
             date={date}

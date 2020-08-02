@@ -2,10 +2,11 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import NameSpace from "../../reducer/name-space";
+import {BrowserRouter} from 'react-router-dom';
 
 import FilmDetails from './film-details.jsx';
 
-const ACTIVE_MOVIE_NAV_TAB = `Overview`;
 const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
 
 const FILMS_DATA = [
@@ -28,30 +29,17 @@ const FILMS_DATA = [
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     source: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     duration: 120
-  },
-  {
-    id: 2,
-    title: `Dardjeeling Limited`,
-    preview: `/img/dardjeeling-limited.jpg`,
-    genre: `Comedy`,
-    year: 2019,
-    poster: `the-grand-budapest-hotel-poster.jpg`,
-    cover: `bg-the-grand-budapest-hotel.jpg`,
-    ratingScore: 7.6,
-    ratingCount: 140,
-    description: [
-      `Dardjeeling Limited is a foot-stomping celebration of Queen, their music and singer Freddie Mercury.`,
-      `The film traces the meteoric rise of the band through their iconic songs and revolutionary sound.`,
-      `They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences.`
-    ],
-    director: `Bryan Singer`,
-    starring: [`Leslie Mann`, `John Cena`, `Ike Barinholtz`],
-    source: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    duration: 129
   }
 ];
 
-const onefilmData = FILMS_DATA[0];
+const comment = {
+  id: 1,
+  userId: 4,
+  userName: `Kate Muir`,
+  rating: 8.9,
+  comment: `Discerning travellers`,
+  date: `2019-05-08T14:13:56.569Z`
+};
 
 const mockStore = configureStore([]);
 
@@ -59,21 +47,36 @@ describe(`FilmDetails rendering`, () => {
 
   it(`FilmDetails renders correctly`, () => {
     const store = mockStore({
-      movieNavTabs: MOVIE_NAV_TABS,
-      activeMovieNavTab: ACTIVE_MOVIE_NAV_TAB,
-      filmsList: FILMS_DATA,
-      filmReviews: []
+      [NameSpace.DATA]: {
+        films: FILMS_DATA,
+        favoritesFilms: [],
+        promoFilm: {},
+        genres: [],
+        filmReviews: [comment]
+      },
+      [NameSpace.APP_STATE]: {
+        isLoading: false,
+        selectedFilmId: 1,
+        movieNavTabs: MOVIE_NAV_TABS,
+        activeMovieNavTab: MOVIE_NAV_TABS[0],
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `NO_AUTH`,
+        userData: {},
+      }
     });
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <FilmDetails
-              filmData={onefilmData}
-              onTabClick={() => {}}
-              onGenreClick={() => {}}
-            />
-          </Provider>, {
+          <BrowserRouter>
+            <Provider store={store}>
+              <FilmDetails
+                filmData={FILMS_DATA[0]}
+                onTabClick={() => {}}
+                onGenreClick={() => {}}
+              />
+            </Provider>
+          </BrowserRouter>, {
             createNodeMock: () => {
               return {};
             }
