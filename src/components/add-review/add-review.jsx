@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getIsReviewPosting, getReviewErrorMessage, getIsReviewSent} from '../../reducer/data/selectors.js';
-import {getReviewedFilm} from '../../reducer/app-state/selectors.js';
 import {AuthorizationStatus} from '../../consts.js';
 
 import PageHeader from '../page-header/page-header.jsx';
@@ -167,7 +166,6 @@ const mapStateToProps = (state) => ({
   userData: getUserData(state),
   isReviewPosting: getIsReviewPosting(state),
   postingReviewErr: getReviewErrorMessage(state),
-  reviewedFilm: getReviewedFilm(state),
   isReviewSent: getIsReviewSent(state)
 });
 

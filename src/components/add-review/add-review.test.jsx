@@ -2,10 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import NameSpace from "../../reducer/name-space";
 
 import AddReview from './add-review.jsx';
-
-const mockStore = configureStore([]);
 
 const films = [{
   bgColor: `#A6B7AC`,
@@ -28,17 +27,28 @@ const films = [{
   year: 2002
 }];
 
+const userData = {
+  id: 1,
+  email: `Oliver.conner@gmail.com`,
+  name: `Oliver.conner`,
+  avatar: `img/1.png`
+};
+
+const mockStore = configureStore([]);
+
 describe(`AddReview rendering`, () => {
 
   it(`AddReview renders correctly`, () => {
     const store = mockStore({
-      authorizationStatus: `AUTH`,
-      userData: {},
-      films,
-      filmId: 1,
-      submitReview: () => {},
-      isReviewPosting: false,
-      postingReviewErr: null
+      [NameSpace.DATA]: {
+        films,
+        postingReviewErr: null,
+        isReviewPosting: false,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`,
+        userData,
+      }
     });
 
     const tree = renderer
