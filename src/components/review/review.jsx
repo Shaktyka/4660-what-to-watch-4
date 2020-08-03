@@ -12,7 +12,7 @@ const Review = (props) => {
 
         <footer className="review__details">
           <cite className="review__author" data-authorid={authorId}>{authorName}</cite>
-          <time className="review__date" dateTime={moment(date)}>
+          <time className="review__date" dateTime={date}>
             {
               moment(date).format(`MMMM DD, YYYY`)
             }

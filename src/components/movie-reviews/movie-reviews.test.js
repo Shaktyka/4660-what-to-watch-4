@@ -47,17 +47,12 @@ const mockStore = configureStore([]);
 const store = mockStore({
   [NameSpace.DATA]: {
     films: [],
-    filmReviews: [REVIEWS]
+    filmReviews: [REVIEWS],
+    isReviewsLoading: false,
   }
 });
 
-const MockComponent = () => {
-  return (
-    <div></div>
-  );
-};
-
-describe(`MovieReviews component rendering`, () => {
+describe(`MovieReviews rendering`, () => {
 
   it(`MovieReviews renders correctly with the one review`, () => {
     const tree = renderer
@@ -68,9 +63,7 @@ describe(`MovieReviews component rendering`, () => {
               authorId={1}
               authorName={`Kate Muir`}
               text={`comment`}
-            >
-              <MockComponent />
-            </MovieReviews>
+            />
           </Provider>, {
             createNodeMock: () => {
               return {};

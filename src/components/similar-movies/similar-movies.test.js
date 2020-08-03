@@ -39,6 +39,7 @@ describe(`SimilarMovies rendering`, () => {
               films={films}
               onFilmCardClick={() => {}}
               onHoverCard={() => {}}
+              isLoading={false}
             />
           </BrowserRouter>, {
             createNodeMock: () => {

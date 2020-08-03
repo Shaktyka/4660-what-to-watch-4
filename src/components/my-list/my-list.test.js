@@ -41,7 +41,8 @@ const user = {
 const store = mockStore({
   [NameSpace.DATA]: {
     films: [filmData],
-    favoritesFilms: [filmData]
+    favoritesFilms: [filmData],
+    isFavoritesFilmsLoading: false
   },
   [NameSpace.USER]: {
     authorizationStatus: `AUTH`,
@@ -56,7 +57,9 @@ describe(`MyList rendering`, () => {
       .create(
           <BrowserRouter>
             <Provider store={store}>
-              <MyList />
+              <MyList
+                isLoading={false}
+              />
             </Provider>
           </BrowserRouter>, {
             createNodeMock: () => {
