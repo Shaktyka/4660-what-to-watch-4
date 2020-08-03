@@ -11,20 +11,10 @@ const mockStore = configureStore([]);
 
 const store = mockStore({
   [NameSpace.DATA]: {
-    films: [],
-    favoritesFilms: [],
-    promoFilm: {},
-    genres: [],
+    genres: genresList,
   },
   [NameSpace.APP_STATE]: {
-    isLoading: false,
-    selectedFilmId: 1,
-    genres: genresList,
     genre: `All genres`
-  },
-  [NameSpace.USER]: {
-    authorizationStatus: `NO_AUTH`,
-    userData: {},
   }
 });
 
