@@ -37,7 +37,7 @@ const SimilarMovies = (props) => {
 SimilarMovies.propTypes = {
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
   error: PropTypes.string,
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default SimilarMovies;

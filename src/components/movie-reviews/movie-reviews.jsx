@@ -63,7 +63,7 @@ const MovieReviews = (props) => {
 MovieReviews.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadReviewsErr: PropTypes.string,
-  isReviewsLoading: PropTypes.bool
+  isReviewsLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({

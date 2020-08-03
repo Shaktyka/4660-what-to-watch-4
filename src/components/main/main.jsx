@@ -145,7 +145,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  authorizationStatus: PropTypes.string,
+  authorizationStatus: PropTypes.string.isRequired,
   promoFilm: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
@@ -159,13 +159,13 @@ Main.propTypes = {
   films: PropTypes.array.isRequired,
   loadFilmsErr: PropTypes.string,
   loadPromoErr: PropTypes.string,
-  isFilmsLoading: PropTypes.bool,
-  isPromoLoading: PropTypes.bool,
+  isFilmsLoading: PropTypes.bool.isRequired,
+  isPromoLoading: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string
-  }),
-  changeFavoriteStatus: PropTypes.func
+  }).isRequired,
+  changeFavoriteStatus: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

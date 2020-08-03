@@ -18,7 +18,7 @@ const ShowMore = (props) => {
 };
 
 ShowMore.propTypes = {
-  onShowMoreClick: PropTypes.func
+  onShowMoreClick: PropTypes.func.isRequired
 };
 
 export default ShowMore;

@@ -68,9 +68,9 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  userData: PropTypes.object,
-  favoritesFilms: PropTypes.array,
-  isFavoritesFilmsLoading: PropTypes.bool,
+  userData: PropTypes.object.isRequired,
+  favoritesFilms: PropTypes.array.isRequired,
+  isFavoritesFilmsLoading: PropTypes.bool.isRequired,
   loadFavoritesFilmsErr: PropTypes.string
 };
 

@@ -28,11 +28,11 @@ const UserBlock = (props) => {
 };
 
 UserBlock.propTypes = {
-  isAuthorized: PropTypes.bool,
+  isAuthorized: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string
-  })
+  }).isRequired
 };
 
 export default UserBlock;

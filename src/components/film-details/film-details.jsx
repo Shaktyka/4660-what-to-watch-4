@@ -221,15 +221,17 @@ FilmDetails.propTypes = {
   filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired,
-  selectedFilm: PropTypes.object,
+  selectedFilm: PropTypes.object.isRequired,
   loadFilmsErr: PropTypes.string,
-  isFilmsLoading: PropTypes.bool,
+  isFilmsLoading: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userData: PropTypes.shape({
+    id: PropTypes.number,
     avatar: PropTypes.string,
-    name: PropTypes.string
-  }),
-  changeFavoriteStatus: PropTypes.func
+    name: PropTypes.string,
+    email: PropTypes.string
+  }).isRequired,
+  changeFavoriteStatus: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

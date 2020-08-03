@@ -48,9 +48,9 @@ MoviesList.propTypes = {
       })
   ).isRequired,
   error: PropTypes.string,
-  isLoading: PropTypes.bool,
-  isShowed: PropTypes.bool,
-  onShowMoreClick: PropTypes.func
+  isLoading: PropTypes.bool.isRequired,
+  isShowed: PropTypes.bool.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired
 };
 
 export default MoviesList;

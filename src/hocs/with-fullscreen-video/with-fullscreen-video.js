@@ -10,7 +10,7 @@ const withFullscreenVideo = (Component) => {
       this.state = {
         isPlay: true,
         isFullscreen: false,
-        timeElapsed: null,
+        timeElapsed: 0,
         progress: null,
         duration: null
       };

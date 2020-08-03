@@ -156,15 +156,17 @@ class AddReview extends PureComponent {
 }
 
 AddReview.propTypes = {
-  authorizationStatus: PropTypes.string,
+  authorizationStatus: PropTypes.string.isRequired,
   userData: PropTypes.shape({
-    avatar: PropTypes.string,
-    name: PropTypes.string
-  }),
-  films: PropTypes.array,
-  filmId: PropTypes.number,
-  submitReview: PropTypes.func,
-  isReviewPosting: PropTypes.bool,
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
+  }).isRequired,
+  films: PropTypes.array.isRequired,
+  filmId: PropTypes.number.isRequired,
+  submitReview: PropTypes.func.isRequired,
+  isReviewPosting: PropTypes.bool.isRequired,
   postingReviewErr: PropTypes.string,
   history: PropTypes.object
 };

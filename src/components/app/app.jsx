@@ -108,14 +108,14 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  authorizationStatus: PropTypes.string,
-  userData: PropTypes.object,
-  setSelectedFilmId: PropTypes.func,
-  films: PropTypes.array,
-  favoritesFilms: PropTypes.array,
-  loadFilms: PropTypes.func,
-  loadFavoritesFilms: PropTypes.func,
-  loadReviews: PropTypes.func
+  authorizationStatus: PropTypes.string.isRequired,
+  userData: PropTypes.object.isRequired,
+  setSelectedFilmId: PropTypes.func.isRequired,
+  films: PropTypes.array.isRequired,
+  favoritesFilms: PropTypes.array.isRequired,
+  loadFilms: PropTypes.func.isRequired,
+  loadFavoritesFilms: PropTypes.func.isRequired,
+  loadReviews: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
