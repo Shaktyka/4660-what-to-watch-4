@@ -35,6 +35,9 @@ describe(`MoviesList rendering`, () => {
               films={[filmData]}
               onFilmCardClick={() => {}}
               onHoverCard={() => {}}
+              isLoading={false}
+              isShowed={true}
+              onShowMoreClick={() => {}}
             />
           </BrowserRouter>, {
             createNodeMock: () => {

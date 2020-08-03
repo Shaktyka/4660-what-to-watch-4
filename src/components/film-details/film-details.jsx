@@ -17,8 +17,7 @@ import {AuthorizationStatus} from '../../consts.js';
 import {
   getMovieNavTabs,
   getActiveTab,
-  getSelectedFilmId,
-  getSelectedFilm
+  getSelectedFilmId
 } from '../../reducer/app-state/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
@@ -221,7 +220,6 @@ FilmDetails.propTypes = {
   filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired,
-  selectedFilm: PropTypes.object.isRequired,
   loadFilmsErr: PropTypes.string,
   isFilmsLoading: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
@@ -238,7 +236,6 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
   selectedFilmId: getSelectedFilmId(state),
-  selectedFilm: getSelectedFilm(state),
   tabs: getMovieNavTabs(state),
   activeTab: getActiveTab(state),
   films: getFilmsByGenre(state),

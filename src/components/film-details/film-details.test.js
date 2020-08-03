@@ -48,8 +48,7 @@ describe(`FilmDetails rendering`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
         films: [filmData],
-        favoritesFilms: [filmData],
-        promoFilm: filmData,
+        isFilmsLoading: false,
         genres: [],
         filmReviews: [comment]
       },
@@ -70,7 +69,10 @@ describe(`FilmDetails rendering`, () => {
           <BrowserRouter>
             <Provider store={store}>
               <FilmDetails
+                films={[filmData]}
                 filmData={filmData}
+                isFilmsLoading={false}
+                selectedFilmId={1}
                 onTabClick={() => {}}
                 onGenreClick={() => {}}
               />
