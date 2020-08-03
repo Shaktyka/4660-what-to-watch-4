@@ -9,18 +9,17 @@ import GenresList from './genres-list.jsx';
 const genresList = [`All genres`, `Crime`, `Sci-Fi`, `Drama`, `Comedy`];
 const mockStore = configureStore([]);
 
-const store = mockStore({
-  [NameSpace.DATA]: {
-    genres: genresList,
-  },
-  [NameSpace.APP_STATE]: {
-    genre: `All genres`
-  }
-});
-
 describe(`GenresList rendering`, () => {
 
   it(`GenresList renders correctly with the first active filter`, () => {
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        genres: genresList,
+      },
+      [NameSpace.APP_STATE]: {
+        genre: `All genres`
+      }
+    });
 
     const tree = renderer
       .create(
@@ -35,6 +34,34 @@ describe(`GenresList rendering`, () => {
             }
           }
       ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`GenresList renders correctly with the third active filter`, () => {
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        genres: genresList,
+      },
+      [NameSpace.APP_STATE]: {
+        genre: `Sci-Fi`
+      }
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <GenresList
+              activeGenre={`Sci-Fi`}
+              onGenreClick={() => {}}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          }
+      )
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
