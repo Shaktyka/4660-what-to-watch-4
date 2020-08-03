@@ -8,13 +8,7 @@ exports[`withVideo rendering withVideo renders correctly 1`] = `
     type="video/webm"
     width="280"
   >
-    Sorry, your browser doesn't support embedded video, but don't worry, you can 
-    <a
-      href=" "
-    >
-      download it
-    </a>
-    and watch it with your favorite video player!
+    Sorry, your browser doesn't support embedded video
   </video>
 </div>
 `;

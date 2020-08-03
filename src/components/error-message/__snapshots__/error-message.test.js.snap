@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage rendering ErrorMessage renders correctly 1`] = `
+<div
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "brown",
+      "borderRadius": "5px",
+      "boxShadow": "0 0 10px 2px rgba(0, 0, 0, 0.2)",
+      "boxSizing": "border-box",
+      "color": "white",
+      "cursor": "pointer",
+      "fontSize": "16px",
+      "maxWidth": "300px",
+      "padding": "25px 30px",
+      "position": "absolute",
+      "right": "20px",
+      "textAlign": "center",
+      "top": "20px",
+      "zIndex": 10,
+    }
+  }
+>
+  Текст ошибки
+</div>
+`;

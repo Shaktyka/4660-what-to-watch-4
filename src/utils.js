@@ -14,3 +14,13 @@ export const getDurationFromMinutes = (minutes) => {
   const mins = minutes % 60;
   return `${hours}h ${mins}m`;
 };
+
+export const addZero = (number) => number < 10 ? `0${number}` : number;
+
+export const formatTime = (time) => {
+  const hours = Math.floor(time / 60 / 60);
+  const minutes = Math.floor(time / 60) - (hours * 60);
+  const seconds = time % 60;
+
+  return `${addZero(hours)}:${addZero(minutes)}:${addZero(seconds)}`;
+};

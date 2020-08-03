@@ -126,7 +126,6 @@ const FilmDetails = (props) => {
                   to={`/player/${id}`}
                   className="btn btn--play movie-card__button"
                   type="button"
-                  onClick={() => {}}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -249,8 +248,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeFavoriteStatus(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
-    // dispatch(AppStateOperation.getFavoriteFilm(id, status)); // лучше это, но не работает пока
     dispatch(DataOperation.loadFilms());
+    dispatch(DataOperation.loadFavoriteFilms());
   },
   loadFilms() {
     DataOperation.loadFilms();

@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
 
 import NotFound from './not-found.jsx';
 
@@ -8,7 +9,9 @@ describe(`NotFound rendering`, () => {
   it(`NotFound renders correctly`, () => {
     const tree = renderer
       .create(
-          <NotFound />, {
+          <BrowserRouter>
+            <NotFound />
+          </BrowserRouter>, {
             createNodeMock: () => {
               return {};
             }

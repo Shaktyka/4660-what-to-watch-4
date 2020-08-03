@@ -1,9 +1,25 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
+
+import {connect} from 'react-redux';
+import {getUserData} from '../../reducer/user/selectors.js';
+import {
+  getFavoritesFilms,
+  getIsFavoritesFilmsLoading,
+  getLoadFavoritesFilmsErr
+} from '../../reducer/data/selectors.js';
+
 import PageHeader from '../page-header/page-header.jsx';
 import UserBlock from '../user-block/user-block.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
+import Loader from '../loader/loader.jsx';
+
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import withShowMore from '../../hocs/with-show-more/with-show-more.js';
+import MoviesList from '../movies-list/movies-list.jsx';
+
+const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 
 const getPageTitle = () => {
   return (
@@ -12,7 +28,12 @@ const getPageTitle = () => {
 };
 
 const MyList = (props) => {
-  const {userData} = props;
+  const {
+    userData,
+    favoritesFilms,
+    isFavoritesFilmsLoading,
+    loadFavoritesFilmsErr
+  } = props;
 
   return (
     <div className="user-page">
@@ -27,18 +48,18 @@ const MyList = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__movies-list">
+        {
+          isFavoritesFilmsLoading
+            ?
+            <Loader />
+            :
+            <MoviesListWrapped
+              films={favoritesFilms}
+              isLoading={isFavoritesFilmsLoading}
+              error={loadFavoritesFilmsErr}
+            />
+        }
 
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/what-we-do-in-the-shadows.jpg" alt="What We Do in the Shadows" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">What We Do in the Shadows</a>
-            </h3>
-          </article>
-
-        </div>
       </section>
 
       <PageFooter />
@@ -47,7 +68,18 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  userData: PropTypes.object
+  userData: PropTypes.object,
+  favoritesFilms: PropTypes.array,
+  isFavoritesFilmsLoading: PropTypes.bool,
+  loadFavoritesFilmsErr: PropTypes.string
 };
 
-export default MyList;
+const mapStateToProps = (state) => ({
+  userData: getUserData(state),
+  favoritesFilms: getFavoritesFilms(state),
+  isFavoritesFilmsLoading: getIsFavoritesFilmsLoading(state),
+  loadFavoritesFilmsErr: getLoadFavoritesFilmsErr(state)
+});
+
+export {MyList};
+export default connect(mapStateToProps)(MyList);

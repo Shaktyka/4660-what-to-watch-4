@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getIsReviewPosting, getReviewErrorMessage} from '../../reducer/data/selectors.js';
-import {getReviewedFilm} from '../../reducer/app-state/selectors.js';
 import {AuthorizationStatus} from '../../consts.js';
 
 import PageHeader from '../page-header/page-header.jsx';
@@ -24,7 +23,7 @@ class AddReview extends PureComponent {
   }
 
   _handleSubmit(evt) {
-    const {submitReview} = this.props;
+    const {filmId, submitReview} = this.props;
     evt.preventDefault();
 
     const commentData = {
@@ -32,26 +31,35 @@ class AddReview extends PureComponent {
       rating: this.formRef.current.rating.value,
     };
 
-    submitReview(commentData);
+    submitReview(filmId, commentData);
+  }
+
+  componentDidUpdate() {
+    const {isReviewPosting, filmId, history} = this.props;
+
+    if (isReviewPosting) {
+      history.push(`/films/${filmId}`);
+    }
   }
 
   render() {
     const {
       authorizationStatus,
       userData,
-      isReviewPosting,
-      postingReviewErr,
+      films,
       filmId,
-      reviewedFilm
+      postingReviewErr,
+      isReviewPosting
     } = this.props;
 
-    const id = 1; // mock
+    const filmData = films.find((film) => film.id === filmId);
+    const {id, title, bgColor, poster, cover} = filmData;
 
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
-          <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <div className="movie-card__bg" style={{backgroundColor: bgColor}}>
+            <img src={cover} alt={title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -62,7 +70,7 @@ class AddReview extends PureComponent {
                 <ul className="breadcrumbs__list">
                   <li className="breadcrumbs__item">
                     <Link to={`/films/${id}`} className="breadcrumbs__link">
-                      Заголовок фильма
+                      {title}
                     </Link>
                   </li>
                   <li className="breadcrumbs__item">
@@ -79,8 +87,8 @@ class AddReview extends PureComponent {
 
           <div className="movie-card__poster movie-card__poster--small">
             <img
-              src="img/the-grand-budapest-hotel-poster.jpg"
-              alt="The Grand Budapest Hotel poster"
+              src={poster}
+              alt={title}
               width="218"
               height="327"
             />
@@ -97,19 +105,19 @@ class AddReview extends PureComponent {
           >
             <div className="rating">
               <div className="rating__stars">
-                <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
+                <input className="rating__input" id="star-1" type="radio" name="rating" value="1" disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
-                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
+                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked />
+                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
-                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
+                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-4">Rating 4</label>
 
-                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
+                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" disabled={isReviewPosting} />
                 <label className="rating__label" htmlFor="star-5">Rating 5</label>
               </div>
             </div>
@@ -124,6 +132,7 @@ class AddReview extends PureComponent {
                 minLength={50}
                 maxLength={400}
                 required
+                disabled={isReviewPosting}
               ></textarea>
               <div className="add-review__submit">
                 <button
@@ -132,8 +141,12 @@ class AddReview extends PureComponent {
                 >Post
                 </button>
               </div>
-
             </div>
+            {
+              postingReviewErr
+                &&
+              <p style={{textAlign: `center`, color: `brown`}}>{postingReviewErr}</p>
+            }
           </form>
         </div>
 
@@ -148,9 +161,12 @@ AddReview.propTypes = {
     avatar: PropTypes.string,
     name: PropTypes.string
   }),
+  films: PropTypes.array,
+  filmId: PropTypes.number,
   submitReview: PropTypes.func,
   isReviewPosting: PropTypes.bool,
-  postingReviewErr: PropTypes.string
+  postingReviewErr: PropTypes.string,
+  history: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
@@ -158,12 +174,12 @@ const mapStateToProps = (state) => ({
   userData: getUserData(state),
   isReviewPosting: getIsReviewPosting(state),
   postingReviewErr: getReviewErrorMessage(state),
-  reviewedFilm: getReviewedFilm(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   submitReview(filmId, reviewData) {
     dispatch(DataOperation.addReview(filmId, reviewData));
+    dispatch(DataOperation.loadReviews(filmId));
   }
 });
 

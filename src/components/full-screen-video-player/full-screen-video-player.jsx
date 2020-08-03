@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {formatTime} from '../../utils.js';
 
 const FullScreenVideoPlayer = (props) => {
   const {
+    history,
+    isPlay,
+    timeElapsed,
     currentProgress,
-    onPlayClick,
-    onExitClick,
-    onFullScreenClick
+    onPlayButtonClick,
+    onFullscreenClick,
+    children
   } = props;
-
-  console.log(props);
 
   return (
     <div className="player">
@@ -27,16 +29,12 @@ const FullScreenVideoPlayer = (props) => {
         </svg>
       </div>
 
-      <video
-        src="#"
-        className="player__video"
-        poster="img/player-poster.jpg"
-      ></video>
+      {children}
 
       <button
         type="button"
         className="player__exit"
-        onClick={() => onExitClick()}
+        onClick={() => history.goBack()}
       >
         Exit
       </button>
@@ -50,31 +48,33 @@ const FullScreenVideoPlayer = (props) => {
               max="100">
             </progress>
             <div className="player__toggler"
-              style={{left: `30%`}}
+              style={{left: currentProgress + `%`}}
             >
               Toggler
             </div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{formatTime(timeElapsed)}</div>
         </div>
 
         <div className="player__controls-row">
           <button
             type="button"
             className="player__play"
-            onClick={() => onPlayClick()}
+            onClick={() => onPlayButtonClick()}
           >
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+              <use
+                xlinkHref={isPlay ? `#pause` : `#play-s`}>
+              </use>
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">Название фильма</div>
 
           <button
             type="button"
             className="player__full-screen"
-            onClick={() => onFullScreenClick()}
+            onClick={() => onFullscreenClick()}
           >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
@@ -88,12 +88,13 @@ const FullScreenVideoPlayer = (props) => {
 };
 
 FullScreenVideoPlayer.propTypes = {
-  isPlaying: PropTypes.bool,
+  isPlay: PropTypes.bool,
+  timeElapsed: PropTypes.number,
   currentProgress: PropTypes.string,
-  onPlayClick: PropTypes.func,
-  onExitClick: PropTypes.func,
-  onFullScreenClick: PropTypes.func,
-  children: PropTypes.node
+  onPlayButtonClick: PropTypes.func,
+  onFullscreenClick: PropTypes.func,
+  children: PropTypes.node,
+  history: PropTypes.object
 };
 
 export default FullScreenVideoPlayer;

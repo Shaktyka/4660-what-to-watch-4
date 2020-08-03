@@ -5,21 +5,35 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app-state/app-state.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import {
-  getFilmsByGenre
-} from '../../reducer/data/selectors.js';
+import {getFilmsByGenre, getFavoritesFilms} from '../../reducer/data/selectors.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {AuthorizationStatus, AppRoute} from '../../consts.js';
+
+import withFullscreenVideo from '../../hocs/with-fullscreen-video/with-fullscreen-video.js';
 
 import Main from '../main/main.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import MyList from '../my-list/my-list.jsx';
 import FilmDetails from '../film-details/film-details.jsx';
-import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
 import AddReview from '../add-review/add-review.jsx';
 import NotFound from '../not-found/not-found.jsx';
+import Loader from '../loader/loader.jsx';
+import PrivateRoute from '../private-route/private-route.js';
+import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player.jsx';
+
+const FullScreenPlayerWrapped = withFullscreenVideo(FullScreenVideoPlayer);
 
 const App = (props) => {
-  const {authorizationStatus, userData, setSelectedFilmId, setReviewedFilm, films} = props;
+  const {
+    authorizationStatus,
+    setSelectedFilmId,
+    films,
+    loadFilms,
+    loadReviews,
+    favoritesFilms,
+    loadFavoritesFilms
+  } = props;
+
   const isNoAuthorization = authorizationStatus === AuthorizationStatus.NO_AUTH;
 
   return (
@@ -37,43 +51,50 @@ const App = (props) => {
         />
         <Route exact path={`/films/:id`}
           render = {(properties) => {
-            setSelectedFilmId(+properties.match.params.id);
-            return (
-              <FilmDetails
-                {...properties}
-              />
-            );
-          }}
-        />
-        <Route
-          exact path={AppRoute.MYLIST}
-          render={() => {
-            return (
-              <MyList
-                userData={userData}
-              />
-            );
+            const filmId = +properties.match.params.id;
+            setSelectedFilmId(filmId);
+            loadReviews(filmId);
+
+            if (!films) {
+              loadFilms();
+            }
+
+            return films.length > 0 ? <FilmDetails /> : <Loader />;
           }}
         />
         <Route exact path={`/player/:id`}
-          render = {(properties) => (
-            <FullScreenVideoPlayer
-              {...properties}
-              filmId={properties.match.params.id}
-            />
-          )}
-        />
-        <Route exact path={`/films/:id/review`}
           render = {(properties) => {
-            const id = properties.match.params.id;
-            const filmData = films.find((film) => film.id === +id);
-            setReviewedFilm(filmData);
-            return (
-              <AddReview
-                {...properties}
-                filmId={id}
-              />
-            );
+            const filmId = +properties.match.params.id;
+            if (!films) {
+              loadFilms();
+            }
+            return films.length > 0
+              ? <FullScreenPlayerWrapped films={films} {...properties} filmId={filmId} />
+              : <Loader />;
+          }}
+        />
+        <PrivateRoute
+          exact path={`/mylist`}
+          render={() => {
+            if (!favoritesFilms) {
+              loadFavoritesFilms();
+            }
+            return <MyList />;
+          }}
+        />
+        <Route
+          exact path={`/films/:id/review`}
+          render = {(properties) => {
+            if (isNoAuthorization) {
+              return <Redirect to={AppRoute.LOGIN} />;
+            }
+            const filmId = +properties.match.params.id;
+            if (!films) {
+              loadFilms();
+            }
+            return films.length > 0
+              ? <AddReview films={films} filmId={filmId} {...properties} />
+              : <Loader />;
           }}
         />
         <Route
@@ -90,21 +111,32 @@ App.propTypes = {
   authorizationStatus: PropTypes.string,
   userData: PropTypes.object,
   setSelectedFilmId: PropTypes.func,
-  setReviewedFilm: PropTypes.func
+  films: PropTypes.array,
+  favoritesFilms: PropTypes.array,
+  loadFilms: PropTypes.func,
+  loadFavoritesFilms: PropTypes.func,
+  loadReviews: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
   films: getFilmsByGenre(state),
+  favoritesFilms: getFavoritesFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setSelectedFilmId(id) {
     dispatch(ActionCreator.setSelectedFilmId(id));
   },
-  setReviewedFilm(data) {
-    dispatch(ActionCreator.setReviewedFilm(data));
+  loadFavoritesFilms() {
+    dispatch(DataOperation.loadFavoriteFilms());
+  },
+  loadFilms() {
+    dispatch(DataOperation.loadFilms());
+  },
+  loadReviews(id) {
+    dispatch(DataOperation.loadReviews(id));
   }
 });
 

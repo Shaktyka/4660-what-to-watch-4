@@ -11,7 +11,7 @@ const withShowMore = (Component) => {
 
       this.state = {
         renderedFilms: props.films.slice(0, FILMS_PORTION),
-        isShowedShowMore: true
+        isShowedShowMore: false
       };
 
       this._handleShowMoreClick = this._handleShowMoreClick.bind(this);
