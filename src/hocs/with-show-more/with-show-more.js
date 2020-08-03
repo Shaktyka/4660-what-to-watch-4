@@ -17,6 +17,12 @@ const withShowMore = (Component) => {
       this._handleShowMoreClick = this._handleShowMoreClick.bind(this);
     }
 
+    componentDidMount() {
+      this.setState({
+        isShowedShowMore: this.props.films.length > FILMS_PORTION
+      });
+    }
+
     componentDidUpdate(prevProps) {
       if (prevProps !== this.props) {
         this.setState({
