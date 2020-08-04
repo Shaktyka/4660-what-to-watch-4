@@ -11,13 +11,13 @@ const initialState = {
   isFilmsLoading: false,
   isPromoLoading: false,
   isReviewsLoading: false,
-  loadFilmsErr: null,
-  loadPromoErr: null,
-  loadReviewsErr: null,
-  isReviewPosting: false,
-  postingReviewErr: null,
   isFavoritesFilmsLoading: false,
-  loadFavoritesFilmsErr: null
+  isReviewPosting: false,
+  loadFilmsErr: ``,
+  loadPromoErr: ``,
+  loadReviewsErr: ``,
+  postingReviewErr: ``,
+  loadFavoritesFilmsErr: ``
 };
 
 const ActionType = {
@@ -28,16 +28,16 @@ const ActionType = {
   SET_FILMS_LOADING: `SET_FILMS_LOADING`,
   SET_PROMO_LOADING: `SET_PROMO_LOADING`,
   SET_REVIEWS_LOADING: `SET_REVIEWS_LOADING`,
-  SET_FILMS_ERR_MSG: `SET_FILMS_ERR_MSG`,
-  SET_PROMO_ERR_MSG: `SET_PROMO_ERR_MSG`,
-  SET_REVIEWS_ERR_MSG: `SET_REVIEWS_ERR_MSG`,
+  SET_FILMS_ERROR_MESSAGE: `SET_FILMS_ERROR_MESSAGE`,
+  SET_PROMO_ERROR_MESSAGE: `SET_PROMO_ERROR_MESSAGE`,
+  SET_REVIEWS_ERROR_MESSAGE: `SET_REVIEWS_ERROR_MESSAGE`,
   ADD_FAVORITE_FILM: `ADD_FAVORITE_FILM`,
   LOAD_FAVORITES_FILMS: `LOAD_FAVORITES_FILMS`,
   REMOVE_FAVORITE_FILM: `REMOVE_FAVORITE_FILM`,
   SET_REVIEW_POSTING: `SET_REVIEW_POSTING`,
-  SET_REVIEW_ERR_MSG: `SET_REVIEW_ERR_MSG`,
+  SET_REVIEW_ERROR_MESSAGE: `SET_REVIEW_ERROR_MESSAGE`,
   SET_FAVORITES_FILMS_LOADING: `SET_FAVORITES_FILMS_LOADING`,
-  SET_FAVORITES_FILMS_ERR_MSG: `SET_FAVORITES_FILMS_ERR_MSG`,
+  SET_FAVORITES_FILMS_ERROR_MESSAGE: `SET_FAVORITES_FILMS_ERROR_MESSAGE`,
   SET_REVIEW_SET: `SET_REVIEW_SET`
 };
 
@@ -127,7 +127,7 @@ const ActionCreator = {
   setFilmsErrMsg: (message) => {
     return (
       {
-        type: ActionType.SET_FILMS_ERR_MSG,
+        type: ActionType.SET_FILMS_ERROR_MESSAGE,
         payload: message
       }
     );
@@ -136,7 +136,7 @@ const ActionCreator = {
   setFavoritesFilmsErrMsg: (message) => {
     return (
       {
-        type: ActionType.SET_FAVORITES_FILMS_ERR_MSG,
+        type: ActionType.SET_FAVORITES_FILMS_ERROR_MESSAGE,
         payload: message
       }
     );
@@ -145,7 +145,7 @@ const ActionCreator = {
   setPromoErrMsg: (message) => {
     return (
       {
-        type: ActionType.SET_PROMO_ERR_MSG,
+        type: ActionType.SET_PROMO_ERROR_MESSAGE,
         payload: message
       }
     );
@@ -154,7 +154,7 @@ const ActionCreator = {
   setReviewsErrMsg: (message) => {
     return (
       {
-        type: ActionType.SET_REVIEWS_ERR_MSG,
+        type: ActionType.SET_REVIEWS_ERROR_MESSAGE,
         payload: message
       }
     );
@@ -163,7 +163,7 @@ const ActionCreator = {
   setReviewErrMsg: (message) => {
     return (
       {
-        type: ActionType.SET_REVIEW_ERR_MSG,
+        type: ActionType.SET_REVIEW_ERROR_MESSAGE,
         payload: message
       }
     );
@@ -234,22 +234,22 @@ const reducer = (state = initialState, action) => {
         isReviewPosting: action.payload
       });
 
-    case ActionType.SET_FILMS_ERR_MSG:
+    case ActionType.SET_FILMS_ERROR_MESSAGE:
       return extend(state, {
         loadFilmsErr: action.payload
       });
 
-    case ActionType.SET_FAVORITES_FILMS_ERR_MSG:
+    case ActionType.SET_FAVORITES_FILMS_ERROR_MESSAGE:
       return extend(state, {
         loadFavoritesFilmsErr: action.payload
       });
 
-    case ActionType.SET_PROMO_ERR_MSG:
+    case ActionType.SET_PROMO_ERROR_MESSAGE:
       return extend(state, {
         loadPromoErr: action.payload
       });
 
-    case ActionType.SET_REVIEWS_ERR_MSG:
+    case ActionType.SET_REVIEWS_ERROR_MESSAGE:
       return extend(state, {
         loadReviewsErr: action.payload
       });
