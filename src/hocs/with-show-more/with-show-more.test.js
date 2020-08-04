@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import withActiveItem from './with-active-item.js';
+import withShowMore from './with-show-more.js';
 
 const filmData = {
   bgColor: `#A6B7AC`,
@@ -30,17 +30,16 @@ const MockComponent = () => {
   );
 };
 
-const MockComponentWrapped = withActiveItem(MockComponent);
+const MockComponentWrapped = withShowMore(MockComponent);
 
-describe(`withActiveItem rendering`, () => {
+describe(`withShowMore rendering`, () => {
 
-  it(`withActiveItem renders correctly`, ()=>{
+  it(`withShowMore renders correctly`, ()=>{
     const tree = renderer.create(
         <MockComponentWrapped
-          film={filmData}
-          activeItem={1}
-          setActiveItem={() => {}}
-          resetActiveItem={() => {}}
+          films={[filmData]}
+          isLoading={false}
+          error={``}
         />, {
           createNodeMock() {
             return {};
