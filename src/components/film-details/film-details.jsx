@@ -201,7 +201,7 @@ const FilmDetails = (props) => {
           <SimilarMoviesWrapped
             films={films.filter((film) => film.genre === genre).slice(0, 4)}
             isLoading={isFilmsLoading}
-            error={loadFilmsError}
+            loadFilmsError={loadFilmsError}
           />
         }
 
@@ -222,10 +222,10 @@ FilmDetails.propTypes = {
   isFilmsLoading: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userData: PropTypes.shape({
-    id: PropTypes.number,
-    avatar: PropTypes.string,
-    name: PropTypes.string,
-    email: PropTypes.string
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
   }).isRequired,
   changeFavoriteStatus: PropTypes.func.isRequired
 };

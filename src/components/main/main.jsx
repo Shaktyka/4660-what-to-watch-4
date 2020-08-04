@@ -134,7 +134,7 @@ const Main = (props) => {
             <MoviesListWrapped
               films={films}
               isLoading={isFilmsLoading}
-              error={loadFilmsError}
+              loadFilmsError={loadFilmsError}
             />
           }
         </section>
@@ -157,8 +157,8 @@ Main.propTypes = {
     isFavorite: PropTypes.bool
   }).isRequired,
   films: PropTypes.array.isRequired,
-  loadFilmsError: PropTypes.string,
-  loadPromoError: PropTypes.string,
+  loadFilmsError: PropTypes.string.isRequired,
+  loadPromoError: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
   isPromoLoading: PropTypes.bool.isRequired,
   userData: PropTypes.shape({

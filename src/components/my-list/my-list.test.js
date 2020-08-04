@@ -43,7 +43,8 @@ const store = mockStore({
     films: [filmData],
     favoritesFilms: [filmData],
     isFavoritesFilmsLoading: false,
-    loadFavoritesFilmsError: ``
+    loadFavoritesFilmsError: ``,
+    loadFilmsError: ``
   },
   [NameSpace.USER]: {
     authorizationStatus: `AUTH`,
@@ -60,6 +61,7 @@ describe(`MyList rendering`, () => {
             <Provider store={store}>
               <MyList
                 isLoading={false}
+                loadFilmsError={``}
               />
             </Provider>
           </BrowserRouter>, {

@@ -10,34 +10,10 @@ import MovieReviews from './movie-reviews.jsx';
 const REVIEWS = [
   {
     id: 1,
-    userId: 4,
-    userName: `Kate Muir`,
+    authorId: 4,
+    authorName: `Kate Muir`,
     rating: 8.9,
-    comment: `Discerning travellers`,
-    date: `2019-05-08T14:13:56.569Z`
-  },
-  {
-    id: 2,
-    userId: 3,
-    userName: `Kate Muir`,
-    rating: 8.9,
-    comment: `Discerning travellers`,
-    date: `2019-05-08T14:13:56.569Z`
-  },
-  {
-    id: 3,
-    userId: 2,
-    userName: `Kate Muir`,
-    rating: 8.9,
-    comment: `Discerning travellers`,
-    date: `2019-05-08T14:13:56.569Z`
-  },
-  {
-    id: 4,
-    userId: 1,
-    userName: `Kate Muir`,
-    rating: 8.9,
-    comment: `Discerning travellers`,
+    text: `Discerning travellers`,
     date: `2019-05-08T14:13:56.569Z`
   }
 ];
@@ -60,9 +36,6 @@ describe(`MovieReviews rendering`, () => {
           <Provider store={store}>
             <MovieReviews
               reviews={REVIEWS.slice(0, 1)}
-              authorId={1}
-              authorName={`Kate Muir`}
-              text={`comment`}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -74,32 +47,5 @@ describe(`MovieReviews rendering`, () => {
 
     expect(tree).toMatchSnapshot();
   });
-
-  /*
-  it(`MovieReviews renders correctly with 3 reviews`, () => {
-
-    const tree = renderer
-      .create(
-          <MovieReviews
-            reviews={REVIEWS.slice(0, 3)}
-          />
-      )
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`MovieReviews renders correctly with more then 3 reviews`, () => {
-    const tree = renderer
-      .create(
-          <MovieReviews
-            reviews={REVIEWS}
-          />
-      )
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-  */
 
 });

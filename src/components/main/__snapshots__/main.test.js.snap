@@ -2,6 +2,7 @@
 
 exports[`Main rendering Main renders correctly 1`] = `
 Array [
+  "",
   <section
     className="movie-card"
   >

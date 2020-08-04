@@ -61,7 +61,12 @@ describe(`FilmDetails rendering`, () => {
       },
       [NameSpace.USER]: {
         authorizationStatus: `NO_AUTH`,
-        userData: {},
+        userData: {
+          id: 1,
+          email: `Oliver.conner@gmail.com`,
+          name: `Oliver.conner`,
+          avatar: `img/1.png`
+        },
       }
     });
 

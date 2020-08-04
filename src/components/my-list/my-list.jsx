@@ -56,7 +56,7 @@ const MyList = (props) => {
             <MoviesListWrapped
               films={favoritesFilms}
               isLoading={isFavoritesFilmsLoading}
-              error={loadFavoritesFilmsError}
+              loadFilmsError={loadFavoritesFilmsError}
             />
         }
 

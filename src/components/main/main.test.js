@@ -50,6 +50,8 @@ const store = mockStore({
     genres: genresList,
     promoFilm: FILMS_DATA[0],
     isPromoLoading: false,
+    loadFilmsError: ``,
+    loadPromoError: ``
   },
   [NameSpace.APP_STATE]: {
     genre: `All genres`
@@ -70,6 +72,7 @@ describe(`Main rendering`, () => {
               <Main
                 films={FILMS_DATA}
                 isLoading={false}
+                loadPromoError={``}
               />
             </Provider>
           </BrowserRouter>, {

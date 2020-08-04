@@ -8,11 +8,11 @@ import Loader from '../loader/loader.jsx';
 const CardWrapped = withCard(Card);
 
 const SimilarMovies = (props) => {
-  const {films, error, isLoading} = props;
+  const {films, loadFilmsError, isLoading} = props;
 
-  return error
+  return loadFilmsError
     ?
-    <div>{error}</div>
+    <div>{loadFilmsError}</div>
     :
     <>
       <div className="catalog__movies-list">
@@ -36,7 +36,7 @@ const SimilarMovies = (props) => {
 
 SimilarMovies.propTypes = {
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
-  error: PropTypes.string,
+  loadFilmsError: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired
 };
 
