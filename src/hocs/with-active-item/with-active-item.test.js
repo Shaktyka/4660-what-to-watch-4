@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import withActiveItem from './with-active-item.js';
 
-const onefilmData = {
+const filmData = {
   bgColor: `#A6B7AC`,
   cover: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`,
   description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City
@@ -24,29 +24,23 @@ const onefilmData = {
   year: 2002
 };
 
-const mockComponent = () => <div />;
+const MockComponent = () => {
+  return (
+    <div></div>
+  );
+};
 
-const MockComponentWrapped = withActiveItem(mockComponent);
+const MockComponentWrapped = withActiveItem(MockComponent);
 
 describe(`withActiveItem rendering`, () => {
 
-  it(`withActiveItem renders with ...`, ()=>{
+  it(`withActiveItem renders correctly`, ()=>{
     const tree = renderer.create(
         <MockComponentWrapped
-          film={onefilmData}
-          // дописать
-        />
-    ).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`withActiveItem renders with ...`, ()=>{
-    const tree = renderer.create(
-        <MockComponentWrapped
-          // дописать
-          activeItem={false}
-          setActiveItem={()=>{}}
+          film={filmData}
+          activeItem={1}
+          setActiveItem={() => {}}
+          resetActiveItem={() => {}}
         />
     ).toJSON();
 
