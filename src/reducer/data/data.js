@@ -13,11 +13,11 @@ const initialState = {
   isReviewsLoading: false,
   isFavoritesFilmsLoading: false,
   isReviewPosting: false,
-  loadFilmsErr: ``,
-  loadPromoErr: ``,
-  loadReviewsErr: ``,
-  postingReviewErr: ``,
-  loadFavoritesFilmsErr: ``
+  loadFilmsError: ``,
+  loadPromoError: ``,
+  loadReviewsError: ``,
+  postingReviewError: ``,
+  loadFavoritesFilmsError: ``
 };
 
 const ActionType = {
@@ -124,7 +124,7 @@ const ActionCreator = {
     );
   },
 
-  setFilmsErrMsg: (message) => {
+  setFilmsErrorMessage: (message) => {
     return (
       {
         type: ActionType.SET_FILMS_ERROR_MESSAGE,
@@ -133,7 +133,7 @@ const ActionCreator = {
     );
   },
 
-  setFavoritesFilmsErrMsg: (message) => {
+  setFavoritesFilmsErrorMessage: (message) => {
     return (
       {
         type: ActionType.SET_FAVORITES_FILMS_ERROR_MESSAGE,
@@ -142,7 +142,7 @@ const ActionCreator = {
     );
   },
 
-  setPromoErrMsg: (message) => {
+  setPromoErrorMessage: (message) => {
     return (
       {
         type: ActionType.SET_PROMO_ERROR_MESSAGE,
@@ -151,7 +151,7 @@ const ActionCreator = {
     );
   },
 
-  setReviewsErrMsg: (message) => {
+  setReviewsErrorMessage: (message) => {
     return (
       {
         type: ActionType.SET_REVIEWS_ERROR_MESSAGE,
@@ -160,7 +160,7 @@ const ActionCreator = {
     );
   },
 
-  setReviewErrMsg: (message) => {
+  setReviewErrorMessage: (message) => {
     return (
       {
         type: ActionType.SET_REVIEW_ERROR_MESSAGE,
@@ -236,22 +236,22 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.SET_FILMS_ERROR_MESSAGE:
       return extend(state, {
-        loadFilmsErr: action.payload
+        loadFilmsError: action.payload
       });
 
     case ActionType.SET_FAVORITES_FILMS_ERROR_MESSAGE:
       return extend(state, {
-        loadFavoritesFilmsErr: action.payload
+        loadFavoritesFilmsError: action.payload
       });
 
     case ActionType.SET_PROMO_ERROR_MESSAGE:
       return extend(state, {
-        loadPromoErr: action.payload
+        loadPromoError: action.payload
       });
 
     case ActionType.SET_REVIEWS_ERROR_MESSAGE:
       return extend(state, {
-        loadReviewsErr: action.payload
+        loadReviewsError: action.payload
       });
 
     case ActionType.ADD_FAVORITE_FILM:
@@ -298,9 +298,9 @@ const Operation = {
       .catch((error) => {
         dispatch(ActionCreator.setFilmsLoading(false));
         if (error.response.status !== 200) {
-          dispatch(ActionCreator.setFilmsErrMsg(`${error.response.status} ${error.response.data.error}`));
+          dispatch(ActionCreator.setFilmsErrorMessage(`${error.response.status} ${error.response.data.error}`));
         } else {
-          dispatch(ActionCreator.setFilmsErrMsg(null));
+          dispatch(ActionCreator.setFilmsErrorMessage(``));
         }
       });
   },
@@ -317,9 +317,9 @@ const Operation = {
       .catch((error) => {
         dispatch(ActionCreator.setFavoritesFilmsLoading(false));
         if (error.response.status !== 200) {
-          dispatch(ActionCreator.setFavoritesFilmsErrMsg(`${error.response.status} ${error.response.data.error}`));
+          dispatch(ActionCreator.setFavoritesFilmsErrorMessage(`${error.response.status} ${error.response.data.error}`));
         } else {
-          dispatch(ActionCreator.setFavoritesFilmsErrMsg(null));
+          dispatch(ActionCreator.setFavoritesFilmsErrorMessage(``));
         }
         throw error;
       });
@@ -336,9 +336,9 @@ const Operation = {
       .catch((error) => {
         dispatch(ActionCreator.setPromoLoading(false));
         if (error.response.status !== 200) {
-          dispatch(ActionCreator.setPromoErrMsg(`${error.response.status} ${error.response.data.error}`));
+          dispatch(ActionCreator.setPromoErrorMessage(`${error.response.status} ${error.response.data.error}`));
         } else {
-          dispatch(ActionCreator.setPromoErrMsg(null));
+          dispatch(ActionCreator.setPromoErrorMessage(``));
         }
       });
   },
@@ -355,9 +355,9 @@ const Operation = {
       .catch((error) => {
         dispatch(ActionCreator.setReviewsLoading(false));
         if (error.response.status !== 200) {
-          dispatch(ActionCreator.setReviewsErrMsg(`${error.response.status} ${error.response.data.error}`));
+          dispatch(ActionCreator.setReviewsErrorMessage(`${error.response.status} ${error.response.data.error}`));
         } else {
-          dispatch(ActionCreator.setReviewsErrMsg(null));
+          dispatch(ActionCreator.setReviewsErrorMessage(``));
         }
       });
   },
@@ -372,9 +372,9 @@ const Operation = {
       .catch((error) => {
         dispatch(ActionCreator.setReviewPosting(false));
         if (error.response.status !== 200) {
-          dispatch(ActionCreator.setReviewErrMsg(`${error.response.status} ${error.response.data.error}`));
+          dispatch(ActionCreator.setReviewErrorMessage(`${error.response.status} ${error.response.data.error}`));
         } else {
-          dispatch(ActionCreator.setReviewErrMsg(null));
+          dispatch(ActionCreator.setReviewErrorMessage(``));
         }
         throw error;
       });
