@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {
-  getFilmsByGenre,
   getReviews,
   getFilmsErrorMessage,
   getIsFilmsLoading
@@ -16,8 +15,7 @@ import {AuthorizationStatus} from '../../consts.js';
 
 import {
   getMovieNavTabs,
-  getActiveTab,
-  getSelectedFilmId
+  getActiveTab
 } from '../../reducer/app-state/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
@@ -235,10 +233,8 @@ FilmDetails.propTypes = {
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
-  selectedFilmId: getSelectedFilmId(state),
   tabs: getMovieNavTabs(state),
   activeTab: getActiveTab(state),
-  films: getFilmsByGenre(state),
   filmReviews: getReviews(state),
   isFilmsLoading: getIsFilmsLoading(state),
   loadFilmsError: getFilmsErrorMessage(state)
