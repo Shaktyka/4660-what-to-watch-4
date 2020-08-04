@@ -70,11 +70,8 @@ describe(`FilmDetails rendering`, () => {
             <Provider store={store}>
               <FilmDetails
                 films={[filmData]}
-                filmData={filmData}
                 isFilmsLoading={false}
                 selectedFilmId={1}
-                onTabClick={() => {}}
-                onGenreClick={() => {}}
               />
             </Provider>
           </BrowserRouter>, {

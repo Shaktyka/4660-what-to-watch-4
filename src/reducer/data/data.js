@@ -284,8 +284,8 @@ const Operation = {
     dispatch(ActionCreator.setFilmsLoading(true));
 
     return api.get(Endpoint.FILMS)
-      .then((res) => {
-        const adaptedFilms = res.data.map((film) => getAdaptedFilm(film));
+      .then((result) => {
+        const adaptedFilms = result.data.map((film) => getAdaptedFilm(film));
 
         dispatch(ActionCreator.loadFilms(adaptedFilms));
         const genresList = [
@@ -295,10 +295,10 @@ const Operation = {
         dispatch(ActionCreator.loadGenres(genresList));
         dispatch(ActionCreator.setFilmsLoading(false));
       })
-      .catch((err) => {
+      .catch((error) => {
         dispatch(ActionCreator.setFilmsLoading(false));
-        if (err.response.status !== 200) {
-          dispatch(ActionCreator.setFilmsErrMsg(`${err.response.status} ${err.response.data.error}`));
+        if (error.response.status !== 200) {
+          dispatch(ActionCreator.setFilmsErrMsg(`${error.response.status} ${error.response.data.error}`));
         } else {
           dispatch(ActionCreator.setFilmsErrMsg(null));
         }
@@ -309,19 +309,19 @@ const Operation = {
     dispatch(ActionCreator.setFavoritesFilmsLoading(true));
 
     return api.get(Endpoint.FAVORITE)
-      .then((res) => {
-        const adaptedFilms = res.data.map((film) => getAdaptedFilm(film));
+      .then((result) => {
+        const adaptedFilms = result.data.map((film) => getAdaptedFilm(film));
         dispatch(ActionCreator.loadFavoritesFilms(adaptedFilms));
         dispatch(ActionCreator.setFavoritesFilmsLoading(false));
       })
-      .catch((err) => {
+      .catch((error) => {
         dispatch(ActionCreator.setFavoritesFilmsLoading(false));
-        if (err.response.status !== 200) {
-          dispatch(ActionCreator.setFavoritesFilmsErrMsg(`${err.response.status} ${err.response.data.error}`));
+        if (error.response.status !== 200) {
+          dispatch(ActionCreator.setFavoritesFilmsErrMsg(`${error.response.status} ${error.response.data.error}`));
         } else {
           dispatch(ActionCreator.setFavoritesFilmsErrMsg(null));
         }
-        throw err;
+        throw error;
       });
   },
 
@@ -329,14 +329,14 @@ const Operation = {
     dispatch(ActionCreator.setPromoLoading(true));
 
     return api.get(Endpoint.PROMO_FILM)
-      .then((res) => {
-        dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(res.data)));
+      .then((result) => {
+        dispatch(ActionCreator.loadPromoFilm(getAdaptedFilm(result.data)));
         dispatch(ActionCreator.setPromoLoading(false));
       })
-      .catch((err) => {
+      .catch((error) => {
         dispatch(ActionCreator.setPromoLoading(false));
-        if (err.response.status !== 200) {
-          dispatch(ActionCreator.setPromoErrMsg(`${err.response.status} ${err.response.data.error}`));
+        if (error.response.status !== 200) {
+          dispatch(ActionCreator.setPromoErrMsg(`${error.response.status} ${error.response.data.error}`));
         } else {
           dispatch(ActionCreator.setPromoErrMsg(null));
         }
@@ -347,15 +347,15 @@ const Operation = {
     dispatch(ActionCreator.setReviewsLoading(true));
 
     return api.get(`${Endpoint.REVIEWS}/${id}`)
-      .then((res) => {
-        const adaptedReviews = res.data.map((review) => getAdaptedReview(review));
+      .then((result) => {
+        const adaptedReviews = result.data.map((review) => getAdaptedReview(review));
         dispatch(ActionCreator.loadReviews(adaptedReviews));
         dispatch(ActionCreator.setReviewsLoading(false));
       })
-      .catch((err) => {
+      .catch((error) => {
         dispatch(ActionCreator.setReviewsLoading(false));
-        if (err.response.status !== 200) {
-          dispatch(ActionCreator.setReviewsErrMsg(`${err.response.status} ${err.response.data.error}`));
+        if (error.response.status !== 200) {
+          dispatch(ActionCreator.setReviewsErrMsg(`${error.response.status} ${error.response.data.error}`));
         } else {
           dispatch(ActionCreator.setReviewsErrMsg(null));
         }
@@ -369,23 +369,21 @@ const Operation = {
       .then(() => {
         dispatch(ActionCreator.setReviewPosting(false));
       })
-      .catch((err) => {
+      .catch((error) => {
         dispatch(ActionCreator.setReviewPosting(false));
-        if (err.response.status !== 200) {
-          dispatch(ActionCreator.setReviewErrMsg(`${err.response.status} ${err.response.data.error}`));
+        if (error.response.status !== 200) {
+          dispatch(ActionCreator.setReviewErrMsg(`${error.response.status} ${error.response.data.error}`));
         } else {
           dispatch(ActionCreator.setReviewErrMsg(null));
         }
-        throw err;
+        throw error;
       });
   },
 
   changeFavoriteStatus: (id, status) => (dispatch, getState, api) => {
     return api.post(`${Endpoint.FAVORITE}/${id}/${status}`)
-      .then(() => {
-      })
-      .catch((err) => {
-        throw err;
+      .catch((error) => {
+        throw error;
       });
   }
 };

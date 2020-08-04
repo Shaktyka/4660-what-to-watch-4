@@ -115,11 +115,11 @@ const Operation = {
 
   getFavoriteFilm: (id, status) => (dispatch, getState, api) => {
     return api.get(`${Endpoint.FAVORITE}/${id}/${status}`)
-      .then((res) => {
-        dispatch(ActionCreator.setSelectedFilm(getAdaptedFilm(res.data)));
+      .then((result) => {
+        dispatch(ActionCreator.setSelectedFilm(getAdaptedFilm(result.data)));
       })
-      .catch((err) => {
-        throw err;
+      .catch((error) => {
+        throw error;
       });
   }
 };

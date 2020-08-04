@@ -62,15 +62,15 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then((res) => {
-        return getAdaptedUserData(res.data);
+      .then((result) => {
+        return getAdaptedUserData(result.data);
       })
-      .catch((err) => {
-        if (err.status === 401) {
+      .catch((error) => {
+        if (error.status === 401) {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
           dispatch(ActionCreator.setUserData({}));
         }
-        throw err;
+        throw error;
       });
   },
 
@@ -79,18 +79,18 @@ const Operation = {
       email: authData.email,
       password: authData.password,
     })
-      .then((res) => {
+      .then((result) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.setUserData(getAdaptedUserData(res.data)));
+        dispatch(ActionCreator.setUserData(getAdaptedUserData(result.data)));
         dispatch(ActionCreator.setAuthError(null));
       })
-      .catch((err) => {
-        if (err.code !== 200) {
-          dispatch(ActionCreator.setAuthError(err.message));
+      .catch((error) => {
+        if (error.code !== 200) {
+          dispatch(ActionCreator.setAuthError(error.message));
         } else {
           dispatch(ActionCreator.setAuthError(null));
         }
-        throw err;
+        throw error;
       });
   }
 };
