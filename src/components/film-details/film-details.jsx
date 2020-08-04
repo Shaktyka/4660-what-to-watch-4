@@ -220,7 +220,7 @@ FilmDetails.propTypes = {
   filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired,
-  loadFilmsErr: PropTypes.string,
+  loadFilmsError: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userData: PropTypes.shape({
@@ -241,7 +241,7 @@ const mapStateToProps = (state) => ({
   films: getFilmsByGenre(state),
   filmReviews: getReviews(state),
   isFilmsLoading: getIsFilmsLoading(state),
-  loadFilmsErr: getFilmsErrorMessage(state)
+  loadFilmsError: getFilmsErrorMessage(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -6,7 +6,7 @@ const DEFAULT_GENRE = GENRES[0];
 
 const initState = {
   genre: DEFAULT_GENRE,
-  selectedFilmId: null,
+  selectedFilmId: 0,
   selectedFilm: {},
   reviewedFilm: {},
   movieNavTabs: MOVIE_NAV_TABS,

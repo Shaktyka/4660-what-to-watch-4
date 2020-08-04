@@ -47,7 +47,7 @@ MoviesList.propTypes = {
         source: PropTypes.string.isRequired
       })
   ).isRequired,
-  error: PropTypes.string,
+  error: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isShowed: PropTypes.bool.isRequired,
   onShowMoreClick: PropTypes.func.isRequired

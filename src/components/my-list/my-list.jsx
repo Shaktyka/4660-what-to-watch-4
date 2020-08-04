@@ -7,7 +7,7 @@ import {getUserData} from '../../reducer/user/selectors.js';
 import {
   getFavoritesFilms,
   getIsFavoritesFilmsLoading,
-  getLoadFavoritesFilmsErr
+  getLoadFavoritesFilmsError
 } from '../../reducer/data/selectors.js';
 
 import PageHeader from '../page-header/page-header.jsx';
@@ -32,7 +32,7 @@ const MyList = (props) => {
     userData,
     favoritesFilms,
     isFavoritesFilmsLoading,
-    loadFavoritesFilmsErr
+    loadFavoritesFilmsError
   } = props;
 
   return (
@@ -56,7 +56,7 @@ const MyList = (props) => {
             <MoviesListWrapped
               films={favoritesFilms}
               isLoading={isFavoritesFilmsLoading}
-              error={loadFavoritesFilmsErr}
+              error={loadFavoritesFilmsError}
             />
         }
 
@@ -71,14 +71,14 @@ MyList.propTypes = {
   userData: PropTypes.object.isRequired,
   favoritesFilms: PropTypes.array.isRequired,
   isFavoritesFilmsLoading: PropTypes.bool.isRequired,
-  loadFavoritesFilmsErr: PropTypes.string
+  loadFavoritesFilmsError: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   userData: getUserData(state),
   favoritesFilms: getFavoritesFilms(state),
   isFavoritesFilmsLoading: getIsFavoritesFilmsLoading(state),
-  loadFavoritesFilmsErr: getLoadFavoritesFilmsErr(state)
+  loadFavoritesFilmsError: getLoadFavoritesFilmsError(state)
 });
 
 export {MyList};

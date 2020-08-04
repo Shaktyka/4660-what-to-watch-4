@@ -48,7 +48,7 @@ class AddReview extends PureComponent {
       userData,
       films,
       filmId,
-      postingReviewErr,
+      postingReviewError,
       isReviewPosting
     } = this.props;
 
@@ -143,9 +143,9 @@ class AddReview extends PureComponent {
               </div>
             </div>
             {
-              postingReviewErr
+              postingReviewError
                 &&
-              <p style={{textAlign: `center`, color: `brown`}}>{postingReviewErr}</p>
+              <p style={{textAlign: `center`, color: `brown`}}>{postingReviewError}</p>
             }
           </form>
         </div>
@@ -167,7 +167,7 @@ AddReview.propTypes = {
   filmId: PropTypes.number.isRequired,
   submitReview: PropTypes.func.isRequired,
   isReviewPosting: PropTypes.bool.isRequired,
-  postingReviewErr: PropTypes.string,
+  postingReviewError: PropTypes.string,
   history: PropTypes.object
 };
 
@@ -175,7 +175,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
   isReviewPosting: getIsReviewPosting(state),
-  postingReviewErr: getReviewErrorMessage(state),
+  postingReviewError: getReviewErrorMessage(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

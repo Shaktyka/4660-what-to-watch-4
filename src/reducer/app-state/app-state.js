@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   genre: DEFAULT_GENRE,
-  selectedFilmId: null,
+  selectedFilmId: 0,
   selectedFilm: {},
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],

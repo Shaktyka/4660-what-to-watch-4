@@ -34,8 +34,8 @@ const Main = (props) => {
   const {
     films,
     promoFilm,
-    loadFilmsErr,
-    loadPromoErr,
+    loadFilmsError,
+    loadPromoError,
     isFilmsLoading,
     isPromoLoading,
     userData,
@@ -49,7 +49,7 @@ const Main = (props) => {
   return (
     <>
       {
-        loadPromoErr && <ErrorMessage message={loadPromoErr} />
+        loadPromoError && <ErrorMessage message={loadPromoError} />
       }
       <section className="movie-card">
         <div className="movie-card__bg" style={{backgroundColor: bgColor}}>
@@ -134,7 +134,7 @@ const Main = (props) => {
             <MoviesListWrapped
               films={films}
               isLoading={isFilmsLoading}
-              error={loadFilmsErr}
+              error={loadFilmsError}
             />
           }
         </section>
@@ -157,8 +157,8 @@ Main.propTypes = {
     isFavorite: PropTypes.bool
   }).isRequired,
   films: PropTypes.array.isRequired,
-  loadFilmsErr: PropTypes.string,
-  loadPromoErr: PropTypes.string,
+  loadFilmsError: PropTypes.string,
+  loadPromoError: PropTypes.string,
   isFilmsLoading: PropTypes.bool.isRequired,
   isPromoLoading: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
@@ -175,8 +175,8 @@ const mapStateToProps = (state) => ({
   userData: getUserData(state),
   films: getFilmsByGenre(state),
   promoFilm: getPromoFilm(state),
-  loadFilmsErr: getFilmsErrorMessage(state),
-  loadPromoErr: getPromoErrorMessage(state),
+  loadFilmsError: getFilmsErrorMessage(state),
+  loadPromoError: getPromoErrorMessage(state),
   isFilmsLoading: getIsFilmsLoading(state),
   isPromoLoading: getIsPromoLoading(state)
 });
