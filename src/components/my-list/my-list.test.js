@@ -42,7 +42,8 @@ const store = mockStore({
   [NameSpace.DATA]: {
     films: [filmData],
     favoritesFilms: [filmData],
-    isFavoritesFilmsLoading: false
+    isFavoritesFilmsLoading: false,
+    loadFavoritesFilmsError: ``
   },
   [NameSpace.USER]: {
     authorizationStatus: `AUTH`,

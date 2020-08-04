@@ -50,7 +50,8 @@ describe(`FilmDetails rendering`, () => {
         films: [filmData],
         isFilmsLoading: false,
         genres: [],
-        filmReviews: [comment]
+        filmReviews: [comment],
+        loadFilmsError: ``
       },
       [NameSpace.APP_STATE]: {
         isLoading: false,

@@ -20,7 +20,7 @@ describe(`SignIn rendering`, () => {
       [NameSpace.USER]: {
         authorizationStatus: `NO_AUTH`,
         userData: {},
-        authError: null
+        authorizationError: ``
       }
     });
 
@@ -29,7 +29,7 @@ describe(`SignIn rendering`, () => {
           <BrowserRouter>
             <Provider store={store}>
               <SignIn
-                authError={null}
+                authorizationError={null}
                 onSubmit={() => {}}
               />
             </Provider>
@@ -51,7 +51,7 @@ describe(`SignIn rendering`, () => {
       [NameSpace.USER]: {
         authorizationStatus: `NO_AUTH`,
         userData: {},
-        authError: `Error text`
+        authorizationError: `Error text`
       }
     });
 
@@ -60,7 +60,7 @@ describe(`SignIn rendering`, () => {
           <BrowserRouter>
             <Provider store={store}>
               <SignIn
-                authError={`Bad request`}
+                authorizationError={`Bad request`}
                 onSubmit={() => {}}
               />
             </Provider>

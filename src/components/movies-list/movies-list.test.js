@@ -38,6 +38,7 @@ describe(`MoviesList rendering`, () => {
               isLoading={false}
               isShowed={true}
               onShowMoreClick={() => {}}
+              error={``}
             />
           </BrowserRouter>, {
             createNodeMock: () => {

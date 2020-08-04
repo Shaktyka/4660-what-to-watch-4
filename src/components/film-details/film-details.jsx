@@ -87,7 +87,7 @@ const FilmDetails = (props) => {
     films,
     selectedFilmId,
     filmReviews,
-    loadFilmsErr,
+    loadFilmsError,
     isFilmsLoading,
     authorizationStatus,
     userData,
@@ -203,7 +203,7 @@ const FilmDetails = (props) => {
           <SimilarMoviesWrapped
             films={films.filter((film) => film.genre === genre).slice(0, 4)}
             isLoading={isFilmsLoading}
-            error={loadFilmsErr}
+            error={loadFilmsError}
           />
         }
 

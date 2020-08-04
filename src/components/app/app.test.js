@@ -27,7 +27,12 @@ describe(`App rendering`, () => {
       },
       [NameSpace.USER]: {
         authorizationStatus: `NO_AUTH`,
-        userData: {},
+        userData: {
+          id: 0,
+          email: ``,
+          name: ``,
+          avatar: ``
+        },
       }
     });
 
@@ -36,6 +41,7 @@ describe(`App rendering`, () => {
           <Provider store={store}>
             <App
               isLoading={false}
+              error={``}
             />
           </Provider>, {
             createNodeMock: () => {
