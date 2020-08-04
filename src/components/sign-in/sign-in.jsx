@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
-import {getAuthError} from '../../reducer/user/selectors.js';
+import {getAuthorizationError} from '../../reducer/user/selectors.js';
 import PageHeader from '../page-header/page-header.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 
@@ -36,7 +36,7 @@ class SignIn extends PureComponent {
   }
 
   render() {
-    const {authError} = this.props;
+    const {authorizationError} = this.props;
     const pageTitle = this._getPageTitle();
 
     return (
@@ -53,10 +53,10 @@ class SignIn extends PureComponent {
             onSubmit={this._handleSubmit}
           >
             {
-              authError
+              authorizationError
                 ?
                 <div className="sign-in__message">
-                  <p>{authError}</p>
+                  <p>{authorizationError}</p>
                 </div>
                 :
                 null
@@ -110,16 +110,16 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  authError: PropTypes.string
+  authorizationError: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  authError: getAuthError(state)
+  authorizationError: getAuthorizationError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(UserOperation.login(authData));
+  onSubmit(authorizationData) {
+    dispatch(UserOperation.login(authorizationData));
   }
 });
 

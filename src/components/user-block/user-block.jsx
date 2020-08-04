@@ -30,8 +30,10 @@ const UserBlock = (props) => {
 UserBlock.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
-    avatar: PropTypes.string,
-    name: PropTypes.string
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
   }).isRequired
 };
 

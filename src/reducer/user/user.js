@@ -4,13 +4,25 @@ import {getAdaptedUserData} from '../../adapter/adapter.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  userData: {},
-  authError: null
+  userData: {
+    id: 0,
+    email: ``,
+    name: ``,
+    avatar: ``
+  },
+  authorizationError: ``
+};
+
+const userDataObject = {
+  id: 0,
+  email: ``,
+  name: ``,
+  avatar: ``
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  SET_AUTH_ERROR: `SET_AUTH_ERROR`,
+  SET_AUTHORIZATION_ERROR: `SET_AUTHORIZATION_ERROR`,
   SET_USER_DATA: `SET_USER_DATA`
 };
 
@@ -22,17 +34,17 @@ const ActionCreator = {
     };
   },
 
-  setAuthError: (text) => {
+  setAuthorizationError: (text) => {
     return {
-      type: ActionType.SET_AUTH_ERROR,
+      type: ActionType.SET_AUTHORIZATION_ERROR,
       payload: text
     };
   },
 
-  setUserData: (userInfo) => {
+  setUserData: (userData) => {
     return {
       type: ActionType.SET_USER_DATA,
-      payload: userInfo
+      payload: userData
     };
   }
 };
@@ -45,9 +57,9 @@ const reducer = (state = initialState, action) => {
         authorizationStatus: action.payload
       });
 
-    case ActionType.SET_AUTH_ERROR:
+    case ActionType.SET_AUTHORIZATION_ERROR:
       return extend(state, {
-        authError: action.payload
+        authorizationError: action.payload
       });
 
     case ActionType.SET_USER_DATA:
@@ -68,27 +80,27 @@ const Operation = {
       .catch((error) => {
         if (error.status === 401) {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-          dispatch(ActionCreator.setUserData({}));
+          dispatch(ActionCreator.setUserData(userDataObject));
         }
         throw error;
       });
   },
 
-  login: (authData) => (dispatch, getState, api) => {
+  login: (authtorizationData) => (dispatch, getState, api) => {
     return api.post(`/login`, {
-      email: authData.email,
-      password: authData.password,
+      email: authtorizationData.email,
+      password: authtorizationData.password,
     })
       .then((result) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setUserData(getAdaptedUserData(result.data)));
-        dispatch(ActionCreator.setAuthError(null));
+        dispatch(ActionCreator.setAuthorizationError(``));
       })
       .catch((error) => {
         if (error.code !== 200) {
-          dispatch(ActionCreator.setAuthError(error.message));
+          dispatch(ActionCreator.setAuthorizationError(error.message));
         } else {
-          dispatch(ActionCreator.setAuthError(null));
+          dispatch(ActionCreator.setAuthorizationError(``));
         }
         throw error;
       });

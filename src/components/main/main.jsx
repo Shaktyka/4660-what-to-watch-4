@@ -162,8 +162,10 @@ Main.propTypes = {
   isFilmsLoading: PropTypes.bool.isRequired,
   isPromoLoading: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
-    avatar: PropTypes.string,
-    name: PropTypes.string
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
   }).isRequired,
   changeFavoriteStatus: PropTypes.func.isRequired
 };

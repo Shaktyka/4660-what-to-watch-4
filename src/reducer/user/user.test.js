@@ -3,8 +3,20 @@ import {AuthorizationStatus} from '../../consts.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  userData: {},
-  authError: null
+  userData: {
+    id: 0,
+    email: ``,
+    name: ``,
+    avatar: ``
+  },
+  authorizationError: ``
+};
+
+const userDataObject = {
+  id: 0,
+  email: ``,
+  name: ``,
+  avatar: ``
 };
 
 const userData = {
@@ -60,16 +72,16 @@ describe(`User Reducer works correctly`, () => {
 
   it(`User Reducer should change userData by a given value`, () => {
     expect(reducer({
-      userData: {}
+      userData
     }, {
       type: ActionType.SET_USER_DATA,
-      payload: {},
+      payload: userDataObject,
     })).toEqual({
-      userData: {}
+      userData: userDataObject
     });
 
     expect(reducer({
-      userData: {}
+      userData: userDataObject
     }, {
       type: ActionType.SET_USER_DATA,
       payload: userData,
@@ -78,25 +90,25 @@ describe(`User Reducer works correctly`, () => {
     });
   });
 
-  it(`User Reducer should change authError by a given value`, () => {
+  it(`User Reducer should change authorizationError by a given value`, () => {
     const errorText = `401, bad request`;
 
     expect(reducer({
-      authError: errorText
+      authorizationError: errorText
     }, {
-      type: ActionType.SET_AUTH_ERROR,
-      payload: null,
+      type: ActionType.SET_AUTHORIZATION_ERROR,
+      payload: ``,
     })).toEqual({
-      authError: null
+      authorizationError: ``
     });
 
     expect(reducer({
-      authError: null
+      authorizationError: ``
     }, {
-      type: ActionType.SET_AUTH_ERROR,
+      type: ActionType.SET_AUTHORIZATION_ERROR,
       payload: errorText,
     })).toEqual({
-      authError: errorText
+      authorizationError: errorText
     });
   });
 });
@@ -115,9 +127,9 @@ describe(`User Action creators work correctly`, () => {
     });
   });
 
-  it(`User Action Creator for setAuthError returns correct action`, () => {
-    expect(ActionCreator.setAuthError(`auth error`)).toEqual({
-      type: ActionType.SET_AUTH_ERROR,
+  it(`User Action Creator for setAuthorizationError returns correct action`, () => {
+    expect(ActionCreator.setAuthorizationError(`auth error`)).toEqual({
+      type: ActionType.SET_AUTHORIZATION_ERROR,
       payload: `auth error`
     });
   });
