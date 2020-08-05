@@ -19,7 +19,8 @@ describe(`App rendering`, () => {
         genres: [],
         isFilmsLoading: false,
         isPromoLoading: false,
-        loadFilmsError: ``
+        loadFilmsError: ``,
+        loadPromoError: ``
       },
       [NameSpace.APP_STATE]: {
         isLoading: false,
@@ -43,6 +44,7 @@ describe(`App rendering`, () => {
             <App
               isLoading={false}
               loadFilmsError={``}
+              loadPromoError={``}
             />
           </Provider>, {
             createNodeMock: () => {

@@ -1,5 +1,4 @@
 import {extend} from '../../utils.js';
-import {getAdaptedFilm} from '../../adapter/adapter.js';
 
 import {
   DEFAULT_GENRE,
@@ -13,14 +12,6 @@ const initialState = {
   selectedFilm: {},
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],
-  reviewedFilm: {}
-};
-
-const Endpoint = {
-  FILMS: `/films`,
-  PROMO_FILM: `/films/promo`,
-  REVIEWS: `/comments/`,
-  FAVORITE: `/favorite`
 };
 
 const ActionType = {
@@ -68,16 +59,7 @@ const ActionCreator = {
         payload: data
       }
     );
-  },
-
-  setReviewedFilm: (data) => {
-    return (
-      {
-        type: ActionType.SET_REVIEWED_FILM,
-        payload: data
-      }
-    );
-  },
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -101,27 +83,9 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         activeMovieNavTab: action.payload
       });
-
-    case ActionType.SET_REVIEWED_FILM:
-      return extend(state, {
-        reviewedFilm: action.payload
-      });
   }
 
   return state;
 };
 
-const Operation = {
-
-  getFavoriteFilm: (id, status) => (dispatch, getState, api) => {
-    return api.get(`${Endpoint.FAVORITE}/${id}/${status}`)
-      .then((result) => {
-        dispatch(ActionCreator.setSelectedFilm(getAdaptedFilm(result.data)));
-      })
-      .catch((error) => {
-        throw error;
-      });
-  }
-};
-
-export {reducer, ActionType, ActionCreator, Operation};
+export {reducer, ActionType, ActionCreator};

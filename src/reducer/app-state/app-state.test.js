@@ -8,7 +8,6 @@ const initState = {
   genre: DEFAULT_GENRE,
   selectedFilmId: 0,
   selectedFilm: {},
-  reviewedFilm: {},
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0]
 };
@@ -94,17 +93,6 @@ describe(`AppState Reducer works correctly`, () => {
       selectedFilm: filmData
     });
   });
-
-  it(`Reducer should change reviewedFilm by a given value`, () => {
-    expect(reducer({
-      reviewedFilm: 4
-    }, {
-      type: ActionType.SET_REVIEWED_FILM,
-      payload: 6
-    })).toEqual({
-      reviewedFilm: 6
-    });
-  });
 });
 
 describe(`AppState action creators work correctly`, () => {
@@ -127,13 +115,6 @@ describe(`AppState action creators work correctly`, () => {
     expect(ActionCreator.setSelectedFilm(filmData)).toEqual({
       type: ActionType.GET_SELECTED_FILM,
       payload: filmData
-    });
-  });
-
-  it(`Action creator for setReviewedFilm returns correct action`, () => {
-    expect(ActionCreator.setReviewedFilm(4)).toEqual({
-      type: ActionType.SET_REVIEWED_FILM,
-      payload: 4
     });
   });
 

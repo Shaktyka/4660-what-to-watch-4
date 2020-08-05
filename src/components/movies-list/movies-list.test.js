@@ -39,7 +39,7 @@ const store = mockStore({
     genres: [],
     isFilmsLoading: false,
     isPromoLoading: false,
-    loadFilmsError: ``
+    loadFilmsError: ``,
   },
   [NameSpace.APP_STATE]: {
     isLoading: false,
@@ -72,6 +72,7 @@ describe(`MoviesList rendering`, () => {
                 isLoading={false}
                 isShowed={true}
                 onShowMoreClick={() => {}}
+                loadFilmsError={``}
               />
             </Provider>
           </BrowserRouter>, {

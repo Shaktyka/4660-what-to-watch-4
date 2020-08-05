@@ -2,6 +2,7 @@
 
 exports[`App rendering App renders correctly 1`] = `
 Array [
+  "",
   <section
     className="movie-card"
   >

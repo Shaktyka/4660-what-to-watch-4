@@ -382,6 +382,8 @@ const Operation = {
 
   changeFavoriteStatus: (id, status) => (dispatch, getState, api) => {
     return api.post(`${Endpoint.FAVORITE}/${id}/${status}`)
+      .then(() => dispatch(Operation.loadFilms()))
+      .then(() => dispatch(Operation.loadFavoriteFilms()))
       .catch((error) => {
         throw error;
       });
