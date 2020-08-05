@@ -6,7 +6,6 @@ const DEFAULT_GENRE = GENRES[0];
 
 const initState = {
   genre: DEFAULT_GENRE,
-  selectedFilmId: 0,
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0]
 };
@@ -49,17 +48,6 @@ describe(`AppState Reducer works correctly`, () => {
       activeMovieNavTab: clickedTab
     });
   });
-
-  it(`Reducer should change selectedFilmId by a given value`, () => {
-    expect(reducer({
-      selectedFilmId: 1
-    }, {
-      type: ActionType.SET_SELECTED_FILM_ID,
-      payload: 2
-    })).toEqual({
-      selectedFilmId: 2
-    });
-  });
 });
 
 describe(`AppState action creators work correctly`, () => {
@@ -68,13 +56,6 @@ describe(`AppState action creators work correctly`, () => {
     expect(ActionCreator.setGenre(`Comedy`)).toEqual({
       type: ActionType.SET_GENRE,
       payload: `Comedy`
-    });
-  });
-
-  it(`Action creator for setSelectedFilmId returns correct action`, () => {
-    expect(ActionCreator.setSelectedFilmId(2)).toEqual({
-      type: ActionType.SET_SELECTED_FILM_ID,
-      payload: 2
     });
   });
 

@@ -8,7 +8,6 @@ import {
 
 const initialState = {
   genre: DEFAULT_GENRE,
-  selectedFilmId: 0,
   movieNavTabs: MOVIE_NAV_TABS,
   activeMovieNavTab: MOVIE_NAV_TABS[0],
 };
@@ -40,15 +39,6 @@ const ActionCreator = {
         payload: tab
       }
     );
-  },
-
-  setSelectedFilmId: (id) => {
-    return (
-      {
-        type: ActionType.SET_SELECTED_FILM_ID,
-        payload: id
-      }
-    );
   }
 };
 
@@ -57,11 +47,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_GENRE:
       return extend(state, {
         genre: action.payload || DEFAULT_GENRE
-      });
-
-    case ActionType.SET_SELECTED_FILM_ID:
-      return extend(state, {
-        selectedFilmId: action.payload
       });
 
     case ActionType.CHANGE_MOVIE_NAV_TAB:
