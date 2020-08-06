@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {
-  getFilmsByGenre,
   getReviews,
   getFilmsErrorMessage,
   getIsFilmsLoading
@@ -16,9 +15,7 @@ import {AuthorizationStatus} from '../../consts.js';
 
 import {
   getMovieNavTabs,
-  getActiveTab,
-  getSelectedFilmId,
-  getSelectedFilm
+  getActiveTab
 } from '../../reducer/app-state/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
@@ -88,7 +85,7 @@ const FilmDetails = (props) => {
     films,
     selectedFilmId,
     filmReviews,
-    loadFilmsErr,
+    loadFilmsError,
     isFilmsLoading,
     authorizationStatus,
     userData,
@@ -204,7 +201,7 @@ const FilmDetails = (props) => {
           <SimilarMoviesWrapped
             films={films.filter((film) => film.genre === genre).slice(0, 4)}
             isLoading={isFilmsLoading}
-            error={loadFilmsErr}
+            loadFilmsError={loadFilmsError}
           />
         }
 
@@ -221,35 +218,31 @@ FilmDetails.propTypes = {
   filmReviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   selectedFilmId: PropTypes.number.isRequired,
-  selectedFilm: PropTypes.object,
-  loadFilmsErr: PropTypes.string,
-  isFilmsLoading: PropTypes.bool,
+  loadFilmsError: PropTypes.string.isRequired,
+  isFilmsLoading: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userData: PropTypes.shape({
-    avatar: PropTypes.string,
-    name: PropTypes.string
-  }),
-  changeFavoriteStatus: PropTypes.func
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
+  }).isRequired,
+  changeFavoriteStatus: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
-  selectedFilmId: getSelectedFilmId(state),
-  selectedFilm: getSelectedFilm(state),
   tabs: getMovieNavTabs(state),
   activeTab: getActiveTab(state),
-  films: getFilmsByGenre(state),
   filmReviews: getReviews(state),
   isFilmsLoading: getIsFilmsLoading(state),
-  loadFilmsErr: getFilmsErrorMessage(state)
+  loadFilmsError: getFilmsErrorMessage(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   changeFavoriteStatus(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
-    dispatch(DataOperation.loadFilms());
-    dispatch(DataOperation.loadFavoriteFilms());
   },
   loadFilms() {
     DataOperation.loadFilms();

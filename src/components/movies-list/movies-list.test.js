@@ -1,6 +1,11 @@
 import React from 'react';
+
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
+import NameSpace from "../../reducer/name-space";
+
 import MoviesList from './movies-list.jsx';
 
 const filmData = {
@@ -24,6 +29,34 @@ const filmData = {
   year: 2002
 };
 
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.DATA]: {
+    films: [],
+    favoritesFilms: [],
+    promoFilm: {},
+    genres: [],
+    isFilmsLoading: false,
+    isPromoLoading: false,
+    loadFilmsError: ``,
+  },
+  [NameSpace.APP_STATE]: {
+    isLoading: false,
+    selectedFilmId: 1,
+    genre: `All genres`,
+  },
+  [NameSpace.USER]: {
+    authorizationStatus: `NO_AUTH`,
+    userData: {
+      id: 0,
+      email: ``,
+      name: ``,
+      avatar: ``
+    },
+  }
+});
+
 describe(`MoviesList rendering`, () => {
 
   it(`MoviesList renders correctly`, () => {
@@ -31,11 +64,17 @@ describe(`MoviesList rendering`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
-            <MoviesList
-              films={[filmData]}
-              onFilmCardClick={() => {}}
-              onHoverCard={() => {}}
-            />
+            <Provider store={store}>
+              <MoviesList
+                films={[filmData]}
+                onFilmCardClick={() => {}}
+                onHoverCard={() => {}}
+                isLoading={false}
+                isShowed={true}
+                onShowMoreClick={() => {}}
+                loadFilmsError={``}
+              />
+            </Provider>
           </BrowserRouter>, {
             createNodeMock: () => {
               return {};

@@ -42,7 +42,7 @@ const MovieDetails = (props) => {
 
 MovieDetails.propTypes = {
   director: PropTypes.string.isRequired,
-  starring: PropTypes.arrayOf(PropTypes.string),
+  starring: PropTypes.arrayOf(PropTypes.string).isRequired,
   duration: PropTypes.number.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired

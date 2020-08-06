@@ -88,12 +88,12 @@ const FullScreenVideoPlayer = (props) => {
 };
 
 FullScreenVideoPlayer.propTypes = {
-  isPlay: PropTypes.bool,
-  timeElapsed: PropTypes.number,
-  currentProgress: PropTypes.string,
-  onPlayButtonClick: PropTypes.func,
-  onFullscreenClick: PropTypes.func,
-  children: PropTypes.node,
+  isPlay: PropTypes.bool.isRequired,
+  timeElapsed: PropTypes.number.isRequired,
+  currentProgress: PropTypes.string.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onFullscreenClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
   history: PropTypes.object
 };
 

@@ -9,11 +9,11 @@ import Loader from '../loader/loader.jsx';
 const CardWrapped = withCard(Card);
 
 const MoviesList = (props) => {
-  const {films, error, isLoading, isShowed, onShowMoreClick} = props;
+  const {films, loadFilmsError, isLoading, isShowed, onShowMoreClick} = props;
 
-  return error
+  return loadFilmsError
     ?
-    <div>{error}</div>
+    <div>{loadFilmsError}</div>
     :
     <>
       <div className="catalog__movies-list">
@@ -47,10 +47,10 @@ MoviesList.propTypes = {
         source: PropTypes.string.isRequired
       })
   ).isRequired,
-  error: PropTypes.string,
-  isLoading: PropTypes.bool,
-  isShowed: PropTypes.bool,
-  onShowMoreClick: PropTypes.func
+  loadFilmsError: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isShowed: PropTypes.bool.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired
 };
 
 export default MoviesList;

@@ -34,8 +34,8 @@ const Main = (props) => {
   const {
     films,
     promoFilm,
-    loadFilmsErr,
-    loadPromoErr,
+    loadFilmsError,
+    loadPromoError,
     isFilmsLoading,
     isPromoLoading,
     userData,
@@ -49,7 +49,7 @@ const Main = (props) => {
   return (
     <>
       {
-        loadPromoErr && <ErrorMessage message={loadPromoErr} />
+        loadPromoError && <ErrorMessage message={loadPromoError} />
       }
       <section className="movie-card">
         <div className="movie-card__bg" style={{backgroundColor: bgColor}}>
@@ -134,7 +134,7 @@ const Main = (props) => {
             <MoviesListWrapped
               films={films}
               isLoading={isFilmsLoading}
-              error={loadFilmsErr}
+              loadFilmsError={loadFilmsError}
             />
           }
         </section>
@@ -145,7 +145,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  authorizationStatus: PropTypes.string,
+  authorizationStatus: PropTypes.string.isRequired,
   promoFilm: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
@@ -157,15 +157,17 @@ Main.propTypes = {
     isFavorite: PropTypes.bool
   }).isRequired,
   films: PropTypes.array.isRequired,
-  loadFilmsErr: PropTypes.string,
-  loadPromoErr: PropTypes.string,
-  isFilmsLoading: PropTypes.bool,
-  isPromoLoading: PropTypes.bool,
+  loadFilmsError: PropTypes.string.isRequired,
+  loadPromoError: PropTypes.string.isRequired,
+  isFilmsLoading: PropTypes.bool.isRequired,
+  isPromoLoading: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
-    avatar: PropTypes.string,
-    name: PropTypes.string
-  }),
-  changeFavoriteStatus: PropTypes.func
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+  }).isRequired,
+  changeFavoriteStatus: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -173,8 +175,8 @@ const mapStateToProps = (state) => ({
   userData: getUserData(state),
   films: getFilmsByGenre(state),
   promoFilm: getPromoFilm(state),
-  loadFilmsErr: getFilmsErrorMessage(state),
-  loadPromoErr: getPromoErrorMessage(state),
+  loadFilmsError: getFilmsErrorMessage(state),
+  loadPromoError: getPromoErrorMessage(state),
   isFilmsLoading: getIsFilmsLoading(state),
   isPromoLoading: getIsPromoLoading(state)
 });

@@ -18,7 +18,7 @@ exports[`MovieDetails component rendering MovieDetails renders correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        Bryan Singer
+        Martin Scorsese
       </span>
     </p>
     <p
@@ -29,19 +29,13 @@ exports[`MovieDetails component rendering MovieDetails renders correctly 1`] = `
       >
         Starring
       </strong>
-      Bill Murray
+      Leonardo DiCaprio
       ,
       <br />
-      Edward Norton
+      Cameron Diaz
       ,
       <br />
-      Jude Law
-      ,
-      <br />
-      Willem Dafoe
-      ,
-      <br />
-      Saoirse Ronan
+      Daniel Day-Lewis
     </p>
   </div>
   <div
@@ -58,7 +52,7 @@ exports[`MovieDetails component rendering MovieDetails renders correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        1h 52m
+        2h 47m
       </span>
     </p>
     <p
@@ -72,7 +66,7 @@ exports[`MovieDetails component rendering MovieDetails renders correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        Drama
+        Crime
       </span>
     </p>
     <p
@@ -86,7 +80,7 @@ exports[`MovieDetails component rendering MovieDetails renders correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        2018
+        2002
       </span>
     </p>
   </div>

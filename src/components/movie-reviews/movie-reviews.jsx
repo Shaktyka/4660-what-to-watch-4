@@ -8,7 +8,7 @@ import Review from '../review/review.jsx';
 import Loader from '../loader/loader.jsx';
 
 const MovieReviews = (props) => {
-  const {reviews, loadReviewsErr, isReviewsLoading} = props;
+  const {reviews, loadReviewsError, isReviewsLoading} = props;
 
   const secondColReviews = (reviews.length > 0) ? reviews.slice() : [];
   const firstColReviews = (secondColReviews.length > 0)
@@ -17,7 +17,7 @@ const MovieReviews = (props) => {
 
   return (
     <div className="movie-card__reviews movie-card__row">
-      {loadReviewsErr && <div>loadReviewsErr</div>}
+      {loadReviewsError && <div>loadReviewsError</div>}
       {
         isReviewsLoading
           ?
@@ -62,12 +62,12 @@ const MovieReviews = (props) => {
 
 MovieReviews.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loadReviewsErr: PropTypes.string,
-  isReviewsLoading: PropTypes.bool
+  loadReviewsError: PropTypes.string,
+  isReviewsLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  loadPromoErr: getReviewsErrorMessage(state),
+  loadPromoError: getReviewsErrorMessage(state),
   isReviewsLoading: getIsReviewsLoading(state)
 });
 

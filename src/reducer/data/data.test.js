@@ -9,13 +9,13 @@ const initialState = {
   isFilmsLoading: false,
   isPromoLoading: false,
   isReviewsLoading: false,
-  loadFilmsErr: null,
-  loadPromoErr: null,
-  loadReviewsErr: null,
-  isReviewPosting: false,
-  postingReviewErr: null,
   isFavoritesFilmsLoading: false,
-  loadFavoritesFilmsErr: null
+  isReviewPosting: false,
+  loadFilmsError: ``,
+  loadPromoError: ``,
+  loadReviewsError: ``,
+  postingReviewError: ``,
+  loadFavoritesFilmsError: ``
 };
 
 const filmData = {
@@ -153,47 +153,47 @@ describe(`Data Reducer works correctly`, () => {
     });
   });
 
-  it(`Data Reducer should change loadFilmsErr by a given value`, () => {
+  it(`Data Reducer should change loadFilmsError by a given value`, () => {
     expect(reducer({
-      loadFilmsErr: null
+      loadFilmsError: ``
     }, {
-      type: ActionType.SET_FILMS_ERR_MSG,
+      type: ActionType.SET_FILMS_ERROR_MESSAGE,
       payload: `error text 1`
     })).toEqual({
-      loadFilmsErr: `error text 1`
+      loadFilmsError: `error text 1`
     });
   });
 
-  it(`Data Reducer should change loadFavoritesFilmsErr by a given value`, () => {
+  it(`Data Reducer should change loadFavoritesFilmsError by a given value`, () => {
     expect(reducer({
-      loadFavoritesFilmsErr: null
+      loadFavoritesFilmsError: ``
     }, {
-      type: ActionType.SET_FAVORITES_FILMS_ERR_MSG,
+      type: ActionType.SET_FAVORITES_FILMS_ERROR_MESSAGE,
       payload: `error text 2`
     })).toEqual({
-      loadFavoritesFilmsErr: `error text 2`
+      loadFavoritesFilmsError: `error text 2`
     });
   });
 
-  it(`Data Reducer should change loadPromoErr by a given value`, () => {
+  it(`Data Reducer should change loadPromoError by a given value`, () => {
     expect(reducer({
-      loadPromoErr: null
+      loadPromoError: ``
     }, {
-      type: ActionType.SET_PROMO_ERR_MSG,
+      type: ActionType.SET_PROMO_ERROR_MESSAGE,
       payload: `error text 3`
     })).toEqual({
-      loadPromoErr: `error text 3`
+      loadPromoError: `error text 3`
     });
   });
 
-  it(`Data Reducer should change loadReviewsErr by a given value`, () => {
+  it(`Data Reducer should change loadReviewsError by a given value`, () => {
     expect(reducer({
-      loadReviewsErr: null
+      loadReviewsError: ``
     }, {
-      type: ActionType.SET_REVIEWS_ERR_MSG,
+      type: ActionType.SET_REVIEWS_ERROR_MESSAGE,
       payload: `error text 4`
     })).toEqual({
-      loadReviewsErr: `error text 4`
+      loadReviewsError: `error text 4`
     });
   });
 
@@ -297,37 +297,37 @@ describe(`Data Action creators work correctly`, () => {
     });
   });
 
-  it(`Data Action Creator for setFilmsErrMsg returns correct action`, () => {
-    expect(ActionCreator.setFilmsErrMsg(`error text`)).toEqual({
-      type: ActionType.SET_FILMS_ERR_MSG,
+  it(`Data Action Creator for setFilmsErrorMessage returns correct action`, () => {
+    expect(ActionCreator.setFilmsErrorMessage(`error text`)).toEqual({
+      type: ActionType.SET_FILMS_ERROR_MESSAGE,
       payload: `error text`
     });
   });
 
-  it(`Data Action Creator for setFavoritesFilmsErrMsg returns correct action`, () => {
-    expect(ActionCreator.setFavoritesFilmsErrMsg(`error text 1`)).toEqual({
-      type: ActionType.SET_FAVORITES_FILMS_ERR_MSG,
+  it(`Data Action Creator for setFavoritesFilmsErrorMessage returns correct action`, () => {
+    expect(ActionCreator.setFavoritesFilmsErrorMessage(`error text 1`)).toEqual({
+      type: ActionType.SET_FAVORITES_FILMS_ERROR_MESSAGE,
       payload: `error text 1`
     });
   });
 
-  it(`Data Action Creator for setPromoErrMsg returns correct action`, () => {
-    expect(ActionCreator.setPromoErrMsg(`error text 2`)).toEqual({
-      type: ActionType.SET_PROMO_ERR_MSG,
+  it(`Data Action Creator for setPromoErrorMessage returns correct action`, () => {
+    expect(ActionCreator.setPromoErrorMessage(`error text 2`)).toEqual({
+      type: ActionType.SET_PROMO_ERROR_MESSAGE,
       payload: `error text 2`
     });
   });
 
-  it(`Data Action Creator for setReviewsErrMsg returns correct action`, () => {
-    expect(ActionCreator.setReviewsErrMsg(`error text 3`)).toEqual({
-      type: ActionType.SET_REVIEWS_ERR_MSG,
+  it(`Data Action Creator for setReviewsErrorMessage returns correct action`, () => {
+    expect(ActionCreator.setReviewsErrorMessage(`error text 3`)).toEqual({
+      type: ActionType.SET_REVIEWS_ERROR_MESSAGE,
       payload: `error text 3`
     });
   });
 
-  it(`Data Action Creator for setReviewErrMsg returns correct action`, () => {
-    expect(ActionCreator.setReviewErrMsg(`error text 4`)).toEqual({
-      type: ActionType.SET_REVIEW_ERR_MSG,
+  it(`Data Action Creator for setReviewErrorMessage returns correct action`, () => {
+    expect(ActionCreator.setReviewErrorMessage(`error text 4`)).toEqual({
+      type: ActionType.SET_REVIEW_ERROR_MESSAGE,
       payload: `error text 4`
     });
   });

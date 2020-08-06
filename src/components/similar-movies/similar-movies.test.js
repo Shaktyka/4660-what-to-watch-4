@@ -1,6 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
+import NameSpace from "../../reducer/name-space";
 
 import SimilarMovies from './similar-movies.jsx';
 
@@ -27,6 +30,34 @@ const FILMS_DATA = [{
   year: 2002
 }];
 
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.DATA]: {
+    films: [],
+    favoritesFilms: [],
+    promoFilm: {},
+    genres: [],
+    isFilmsLoading: false,
+    isPromoLoading: false,
+    loadFilmsError: ``
+  },
+  [NameSpace.APP_STATE]: {
+    isLoading: false,
+    selectedFilmId: 1,
+    genre: `All genres`,
+  },
+  [NameSpace.USER]: {
+    authorizationStatus: `NO_AUTH`,
+    userData: {
+      id: 0,
+      email: ``,
+      name: ``,
+      avatar: ``
+    },
+  }
+});
+
 describe(`SimilarMovies rendering`, () => {
 
   it(`SimilarMovies renders correctly`, () => {
@@ -35,11 +66,15 @@ describe(`SimilarMovies rendering`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
-            <SimilarMovies
-              films={films}
-              onFilmCardClick={() => {}}
-              onHoverCard={() => {}}
-            />
+            <Provider store={store}>
+              <SimilarMovies
+                films={films}
+                onFilmCardClick={() => {}}
+                onHoverCard={() => {}}
+                isLoading={false}
+                loadFilmsError={``}
+              />
+            </Provider>
           </BrowserRouter>, {
             createNodeMock: () => {
               return {};

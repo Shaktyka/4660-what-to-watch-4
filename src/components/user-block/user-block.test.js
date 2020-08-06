@@ -8,8 +8,10 @@ describe(`UserBlock rendering`, () => {
 
   it(`UserBlock renders correctly`, () => {
     const userData = {
+      id: 1,
       avatar: `/img.jpg`,
-      name: `Igar`
+      name: `Igar`,
+      email: `t@li.ru`
     };
 
     const tree = renderer

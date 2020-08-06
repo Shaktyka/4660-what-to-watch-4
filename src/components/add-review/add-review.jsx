@@ -48,7 +48,7 @@ class AddReview extends PureComponent {
       userData,
       films,
       filmId,
-      postingReviewErr,
+      postingReviewError,
       isReviewPosting
     } = this.props;
 
@@ -143,9 +143,9 @@ class AddReview extends PureComponent {
               </div>
             </div>
             {
-              postingReviewErr
+              postingReviewError
                 &&
-              <p style={{textAlign: `center`, color: `brown`}}>{postingReviewErr}</p>
+              <p style={{textAlign: `center`, color: `brown`}}>{postingReviewError}</p>
             }
           </form>
         </div>
@@ -156,16 +156,18 @@ class AddReview extends PureComponent {
 }
 
 AddReview.propTypes = {
-  authorizationStatus: PropTypes.string,
+  authorizationStatus: PropTypes.string.isRequired,
   userData: PropTypes.shape({
-    avatar: PropTypes.string,
-    name: PropTypes.string
-  }),
-  films: PropTypes.array,
-  filmId: PropTypes.number,
-  submitReview: PropTypes.func,
-  isReviewPosting: PropTypes.bool,
-  postingReviewErr: PropTypes.string,
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
+  }).isRequired,
+  films: PropTypes.array.isRequired,
+  filmId: PropTypes.number.isRequired,
+  submitReview: PropTypes.func.isRequired,
+  isReviewPosting: PropTypes.bool.isRequired,
+  postingReviewError: PropTypes.string,
   history: PropTypes.object
 };
 
@@ -173,7 +175,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
   isReviewPosting: getIsReviewPosting(state),
-  postingReviewErr: getReviewErrorMessage(state),
+  postingReviewError: getReviewErrorMessage(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

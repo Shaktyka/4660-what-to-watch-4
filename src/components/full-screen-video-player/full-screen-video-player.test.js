@@ -19,8 +19,8 @@ describe(`FullScreenVideoPlayer rendering`, () => {
             isPlay={true}
             timeElapsed={0}
             currentProgress={`0`}
-            onPlayPauseButtonClick={() => {}}
-            onFullScreenClick={() => {}}
+            onPlayButtonClick={() => {}}
+            onFullscreenClick={() => {}}
           >
             <MockComponent/>
           </FullScreenVideoPlayer>, {

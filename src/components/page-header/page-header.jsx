@@ -23,7 +23,7 @@ const PageHeader = ({children, uniqueClass}) => {
 };
 
 PageHeader.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   uniqueClass: PropTypes.string
 };
 
