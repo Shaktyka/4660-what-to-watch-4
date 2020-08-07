@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-const MyListButton = ({id, isFavorite, onClick}) => {
+const MyListButton = ({id, isFavorite, isAuthorized, onClick}) => {
 
   return (
     <Link
@@ -15,7 +15,7 @@ const MyListButton = ({id, isFavorite, onClick}) => {
       }}
     >
       {
-        isFavorite
+        (isFavorite && isAuthorized)
           ?
           <svg viewBox="0 0 18 14" width="18" height="14">
             <use xlinkHref="#in-list"></use>
@@ -33,6 +33,7 @@ const MyListButton = ({id, isFavorite, onClick}) => {
 MyListButton.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired
 };
 

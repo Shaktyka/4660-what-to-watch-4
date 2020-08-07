@@ -97,6 +97,15 @@ const FilmDetails = (props) => {
   const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
+  const AddReviewButton = (
+    <Link
+      to={`/films/${id}/review`}
+      className="btn movie-card__button"
+    >
+      Add review
+    </Link>
+  );
+
   return (
     <>
       <section className="movie-card movie-card--full" id={id}>
@@ -134,16 +143,10 @@ const FilmDetails = (props) => {
                   id={id}
                   isFavorite={isFavorite}
                   onClick={changeFavoriteStatus}
+                  isAuthorized={isAuthorized}
                 />
                 {
-                  isAuthorized
-                  &&
-                  <Link
-                    to={`/films/${id}/review`}
-                    className="btn movie-card__button"
-                  >
-                    Add review
-                  </Link>
+                  isAuthorized && AddReviewButton
                 }
               </div>
             </div>

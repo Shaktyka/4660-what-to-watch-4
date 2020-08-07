@@ -94,6 +94,7 @@ const Main = (props) => {
                         id={id}
                         isFavorite={isFavorite}
                         onClick={changeFavoriteStatus}
+                        isAuthorized={isAuthorized}
                       />
                     }
                   </div>
