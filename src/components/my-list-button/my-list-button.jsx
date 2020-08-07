@@ -1,17 +1,22 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {AppRoute} from '../../consts.js';
 
-const MyListButton = ({id, isFavorite, isAuthorized, onClick}) => {
+const MyListButton = ({id, isFavorite, isAuthorized, onClick, history}) => {
 
   return (
-    <Link
-      to={`/mylist`}
+    <button
+      type="button"
+      to={AppRoute.MYLIST}
       className="btn btn--list movie-card__button"
       onClick={() => {
-        const status = !isFavorite ? 1 : 0;
-        onClick(id, status);
+        if (isAuthorized) {
+          const status = !isFavorite ? 1 : 0;
+          return onClick(id, status);
+        } else {
+          return history.push(AppRoute.LOGIN);
+        }
       }}
     >
       {
@@ -26,7 +31,7 @@ const MyListButton = ({id, isFavorite, isAuthorized, onClick}) => {
           </svg>
       }
       <span>My list</span>
-    </Link>
+    </button>
   );
 };
 
@@ -34,7 +39,10 @@ MyListButton.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  history.PropTypes.shape({
+    push: PropTypes.func.isRequired
+  })
 };
 
 export default MyListButton;

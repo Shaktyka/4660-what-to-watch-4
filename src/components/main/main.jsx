@@ -41,7 +41,8 @@ const Main = (props) => {
     isPromoLoading,
     userData,
     changeFavoriteStatus,
-    authorizationStatus
+    authorizationStatus,
+    history
   } = props;
 
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
@@ -95,6 +96,7 @@ const Main = (props) => {
                         isFavorite={isFavorite}
                         onClick={changeFavoriteStatus}
                         isAuthorized={isAuthorized}
+                        history={history}
                       />
                     }
                   </div>

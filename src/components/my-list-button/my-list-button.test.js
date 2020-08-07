@@ -14,6 +14,7 @@ describe(`MyListButton rendering`, () => {
             <MyListButton
               id={1}
               isFavorite={true}
+              isAuthorized={true}
               onClick={() => {}}
             />
           </BrowserRouter>

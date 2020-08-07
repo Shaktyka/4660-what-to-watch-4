@@ -39,8 +39,10 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={AppRoute.ROOT}>
-          <Main />
+        <Route
+          exact path={AppRoute.ROOT}
+          render = {(properties) => <Main {...properties} />}
+        >
         </Route>
         <Route
           exact path={AppRoute.LOGIN}
