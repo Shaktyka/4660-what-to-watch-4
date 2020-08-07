@@ -74,8 +74,8 @@ MovieReviews.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  loadPromoError: getReviewsErrorMessage(state),
-  isReviewsLoading: getIsReviewsLoading(state)
+  loadReviewsError: getReviewsErrorMessage(state),
+  isReviewsLoading: getIsReviewsLoading(state),
 });
 
 export {MovieReviews};

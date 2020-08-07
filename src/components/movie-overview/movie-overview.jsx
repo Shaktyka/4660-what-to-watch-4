@@ -32,7 +32,7 @@ export const getRatingLevel = (ratingValue = ``) => {
     ratingLevel = RatingName.GOOD;
   } else if (ratingValue > RatingBoundary.GOOD && ratingValue < RatingBoundary.VERY_GOOD) {
     ratingLevel = RatingName.VERY_GOOD;
-  } else if (ratingValue > RatingBoundary.VERY_GOOD) {
+  } else if (ratingValue >= RatingBoundary.VERY_GOOD) {
     ratingLevel = RatingName.AWESOME;
   }
   return ratingLevel;

@@ -31,6 +31,13 @@ describe(`getRatingLevel function returns correct text values of number rating`,
     expect(textRating).toEqual(`Good`);
   });
 
+  it(`Rating value 10 equals 'Awesome'`, () => {
+    const value = 10;
+    const textRating = getRatingLevel(value);
+
+    expect(textRating).toEqual(`Awesome`);
+  });
+
   it(`Rating value is greater then max boundary`, () => {
     const value = 10.6;
     const textRating = getRatingLevel(value);
