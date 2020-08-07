@@ -61,8 +61,15 @@ const MovieReviews = (props) => {
 };
 
 MovieReviews.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loadReviewsError: PropTypes.string,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    authorId: PropTypes.number.isRequired,
+    authorName: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired
+  })).isRequired,
+  loadReviewsError: PropTypes.string.isRequired,
   isReviewsLoading: PropTypes.bool.isRequired
 };
 

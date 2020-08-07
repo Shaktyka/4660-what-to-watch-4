@@ -384,6 +384,7 @@ const Operation = {
     return api.post(`${Endpoint.FAVORITE}/${id}/${status}`)
       .then(() => dispatch(Operation.loadFilms()))
       .then(() => dispatch(Operation.loadFavoriteFilms()))
+      .then(() => dispatch(Operation.loadPromoFilm()))
       .catch((error) => {
         throw error;
       });

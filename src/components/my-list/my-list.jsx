@@ -68,8 +68,24 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  userData: PropTypes.object.isRequired,
-  favoritesFilms: PropTypes.array.isRequired,
+  userData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
+  }).isRequired,
+  favoritesFilms: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    bgColor: PropTypes.string,
+    cover: PropTypes.string,
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    preview: PropTypes.string.isRequired,
+    source: PropTypes.string.isRequired,
+  })).isRequired,
   isFavoritesFilmsLoading: PropTypes.bool.isRequired,
   loadFavoritesFilmsError: PropTypes.string.isRequired,
 };

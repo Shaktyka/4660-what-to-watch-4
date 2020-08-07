@@ -156,7 +156,18 @@ Main.propTypes = {
     poster: PropTypes.string,
     isFavorite: PropTypes.bool
   }).isRequired,
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    bgColor: PropTypes.string,
+    cover: PropTypes.string,
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    preview: PropTypes.string.isRequired,
+    source: PropTypes.string.isRequired,
+  })).isRequired,
   loadFilmsError: PropTypes.string.isRequired,
   loadPromoError: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
@@ -184,8 +195,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeFavoriteStatus(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
-    dispatch(DataOperation.loadFavoriteFilms());
-    dispatch(DataOperation.loadPromoFilm());
   }
 });
 

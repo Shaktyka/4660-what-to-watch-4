@@ -215,8 +215,26 @@ const FilmDetails = (props) => {
 FilmDetails.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
-  filmReviews: PropTypes.array.isRequired,
-  films: PropTypes.array.isRequired,
+  filmReviews: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    authorId: PropTypes.number.isRequired,
+    authorName: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired
+  })).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    bgColor: PropTypes.string,
+    cover: PropTypes.string,
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    preview: PropTypes.string.isRequired,
+    source: PropTypes.string.isRequired,
+  })).isRequired,
   selectedFilmId: PropTypes.number.isRequired,
   loadFilmsError: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
