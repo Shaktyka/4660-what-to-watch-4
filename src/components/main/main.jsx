@@ -22,6 +22,7 @@ import PageFooter from '../page-footer/page-footer.jsx';
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/error-message.jsx';
 import UserBlock from '../user-block/user-block.jsx';
+import MyListButton from '../my-list-button/my-list-button.jsx';
 import {Link} from 'react-router-dom';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
@@ -82,8 +83,6 @@ const Main = (props) => {
                     <Link
                       to={`/player/${id}`}
                       className="btn btn--play movie-card__button"
-                      type="button"
-                      onClick={() => {}}
                     >
                       <svg viewBox="0 0 19 19" width="19" height="19">
                         <use xlinkHref="#play-s"></use>
@@ -91,31 +90,11 @@ const Main = (props) => {
                       <span>Play</span>
                     </Link>
                     {
-                      isAuthorized
-                        ?
-                        (<button
-                          className="btn btn--list movie-card__button"
-                          type="button"
-                          onClick={() => {
-                            const status = !isFavorite ? 1 : 0;
-                            return changeFavoriteStatus(id, status);
-                          }}
-                        >
-                          {
-                            isFavorite
-                              ?
-                              <svg viewBox="0 0 18 14" width="18" height="14">
-                                <use xlinkHref="#in-list"></use>
-                              </svg>
-                              :
-                              <svg viewBox="0 0 19 20" width="19" height="20">
-                                <use xlinkHref="#add"></use>
-                              </svg>
-                          }
-                          <span>My list</span>
-                        </button>)
-                        :
-                        null
+                      <MyListButton
+                        id={id}
+                        isFavorite={isFavorite}
+                        onClick={changeFavoriteStatus}
+                      />
                     }
                   </div>
                 </>
