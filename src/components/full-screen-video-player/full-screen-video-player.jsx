@@ -94,7 +94,9 @@ FullScreenVideoPlayer.propTypes = {
   onPlayButtonClick: PropTypes.func.isRequired,
   onFullscreenClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  history: PropTypes.object
+  history: PropTypes.shape({
+    goBack: PropTypes.func.isRequired
+  }).isRequired,
 };
 
 export default FullScreenVideoPlayer;

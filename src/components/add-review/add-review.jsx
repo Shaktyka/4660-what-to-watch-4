@@ -179,7 +179,9 @@ AddReview.propTypes = {
   submitReview: PropTypes.func.isRequired,
   isReviewPosting: PropTypes.bool.isRequired,
   postingReviewError: PropTypes.string.isRequired,
-  history: PropTypes.object
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
