@@ -116,12 +116,12 @@ describe(`User Reducer works correctly`, () => {
 describe(`User Action creators work correctly`, () => {
 
   it(`User Action Creator for authorization returns correct action`, () => {
-    expect(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)).toEqual({
+    expect(ActionCreator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH)).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.NO_AUTH,
     });
 
-    expect(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)).toEqual({
+    expect(ActionCreator.setAuthorizationStatus(AuthorizationStatus.AUTH)).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH,
     });

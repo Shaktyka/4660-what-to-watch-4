@@ -61,7 +61,18 @@ const withShowMore = (Component) => {
   }
 
   WithShowMore.propTypes = {
-    films: PropTypes.array.isRequired
+    films: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      genre: PropTypes.string,
+      year: PropTypes.number,
+      bgColor: PropTypes.string,
+      cover: PropTypes.string,
+      poster: PropTypes.string,
+      isFavorite: PropTypes.bool,
+      preview: PropTypes.string,
+      source: PropTypes.string,
+    })).isRequired,
   };
 
   return WithShowMore;

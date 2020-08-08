@@ -53,7 +53,7 @@ class SignIn extends PureComponent {
             onSubmit={this._handleSubmit}
           >
             {
-              authorizationError
+              (authorizationError && authorizationError.indexOf(`401`) === -1)
                 ?
                 <div className="sign-in__message">
                   <p>{authorizationError}</p>
