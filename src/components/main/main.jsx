@@ -160,7 +160,10 @@ Main.propTypes = {
     id: PropTypes.number.isRequired,
     email: PropTypes.string.isRequired,
   }).isRequired,
-  changeFavoriteStatus: PropTypes.func.isRequired
+  changeFavoriteStatus: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 const mapStateToProps = (state) => ({

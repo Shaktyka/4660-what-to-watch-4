@@ -61,7 +61,7 @@ const App = (props) => {
             }
 
             return films.length > 0
-              ? <FilmDetailsWrapped filmId={filmId} films={films} />
+              ? <FilmDetailsWrapped filmId={filmId} films={films} {...properties} />
               : <Loader />;
           }}
         />

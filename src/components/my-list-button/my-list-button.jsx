@@ -40,9 +40,9 @@ MyListButton.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
-  history.PropTypes.shape({
+  history: PropTypes.shape({
     push: PropTypes.func.isRequired
-  })
+  }).isRequired
 };
 
 export default MyListButton;

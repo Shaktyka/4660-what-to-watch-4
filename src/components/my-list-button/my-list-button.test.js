@@ -16,6 +16,7 @@ describe(`MyListButton rendering`, () => {
               isFavorite={true}
               isAuthorized={true}
               onClick={() => {}}
+              history={{}}
             />
           </BrowserRouter>
       ).toJSON();

@@ -90,7 +90,8 @@ const FilmDetails = (props) => {
     isFilmsLoading,
     authorizationStatus,
     userData,
-    changeFavoriteStatus
+    changeFavoriteStatus,
+    history
   } = props;
 
   const filmData = (films.find((film) => film.id === selectedFilmId));
@@ -144,6 +145,7 @@ const FilmDetails = (props) => {
                   isFavorite={isFavorite}
                   onClick={changeFavoriteStatus}
                   isAuthorized={isAuthorized}
+                  history={history}
                 />
                 {
                   isAuthorized && AddReviewButton
@@ -229,7 +231,10 @@ FilmDetails.propTypes = {
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired
   }).isRequired,
-  changeFavoriteStatus: PropTypes.func.isRequired
+  changeFavoriteStatus: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 const mapStateToProps = (state) => ({
