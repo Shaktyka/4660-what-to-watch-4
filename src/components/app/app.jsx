@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import {getFilmsByGenre, getFavoritesFilms} from '../../reducer/data/selectors.js';
+import {getFilmsByGenre} from '../../reducer/data/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {AuthorizationStatus, AppRoute} from '../../consts.js';
 
@@ -29,9 +29,7 @@ const App = (props) => {
     authorizationStatus,
     films,
     loadFilms,
-    loadReviews,
-    favoritesFilms,
-    loadFavoritesFilms
+    loadReviews
   } = props;
 
   const isNoAuthorization = authorizationStatus === AuthorizationStatus.NO_AUTH;
@@ -78,11 +76,8 @@ const App = (props) => {
         />
         <PrivateRoute
           exact path={`/mylist`}
-          render={() => {
-            if (!favoritesFilms) {
-              loadFavoritesFilms();
-            }
-            return <MyList />;
+          render={(properties) => {
+            return <MyList routeProps={properties} />;
           }}
         />
         <Route
@@ -130,20 +125,7 @@ App.propTypes = {
     preview: PropTypes.string,
     source: PropTypes.string,
   })).isRequired,
-  favoritesFilms: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.number,
-    bgColor: PropTypes.string,
-    cover: PropTypes.string,
-    poster: PropTypes.string,
-    isFavorite: PropTypes.bool,
-    preview: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
-  })).isRequired,
   loadFilms: PropTypes.func.isRequired,
-  loadFavoritesFilms: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired
 };
 
@@ -151,13 +133,9 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
   films: getFilmsByGenre(state),
-  favoritesFilms: getFavoritesFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFavoritesFilms() {
-    dispatch(DataOperation.loadFavoriteFilms());
-  },
   loadFilms() {
     dispatch(DataOperation.loadFilms());
   },

@@ -1,6 +1,7 @@
 import {extend} from '../../utils.js';
 import {AuthorizationStatus} from '../../consts.js';
 import {getAdaptedUserData} from '../../adapter/adapter.js';
+import {Operation as DataOperation} from '../data/data.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -95,6 +96,9 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setUserData(getAdaptedUserData(result.data)));
         dispatch(ActionCreator.setAuthorizationError(``));
+      })
+      .then(() => {
+        dispatch(DataOperation.loadFavoriteFilms());
       })
       .catch((error) => {
         if (error.code !== 200) {
