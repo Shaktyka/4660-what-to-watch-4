@@ -46,7 +46,7 @@ const Main = (props) => {
   } = props;
 
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-  const {id, title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
+  const {id, title, genre, year, bgColor, cover, poster} = promoFilm;
 
   return (
     <>
@@ -92,8 +92,7 @@ const Main = (props) => {
                     </Link>
                     {
                       <MyListButton
-                        id={id}
-                        isFavorite={isFavorite}
+                        film={promoFilm}
                         onClick={changeFavoriteStatus}
                         isAuthorized={isAuthorized}
                         history={history}

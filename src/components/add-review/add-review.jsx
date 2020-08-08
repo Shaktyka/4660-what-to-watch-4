@@ -194,7 +194,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   submitReview(filmId, reviewData) {
     dispatch(DataOperation.addReview(filmId, reviewData));
-    dispatch(DataOperation.loadReviews(filmId));
   }
 });
 

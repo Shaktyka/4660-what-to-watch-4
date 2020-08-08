@@ -3,7 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../consts.js';
 
-const MyListButton = ({id, isFavorite, isAuthorized, onClick, history}) => {
+const MyListButton = ({film, isAuthorized, onClick, history}) => {
+  const {id, isFavorite} = film;
 
   return (
     <button
@@ -36,8 +37,10 @@ const MyListButton = ({id, isFavorite, isAuthorized, onClick, history}) => {
 };
 
 MyListButton.propTypes = {
-  id: PropTypes.number.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
+  film: PropTypes.shape({
+    id: PropTypes.number,
+    isFavorite: PropTypes.bool,
+  }),
   isAuthorized: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   history: PropTypes.shape({

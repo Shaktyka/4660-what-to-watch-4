@@ -95,7 +95,7 @@ const FilmDetails = (props) => {
   } = props;
 
   const filmData = (films.find((film) => film.id === selectedFilmId));
-  const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
+  const {id, title, genre, year, poster, cover, bgColor} = filmData;
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   const AddReviewButton = (
@@ -141,8 +141,7 @@ const FilmDetails = (props) => {
                   <span>Play</span>
                 </Link>
                 <MyListButton
-                  id={id}
-                  isFavorite={isFavorite}
+                  film={filmData}
                   onClick={changeFavoriteStatus}
                   isAuthorized={isAuthorized}
                   history={history}

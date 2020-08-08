@@ -5,6 +5,11 @@ import {BrowserRouter} from 'react-router-dom';
 
 import MyListButton from './my-list-button.jsx';
 
+const filmData = {
+  id: 1,
+  isFavorite: true,
+};
+
 describe(`MyListButton rendering`, () => {
 
   it(`MyListButton renders correctly`, () => {
@@ -16,8 +21,7 @@ describe(`MyListButton rendering`, () => {
       .create(
           <BrowserRouter>
             <MyListButton
-              id={1}
-              isFavorite={true}
+              film={filmData}
               isAuthorized={true}
               onClick={() => {}}
               history={history}

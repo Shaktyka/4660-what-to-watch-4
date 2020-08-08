@@ -321,7 +321,6 @@ const Operation = {
         } else {
           dispatch(ActionCreator.setFavoritesFilmsErrorMessage(``));
         }
-        throw error;
       });
   },
 
@@ -369,14 +368,12 @@ const Operation = {
       .then(() => {
         dispatch(ActionCreator.setReviewPosting(false));
       })
+      .then(() => {
+        dispatch(Operation.loadReviews(filmId));
+      })
       .catch((error) => {
         dispatch(ActionCreator.setReviewPosting(false));
-        if (error.response.status !== 200) {
-          dispatch(ActionCreator.setReviewErrorMessage(`${error.response.status} ${error.response.data.error}`));
-        } else {
-          dispatch(ActionCreator.setReviewErrorMessage(``));
-        }
-        throw error;
+        dispatch(ActionCreator.setReviewErrorMessage(`${error.response.status} ${error.response.data.error}`));
       });
   },
 
