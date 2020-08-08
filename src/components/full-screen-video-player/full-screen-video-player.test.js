@@ -12,6 +12,9 @@ const MockComponent = () => {
 describe(`FullScreenVideoPlayer rendering`, () => {
 
   it(`FullScreenVideoPlayer renders correctly`, () => {
+    const history = {
+      goBack: () => {}
+    };
 
     const tree = renderer
       .create(
@@ -21,6 +24,7 @@ describe(`FullScreenVideoPlayer rendering`, () => {
             currentProgress={`0`}
             onPlayButtonClick={() => {}}
             onFullscreenClick={() => {}}
+            history={history}
           >
             <MockComponent/>
           </FullScreenVideoPlayer>, {

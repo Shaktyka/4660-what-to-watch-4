@@ -65,6 +65,10 @@ const store = mockStore({
 describe(`Main rendering`, () => {
 
   it(`Main renders correctly`, () => {
+    const history = {
+      push: () => {}
+    };
+
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -73,6 +77,7 @@ describe(`Main rendering`, () => {
                 films={FILMS_DATA}
                 isLoading={false}
                 loadPromoError={``}
+                history={history}
               />
             </Provider>
           </BrowserRouter>, {

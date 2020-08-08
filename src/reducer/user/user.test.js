@@ -9,7 +9,8 @@ const initialState = {
     name: ``,
     avatar: ``
   },
-  authorizationError: ``
+  authorizationError: ``,
+  isAuthorizationProgress: true,
 };
 
 const userDataObject = {
@@ -32,11 +33,22 @@ describe(`User Reducer works correctly`, () => {
     expect(reducer(void 0, {})).toEqual(initialState);
   });
 
+  it(`User Reducer should change isAuthorizationProgress by a given value`, () => {
+    expect(reducer({
+      isAuthorizationProgress: true
+    }, {
+      type: ActionType.FINISH_AUTHORIZATION_PROGRESS,
+      payload: false,
+    })).toEqual({
+      isAuthorizationProgress: false
+    });
+  });
+
   it(`User Reducer should change authorizationStatus by a given value`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
     }, {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: AuthorizationStatus.AUTH,
     })).toEqual({
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -45,7 +57,7 @@ describe(`User Reducer works correctly`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.AUTH,
     }, {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: AuthorizationStatus.NO_AUTH,
     })).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -54,7 +66,7 @@ describe(`User Reducer works correctly`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.AUTH,
     }, {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: AuthorizationStatus.AUTH,
     })).toEqual({
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -63,7 +75,7 @@ describe(`User Reducer works correctly`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
     }, {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: AuthorizationStatus.NO_AUTH,
     })).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -115,14 +127,14 @@ describe(`User Reducer works correctly`, () => {
 
 describe(`User Action creators work correctly`, () => {
 
-  it(`User Action Creator for authorization returns correct action`, () => {
+  it(`User Action Creator for setAuthorizationStatus returns correct action`, () => {
     expect(ActionCreator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH)).toEqual({
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: AuthorizationStatus.NO_AUTH,
     });
 
     expect(ActionCreator.setAuthorizationStatus(AuthorizationStatus.AUTH)).toEqual({
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: AuthorizationStatus.AUTH,
     });
   });
@@ -132,12 +144,24 @@ describe(`User Action creators work correctly`, () => {
       type: ActionType.SET_AUTHORIZATION_ERROR,
       payload: `auth error`
     });
+
+    expect(ActionCreator.setAuthorizationError(``)).toEqual({
+      type: ActionType.SET_AUTHORIZATION_ERROR,
+      payload: ``
+    });
   });
 
   it(`User Action Creator for setUserData returns correct action`, () => {
     expect(ActionCreator.setUserData(userData)).toEqual({
       type: ActionType.SET_USER_DATA,
       payload: userData
+    });
+  });
+
+  it(`User Action Creator for finishAuthorizationProgress returns correct action`, () => {
+    expect(ActionCreator.finishAuthorizationProgress(false)).toEqual({
+      type: ActionType.FINISH_AUTHORIZATION_PROGRESS,
+      payload: false
     });
   });
 

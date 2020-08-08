@@ -70,6 +70,10 @@ describe(`FilmDetails rendering`, () => {
       }
     });
 
+    const history = {
+      push: () => {}
+    };
+
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -78,6 +82,7 @@ describe(`FilmDetails rendering`, () => {
                 films={[filmData]}
                 isFilmsLoading={false}
                 selectedFilmId={1}
+                history={history}
               />
             </Provider>
           </BrowserRouter>, {

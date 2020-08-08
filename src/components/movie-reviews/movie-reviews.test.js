@@ -25,6 +25,7 @@ const store = mockStore({
     films: [],
     filmReviews: [REVIEWS],
     isReviewsLoading: false,
+    loadReviewsError: ``,
   }
 });
 
@@ -36,6 +37,7 @@ describe(`MovieReviews rendering`, () => {
           <Provider store={store}>
             <MovieReviews
               reviews={REVIEWS.slice(0, 1)}
+              loadReviewsError={``}
             />
           </Provider>, {
             createNodeMock: () => {

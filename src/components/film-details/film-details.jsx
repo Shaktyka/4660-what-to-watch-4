@@ -202,12 +202,12 @@ FilmDetails.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
   filmReviews: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    authorId: PropTypes.number.isRequired,
-    authorName: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
+    id: PropTypes.number,
+    authorId: PropTypes.number,
+    authorName: PropTypes.string,
+    rating: PropTypes.number,
+    text: PropTypes.string,
+    date: PropTypes.string
   })).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,

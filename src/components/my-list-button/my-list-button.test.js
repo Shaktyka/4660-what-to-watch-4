@@ -8,6 +8,10 @@ import MyListButton from './my-list-button.jsx';
 describe(`MyListButton rendering`, () => {
 
   it(`MyListButton renders correctly`, () => {
+    const history = {
+      push: () => {}
+    };
+
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -16,7 +20,7 @@ describe(`MyListButton rendering`, () => {
               isFavorite={true}
               isAuthorized={true}
               onClick={() => {}}
-              history={{}}
+              history={history}
             />
           </BrowserRouter>
       ).toJSON();
