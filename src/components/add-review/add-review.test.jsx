@@ -43,7 +43,7 @@ describe(`AddReview rendering`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
         films,
-        postingReviewErr: null,
+        postingReviewError: ``,
         isReviewPosting: false,
       },
       [NameSpace.USER]: {
@@ -56,7 +56,11 @@ describe(`AddReview rendering`, () => {
       .create(
           <BrowserRouter>
             <Provider store={store}>
-              <AddReview films={films} filmId={1} />
+              <AddReview
+                films={films}
+                filmId={1}
+                history={{push: () => {}}}
+              />
             </Provider>
           </BrowserRouter>, {
             createNodeMock: () => {

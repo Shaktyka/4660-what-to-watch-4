@@ -28,7 +28,14 @@ describe(`getRatingLevel function returns correct text values of number rating`,
     const value = 8;
     const textRating = getRatingLevel(value);
 
-    expect(textRating).toEqual(`Good`);
+    expect(textRating).toEqual(`Very good`);
+  });
+
+  it(`Rating value 10 equals 'Awesome'`, () => {
+    const value = 10;
+    const textRating = getRatingLevel(value);
+
+    expect(textRating).toEqual(`Awesome`);
   });
 
   it(`Rating value is greater then max boundary`, () => {

@@ -1,12 +1,9 @@
 import React from 'react';
 
 import renderer from 'react-test-renderer';
-import {Provider} from 'react-redux';
-import NameSpace from "../../reducer/name-space";
-import configureStore from 'redux-mock-store';
 import {BrowserRouter} from 'react-router-dom';
 
-import MyList from './my-list.jsx';
+import {MyList} from './my-list.jsx';
 
 const filmData = {
   bgColor: `#A6B7AC`,
@@ -29,28 +26,12 @@ const filmData = {
   year: 2002
 };
 
-const mockStore = configureStore([]);
-
-const user = {
+const userData = {
   id: 1,
   email: `Oliver.conner@gmail.com`,
   name: `Oliver.conner`,
   avatar: `img/1.png`
 };
-
-const store = mockStore({
-  [NameSpace.DATA]: {
-    films: [filmData],
-    favoritesFilms: [filmData],
-    isFavoritesFilmsLoading: false,
-    loadFavoritesFilmsError: ``,
-    loadFilmsError: ``
-  },
-  [NameSpace.USER]: {
-    authorizationStatus: `AUTH`,
-    userData: user
-  }
-});
 
 describe(`MyList rendering`, () => {
 
@@ -58,12 +39,16 @@ describe(`MyList rendering`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
-            <Provider store={store}>
-              <MyList
-                isLoading={false}
-                loadFilmsError={``}
-              />
-            </Provider>
+            <MyList
+              isLoading={false}
+              loadFilmsError={``}
+              userData={userData}
+              films={[filmData]}
+              favoritesFilms={[filmData]}
+              isFavoritesFilmsLoading={false}
+              loadFavoritesFilmsError={``}
+              loadFavoriteFilms={() => {}}
+            />
           </BrowserRouter>, {
             createNodeMock: () => {
               return {};

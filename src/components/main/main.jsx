@@ -22,6 +22,7 @@ import PageFooter from '../page-footer/page-footer.jsx';
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/error-message.jsx';
 import UserBlock from '../user-block/user-block.jsx';
+import MyListButton from '../my-list-button/my-list-button.jsx';
 import {Link} from 'react-router-dom';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
@@ -40,11 +41,12 @@ const Main = (props) => {
     isPromoLoading,
     userData,
     changeFavoriteStatus,
-    authorizationStatus
+    authorizationStatus,
+    history
   } = props;
 
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-  const {id, title, genre, year, bgColor, cover, poster, isFavorite} = promoFilm;
+  const {id, title, genre, year, bgColor, cover, poster} = promoFilm;
 
   return (
     <>
@@ -82,8 +84,6 @@ const Main = (props) => {
                     <Link
                       to={`/player/${id}`}
                       className="btn btn--play movie-card__button"
-                      type="button"
-                      onClick={() => {}}
                     >
                       <svg viewBox="0 0 19 19" width="19" height="19">
                         <use xlinkHref="#play-s"></use>
@@ -91,31 +91,12 @@ const Main = (props) => {
                       <span>Play</span>
                     </Link>
                     {
-                      isAuthorized
-                        ?
-                        (<button
-                          className="btn btn--list movie-card__button"
-                          type="button"
-                          onClick={() => {
-                            const status = !isFavorite ? 1 : 0;
-                            return changeFavoriteStatus(id, status);
-                          }}
-                        >
-                          {
-                            isFavorite
-                              ?
-                              <svg viewBox="0 0 18 14" width="18" height="14">
-                                <use xlinkHref="#in-list"></use>
-                              </svg>
-                              :
-                              <svg viewBox="0 0 19 20" width="19" height="20">
-                                <use xlinkHref="#add"></use>
-                              </svg>
-                          }
-                          <span>My list</span>
-                        </button>)
-                        :
-                        null
+                      <MyListButton
+                        film={promoFilm}
+                        onClick={changeFavoriteStatus}
+                        isAuthorized={isAuthorized}
+                        history={history}
+                      />
                     }
                   </div>
                 </>
@@ -156,7 +137,18 @@ Main.propTypes = {
     poster: PropTypes.string,
     isFavorite: PropTypes.bool
   }).isRequired,
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    bgColor: PropTypes.string,
+    cover: PropTypes.string,
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    preview: PropTypes.string.isRequired,
+    source: PropTypes.string.isRequired,
+  })).isRequired,
   loadFilmsError: PropTypes.string.isRequired,
   loadPromoError: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
@@ -167,7 +159,10 @@ Main.propTypes = {
     id: PropTypes.number.isRequired,
     email: PropTypes.string.isRequired,
   }).isRequired,
-  changeFavoriteStatus: PropTypes.func.isRequired
+  changeFavoriteStatus: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -184,8 +179,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeFavoriteStatus(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
-    dispatch(DataOperation.loadFavoriteFilms());
-    dispatch(DataOperation.loadPromoFilm());
   }
 });
 

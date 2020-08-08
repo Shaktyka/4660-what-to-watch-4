@@ -4,6 +4,7 @@ exports[`MovieReviews rendering MovieReviews renders correctly with the one revi
 <div
   className="movie-card__reviews movie-card__row"
 >
+  
   <div
     className="movie-card__reviews-col"
   >

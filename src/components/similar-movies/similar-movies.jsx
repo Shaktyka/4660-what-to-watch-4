@@ -35,7 +35,18 @@ const SimilarMovies = (props) => {
 };
 
 SimilarMovies.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.object).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    bgColor: PropTypes.string,
+    cover: PropTypes.string,
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    preview: PropTypes.string,
+    source: PropTypes.string,
+  })).isRequired,
   loadFilmsError: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired
 };

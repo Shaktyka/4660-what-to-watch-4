@@ -19,6 +19,8 @@ import {
 } from '../../reducer/app-state/selectors.js';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import {Link} from 'react-router-dom';
+import {TabName} from '../../consts.js';
 
 import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
@@ -28,8 +30,7 @@ import SimilarMovies from '../similar-movies/similar-movies.jsx';
 import PageHeader from '../page-header/page-header.jsx';
 import UserBlock from '../user-block/user-block.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
-import {Link} from 'react-router-dom';
-import {TabName} from '../../consts.js';
+import MyListButton from '../my-list-button/my-list-button.jsx';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
@@ -89,12 +90,22 @@ const FilmDetails = (props) => {
     isFilmsLoading,
     authorizationStatus,
     userData,
-    changeFavoriteStatus
+    changeFavoriteStatus,
+    history
   } = props;
 
   const filmData = (films.find((film) => film.id === selectedFilmId));
-  const {id, title, genre, year, poster, cover, bgColor, isFavorite} = filmData;
+  const {id, title, genre, year, poster, cover, bgColor} = filmData;
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+
+  const AddReviewButton = (
+    <Link
+      to={`/films/${id}/review`}
+      className="btn movie-card__button"
+    >
+      Add review
+    </Link>
+  );
 
   return (
     <>
@@ -129,40 +140,14 @@ const FilmDetails = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
+                <MyListButton
+                  film={filmData}
+                  onClick={changeFavoriteStatus}
+                  isAuthorized={isAuthorized}
+                  history={history}
+                />
                 {
-                  isAuthorized
-                    ?
-                    <>
-                      <button
-                        className="btn btn--list movie-card__button"
-                        type="button"
-                        onClick={() => {
-                          const status = !isFavorite ? 1 : 0;
-                          return changeFavoriteStatus(id, status);
-                        }}
-                      >
-                        {
-                          isFavorite
-                            ?
-                            <svg viewBox="0 0 18 14" width="18" height="14">
-                              <use xlinkHref="#in-list"></use>
-                            </svg>
-                            :
-                            <svg viewBox="0 0 19 20" width="19" height="20">
-                              <use xlinkHref="#add"></use>
-                            </svg>
-                        }
-                        <span>My list</span>
-                      </button>
-                      <Link
-                        to={`/films/${id}/review`}
-                        className="btn movie-card__button"
-                      >
-                        Add review
-                      </Link>
-                    </>
-                    :
-                    null
+                  isAuthorized && AddReviewButton
                 }
               </div>
             </div>
@@ -215,8 +200,26 @@ const FilmDetails = (props) => {
 FilmDetails.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeTab: PropTypes.string.isRequired,
-  filmReviews: PropTypes.array.isRequired,
-  films: PropTypes.array.isRequired,
+  filmReviews: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    authorId: PropTypes.number,
+    authorName: PropTypes.string,
+    rating: PropTypes.number,
+    text: PropTypes.string,
+    date: PropTypes.string
+  })).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    bgColor: PropTypes.string,
+    cover: PropTypes.string,
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    preview: PropTypes.string.isRequired,
+    source: PropTypes.string.isRequired,
+  })).isRequired,
   selectedFilmId: PropTypes.number.isRequired,
   loadFilmsError: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
@@ -227,7 +230,10 @@ FilmDetails.propTypes = {
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired
   }).isRequired,
-  changeFavoriteStatus: PropTypes.func.isRequired
+  changeFavoriteStatus: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 const mapStateToProps = (state) => ({

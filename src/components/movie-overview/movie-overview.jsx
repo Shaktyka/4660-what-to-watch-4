@@ -24,15 +24,15 @@ export const getRatingLevel = (ratingValue = ``) => {
   }
   let ratingLevel = ``;
 
-  if (ratingValue <= RatingBoundary.BAD) {
+  if (ratingValue < RatingBoundary.BAD) {
     ratingLevel = RatingName.BAD;
-  } else if (ratingValue > RatingBoundary.BAD && ratingValue <= RatingBoundary.NORMAL) {
+  } else if (ratingValue >= RatingBoundary.BAD && ratingValue < RatingBoundary.NORMAL) {
     ratingLevel = RatingName.NORMAL;
-  } else if (ratingValue > RatingBoundary.NORMAL && ratingValue <= RatingBoundary.GOOD) {
+  } else if (ratingValue >= RatingBoundary.NORMAL && ratingValue < RatingBoundary.GOOD) {
     ratingLevel = RatingName.GOOD;
-  } else if (ratingValue > RatingBoundary.GOOD && ratingValue < RatingBoundary.VERY_GOOD) {
+  } else if (ratingValue >= RatingBoundary.GOOD && ratingValue < RatingBoundary.VERY_GOOD) {
     ratingLevel = RatingName.VERY_GOOD;
-  } else if (ratingValue > RatingBoundary.VERY_GOOD) {
+  } else if (ratingValue >= RatingBoundary.VERY_GOOD) {
     ratingLevel = RatingName.AWESOME;
   }
   return ratingLevel;

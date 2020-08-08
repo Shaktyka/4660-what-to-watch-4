@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
-import {getAuthorizationError} from '../../reducer/user/selectors.js';
+import {getAuthorizationError, getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import PageHeader from '../page-header/page-header.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 
@@ -53,7 +53,7 @@ class SignIn extends PureComponent {
             onSubmit={this._handleSubmit}
           >
             {
-              authorizationError
+              (authorizationError && authorizationError.indexOf(`401`) === -1)
                 ?
                 <div className="sign-in__message">
                   <p>{authorizationError}</p>
@@ -114,7 +114,8 @@ SignIn.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authorizationError: getAuthorizationError(state)
+  authorizationError: getAuthorizationError(state),
+  autorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

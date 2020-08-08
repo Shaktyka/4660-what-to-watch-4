@@ -163,12 +163,25 @@ AddReview.propTypes = {
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired
   }).isRequired,
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    bgColor: PropTypes.string,
+    cover: PropTypes.string,
+    poster: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    preview: PropTypes.string,
+    source: PropTypes.string,
+  })).isRequired,
   filmId: PropTypes.number.isRequired,
   submitReview: PropTypes.func.isRequired,
   isReviewPosting: PropTypes.bool.isRequired,
-  postingReviewError: PropTypes.string,
-  history: PropTypes.object
+  postingReviewError: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -181,7 +194,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   submitReview(filmId, reviewData) {
     dispatch(DataOperation.addReview(filmId, reviewData));
-    dispatch(DataOperation.loadReviews(filmId));
   }
 });
 

@@ -1,6 +1,7 @@
 import {extend} from '../../utils.js';
 import {AuthorizationStatus} from '../../consts.js';
 import {getAdaptedUserData} from '../../adapter/adapter.js';
+import {Operation as DataOperation} from '../data/data.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -10,27 +11,29 @@ const initialState = {
     name: ``,
     avatar: ``
   },
-  authorizationError: ``
-};
-
-const userDataObject = {
-  id: 0,
-  email: ``,
-  name: ``,
-  avatar: ``
+  authorizationError: ``,
+  isAuthorizationProgress: true,
 };
 
 const ActionType = {
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
   SET_AUTHORIZATION_ERROR: `SET_AUTHORIZATION_ERROR`,
-  SET_USER_DATA: `SET_USER_DATA`
+  SET_USER_DATA: `SET_USER_DATA`,
+  FINISH_AUTHORIZATION_PROGRESS: `FINISH_AUTHORIZATION_PROGRESS`,
 };
 
 const ActionCreator = {
-  requireAuthorization: (status) => {
+  setAuthorizationStatus: (status) => {
     return {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: status
+    };
+  },
+
+  finishAuthorizationProgress: () => {
+    return {
+      type: ActionType.FINISH_AUTHORIZATION_PROGRESS,
+      payload: false,
     };
   },
 
@@ -52,7 +55,7 @@ const ActionCreator = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case ActionType.REQUIRED_AUTHORIZATION:
+    case ActionType.SET_AUTHORIZATION_STATUS:
       return extend(state, {
         authorizationStatus: action.payload
       });
@@ -66,6 +69,11 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         userData: action.payload
       });
+
+    case ActionType.FINISH_AUTHORIZATION_PROGRESS:
+      return extend(state, {
+        isAuthorizationProgress: action.payload,
+      });
   }
 
   return state;
@@ -75,34 +83,33 @@ const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((result) => {
-        return getAdaptedUserData(result.data);
+        dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.setUserData(getAdaptedUserData(result.data)));
+        dispatch(ActionCreator.finishAuthorizationProgress());
       })
       .catch((error) => {
-        if (error.status === 401) {
-          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-          dispatch(ActionCreator.setUserData(userDataObject));
-        }
-        throw error;
+        dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+        dispatch(ActionCreator.finishAuthorizationProgress());
+        dispatch(ActionCreator.setAuthorizationError(error.message));
       });
   },
 
-  login: (authtorizationData) => (dispatch, getState, api) => {
+  login: (authorizationData) => (dispatch, getState, api) => {
     return api.post(`/login`, {
-      email: authtorizationData.email,
-      password: authtorizationData.password,
+      email: authorizationData.email,
+      password: authorizationData.password,
     })
       .then((result) => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setUserData(getAdaptedUserData(result.data)));
         dispatch(ActionCreator.setAuthorizationError(``));
       })
+      .then(() => {
+        dispatch(DataOperation.loadFavoriteFilms());
+      })
       .catch((error) => {
-        if (error.code !== 200) {
-          dispatch(ActionCreator.setAuthorizationError(error.message));
-        } else {
-          dispatch(ActionCreator.setAuthorizationError(``));
-        }
-        throw error;
+        dispatch(ActionCreator.setAuthorizationError(error.message));
+        dispatch(ActionCreator.setAuthorizationError(``));
       });
   }
 };

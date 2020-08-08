@@ -35,6 +35,7 @@ describe(`App rendering`, () => {
           name: ``,
           avatar: ``
         },
+        isAuthorizationProgress: false
       }
     });
 
@@ -45,6 +46,7 @@ describe(`App rendering`, () => {
               isLoading={false}
               loadFilmsError={``}
               loadPromoError={``}
+              isAuthorizationProgress={false}
             />
           </Provider>, {
             createNodeMock: () => {
