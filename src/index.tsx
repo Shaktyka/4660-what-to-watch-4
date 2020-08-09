@@ -1,21 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+
 import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
-import reducer from './reducer/reducer.js';
+import reducer from './reducer/reducer';
 import thunk from 'redux-thunk';
-import createAPI from './api.js';
-import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from './reducer/user/user.js';
-import {Operation as DataOperation} from './reducer/data/data.js';
+import createAPI from './api';
+import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from './reducer/user/user';
+import {Operation as DataOperation} from './reducer/data/data';
 
-import App from './components/app/app.jsx';
+import App from './components/app/app';
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
 };
 
 const api = createAPI(onUnauthorized);
+const root = document.querySelector(`#root`);
 
 const store = createStore(
     reducer,
@@ -32,5 +34,5 @@ ReactDOM.render(
     <Provider store={store}>
       <App />
     </Provider>,
-    document.querySelector(`#root`)
+    root
 );
