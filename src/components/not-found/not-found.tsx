@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 
 import {Link} from 'react-router-dom';
-import PageHeader from '../page-header/page-header.jsx';
-import PageFooter from '../page-footer/page-footer.jsx';
+import PageHeader from '../page-header/page-header';
+import PageFooter from '../page-footer/page-footer';
 
 const NotFound = () => {
   return (

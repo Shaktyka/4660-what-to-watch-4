@@ -1,9 +1,28 @@
-import React from 'react';
+import * as React from 'react';
 
-import PropTypes from 'prop-types';
-import {AppRoute} from '../../consts.js';
+import {AppRoute} from '../../consts';
 
-const MyListButton = ({film, isAuthorized, onClick, history}) => {
+interface HistoryObject {
+  push(): void;
+}
+
+interface MyListButtonProps {
+  film: {
+    id: number;
+    isFavorite: boolean;
+  };
+  isAuthorized: boolean;
+  onClick(): void;
+  history: HistoryObject;
+}
+
+const MyListButton: React.FC<MyListButtonProps> = ({
+  film,
+  isAuthorized,
+  onClick,
+  history
+}: MyListButtonProps) => {
+
   const {id, isFavorite} = film;
 
   return (
@@ -34,18 +53,6 @@ const MyListButton = ({film, isAuthorized, onClick, history}) => {
       <span>My list</span>
     </button>
   );
-};
-
-MyListButton.propTypes = {
-  film: PropTypes.shape({
-    id: PropTypes.number,
-    isFavorite: PropTypes.bool,
-  }),
-  isAuthorized: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
 };
 
 export default MyListButton;

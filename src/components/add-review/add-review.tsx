@@ -1,23 +1,43 @@
-import React, {PureComponent, createRef} from 'react';
-
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
-import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import {Operation as DataOperation} from '../../reducer/data/data.js';
-import {getIsReviewPosting, getReviewErrorMessage} from '../../reducer/data/selectors.js';
-import {AuthorizationStatus} from '../../consts.js';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors';
+import {Operation as DataOperation} from '../../reducer/data/data';
+import {getIsReviewPosting, getReviewErrorMessage} from '../../reducer/data/selectors';
+import {AuthorizationStatus} from '../../consts';
 
-import PageHeader from '../page-header/page-header.jsx';
-import UserBlock from '../user-block/user-block.jsx';
+import PageHeader from '../page-header/page-header';
+import UserBlock from '../user-block/user-block';
 import {Link} from 'react-router-dom';
+import {FilmInterface, UserDataInterface} from '../../types';
 
-class AddReview extends PureComponent {
+interface HistoryObject {
+  push(): void;
+}
+
+interface AddReviewProps {
+  authorizationStatus: string;
+  isReviewPosting: boolean;
+  postingReviewError: string;
+  filmId: number;
+  history: HistoryObject;
+  userData: UserDataInterface;
+  films: Array<FilmInterface>;
+  submitReview(commentData: {
+    comment: string,
+    rating: number
+  }): void;
+}
+
+class AddReview extends React.PureComponent {
+  private commentRef: React.RefObject<HTMLTextAreaElement>;
+  private formRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 
-    this.commentRef = createRef();
-    this.formRef = createRef();
+    this.commentRef = React.createRef();
+    this.formRef = React.createRef();
 
     this._handleSubmit = this._handleSubmit.bind(this);
   }
@@ -154,35 +174,6 @@ class AddReview extends PureComponent {
     );
   }
 }
-
-AddReview.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  userData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    avatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired
-  }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.number,
-    bgColor: PropTypes.string,
-    cover: PropTypes.string,
-    poster: PropTypes.string,
-    isFavorite: PropTypes.bool,
-    preview: PropTypes.string,
-    source: PropTypes.string,
-  })).isRequired,
-  filmId: PropTypes.number.isRequired,
-  submitReview: PropTypes.func.isRequired,
-  isReviewPosting: PropTypes.bool.isRequired,
-  postingReviewError: PropTypes.string.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired,
-};
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),

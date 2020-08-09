@@ -1,8 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const ErrorMessage = (props) => {
-  const {message} = props;
+interface ErrorMessageProps {
+  message: string;
+}
+
+const ErrorMessage: React.FC<ErrorMessageProps> = ({message}: ErrorMessageProps) => {
 
   const styles = {
     position: `absolute`,
@@ -31,10 +33,6 @@ const ErrorMessage = (props) => {
       {message}
     </div>
   );
-};
-
-ErrorMessage.propTypes = {
-  message: PropTypes.string.isRequired
 };
 
 export default ErrorMessage;

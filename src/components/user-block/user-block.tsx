@@ -1,11 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {Link} from 'react-router-dom';
-import {BASE_URL} from '../../consts.js';
+import {BASE_URL} from '../../consts';
 
-const UserBlock = (props) => {
-  const {isAuthorized, userData} = props;
+import {UserDataInterface} from '../../types';
+
+interface UserBlockProps {
+  isAuthorized: boolean;
+  userData: UserDataInterface;
+};
+
+const UserBlock: React.FC<UserBlockProps> = ({
+  isAuthorized,
+  userData
+}: UserBlockProps) => {
+
   const {avatar, name} = userData;
 
   return (
@@ -25,16 +34,6 @@ const UserBlock = (props) => {
       }
     </div>
   );
-};
-
-UserBlock.propTypes = {
-  isAuthorized: PropTypes.bool.isRequired,
-  userData: PropTypes.shape({
-    avatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    email: PropTypes.string.isRequired,
-  }).isRequired
 };
 
 export default UserBlock;
