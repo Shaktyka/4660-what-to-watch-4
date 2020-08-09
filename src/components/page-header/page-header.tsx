@@ -1,9 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {Link} from 'react-router-dom';
 
-const PageHeader = ({children, uniqueClass}) => {
+interface PageHeaderProps {
+  children: React.ReactNode;
+  uniqueClass?: string;
+}
+
+const PageHeader: React.FC<PageHeaderProps> = ({
+  children,
+  uniqueClass
+}: PageHeaderProps) => {
+
   const headerClass = uniqueClass ? uniqueClass : ``;
 
   return (
@@ -20,11 +28,6 @@ const PageHeader = ({children, uniqueClass}) => {
 
     </header>
   );
-};
-
-PageHeader.propTypes = {
-  children: PropTypes.node.isRequired,
-  uniqueClass: PropTypes.string
 };
 
 export default PageHeader;

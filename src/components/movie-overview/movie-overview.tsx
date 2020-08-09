@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const MAX_STARRING_STRING_LENGTH = 4;
 
@@ -38,14 +37,21 @@ export const getRatingLevel = (ratingValue = ``) => {
   return ratingLevel;
 };
 
-const MovieOverview = (props) => {
-  const {
-    ratingScore,
-    ratingCount,
-    description,
-    director,
-    starring
-  } = props;
+interface MovieOverviewProps {
+  ratingScore: number;
+  ratingCount: number;
+  description: string;
+  director: string;
+  starring: Array<string>
+}
+
+const MovieOverview: React.FC<MovieOverviewProps> = ({
+  ratingScore,
+  ratingCount,
+  description,
+  director,
+  starring
+}: MovieOverviewProps) => {
 
   return (
     <>
@@ -77,14 +83,6 @@ const MovieOverview = (props) => {
       </div>
     </>
   );
-};
-
-MovieOverview.propTypes = {
-  ratingScore: PropTypes.number.isRequired,
-  ratingCount: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  director: PropTypes.string.isRequired,
-  starring: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default MovieOverview;

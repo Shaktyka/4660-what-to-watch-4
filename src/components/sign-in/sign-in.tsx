@@ -1,18 +1,28 @@
-import React, {PureComponent, createRef} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
-import {Operation as UserOperation} from '../../reducer/user/user.js';
-import {getAuthorizationError, getAuthorizationStatus} from '../../reducer/user/selectors.js';
-import PageHeader from '../page-header/page-header.jsx';
-import PageFooter from '../page-footer/page-footer.jsx';
+import {Operation as UserOperation} from '../../reducer/user/user';
+import {getAuthorizationError, getAuthorizationStatus} from '../../reducer/user/selectors';
+import PageHeader from '../page-header/page-header';
+import PageFooter from '../page-footer/page-footer';
 
-class SignIn extends PureComponent {
+interface SignInProps {
+  authorizationError: string;
+  onSubmit(authData: {
+    email: string;
+    password: string;
+  }): void;
+}
+
+class SignIn extends React.PureComponent<SignInProps, {}> {
+  private emailRef: React.RefObject<HTMLInputElement>;
+  private passwordRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 
-    this.emailRef = createRef();
-    this.passwordRef = createRef();
+    this.emailRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this._handleSubmit = this._handleSubmit.bind(this);
   }
@@ -107,11 +117,6 @@ class SignIn extends PureComponent {
     );
   }
 }
-
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  authorizationError: PropTypes.string.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   authorizationError: getAuthorizationError(state),

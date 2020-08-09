@@ -1,14 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
-import {getReviewsErrorMessage, getIsReviewsLoading} from '../../reducer/data/selectors.js';
+import {getReviewsErrorMessage, getIsReviewsLoading} from '../../reducer/data/selectors';
 
-import Review from '../review/review.jsx';
-import Loader from '../loader/loader.jsx';
+import Review from '../review/review';
+import Loader from '../loader/loader';
 
-const MovieReviews = (props) => {
-  const {reviews, loadReviewsError, isReviewsLoading} = props;
+import {ReviewInterface} from '../../types';
+
+interface MovieReviewsProps {
+  reviews: ReviewInterface;
+  loadReviewsError: string;
+  isReviewsLoading: boolean;
+}
+
+const MovieReviews: React.FC<MovieReviewsProps> = ({
+  reviews,
+  loadReviewsError,
+  isReviewsLoading
+}: MovieReviewsProps) => {
 
   const secondColReviews = (reviews.length > 0) ? reviews.slice() : [];
   const firstColReviews = (secondColReviews.length > 0)
@@ -58,19 +68,6 @@ const MovieReviews = (props) => {
       }
     </div>
   );
-};
-
-MovieReviews.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    authorId: PropTypes.number.isRequired,
-    authorName: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
-  })).isRequired,
-  loadReviewsError: PropTypes.string.isRequired,
-  isReviewsLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({

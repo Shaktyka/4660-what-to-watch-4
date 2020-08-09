@@ -1,9 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment';
+import * as React from 'react';
 
-const Review = (props) => {
-  const {id, authorId, authorName, rating, text, date} = props;
+import * as moment from 'moment';
+
+interface ReviewProps {
+  id: number;
+  authorId: number;
+  authorName: string;
+  text: string;
+  rating: number;
+  date: string;
+}
+
+const Review: React.FC<ReviewProps> = ({
+  id,
+  authorId,
+  authorName,
+  rating,
+  text,
+  date
+}: ReviewProps) => {
 
   return (
     <div className="review" id={id}>
@@ -23,15 +38,6 @@ const Review = (props) => {
       <div className="review__rating">{rating}</div>
     </div>
   );
-};
-
-Review.propTypes = {
-  id: PropTypes.number.isRequired,
-  authorId: PropTypes.number.isRequired,
-  authorName: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  date: PropTypes.string.isRequired
 };
 
 export default Review;
