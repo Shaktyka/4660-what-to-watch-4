@@ -1,8 +1,9 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+
 import {BrowserRouter} from 'react-router-dom';
 
-import PageFooter from './page-footer.jsx';
+import PageFooter from './page-footer';
 
 describe(`PageFooter rendering`, () => {
 

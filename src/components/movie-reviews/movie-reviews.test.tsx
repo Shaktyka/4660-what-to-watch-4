@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import * as configureStore from 'redux-mock-store';
 
-import renderer from 'react-test-renderer';
-import NameSpace from "../../reducer/name-space";
-import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
+import NameSpace from '../../reducer/name-space';
 
-import MovieReviews from './movie-reviews.jsx';
+import MovieReviews from './movie-reviews';
 
 const REVIEWS = [
   {

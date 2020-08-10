@@ -1,12 +1,12 @@
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import * as configureStore from 'redux-mock-store';
 
-import React from 'react';
-import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
-import NameSpace from "../../reducer/name-space";
+import NameSpace from '../../reducer/name-space';
 import {BrowserRouter} from 'react-router-dom';
 
-import FilmDetails from './film-details.jsx';
+import FilmDetails from './film-details';
 
 const MOVIE_NAV_TABS = [`Overview`, `Details`, `Reviews`];
 

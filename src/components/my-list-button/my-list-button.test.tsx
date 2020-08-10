@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 
-import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 
-import MyListButton from './my-list-button.jsx';
+import MyListButton from './my-list-button';
 
 const filmData = {
   id: 1,

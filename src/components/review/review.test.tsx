@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 
-import Review from './review.jsx';
+import Review from './review';
 
 const reviewData = {
   id: 1,

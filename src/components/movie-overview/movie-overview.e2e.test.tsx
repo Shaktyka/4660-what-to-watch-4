@@ -1,4 +1,4 @@
-import {getRatingLevel} from './movie-overview.jsx';
+import {getRatingLevel} from './movie-overview';
 
 // Тестируем интерпретации значения рейтинга
 describe(`getRatingLevel function returns correct text values of number rating`, () => {

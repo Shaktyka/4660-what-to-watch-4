@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 
-import {MyList} from './my-list.jsx';
+import {MyList} from './my-list';
 
 const filmData = {
   bgColor: `#A6B7AC`,

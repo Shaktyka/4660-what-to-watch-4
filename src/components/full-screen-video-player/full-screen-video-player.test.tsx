@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 
-import FullScreenVideoPlayer from './full-screen-video-player.jsx';
+import FullScreenVideoPlayer from './full-screen-video-player';
 
 const MockComponent = () => {
   return (

@@ -1,8 +1,9 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+
 import {BrowserRouter} from 'react-router-dom';
 
-import Card from './card.jsx';
+import Card from './card';
 
 const onefilmData = {
   bgColor: `#A6B7AC`,

@@ -1,11 +1,12 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import * as configureStore from 'redux-mock-store';
+
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
-import NameSpace from "../../reducer/name-space";
+import NameSpace from '../../reducer/name-space';
 
-import SimilarMovies from './similar-movies.jsx';
+import SimilarMovies from './similar-movies';
 
 const MAX_SIMILAR_FILMS_AMOUNT = 4;
 

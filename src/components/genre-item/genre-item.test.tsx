@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 
-import GenreItem from './genre-item.jsx';
+import GenreItem from './genre-item';
 
 describe(`GenreItem rendering`, () => {
 

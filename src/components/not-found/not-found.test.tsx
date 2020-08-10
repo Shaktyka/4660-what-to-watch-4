@@ -1,8 +1,9 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+
 import {BrowserRouter} from 'react-router-dom';
 
-import NotFound from './not-found.jsx';
+import NotFound from './not-found';
 
 describe(`NotFound rendering`, () => {
 

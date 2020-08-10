@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 
-import VideoPlayer from './video-player.jsx';
+import VideoPlayer from './video-player';
 
 const onefilmData = {
   preview: `mindhunter.jpg`,

@@ -1,10 +1,11 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
-import NameSpace from "../../reducer/name-space";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import * as configureStore from 'redux-mock-store';
 
-import MovieOverview from './movie-overview.jsx';
+import {Provider} from 'react-redux';
+import NameSpace from '../../reducer/name-space';
+
+import MovieOverview from './movie-overview';
 
 const filmData = {
   bgColor: `#A6B7AC`,

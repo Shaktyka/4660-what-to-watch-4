@@ -1,10 +1,11 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import NameSpace from "../../reducer/name-space";
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import * as configureStore from 'redux-mock-store';
 
-import GenresList from './genres-list.jsx';
+import NameSpace from '../../reducer/name-space';
+import {Provider} from 'react-redux';
+
+import GenresList from './genres-list';
 
 const genresList = [`All genres`, `Crime`, `Sci-Fi`, `Drama`, `Comedy`];
 const mockStore = configureStore([]);

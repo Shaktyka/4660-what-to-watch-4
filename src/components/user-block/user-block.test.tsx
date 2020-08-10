@@ -1,8 +1,8 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 
-import UserBlock from './user-block.jsx';
+import UserBlock from './user-block';
 
 describe(`UserBlock rendering`, () => {
 

@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import * as configureStore from 'redux-mock-store';
 
-import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import NameSpace from "../../reducer/name-space";
-import configureStore from 'redux-mock-store';
+import NameSpace from '../../reducer/name-space';
 
-import MovieNavTabs from './movie-nav-tabs.jsx';
+import MovieNavTabs from './movie-nav-tabs';
 
 const TABS = [`Overview`, `Details`, `Reviews`];
 
