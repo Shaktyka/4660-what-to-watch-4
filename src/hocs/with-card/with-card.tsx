@@ -1,50 +1,55 @@
 import * as React from 'react';
+import {Subtract} from 'utility-types';
+
+interface InjectingProps {
+  isPlaying: boolean;
+  _handleMouseEnter(): void;
+  _handleMouseLeave(): void;
+}
+
+interface State {
+  isPlaying: boolean;
+}
 
 const withCard = (Component) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
 
-  class WithCard extends React.PureComponent {
+  class WithCard extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
       this.state = {
         isPlaying: false
       };
+
+      this._handleMouseEnter = this._handleMouseEnter.bind(this);
+      this._handleMouseLeave = this._handleMouseLeave.bind(this);
     }
 
+    _handleMouseEnter() {
+      this.setState({
+        isPlaying: true
+      });
+    };
+
+    _handleMouseLeave () {
+      this.setState({
+        isPlaying: false
+      });
+    };
+
     render() {
-      const {isPlaying} = this.state;
-
-      const handleMouseEnter = () => {
-        this.setState({
-          isPlaying: true
-        });
-      };
-
-      const handleMouseLeave = () => {
-        this.setState({
-          isPlaying: false
-        });
-      };
-
       return (
         <Component
           {...this.props}
-          isPlaying={isPlaying}
-          onMouseEnterCard={handleMouseEnter}
-          onMouseLeaveCard={handleMouseLeave}
+          isPlaying={this.state.isPlaying}
+          onMouseEnterCard={this._handleMouseEnter}
+          onMouseLeaveCard={this._handleMouseLeave}
         />
       );
     }
   }
-
-  // WithCard.propTypes = {
-  //   film: PropTypes.shape({
-  //     id: PropTypes.number.isRequired,
-  //     title: PropTypes.string.isRequired,
-  //     preview: PropTypes.string.isRequired,
-  //     source: PropTypes.string.isRequired
-  //   }).isRequired
-  // };
 
   return WithCard;
 

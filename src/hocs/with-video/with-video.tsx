@@ -4,12 +4,12 @@ import {VideoAttributes} from '../../consts';
 
 const videoDelay: number = 1000;
 
-interface State {
-  _timeout: NodeJS.Timeout;
+interface InjectingProps {
   _videoRef: React.RefObject<HTMLVideoElement>;
 }
 
-interface InjectingProps {
+interface State {
+  _timeout: NodeJS.Timeout;
   _videoRef: React.RefObject<HTMLVideoElement>;
 }
 

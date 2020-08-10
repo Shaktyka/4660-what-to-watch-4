@@ -1,8 +1,11 @@
 import * as React from 'react';
+import {Subtract} from 'utility-types';
 
-import {FILMS_PORTION} from '../../consts.js';
+import {FILMS_PORTION} from '../../consts';
 
 const withShowMore = (Component) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
 
   class WithShowMore extends React.PureComponent {
     constructor(props) {
