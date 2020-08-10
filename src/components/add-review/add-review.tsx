@@ -9,11 +9,8 @@ import {AuthorizationStatus} from '../../consts';
 import PageHeader from '../page-header/page-header';
 import UserBlock from '../user-block/user-block';
 import {Link} from 'react-router-dom';
-import {FilmInterface, UserDataInterface} from '../../types';
 
-interface HistoryObject {
-  push(): void;
-}
+import {FilmInterface, UserDataInterface, HistoryObject} from '../../types';
 
 interface AddReviewProps {
   authorizationStatus: string;
@@ -31,7 +28,7 @@ interface AddReviewProps {
 
 class AddReview extends React.PureComponent {
   private commentRef: React.RefObject<HTMLTextAreaElement>;
-  private formRef: React.RefObject<HTMLInputElement>;
+  private formRef: React.RefObject<HTMLFormElement>;
 
   constructor(props) {
     super(props);

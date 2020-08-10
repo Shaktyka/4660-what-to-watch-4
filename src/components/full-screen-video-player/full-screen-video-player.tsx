@@ -2,6 +2,10 @@ import * as React from 'react';
 
 import {formatTime} from '../../utils';
 
+interface HistoryObject {
+  goBack(): void;
+}
+
 interface FullScreenVideoPlayerProps {
   isPlay: boolean;
   timeElapsed: number;
@@ -9,7 +13,7 @@ interface FullScreenVideoPlayerProps {
   onPlayButtonClick(): void;
   onFullscreenClick(): void;
   children: React.ReactNode;
-  history: object;
+  history: HistoryObject;
 }
 
 const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({

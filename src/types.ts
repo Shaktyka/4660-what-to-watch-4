@@ -33,3 +33,7 @@ export interface FilmInterface {
   source: string;
   isFavorite: boolean;
 }
+
+export interface HistoryObject {
+  push(): void;
+}

@@ -3,7 +3,7 @@ import * as React from 'react';
 import {AppRoute} from '../../consts';
 
 interface HistoryObject {
-  push(): void;
+  push(arg0: string): void;
 }
 
 interface MyListButtonProps {
@@ -12,7 +12,7 @@ interface MyListButtonProps {
     isFavorite: boolean;
   };
   isAuthorized: boolean;
-  onClick(): void;
+  onClick(id: number, status: number): void;
   history: HistoryObject;
 }
 
@@ -28,7 +28,6 @@ const MyListButton: React.FC<MyListButtonProps> = ({
   return (
     <button
       type="button"
-      to={AppRoute.MYLIST}
       className="btn btn--list movie-card__button"
       onClick={() => {
         if (isAuthorized) {
