@@ -1,21 +1,13 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+import {review} from '../test-data';
 
 import Review from './review';
-
-const reviewData = {
-  id: 1,
-  authorId: 22,
-  text: `Discerning travellers`,
-  authorName: `Kate Muir`,
-  date: `2016-12-24`,
-  rating: 8.9
-};
 
 describe(`Review rendering`, () => {
 
   it(`Review renders correctly`, () => {
-    const {id, text, authorName, authorId, date, rating} = reviewData;
+    const {id, text, authorName, authorId, date, rating} = review;
 
     const tree = renderer
       .create(

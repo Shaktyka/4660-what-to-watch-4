@@ -19,7 +19,6 @@ export interface FilmInterface {
   genre: string;
   year: number;
   bgColor: string;
-  background: string;
   poster: string;
   preview: string;
   cover: string;
@@ -34,6 +33,15 @@ export interface FilmInterface {
   source: string;
   isFavorite: boolean;
 }
+
+export interface CommentInterface {
+  id: number;
+  userId: number;
+  userName: string;
+  rating: number;
+  comment: string;
+  date: string;
+};
 
 export interface HistoryObject {
   push(): void;

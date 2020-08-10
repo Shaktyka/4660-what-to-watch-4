@@ -4,7 +4,7 @@ import * as configureStore from 'redux-mock-store';
 
 import {Provider} from 'react-redux';
 import NameSpace from '../../reducer/name-space';
-import {REVIEWS} from '../test-data';
+import {review} from '../test-data';
 
 import MovieReviews from './movie-reviews';
 
@@ -13,7 +13,7 @@ const mockStore = configureStore([]);
 const store = mockStore({
   [NameSpace.DATA]: {
     films: [],
-    filmReviews: [REVIEWS],
+    filmReviews: [review],
     isReviewsLoading: false,
     loadReviewsError: ``,
   }
@@ -26,7 +26,7 @@ describe(`MovieReviews rendering`, () => {
       .create(
           <Provider store={store}>
             <MovieReviews
-              reviews={REVIEWS.slice(0, 1)}
+              reviews={[review].slice(0, 1)}
               loadReviewsError={``}
             />
           </Provider>, {
