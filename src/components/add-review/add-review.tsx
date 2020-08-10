@@ -10,7 +10,16 @@ import PageHeader from '../page-header/page-header';
 import UserBlock from '../user-block/user-block';
 import {Link} from 'react-router-dom';
 
-import {FilmInterface, UserDataInterface, HistoryObject} from '../../types';
+import {FilmInterface, UserDataInterface} from '../../types';
+
+interface HistoryObject {
+  push(arg0: string): void;
+}
+
+interface CommentDataType {
+  comment: string;
+  rating: number;
+}
 
 interface AddReviewProps {
   authorizationStatus: string;
@@ -20,13 +29,10 @@ interface AddReviewProps {
   history: HistoryObject;
   userData: UserDataInterface;
   films: Array<FilmInterface>;
-  submitReview(commentData: {
-    comment: string,
-    rating: number
-  }): void;
+  submitReview(filmId: number, commentData: CommentDataType): void;
 }
 
-class AddReview extends React.PureComponent {
+class AddReview extends React.PureComponent<AddReviewProps, {}> {
   private commentRef: React.RefObject<HTMLTextAreaElement>;
   private formRef: React.RefObject<HTMLFormElement>;
 
@@ -43,7 +49,7 @@ class AddReview extends React.PureComponent {
     const {filmId, submitReview} = this.props;
     evt.preventDefault();
 
-    const commentData = {
+    const commentData: CommentDataType = {
       comment: this.commentRef.current.value,
       rating: this.formRef.current.rating.value,
     };
