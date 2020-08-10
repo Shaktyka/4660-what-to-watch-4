@@ -1,11 +1,10 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {FILMS_PORTION} from '../../consts.js';
 
 const withShowMore = (Component) => {
 
-  class WithShowMore extends PureComponent {
+  class WithShowMore extends React.PureComponent {
     constructor(props) {
       super(props);
 
@@ -60,20 +59,20 @@ const withShowMore = (Component) => {
     }
   }
 
-  WithShowMore.propTypes = {
-    films: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      genre: PropTypes.string,
-      year: PropTypes.number,
-      bgColor: PropTypes.string,
-      cover: PropTypes.string,
-      poster: PropTypes.string,
-      isFavorite: PropTypes.bool,
-      preview: PropTypes.string,
-      source: PropTypes.string,
-    })).isRequired,
-  };
+  // WithShowMore.propTypes = {
+  //   films: PropTypes.arrayOf(PropTypes.shape({
+  //     id: PropTypes.number,
+  //     title: PropTypes.string,
+  //     genre: PropTypes.string,
+  //     year: PropTypes.number,
+  //     bgColor: PropTypes.string,
+  //     cover: PropTypes.string,
+  //     poster: PropTypes.string,
+  //     isFavorite: PropTypes.bool,
+  //     preview: PropTypes.string,
+  //     source: PropTypes.string,
+  //   })).isRequired,
+  // };
 
   return WithShowMore;
 

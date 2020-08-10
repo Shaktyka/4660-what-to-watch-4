@@ -1,9 +1,8 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const withCard = (Component) => {
 
-  class WithCard extends PureComponent {
+  class WithCard extends React.PureComponent {
     constructor(props) {
       super(props);
 
@@ -38,14 +37,14 @@ const withCard = (Component) => {
     }
   }
 
-  WithCard.propTypes = {
-    film: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      preview: PropTypes.string.isRequired,
-      source: PropTypes.string.isRequired
-    }).isRequired
-  };
+  // WithCard.propTypes = {
+  //   film: PropTypes.shape({
+  //     id: PropTypes.number.isRequired,
+  //     title: PropTypes.string.isRequired,
+  //     preview: PropTypes.string.isRequired,
+  //     source: PropTypes.string.isRequired
+  //   }).isRequired
+  // };
 
   return WithCard;
 

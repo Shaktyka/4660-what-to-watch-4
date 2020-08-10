@@ -1,9 +1,8 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const withFilmDetails = (Component) => {
 
-  class WithFilmDetails extends PureComponent {
+  class WithFilmDetails extends React.PureComponent {
     constructor(props) {
       super(props);
 
@@ -38,9 +37,9 @@ const withFilmDetails = (Component) => {
     }
   }
 
-  WithFilmDetails.propTypes = {
-    filmId: PropTypes.number.isRequired
-  };
+  // WithFilmDetails.propTypes = {
+  //   filmId: PropTypes.number.isRequired
+  // };
 
   return WithFilmDetails;
 };

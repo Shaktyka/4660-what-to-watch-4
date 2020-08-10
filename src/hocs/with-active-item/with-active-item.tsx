@@ -1,8 +1,8 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 
 const withActiveItem = (Component, activeItemValue = false) => {
 
-  class WithActiveItem extends PureComponent {
+  class WithActiveItem extends React.PureComponent {
     constructor(props) {
       super(props);
 

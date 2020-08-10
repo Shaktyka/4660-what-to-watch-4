@@ -1,9 +1,8 @@
-import React, {createRef, PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const withVideo = (Component) => {
 
-  class WithVideo extends PureComponent {
+  class WithVideo extends React.PureComponent {
     constructor(props) {
       super(props);
 
@@ -60,12 +59,12 @@ const withVideo = (Component) => {
     }
   }
 
-  WithVideo.propTypes = {
-    src: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    muted: PropTypes.bool.isRequired,
-    isPlaying: PropTypes.bool.isRequired
-  };
+  // WithVideo.propTypes = {
+  //   src: PropTypes.string.isRequired,
+  //   poster: PropTypes.string.isRequired,
+  //   muted: PropTypes.bool.isRequired,
+  //   isPlaying: PropTypes.bool.isRequired
+  // };
 
   return WithVideo;
 
