@@ -21,6 +21,7 @@ export interface FilmInterface {
   bgColor: string;
   background: string;
   poster: string;
+  preview: string;
   cover: string;
   id: number;
   description: string;

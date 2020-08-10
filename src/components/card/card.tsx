@@ -22,11 +22,12 @@ const Card: React.FC<CardProps> = ({
 }: CardProps) => {
 
   const {id, title, preview, source} = film;
+  const idValue = String(id);
 
   return (
     <Link to={`/films/${id}`} className="small-movie-card catalog__movies-card">
       <article
-        id={id}
+        id={idValue}
         onMouseEnter={() => onMouseEnterCard(id)}
         onMouseLeave={() => onMouseLeaveCard()}
       >
