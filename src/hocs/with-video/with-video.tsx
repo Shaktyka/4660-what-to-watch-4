@@ -9,8 +9,8 @@ interface InjectingProps {
 }
 
 interface State {
-  _timeout: NodeJS.Timeout;
-  _videoRef: React.RefObject<HTMLVideoElement>;
+  // _timeout: NodeJS.Timeout;
+  // _videoRef: React.RefObject<HTMLVideoElement>;
 }
 
 const withVideo = (Component) => {
@@ -25,7 +25,6 @@ const withVideo = (Component) => {
       super(props);
 
       this._videoRef = React.createRef();
-
       this._timeout = null;
     }
 

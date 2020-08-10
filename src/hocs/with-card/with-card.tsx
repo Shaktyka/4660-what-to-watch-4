@@ -3,8 +3,8 @@ import {Subtract} from 'utility-types';
 
 interface InjectingProps {
   isPlaying: boolean;
-  _handleMouseEnter(): void;
-  _handleMouseLeave(): void;
+  onMouseEnterCard(): void;
+  onMouseLeaveCard(): void;
 }
 
 interface State {

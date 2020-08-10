@@ -1,13 +1,25 @@
 import * as React from 'react';
 import {Subtract} from 'utility-types';
+import {FilmInterface} from '../../types';
 
 import {FILMS_PORTION} from '../../consts';
+
+interface InjectingProps {
+  films: FilmInterface[];
+  isShowed: boolean;
+  onShowMoreClick(): void;
+}
+
+interface State {
+  renderedFilms: FilmInterface[];
+  isShowedShowMore: boolean;
+}
 
 const withShowMore = (Component) => {
   type P = React.ComponentProps<typeof Component>;
   type T = Subtract<P, InjectingProps>;
 
-  class WithShowMore extends React.PureComponent {
+  class WithShowMore extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -61,21 +73,6 @@ const withShowMore = (Component) => {
       );
     }
   }
-
-  // WithShowMore.propTypes = {
-  //   films: PropTypes.arrayOf(PropTypes.shape({
-  //     id: PropTypes.number,
-  //     title: PropTypes.string,
-  //     genre: PropTypes.string,
-  //     year: PropTypes.number,
-  //     bgColor: PropTypes.string,
-  //     cover: PropTypes.string,
-  //     poster: PropTypes.string,
-  //     isFavorite: PropTypes.bool,
-  //     preview: PropTypes.string,
-  //     source: PropTypes.string,
-  //   })).isRequired,
-  // };
 
   return WithShowMore;
 

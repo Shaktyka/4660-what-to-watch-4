@@ -1,8 +1,37 @@
 import * as React from 'react';
+import {Subtract} from 'utility-types';
+
+interface FilmData {
+  poster: string;
+  source: string;
+  title: string;
+}
+
+interface InjectingProps {
+  isPlay: boolean;
+  timeElapsed: number;
+  filmData: FilmData;
+  currentProgress: number;
+  onFullscreenClick(): void;
+  onPlayButtonClick(): void;
+}
+
+interface State {
+  isPlay: boolean;
+  isFullscreen: boolean;
+  timeElapsed: number;
+  progress: null | number;
+  duration: null | number;
+  filmData: FilmData
+}
 
 const withFullscreenVideo = (Component) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
 
-  class WithFullscreenVideo extends React.PureComponent {
+  class WithFullscreenVideo extends React.PureComponent<T, State> {
+    private _videoRef: React.RefObject<HTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
@@ -11,7 +40,8 @@ const withFullscreenVideo = (Component) => {
         isFullscreen: false,
         timeElapsed: 0,
         progress: null,
-        duration: null
+        duration: null,
+        filmData: {poster: ``, source: ``, title: ``}
       };
 
       this._videoRef = React.createRef();
@@ -22,7 +52,7 @@ const withFullscreenVideo = (Component) => {
 
     componentDidMount() {
       const {films, filmId} = this.props;
-      const filmData = films.find((film) => film.id === filmId);
+      const filmData: FilmData = films.find((film) => film.id === filmId);
       const {poster, source, title} = filmData;
 
       const video = this._videoRef.current;
@@ -105,22 +135,6 @@ const withFullscreenVideo = (Component) => {
       );
     }
   }
-
-  // WithFullscreenVideo.propTypes = {
-  //   films: PropTypes.arrayOf(PropTypes.shape({
-  //     id: PropTypes.number,
-  //     title: PropTypes.string,
-  //     genre: PropTypes.string,
-  //     year: PropTypes.number,
-  //     bgColor: PropTypes.string,
-  //     cover: PropTypes.string,
-  //     poster: PropTypes.string,
-  //     isFavorite: PropTypes.bool,
-  //     preview: PropTypes.string,
-  //     source: PropTypes.string,
-  //   })).isRequired,
-  //   filmId: PropTypes.number
-  // };
 
   return WithFullscreenVideo;
 

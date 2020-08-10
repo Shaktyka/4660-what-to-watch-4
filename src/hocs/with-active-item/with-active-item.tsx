@@ -2,9 +2,9 @@ import * as React from 'react';
 import {Subtract} from 'utility-types';
 
 interface InjectingProps {
-  isPlaying: boolean;
-  _setActiveItem(item: string | number): void;
-  _resetActiveItem(): void;
+  setActiveItem(item: string | number): void;
+  resetActiveItem(): void;
+  activeItem: string | number;
 }
 
 interface State {

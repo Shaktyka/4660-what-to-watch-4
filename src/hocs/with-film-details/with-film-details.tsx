@@ -1,8 +1,19 @@
 import * as React from 'react';
+import {Subtract} from 'utility-types';
+
+interface InjectingProps {
+  selectedFilmId: number;
+}
+
+interface State {
+  selectedFilmId: number;
+}
 
 const withFilmDetails = (Component) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
 
-  class WithFilmDetails extends React.PureComponent {
+  class WithFilmDetails extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -36,10 +47,6 @@ const withFilmDetails = (Component) => {
       );
     }
   }
-
-  // WithFilmDetails.propTypes = {
-  //   filmId: PropTypes.number.isRequired
-  // };
 
   return WithFilmDetails;
 };
