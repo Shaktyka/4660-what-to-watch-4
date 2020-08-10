@@ -22,16 +22,17 @@ export const getRatingLevel = (ratingValue = ``) => {
     return ``;
   }
   let ratingLevel = ``;
+  const rating = +ratingValue;
 
-  if (ratingValue < RatingBoundary.BAD) {
+  if (rating < RatingBoundary.BAD) {
     ratingLevel = RatingName.BAD;
-  } else if (ratingValue >= RatingBoundary.BAD && ratingValue < RatingBoundary.NORMAL) {
+  } else if (rating >= RatingBoundary.BAD && rating < RatingBoundary.NORMAL) {
     ratingLevel = RatingName.NORMAL;
-  } else if (ratingValue >= RatingBoundary.NORMAL && ratingValue < RatingBoundary.GOOD) {
+  } else if (rating >= RatingBoundary.NORMAL && rating < RatingBoundary.GOOD) {
     ratingLevel = RatingName.GOOD;
-  } else if (ratingValue >= RatingBoundary.GOOD && ratingValue < RatingBoundary.VERY_GOOD) {
+  } else if (rating >= RatingBoundary.GOOD && rating < RatingBoundary.VERY_GOOD) {
     ratingLevel = RatingName.VERY_GOOD;
-  } else if (ratingValue >= RatingBoundary.VERY_GOOD) {
+  } else if (rating >= RatingBoundary.VERY_GOOD) {
     ratingLevel = RatingName.AWESOME;
   }
   return ratingLevel;
@@ -53,12 +54,14 @@ const MovieOverview: React.FC<MovieOverviewProps> = ({
   starring
 }: MovieOverviewProps) => {
 
+  const rating = String(ratingScore);
+
   return (
     <>
       <div className="movie-rating">
         <div className="movie-rating__score">{ratingScore}</div>
         <p className="movie-rating__meta">
-          <span className="movie-rating__level">{getRatingLevel(+ratingScore)}</span>
+          <span className="movie-rating__level">{getRatingLevel(rating)}</span>
           <span className="movie-rating__count">{ratingCount} ratings</span>
         </p>
       </div>
