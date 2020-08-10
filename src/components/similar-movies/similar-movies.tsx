@@ -4,7 +4,7 @@ import withCard from '../../hocs/with-card/with-card';
 import Card from '../card/card';
 import Loader from '../loader/loader';
 
-import {FilmInterface, UserDataInterface} from '../../types';
+import {FilmInterface} from '../../types';
 
 const CardWrapped = withCard(Card);
 

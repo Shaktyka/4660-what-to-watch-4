@@ -120,7 +120,6 @@ const App: React.FC<AppProps> = ({
     </>
   );
 };
-  
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),

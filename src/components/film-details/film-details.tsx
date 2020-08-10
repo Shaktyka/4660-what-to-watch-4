@@ -90,7 +90,7 @@ interface FilmDetailsProps {
   authorizationStatus: string;
   userData: UserDataInterface;
   changeFavoriteStatus(id: number, status: number): void;
-  history: HistoryObject
+  history: HistoryObject;
 }
 
 const FilmDetails: React.FC<FilmDetailsProps> = ({

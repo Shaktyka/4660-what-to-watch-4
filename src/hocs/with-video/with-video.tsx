@@ -2,22 +2,17 @@ import * as React from 'react';
 import {Subtract} from 'utility-types';
 import {VideoAttributes} from '../../consts';
 
-const videoDelay: number = 1000;
+const videoDelay = 1000;
 
 interface InjectingProps {
   _videoRef: React.RefObject<HTMLVideoElement>;
-}
-
-interface State {
-  // _timeout: NodeJS.Timeout;
-  // _videoRef: React.RefObject<HTMLVideoElement>;
 }
 
 const withVideo = (Component) => {
   type P = React.ComponentProps<typeof Component>;
   type T = Subtract<P, InjectingProps>;
 
-  class WithVideo extends React.PureComponent<T, State> {
+  class WithVideo extends React.PureComponent<T, {}> {
     private _videoRef: React.RefObject<HTMLVideoElement>;
     private _timeout: NodeJS.Timeout;
 

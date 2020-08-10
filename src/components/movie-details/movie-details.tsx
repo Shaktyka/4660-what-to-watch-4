@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import {formatInitCap, getDurationFromMinutes} from '../../utils';
-import {FilmInterface, UserDataInterface} from '../../types';
 
 interface MovieDetailsProps {
   director: string;

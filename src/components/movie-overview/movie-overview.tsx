@@ -43,7 +43,7 @@ interface MovieOverviewProps {
   ratingCount: number;
   description: string;
   director: string;
-  starring: Array<string>
+  starring: Array<string>;
 }
 
 const MovieOverview: React.FC<MovieOverviewProps> = ({

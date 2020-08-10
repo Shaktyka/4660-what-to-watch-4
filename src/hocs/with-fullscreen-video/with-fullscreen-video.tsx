@@ -22,7 +22,7 @@ interface State {
   timeElapsed: number;
   progress: null | number;
   duration: null | number;
-  filmData: FilmData
+  filmData: FilmData;
 }
 
 const withFullscreenVideo = (Component) => {

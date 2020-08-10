@@ -31,13 +31,13 @@ const withCard = (Component) => {
       this.setState({
         isPlaying: true
       });
-    };
+    }
 
-    _handleMouseLeave () {
+    _handleMouseLeave() {
       this.setState({
         isPlaying: false
       });
-    };
+    }
 
     render() {
       return (

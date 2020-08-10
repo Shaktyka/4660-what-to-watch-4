@@ -8,7 +8,7 @@ import {UserDataInterface} from '../../types';
 interface UserBlockProps {
   isAuthorized: boolean;
   userData: UserDataInterface;
-};
+}
 
 const UserBlock: React.FC<UserBlockProps> = ({
   isAuthorized,
