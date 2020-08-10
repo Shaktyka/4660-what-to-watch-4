@@ -20,8 +20,10 @@ const Review: React.FC<ReviewProps> = ({
   date
 }: ReviewProps) => {
 
+  const idValue = String(id);
+
   return (
-    <div className="review" id={id}>
+    <div className="review" id={idValue}>
       <blockquote className="review__quote">
         <p className="review__text">{text}</p>
 
