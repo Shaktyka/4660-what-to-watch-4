@@ -1,22 +1,15 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import * as configureStore from 'redux-mock-store';
+import configureStore from 'redux-mock-store';
 
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import NameSpace from '../../reducer/name-space';
-import {noop, filmData} from '../test-data';
+import {noop, filmData, userData} from '../test-data';
 
 import {Main} from './main';
 
 const mockStore = configureStore([]);
-
-const userData = {
-  id: 1,
-  email: `Oliver.conner@gmail.com`,
-  name: `Oliver.conner`,
-  avatar: `img/1.png`
-};
 
 const genresList = [`All genres`, `Crime`, `Sci-Fi`, `Drama`];
 
@@ -57,7 +50,6 @@ describe(`Main rendering`, () => {
                 promoFilm={filmData}
                 loadFilmsError={``}
                 loadPromoError={``}
-                isLoading={false}
                 isFilmsLoading={false}
                 isPromoLoading={false}
                 history={history}

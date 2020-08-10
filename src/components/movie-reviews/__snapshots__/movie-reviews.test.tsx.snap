@@ -10,7 +10,7 @@ exports[`MovieReviews rendering MovieReviews renders correctly with the one revi
   >
     <div
       className="review"
-      id={1}
+      id="1"
     >
       <blockquote
         className="review__quote"

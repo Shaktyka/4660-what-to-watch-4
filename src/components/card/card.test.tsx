@@ -14,10 +14,9 @@ describe(`Card rendering`, () => {
           <BrowserRouter>
             <Card
               film={filmData}
-              onFilmCardClick={noop}
+              isPlaying={false}
               onMouseEnterCard={noop}
               onMouseLeaveCard={noop}
-              isPlaying={false}
             />
           </BrowserRouter>, {
             createNodeMock: () => {

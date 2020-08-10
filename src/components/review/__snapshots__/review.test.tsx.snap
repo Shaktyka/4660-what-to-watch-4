@@ -3,7 +3,7 @@
 exports[`Review rendering Review renders correctly 1`] = `
 <div
   className="review"
-  id={1}
+  id="1"
 >
   <blockquote
     className="review__quote"
@@ -18,15 +18,15 @@ exports[`Review rendering Review renders correctly 1`] = `
     >
       <cite
         className="review__author"
-        data-authorid={22}
+        data-authorid={4}
       >
         Kate Muir
       </cite>
       <time
         className="review__date"
-        dateTime="2016-12-24"
+        dateTime="2019-05-08T14:13:56.569Z"
       >
-        December 24, 2016
+        May 08, 2019
       </time>
     </footer>
   </blockquote>

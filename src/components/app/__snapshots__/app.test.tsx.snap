@@ -116,7 +116,6 @@ Array [
             <button
               className="btn btn--list movie-card__button"
               onClick={[Function]}
-              to="/mylist"
               type="button"
             >
               <svg

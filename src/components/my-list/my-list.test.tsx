@@ -1,6 +1,6 @@
 import * as React from 'react';
-
 import * as renderer from 'react-test-renderer';
+
 import {BrowserRouter} from 'react-router-dom';
 import {userData, filmData, noop} from '../test-data';
 
@@ -13,10 +13,7 @@ describe(`MyList rendering`, () => {
       .create(
           <BrowserRouter>
             <MyList
-              isLoading={false}
-              loadFilmsError={``}
               userData={userData}
-              films={[filmData]}
               favoritesFilms={[filmData]}
               isFavoritesFilmsLoading={false}
               loadFavoritesFilmsError={``}

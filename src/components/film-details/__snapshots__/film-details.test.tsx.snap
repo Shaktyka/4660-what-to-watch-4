@@ -4,7 +4,7 @@ exports[`FilmDetails rendering FilmDetails renders correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
-    id={1}
+    id="1"
   >
     <div
       className="movie-card__hero"
@@ -117,7 +117,6 @@ Array [
             <button
               className="btn btn--list movie-card__button"
               onClick={[Function]}
-              to="/mylist"
               type="button"
             >
               <svg
@@ -267,7 +266,7 @@ Array [
           onClick={[Function]}
         >
           <article
-            id={1}
+            id="1"
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -275,10 +274,10 @@ Array [
               className="small-movie-card__image"
             >
               <video
-                height="175"
+                data-type="video/webm"
+                height={175}
                 poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
-                type="video/webm"
-                width="280"
+                width={280}
               >
                 Sorry, your browser doesn't support embedded video
               </video>

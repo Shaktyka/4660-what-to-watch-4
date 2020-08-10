@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import * as configureStore from 'redux-mock-store';
+import configureStore from 'redux-mock-store';
 
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
@@ -48,8 +48,6 @@ describe(`MoviesList rendering`, () => {
             <Provider store={store}>
               <MoviesList
                 films={[filmData]}
-                onFilmCardClick={noop}
-                onHoverCard={noop}
                 isLoading={false}
                 isShowed={true}
                 onShowMoreClick={noop}

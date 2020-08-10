@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import * as configureStore from 'redux-mock-store';
+import configureStore from 'redux-mock-store';
 
 import {Provider} from 'react-redux';
 import NameSpace from '../../reducer/name-space';

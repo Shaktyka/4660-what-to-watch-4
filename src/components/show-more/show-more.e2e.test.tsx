@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Adapter from 'enzyme-adapter-react-16';
 import {configure, shallow} from 'enzyme';
 
-import ShowMore from './show-more.jsx';
+import ShowMore from './show-more';
 
 configure({adapter: new Adapter()});
 

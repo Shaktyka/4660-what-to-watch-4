@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {configure, mount} from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
+
+import {configure, mount} from 'enzyme';
 
 import VideoPlayer from './video-player';
 
@@ -8,23 +9,12 @@ configure({
   adapter: new Adapter(),
 });
 
-const videoData = {
-  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
-  preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`,
-};
-
 describe(`VideoPlayer e2e test`, () => {
   it(`Fuctions Start and Pause work correctly`, () => {
-    const isPlaying = false;
     const children = <div />;
 
     const videoPlayer = mount(
-        <VideoPlayer
-          isPlaying={isPlaying}
-          src={videoData.preview}
-          poster={videoData.poster}
-          muted
-        >
+        <VideoPlayer>
           {children}
         </VideoPlayer>);
 
