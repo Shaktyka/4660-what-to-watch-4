@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+import {noop} from '../test-data';
 
 import ShowMore from './show-more';
 
@@ -9,7 +10,7 @@ describe(`ShowMore rendering`, () => {
     const tree = renderer
       .create(
           <ShowMore
-            onShowMoreClick={() => {}}
+            onShowMoreClick={noop}
           />
       )
       .toJSON();

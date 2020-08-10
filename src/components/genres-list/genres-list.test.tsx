@@ -4,10 +4,10 @@ import * as configureStore from 'redux-mock-store';
 
 import NameSpace from '../../reducer/name-space';
 import {Provider} from 'react-redux';
+import {noop, GENRES} from '../test-data';
 
 import GenresList from './genres-list';
 
-const genresList = [`All genres`, `Crime`, `Sci-Fi`, `Drama`, `Comedy`];
 const mockStore = configureStore([]);
 
 describe(`GenresList rendering`, () => {
@@ -15,7 +15,7 @@ describe(`GenresList rendering`, () => {
   it(`GenresList renders correctly with the first active filter`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
-        genres: genresList,
+        genres: GENRES,
       },
       [NameSpace.APP_STATE]: {
         genre: `All genres`
@@ -27,7 +27,7 @@ describe(`GenresList rendering`, () => {
           <Provider store={store}>
             <GenresList
               activeGenre={`All genres`}
-              onGenreClick={() => {}}
+              onGenreClick={noop}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -42,7 +42,7 @@ describe(`GenresList rendering`, () => {
   it(`GenresList renders correctly with the third active filter`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
-        genres: genresList,
+        genres: GENRES,
       },
       [NameSpace.APP_STATE]: {
         genre: `Sci-Fi`
@@ -54,7 +54,7 @@ describe(`GenresList rendering`, () => {
           <Provider store={store}>
             <GenresList
               activeGenre={`Sci-Fi`}
-              onGenreClick={() => {}}
+              onGenreClick={noop}
             />
           </Provider>, {
             createNodeMock: () => {

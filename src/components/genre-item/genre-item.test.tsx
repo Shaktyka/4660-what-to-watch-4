@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+import {noop} from '../test-data';
 
 import GenreItem from './genre-item';
 
@@ -13,7 +14,7 @@ describe(`GenreItem rendering`, () => {
           <GenreItem
             genre={genre}
             isActive={true}
-            onGenreClick={() => {}}
+            onGenreClick={noop}
           />
       )
       .toJSON();
@@ -29,7 +30,7 @@ describe(`GenreItem rendering`, () => {
           <GenreItem
             genre={genre}
             isActive={false}
-            onGenreClick={() => {}}
+            onGenreClick={noop}
           />
       )
       .toJSON();

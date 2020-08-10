@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+import {noop} from '../test-data';
 
 import FullScreenVideoPlayer from './full-screen-video-player';
 
@@ -13,7 +14,7 @@ describe(`FullScreenVideoPlayer rendering`, () => {
 
   it(`FullScreenVideoPlayer renders correctly`, () => {
     const history = {
-      goBack: () => {}
+      goBack: noop
     };
 
     const tree = renderer
@@ -22,8 +23,8 @@ describe(`FullScreenVideoPlayer rendering`, () => {
             isPlay={true}
             timeElapsed={0}
             currentProgress={`0`}
-            onPlayButtonClick={() => {}}
-            onFullscreenClick={() => {}}
+            onPlayButtonClick={noop}
+            onFullscreenClick={noop}
             history={history}
           >
             <MockComponent/>

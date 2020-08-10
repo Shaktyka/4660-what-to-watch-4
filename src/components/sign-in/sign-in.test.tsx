@@ -1,10 +1,12 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import * as configureStore from 'redux-mock-store';
+
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-
 import NameSpace from '../../reducer/name-space';
+import {noop} from '../test-data';
+
 import SignIn from './sign-in';
 
 const mockStore = configureStore([]);
@@ -29,7 +31,7 @@ describe(`SignIn rendering`, () => {
             <Provider store={store}>
               <SignIn
                 authorizationError={null}
-                onSubmit={() => {}}
+                onSubmit={noop}
               />
             </Provider>
           </BrowserRouter>, {
@@ -60,7 +62,7 @@ describe(`SignIn rendering`, () => {
             <Provider store={store}>
               <SignIn
                 authorizationError={`Bad request`}
-                onSubmit={() => {}}
+                onSubmit={noop}
               />
             </Provider>
           </BrowserRouter>, {

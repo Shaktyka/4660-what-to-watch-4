@@ -4,19 +4,9 @@ import * as configureStore from 'redux-mock-store';
 
 import {Provider} from 'react-redux';
 import NameSpace from '../../reducer/name-space';
+import {REVIEWS} from '../test-data';
 
 import MovieReviews from './movie-reviews';
-
-const REVIEWS = [
-  {
-    id: 1,
-    authorId: 4,
-    authorName: `Kate Muir`,
-    rating: 8.9,
-    text: `Discerning travellers`,
-    date: `2019-05-08T14:13:56.569Z`
-  }
-];
 
 const mockStore = configureStore([]);
 

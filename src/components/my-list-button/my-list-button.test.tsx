@@ -4,6 +4,7 @@ import * as renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 
 import MyListButton from './my-list-button';
+import {noop} from '../test-data';
 
 const filmData = {
   id: 1,
@@ -14,7 +15,7 @@ describe(`MyListButton rendering`, () => {
 
   it(`MyListButton renders correctly`, () => {
     const history = {
-      push: () => {}
+      push: noop
     };
 
     const tree = renderer
@@ -23,7 +24,7 @@ describe(`MyListButton rendering`, () => {
             <MyListButton
               film={filmData}
               isAuthorized={true}
-              onClick={() => {}}
+              onClick={noop}
               history={history}
             />
           </BrowserRouter>
