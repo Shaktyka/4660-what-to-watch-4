@@ -26,7 +26,7 @@ import {Link} from 'react-router-dom';
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors';
 import {AuthorizationStatus} from '../../consts';
-import {FilmInterface, UserDataInterface} from '../../types';
+import {FilmInterface, UserDataInterface, HistoryObject} from '../../types';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
@@ -41,7 +41,7 @@ interface MainProps {
   isPromoLoading: boolean;
   userData: UserDataInterface;
   changeFavoriteStatus(id: number, status: number): void;
-  history: {};
+  history: HistoryObject;
 }
 
 const Main: React.FC<MainProps> = ({
