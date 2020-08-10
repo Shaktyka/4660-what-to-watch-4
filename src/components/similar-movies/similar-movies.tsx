@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import withCard from '../../hocs/with-сard/with-card';
+import withCard from '../../hocs/with-card/with-card';
 import Card from '../card/card';
 import Loader from '../loader/loader';
 
