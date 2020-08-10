@@ -27,9 +27,10 @@ import SimilarMovies from '../similar-movies/similar-movies';
 import PageHeader from '../page-header/page-header';
 import UserBlock from '../user-block/user-block';
 import PageFooter from '../page-footer/page-footer';
+import MyListButton from '../my-list-button/my-list-button';
 import {Link} from 'react-router-dom';
 import {TabName} from '../../consts';
-import {FilmInterface, UserDataInterface, ReviewInterface} from '../../types.ts';
+import {FilmInterface, UserDataInterface, ReviewInterface, HistoryObject} from '../../types';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
@@ -89,7 +90,7 @@ interface FilmDetailsProps {
   authorizationStatus: string;
   userData: UserDataInterface;
   changeFavoriteStatus(id: number, status: number): void;
-  history: {}
+  history: HistoryObject
 }
 
 const FilmDetails: React.FC<FilmDetailsProps> = ({
@@ -119,9 +120,11 @@ const FilmDetails: React.FC<FilmDetailsProps> = ({
     </Link>
   );
 
+  const idValue = String(id);
+
   return (
     <>
-      <section className="movie-card movie-card--full" id={id}>
+      <section className="movie-card movie-card--full" id={idValue}>
         <div className="movie-card__hero" style={{backgroundColor: bgColor}}>
           <div className="movie-card__bg">
             <img src={cover} alt={title} />
