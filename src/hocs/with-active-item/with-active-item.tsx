@@ -1,16 +1,30 @@
 import * as React from 'react';
+import {Subtract} from 'utility-types';
 
-const withActiveItem = (Component, activeItemValue = false) => {
+interface InjectingProps {
+  isPlaying: boolean;
+  _setActiveItem(item: string | number): void;
+  _resetActiveItem(): void;
+}
 
-  class WithActiveItem extends React.PureComponent {
+interface State {
+  activeItem: string | number;
+}
+
+const withActiveItem = (Component) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveItem extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
       this.state = {
-        activeItem: activeItemValue
+        activeItem: ``
       };
 
       this._setActiveItem = this._setActiveItem.bind(this);
+      this._resetActiveItem = this._resetActiveItem.bind(this);
     }
 
     _setActiveItem(item) {
