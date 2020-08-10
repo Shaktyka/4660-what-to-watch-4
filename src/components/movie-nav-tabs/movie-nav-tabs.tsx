@@ -1,11 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer/app-state/app-state.js';
+import {ActionCreator} from '../../reducer/app-state/app-state';
 
-const MovieNavTabs = (props) => {
-  const {tabs, activeTab, onTabClick} = props;
+interface MovieNavTabsProps {
+  tabs: Array<string>;
+  activeTab: string;
+  onTabClick(tab: string): void;
+}
+
+const MovieNavTabs: React.FC<MovieNavTabsProps> = ({
+  tabs,
+  activeTab,
+  onTabClick
+}: MovieNavTabsProps) => {
 
   return (
     <ul className="movie-nav__list">
@@ -25,12 +33,6 @@ const MovieNavTabs = (props) => {
       }
     </ul>
   );
-};
-
-MovieNavTabs.propTypes = {
-  tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeTab: PropTypes.string.isRequired,
-  onTabClick: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({

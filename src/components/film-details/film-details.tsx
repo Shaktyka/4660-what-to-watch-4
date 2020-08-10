@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
 
@@ -7,30 +6,30 @@ import {
   getReviews,
   getFilmsErrorMessage,
   getIsFilmsLoading
-} from '../../reducer/data/selectors.js';
+} from '../../reducer/data/selectors';
 
-import {Operation as DataOperation} from '../../reducer/data/data.js';
-import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import {AuthorizationStatus} from '../../consts.js';
+import {Operation as DataOperation} from '../../reducer/data/data';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors';
+import {AuthorizationStatus} from '../../consts';
 
 import {
   getMovieNavTabs,
   getActiveTab
-} from '../../reducer/app-state/selectors.js';
+} from '../../reducer/app-state/selectors';
 
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+
+import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs';
+import MovieOverview from '../movie-overview/movie-overview';
+import MovieDetails from '../movie-details/movie-details';
+import MovieReviews from '../movie-reviews/movie-reviews';
+import SimilarMovies from '../similar-movies/similar-movies';
+import PageHeader from '../page-header/page-header';
+import UserBlock from '../user-block/user-block';
+import PageFooter from '../page-footer/page-footer';
 import {Link} from 'react-router-dom';
-import {TabName} from '../../consts.js';
-
-import MovieNavTabs from '../movie-nav-tabs/movie-nav-tabs.jsx';
-import MovieOverview from '../movie-overview/movie-overview.jsx';
-import MovieDetails from '../movie-details/movie-details.jsx';
-import MovieReviews from '../movie-reviews/movie-reviews.jsx';
-import SimilarMovies from '../similar-movies/similar-movies.jsx';
-import PageHeader from '../page-header/page-header.jsx';
-import UserBlock from '../user-block/user-block.jsx';
-import PageFooter from '../page-footer/page-footer.jsx';
-import MyListButton from '../my-list-button/my-list-button.jsx';
+import {TabName} from '../../consts';
+import {FilmInterface, UserDataInterface, ReviewInterface} from '../../types.ts';
 
 const SimilarMoviesWrapped = withActiveItem(SimilarMovies);
 
@@ -79,20 +78,33 @@ export const getDetailsScreen = (activeTab, filmData, reviews = []) => {
   }
 };
 
-const FilmDetails = (props) => {
-  const {
-    tabs,
-    activeTab,
-    films,
-    selectedFilmId,
-    filmReviews,
-    loadFilmsError,
-    isFilmsLoading,
-    authorizationStatus,
-    userData,
-    changeFavoriteStatus,
-    history
-  } = props;
+interface FilmDetailsProps {
+  tabs: Array<string>;
+  activeTab: string;
+  filmReviews: Array<ReviewInterface>;
+  films: Array<FilmInterface>;
+  selectedFilmId: number;
+  loadFilmsError: string;
+  isFilmsLoading: boolean;
+  authorizationStatus: string;
+  userData: UserDataInterface;
+  changeFavoriteStatus(id: number, status: number): void;
+  history: {}
+}
+
+const FilmDetails: React.FC<FilmDetailsProps> = ({
+  tabs,
+  activeTab,
+  films,
+  selectedFilmId,
+  filmReviews,
+  loadFilmsError,
+  isFilmsLoading,
+  authorizationStatus,
+  userData,
+  changeFavoriteStatus,
+  history
+}: FilmDetailsProps) => {
 
   const filmData = (films.find((film) => film.id === selectedFilmId));
   const {id, title, genre, year, poster, cover, bgColor} = filmData;
@@ -195,45 +207,6 @@ const FilmDetails = (props) => {
     </div>
     </>
   );
-};
-
-FilmDetails.propTypes = {
-  tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeTab: PropTypes.string.isRequired,
-  filmReviews: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    authorId: PropTypes.number,
-    authorName: PropTypes.string,
-    rating: PropTypes.number,
-    text: PropTypes.string,
-    date: PropTypes.string
-  })).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.number,
-    bgColor: PropTypes.string,
-    cover: PropTypes.string,
-    poster: PropTypes.string,
-    isFavorite: PropTypes.bool,
-    preview: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
-  })).isRequired,
-  selectedFilmId: PropTypes.number.isRequired,
-  loadFilmsError: PropTypes.string.isRequired,
-  isFilmsLoading: PropTypes.bool.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  userData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    avatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired
-  }).isRequired,
-  changeFavoriteStatus: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
 };
 
 const mapStateToProps = (state) => ({

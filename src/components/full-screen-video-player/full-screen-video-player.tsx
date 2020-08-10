@@ -1,17 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {formatTime} from '../../utils.js';
+import * as React from 'react';
 
-const FullScreenVideoPlayer = (props) => {
-  const {
-    history,
-    isPlay,
-    timeElapsed,
-    currentProgress,
-    onPlayButtonClick,
-    onFullscreenClick,
-    children
-  } = props;
+import {formatTime} from '../../utils';
+
+interface FullScreenVideoPlayerProps {
+  isPlay: boolean;
+  timeElapsed: number;
+  currentProgress: string;
+  onPlayButtonClick(): void;
+  onFullscreenClick(): void;
+  children: React.ReactNode;
+  history: object;
+}
+
+const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({
+  history,
+  isPlay,
+  timeElapsed,
+  currentProgress,
+  onPlayButtonClick,
+  onFullscreenClick,
+  children
+}: FullScreenVideoPlayerProps) => {
 
   return (
     <div className="player">
@@ -85,18 +94,6 @@ const FullScreenVideoPlayer = (props) => {
       </div>
     </div>
   );
-};
-
-FullScreenVideoPlayer.propTypes = {
-  isPlay: PropTypes.bool.isRequired,
-  timeElapsed: PropTypes.number.isRequired,
-  currentProgress: PropTypes.string.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  onFullscreenClick: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
-  history: PropTypes.shape({
-    goBack: PropTypes.func.isRequired
-  }).isRequired,
 };
 
 export default FullScreenVideoPlayer;

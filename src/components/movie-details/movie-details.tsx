@@ -1,9 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {formatInitCap, getDurationFromMinutes} from '../../utils.js';
+import * as React from 'react';
 
-const MovieDetails = (props) => {
-  const {director, starring, duration, genre, year} = props;
+import {formatInitCap, getDurationFromMinutes} from '../../utils';
+import {FilmInterface, UserDataInterface} from '../../types';
+
+interface MovieDetailsProps {
+  director: string;
+  starring: Array<string>;
+  duration: number;
+  genre: string;
+  year: number;
+}
+
+const MovieDetails: React.FC<MovieDetailsProps> = ({
+  director,
+  starring,
+  duration,
+  genre,
+  year
+}: MovieDetailsProps) => {
 
   return (
     <div className="movie-card__text movie-card__row">
@@ -38,14 +52,6 @@ const MovieDetails = (props) => {
       </div>
     </div>
   );
-};
-
-MovieDetails.propTypes = {
-  director: PropTypes.string.isRequired,
-  starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-  duration: PropTypes.number.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired
 };
 
 export default MovieDetails;

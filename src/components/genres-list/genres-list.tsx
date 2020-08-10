@@ -1,15 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
-import {getGenres} from '../../reducer/data/selectors.js';
-import {getGenre} from '../../reducer/app-state/selectors.js';
-import {ActionCreator} from '../../reducer/app-state/app-state.js';
+import {getGenres} from '../../reducer/data/selectors';
+import {getGenre} from '../../reducer/app-state/selectors';
+import {ActionCreator} from '../../reducer/app-state/app-state';
+import GenreItem from '../genre-item/genre-item';
 
-import GenreItem from '../genre-item/genre-item.jsx';
+interface GenresList {
+  genres: Array<string>;
+  activeGenre: string;
+  onGenreClick(genre: string): void;
+}
 
-const GenresList = (props) => {
-  const {genres, activeGenre, onGenreClick} = props;
+
+const GenresList: React.FC<GenresList> = ({
+  genres,
+  activeGenre,
+  onGenreClick
+}: GenresList) => {
 
   return (
     <ul className="catalog__genres-list">
@@ -29,12 +37,6 @@ const GenresList = (props) => {
       }
     </ul>
   );
-};
-
-GenresList.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeGenre: PropTypes.string.isRequired,
-  onGenreClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
 
@@ -10,40 +9,53 @@ import {
   getPromoErrorMessage,
   getIsFilmsLoading,
   getIsPromoLoading
-} from '../../reducer/data/selectors.js';
+} from '../../reducer/data/selectors';
 
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-import withShowMore from '../../hocs/with-show-more/with-show-more.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import withShowMore from '../../hocs/with-show-more/with-show-more';
 
-import MoviesList from '../movies-list/movies-list.jsx';
-import GenresList from '../genres-list/genres-list.jsx';
-import PageHeader from '../page-header/page-header.jsx';
-import PageFooter from '../page-footer/page-footer.jsx';
-import Loader from '../loader/loader.jsx';
-import ErrorMessage from '../error-message/error-message.jsx';
-import UserBlock from '../user-block/user-block.jsx';
-import MyListButton from '../my-list-button/my-list-button.jsx';
+import MoviesList from '../movies-list/movies-list';
+import GenresList from '../genres-list/genres-list';
+import PageHeader from '../page-header/page-header';
+import PageFooter from '../page-footer/page-footer';
+import Loader from '../loader/loader';
+import ErrorMessage from '../error-message/error-message';
+import UserBlock from '../user-block/user-block';
+import MyListButton from '../my-list-button/my-list-button';
 import {Link} from 'react-router-dom';
-import {Operation as DataOperation} from '../../reducer/data/data.js';
-import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import {AuthorizationStatus} from '../../consts.js';
+import {Operation as DataOperation} from '../../reducer/data/data';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors';
+import {AuthorizationStatus} from '../../consts';
+import {FilmInterface, UserDataInterface} from '../../types';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 const GenresListWrapped = withActiveItem(GenresList);
 
-const Main = (props) => {
-  const {
-    films,
-    promoFilm,
-    loadFilmsError,
-    loadPromoError,
-    isFilmsLoading,
-    isPromoLoading,
-    userData,
-    changeFavoriteStatus,
-    authorizationStatus,
-    history
-  } = props;
+interface MainProps {
+  authorizationStatus: string;
+  promoFilm: FilmInterface;
+  films: Array<FilmInterface>;
+  loadFilmsError: string;
+  loadPromoError: string;
+  isFilmsLoading: boolean;
+  isPromoLoading: boolean;
+  userData: UserDataInterface;
+  changeFavoriteStatus(id: number, status: number): void;
+  history: {};
+}
+
+const Main: React.FC<MainProps> = ({
+  films,
+  promoFilm,
+  loadFilmsError,
+  loadPromoError,
+  isFilmsLoading,
+  isPromoLoading,
+  userData,
+  changeFavoriteStatus,
+  authorizationStatus,
+  history
+}: MainProps) => {
 
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
   const {id, title, genre, year, bgColor, cover, poster} = promoFilm;
@@ -123,46 +135,6 @@ const Main = (props) => {
       </div>
     </>
   );
-};
-
-Main.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  promoFilm: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.number,
-    bgColor: PropTypes.string,
-    cover: PropTypes.string,
-    poster: PropTypes.string,
-    isFavorite: PropTypes.bool
-  }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.number,
-    bgColor: PropTypes.string,
-    cover: PropTypes.string,
-    poster: PropTypes.string,
-    isFavorite: PropTypes.bool,
-    preview: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
-  })).isRequired,
-  loadFilmsError: PropTypes.string.isRequired,
-  loadPromoError: PropTypes.string.isRequired,
-  isFilmsLoading: PropTypes.bool.isRequired,
-  isPromoLoading: PropTypes.bool.isRequired,
-  userData: PropTypes.shape({
-    avatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    email: PropTypes.string.isRequired,
-  }).isRequired,
-  changeFavoriteStatus: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
 };
 
 const mapStateToProps = (state) => ({
