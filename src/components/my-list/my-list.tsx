@@ -17,7 +17,7 @@ import Loader from '../loader/loader';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withShowMore from '../../hocs/with-show-more/with-show-more';
 import MoviesList from '../movies-list/movies-list';
-import {FilmInterface, UserDataInterface} from '../../types.ts';
+import {FilmInterface, UserDataInterface} from '../../types';
 
 const MoviesListWrapped = withActiveItem(withShowMore(MoviesList));
 
@@ -32,9 +32,10 @@ interface MyListProps {
   favoritesFilms: Array<FilmInterface>;
   isFavoritesFilmsLoading: boolean;
   loadFavoritesFilmsError: string;
+  loadFavoriteFilms(): void;
 }
 
-class MyList extends React.PureComponent {
+class MyList extends React.PureComponent<MyListProps, {}> {
   constructor(props) {
     super(props);
   }
