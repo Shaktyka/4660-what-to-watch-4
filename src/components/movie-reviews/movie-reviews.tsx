@@ -9,7 +9,7 @@ import Loader from '../loader/loader';
 import {ReviewInterface} from '../../types';
 
 interface MovieReviewsProps {
-  reviews: ReviewInterface;
+  reviews: ReviewInterface[];
   loadReviewsError: string;
   isReviewsLoading: boolean;
 }
