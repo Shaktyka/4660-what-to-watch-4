@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering with withCard Card with withCard renders correctly 1`] = `
+<article>
+  FilmCard
+</article>
+`;

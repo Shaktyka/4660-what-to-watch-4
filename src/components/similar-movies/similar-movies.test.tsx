@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import NameSpace from '../../reducer/name-space';
-import {noop, filmData} from '../test-data';
+import {filmData} from '../test-data';
 
 import SimilarMovies from './similar-movies';
 
