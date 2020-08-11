@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card rendering Card renders correctly 1`] = `
+<a
+  className="small-movie-card catalog__movies-card"
+  href="/films/1"
+  onClick={[Function]}
+>
+  <article
+    id="1"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        data-type="video/webm"
+        height={175}
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
+        width={280}
+      >
+        Sorry, your browser doesn't support embedded video
+      </video>
+    </div>
+    <h3
+      className="small-movie-card__title"
+      style={
+        Object {
+          "color": "#d9ca74",
+        }
+      }
+    >
+      Gangs of new york
+    </h3>
+  </article>
+</a>
+`;

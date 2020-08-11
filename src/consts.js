@@ -24,6 +24,11 @@ const AppRoute = {
   ADD_REVIEW: `/add-review`
 };
 
+const VideoAttributes = {
+  WIDTH: 280,
+  HEIGHT: 175
+};
+
 export {
   MAX_GENRES_LENGTH,
   DEFAULT_GENRE,
@@ -33,5 +38,6 @@ export {
   FILMS_PORTION,
   AuthorizationStatus,
   AppRoute,
-  BASE_URL
+  BASE_URL,
+  VideoAttributes
 };
